@@ -53,12 +53,16 @@ class BitBoard {
   void unset_bit(int square) { board &= ~single_square_set(square).board; }
 
   constexpr int popcount() const { return __builtin_popcountll(board); }
-  constexpr int findFirstSet() const { return __builtin_ffsll(board); }
+  constexpr int findFirstSet() const { return __builtin_ctzll(board); }
 };
 
 inline BitBoard operator&(BitBoard a, BitBoard b) { return a &= b; }
 inline BitBoard operator|(BitBoard a, BitBoard b) { return a |= b; }
 inline BitBoard operator~(BitBoard a) { return BitBoard(~a.as_uint()); }
+
+inline BitBoard operator==(BitBoard a, BitBoard b) {
+  return a.as_uint() == b.as_uint();
+}
 
 std::ostream &operator<<(std::ostream &out, const BitBoard &printer);
 

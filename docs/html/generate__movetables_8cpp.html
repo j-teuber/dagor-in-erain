@@ -98,7 +98,8 @@ $(function(){initNavTree('generate__movetables_8cpp.html',''); initResizable(); 
   <div class="headertitle"><div class="title">generate_movetables.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;fstream&gt;</code><br />
+<div class="textblock"><code>#include &lt;cassert&gt;</code><br />
+<code>#include &lt;fstream&gt;</code><br />
 <code>#include &lt;ios&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
 <code>#include &lt;random&gt;</code><br />
@@ -131,38 +132,46 @@ Functions</h2></td></tr>
 <tr class="memitem:ac545ab9b99848ffd145607e99f89bf44" id="r_ac545ab9b99848ffd145607e99f89bf44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac545ab9b99848ffd145607e99f89bf44">bishopBlockers</a> (int square)</td></tr>
 <tr class="memdesc:ac545ab9b99848ffd145607e99f89bf44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes a mask, where all locations are set, where a blocking piece could impede the further movement of a bishop. Squares on the edge are not considered, because they can only be endpoints of a move anyway. For example, this is the result for a bishop on d5:  <br /></td></tr>
 <tr class="separator:ac545ab9b99848ffd145607e99f89bf44"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a540f3933f78f1b3c2022d35d99f3e0d1" id="r_a540f3933f78f1b3c2022d35d99f3e0d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a540f3933f78f1b3c2022d35d99f3e0d1">bishopMoveRay</a> (int square, bool addFile, bool addRank, <a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a> blockers)</td></tr>
-<tr class="separator:a540f3933f78f1b3c2022d35d99f3e0d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e5d44c79b6e3f6fc73b1ebf8dc5d81b" id="r_a0e5d44c79b6e3f6fc73b1ebf8dc5d81b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e5d44c79b6e3f6fc73b1ebf8dc5d81b">bishopMoveRay</a> (int square, bool fileUp, bool rankUp, <a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a> blockers)</td></tr>
+<tr class="memdesc:a0e5d44c79b6e3f6fc73b1ebf8dc5d81b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes one ray of a bishops movement.  <br /></td></tr>
+<tr class="separator:a0e5d44c79b6e3f6fc73b1ebf8dc5d81b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae79b7785d063e6f0520a83d7b8e04945" id="r_ae79b7785d063e6f0520a83d7b8e04945"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae79b7785d063e6f0520a83d7b8e04945">bishopMoves</a> (int square, <a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a> blockers)</td></tr>
+<tr class="memdesc:ae79b7785d063e6f0520a83d7b8e04945"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the moves for a bishop.  <br /></td></tr>
 <tr class="separator:ae79b7785d063e6f0520a83d7b8e04945"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a59d4d97b628baf9a328b4c47654a22" id="r_a0a59d4d97b628baf9a328b4c47654a22"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a59d4d97b628baf9a328b4c47654a22">rookBlockers</a> (int square)</td></tr>
+<tr class="memdesc:a0a59d4d97b628baf9a328b4c47654a22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes a mask, where all locations are set, where a blocking piece could impede the further movement of a rook. Squares on the edge are not considered, because they can only be endpoints of a move anyway. For example, this is the result for a rook on d5:  <br /></td></tr>
 <tr class="separator:a0a59d4d97b628baf9a328b4c47654a22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a354055978c03f7bf0457ff255aa71ff6" id="r_a354055978c03f7bf0457ff255aa71ff6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a354055978c03f7bf0457ff255aa71ff6">rookMoveRay</a> (int square, int addFile, int addRank, <a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a> blockers)</td></tr>
 <tr class="separator:a354055978c03f7bf0457ff255aa71ff6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9dc295d6a1bfbcec5a2fda9abe0f5d9c" id="r_a9dc295d6a1bfbcec5a2fda9abe0f5d9c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9dc295d6a1bfbcec5a2fda9abe0f5d9c">rookMove</a> (int square, <a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a> blockers)</td></tr>
-<tr class="separator:a9dc295d6a1bfbcec5a2fda9abe0f5d9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54d2a5e5496a9d69a939c3ab016749bb" id="r_a54d2a5e5496a9d69a939c3ab016749bb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a54d2a5e5496a9d69a939c3ab016749bb">rookMoves</a> (int square, <a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a> blockers)</td></tr>
+<tr class="memdesc:a54d2a5e5496a9d69a939c3ab016749bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the possible move for a rook.  <br /></td></tr>
+<tr class="separator:a54d2a5e5496a9d69a939c3ab016749bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0b0fbe74096d63af14232439c5816de3" id="r_a0b0fbe74096d63af14232439c5816de3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0b0fbe74096d63af14232439c5816de3">spreadBitsInMask</a> (unsigned bitsToSpread, <a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a> mask)</td></tr>
 <tr class="separator:a0b0fbe74096d63af14232439c5816de3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8751e177f8a883750c6fb3e9506f7c39" id="r_a8751e177f8a883750c6fb3e9506f7c39"><td class="memItemLeft" align="right" valign="top">std::uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8751e177f8a883750c6fb3e9506f7c39">randomLong</a> ()</td></tr>
+<tr class="memdesc:a8751e177f8a883750c6fb3e9506f7c39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates an uniformly distributed uint64.  <br /></td></tr>
 <tr class="separator:a8751e177f8a883750c6fb3e9506f7c39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2eacc3675e0b020c9add38b7746ce141" id="r_a2eacc3675e0b020c9add38b7746ce141"><td class="memItemLeft" align="right" valign="top">std::uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2eacc3675e0b020c9add38b7746ce141">randomFewBitsSet</a> ()</td></tr>
+<tr class="memdesc:a2eacc3675e0b020c9add38b7746ce141"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates a random number with a bias towards numbers where only a few bits are set.  <br /></td></tr>
 <tr class="separator:a2eacc3675e0b020c9add38b7746ce141"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac757e5c1cbf3229f93d1bb6e82847061" id="r_ac757e5c1cbf3229f93d1bb6e82847061"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac757e5c1cbf3229f93d1bb6e82847061">generatePossibleBlockers</a> (<a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a> mask)</td></tr>
+<tr class="memdesc:ac757e5c1cbf3229f93d1bb6e82847061"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates all possibilities for how blocking pieces can be distributed within the range of the given mask. Mathematically speaking, this produces the powerset of the mask.  <br /></td></tr>
 <tr class="separator:ac757e5c1cbf3229f93d1bb6e82847061"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04c90f975ec9e157617996345240aa32" id="r_a04c90f975ec9e157617996345240aa32"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a04c90f975ec9e157617996345240aa32">generatePossibleMoves</a> (bool isBishop, int square, std::vector&lt; <a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a> &gt; &amp;blockers)</td></tr>
-<tr class="separator:a04c90f975ec9e157617996345240aa32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57fd67821762c297597f5f8c2509f258" id="r_a57fd67821762c297597f5f8c2509f258"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDagor_1_1MoveTables_1_1BlockerHash.html">MoveTables::BlockerHash</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a57fd67821762c297597f5f8c2509f258">findPerfectHash</a> (<a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a> mask)</td></tr>
+<tr class="memdesc:a57fd67821762c297597f5f8c2509f258"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the configuration for a perfect hash function for the powerset of the given mask.  <br /></td></tr>
 <tr class="separator:a57fd67821762c297597f5f8c2509f258"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a42fb4bdbe58ef6d98e607f0430fa3006" id="r_a42fb4bdbe58ef6d98e607f0430fa3006"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a42fb4bdbe58ef6d98e607f0430fa3006">writeHash</a> (std::ofstream &amp;f, <a class="el" href="classDagor_1_1MoveTables_1_1BlockerHash.html">MoveTables::BlockerHash</a> &amp;hash, unsigned offset)</td></tr>
+<tr class="memdesc:a42fb4bdbe58ef6d98e607f0430fa3006"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write the representation of a hash function to a file.  <br /></td></tr>
 <tr class="separator:a42fb4bdbe58ef6d98e607f0430fa3006"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee1e6efad6f68ffc0c3cbbb20559e0c3" id="r_aee1e6efad6f68ffc0c3cbbb20559e0c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aee1e6efad6f68ffc0c3cbbb20559e0c3">writeHashes</a> (std::ofstream &amp;f)</td></tr>
+<tr class="memdesc:aee1e6efad6f68ffc0c3cbbb20559e0c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the hashes and moves for the leaping pieces (bishop and rook) to a file.  <br /></td></tr>
 <tr class="separator:aee1e6efad6f68ffc0c3cbbb20559e0c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e663f52efbc8593793d628b4259ce9b" id="r_a0e663f52efbc8593793d628b4259ce9b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e663f52efbc8593793d628b4259ce9b">main2</a> ()</td></tr>
-<tr class="separator:a0e663f52efbc8593793d628b4259ce9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4" id="r_ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
 <tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This file generates <code><a class="el" href="movetables_8cpp.html">movetables.cpp</a></code>. It pre-calculates the possible moves for a given position to speed up move generation in the search. </p>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="ac545ab9b99848ffd145607e99f89bf44" name="ac545ab9b99848ffd145607e99f89bf44"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac545ab9b99848ffd145607e99f89bf44">&#9670;&#160;</a></span>bishopBlockers()</h2>
 
@@ -199,8 +208,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a540f3933f78f1b3c2022d35d99f3e0d1" name="a540f3933f78f1b3c2022d35d99f3e0d1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a540f3933f78f1b3c2022d35d99f3e0d1">&#9670;&#160;</a></span>bishopMoveRay()</h2>
+<a id="a0e5d44c79b6e3f6fc73b1ebf8dc5d81b" name="a0e5d44c79b6e3f6fc73b1ebf8dc5d81b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e5d44c79b6e3f6fc73b1ebf8dc5d81b">&#9670;&#160;</a></span>bishopMoveRay()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -213,12 +222,12 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>addFile</em>, </span></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>fileUp</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>addRank</em>, </span></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>rankUp</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -227,6 +236,18 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Computes one ray of a bishops movement. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">square</td><td>the position of the bishop </td></tr>
+    <tr><td class="paramname">fileUp</td><td>if <code>true</code>, the ray will travel to the right of the board, otherwise to the left. </td></tr>
+    <tr><td class="paramname">rankUp</td><td>if <code>true</code>, the ray will travel to the top of the board, otherwise to the bottom. </td></tr>
+    <tr><td class="paramname">blockers</td><td>the pieces blocking the bishops movement. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a bitboard with all the squares set, to which the bishop can move in that rey. </dd></dl>
 
 </div>
 </div>
@@ -249,6 +270,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Computes the moves for a bishop. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">square</td><td>the position of the bishop. </td></tr>
+    <tr><td class="paramname">blockers</td><td>the pieces blocking the bishops movement. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a bitboard with all the squares set, to which the bishop can move. </dd></dl>
+
 </div>
 </div>
 <a id="a57fd67821762c297597f5f8c2509f258" name="a57fd67821762c297597f5f8c2509f258"></a>
@@ -265,6 +296,15 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Finds the configuration for a perfect hash function for the powerset of the given mask. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mask</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An object implementing the hash function. <code>MoveTables::BlockerHash({0}, {0}, 0, 0)</code> is returned if the generation has failed. </dd></dl>
 
 </div>
 </div>
@@ -283,31 +323,14 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a id="a04c90f975ec9e157617996345240aa32" name="a04c90f975ec9e157617996345240aa32"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a04c90f975ec9e157617996345240aa32">&#9670;&#160;</a></span>generatePossibleMoves()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt; <a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a> &gt; generatePossibleMoves </td>
-          <td>(</td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>isBishop</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>square</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>blockers</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>Generates all possibilities for how blocking pieces can be distributed within the range of the given mask. Mathematically speaking, this produces the powerset of the mask. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mask</td><td>the locations where other pieces could potentially block our movement </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the powerset of that mask. </dd></dl>
 
 </div>
 </div>
@@ -380,23 +403,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a0e663f52efbc8593793d628b4259ce9b" name="a0e663f52efbc8593793d628b4259ce9b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e663f52efbc8593793d628b4259ce9b">&#9670;&#160;</a></span>main2()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int main2 </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="ae1fdd97fcfd39a0c790e47fb677e3b16" name="ae1fdd97fcfd39a0c790e47fb677e3b16"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae1fdd97fcfd39a0c790e47fb677e3b16">&#9670;&#160;</a></span>pawnAttack()</h2>
 
@@ -443,6 +449,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Generates a random number with a bias towards numbers where only a few bits are set. </p>
+<dl class="section return"><dt>Returns</dt><dd>the random number. </dd></dl>
+
 </div>
 </div>
 <a id="a8751e177f8a883750c6fb3e9506f7c39" name="a8751e177f8a883750c6fb3e9506f7c39"></a>
@@ -459,6 +468,9 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Generates an uniformly distributed uint64. </p>
+<dl class="section return"><dt>Returns</dt><dd>the random number. </dd></dl>
 
 </div>
 </div>
@@ -477,26 +489,24 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a id="a9dc295d6a1bfbcec5a2fda9abe0f5d9c" name="a9dc295d6a1bfbcec5a2fda9abe0f5d9c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9dc295d6a1bfbcec5a2fda9abe0f5d9c">&#9670;&#160;</a></span>rookMove()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a> rookMove </td>
-          <td>(</td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>square</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a></td>          <td class="paramname"><span class="paramname"><em>blockers</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>Computes a mask, where all locations are set, where a blocking piece could impede the further movement of a rook. Squares on the edge are not considered, because they can only be endpoints of a move anyway. For example, this is the result for a rook on d5: </p>
+<pre class="fragment">8 | . . . . . . . .
+7 | . . . @ . . . .
+6 | . . . @ . . . .
+5 | . @ @ . @ @ @ .
+4 | . . . @ . . . .
+3 | . . . @ . . . .
+2 | . . . @ . . . .
+1 | . . . . . . . .
+    ----------------     as decimal: 2261102847592448
+    a b c d e f g h      as hex:     0x8087608080800
+</pre> <dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">square</td><td>the position of the rook. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a bitboard with the relevant squares set. </dd></dl>
 
 </div>
 </div>
@@ -528,6 +538,55 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Computes one ray of a rooks movement. The pair <code>(addFile, addRank)</code> describes the direction of the ray:</p>
+<ul>
+<li><code>(+1, 0)</code> = rook goes to the right</li>
+<li><code>(-1, 0)</code> = rook goes to the right</li>
+<li><code>(0, +1)</code> = rook goes to the top</li>
+<li><code>(0, -1)</code> = rook goes to the bottom</li>
+</ul>
+<p>Other values should not be uses.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">square</td><td>the position of the rook </td></tr>
+    <tr><td class="paramname">addFile</td><td>If <code>1</code>, the rook will travel to the right, if <code>-1</code> the rook will travel to the left, if <code>0</code> the rook won’t change its file. </td></tr>
+    <tr><td class="paramname">addRank</td><td>If <code>1</code>, the rook will travel to the top, if <code>-1</code> the rook will travel to the bottom, if <code>0</code> the rook won’t change its rank. </td></tr>
+    <tr><td class="paramname">blockers</td><td>the pieces blocking the rook’s movement. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a bitboard with the moves of this ray set. </dd></dl>
+
+</div>
+</div>
+<a id="a54d2a5e5496a9d69a939c3ab016749bb" name="a54d2a5e5496a9d69a939c3ab016749bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54d2a5e5496a9d69a939c3ab016749bb">&#9670;&#160;</a></span>rookMoves()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a> rookMoves </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>square</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a></td>          <td class="paramname"><span class="paramname"><em>blockers</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Computes the possible move for a rook. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">square</td><td>the position of the rook. </td></tr>
+    <tr><td class="paramname">blockers</td><td>the pieces blocking the rook’s movement. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a bitboard with all the squares set, to which the bishop can move. </dd></dl>
 
 </div>
 </div>
@@ -549,6 +608,17 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Spreads the given bits out to cover the ones of the mask. If the <code>n</code>th bit in <code>bitsToSpread</code> is set, then the <code>n</code>th set square in mask will be set in the result as well. This is used to generate subsets of the mask.</p>
+<p>Example:</p>
+<p>bitsToSpread: 0b101010101010 → result: mask: 8 | . . . . . . . . 8 | . . . . . . . . 7 | @ . . . . . . . 7 | . . . . . . . . 6 | @ . . . . . . . 6 | @ . . . . . . . 5 | @ . . . . . . . 5 | . . . . . . . . 4 | @ . . . . . . . 4 | @ . . . . . . . 3 | @ . . . . . . . 3 | . . . . . . . . 2 | @ . . . . . . . 2 | @ . . . . . . . 1 | . @ @ @ @ @ @ . 1 | . @ . @ . @ . . </p><hr  />
+<p> a b c d e f g h a b c d e f g h </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bitsToSpread</td><td>the binary data to fill the mask with. </td></tr>
+    <tr><td class="paramname">mask</td><td>the places where the binary data should </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A bitboard, in which a square is set iff it’s the <code>n</code>th set square of the mask and the <code>n</code>th bit of <code>bitsToSpread</code> is set. </dd></dl>
 
 </div>
 </div>
@@ -576,6 +646,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Write the representation of a hash function to a file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td></td></tr>
+    <tr><td class="paramname">hash</td><td></td></tr>
+    <tr><td class="paramname">offset</td><td>a new offset, potentially differing from the one specified in the hash function. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="aee1e6efad6f68ffc0c3cbbb20559e0c3" name="aee1e6efad6f68ffc0c3cbbb20559e0c3"></a>
@@ -592,6 +672,14 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Writes the hashes and moves for the leaping pieces (bishop and rook) to a file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

@@ -9,6 +9,5 @@ var searchData=
   ['g7_6',['g7',['../namespaceDagor_1_1Board.html#aaa7a78fb4d36e038f01d566093eb10e7a90e64d9d7ae8b4692cd76422120b20cf',1,'Dagor::Board']]],
   ['g8_7',['g8',['../namespaceDagor_1_1Board.html#aaa7a78fb4d36e038f01d566093eb10e7a83904c13c64555da577a2ff7bc9a53c6',1,'Dagor::Board']]],
   ['generate_5fmovetables_2ecpp_8',['generate_movetables.cpp',['../generate__movetables_8cpp.html',1,'']]],
-  ['generatepossibleblockers_9',['generatePossibleBlockers',['../generate__movetables_8cpp.html#ac757e5c1cbf3229f93d1bb6e82847061',1,'generate_movetables.cpp']]],
-  ['generatepossiblemoves_10',['generatePossibleMoves',['../generate__movetables_8cpp.html#a04c90f975ec9e157617996345240aa32',1,'generate_movetables.cpp']]]
+  ['generatepossibleblockers_9',['generatePossibleBlockers',['../generate__movetables_8cpp.html#ac757e5c1cbf3229f93d1bb6e82847061',1,'generate_movetables.cpp']]]
 ];

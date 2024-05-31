@@ -59,7 +59,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"namespaceDagor_1_1Board.html#aaa7a78fb4d36e038f01d566093eb10e7a9004194243dfa6091ffadea06e0cd153"
+"namespaceDagor_1_1Board.html#aaa7a78fb4d36e038f01d566093eb10e7a9d4bbef6023be2948e4c4d2b12ab24e2"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
