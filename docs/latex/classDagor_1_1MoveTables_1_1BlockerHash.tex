@@ -1,0 +1,82 @@
+\doxysection{Dagor\+::Move\+Tables\+::Blocker\+Hash Class Reference}
+\hypertarget{classDagor_1_1MoveTables_1_1BlockerHash}{}\label{classDagor_1_1MoveTables_1_1BlockerHash}\index{Dagor::MoveTables::BlockerHash@{Dagor::MoveTables::BlockerHash}}
+
+
+{\ttfamily \#include $<$movetables.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash_a5a9c47a48295d28dea6de05a158a14a4}{Blocker\+Hash}} (\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} mask, \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash_a19be5bc60af8840b74d8712011337f3e}{magic}}, unsigned \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash_a84df53ac2ceb7c67130da7aa04895403}{down\+Shift}}, unsigned \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash_a6db39d1750ad2fb9c2610ac9b20883b2}{table\+Offset}})
+\item 
+unsigned \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash_a7999babe6c3e20369b05feca803f485a}{hash}} (\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} blockers) const
+\item 
+\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash_a4ff30b20889a949f09d15068345afd12}{look\+Up}} (\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} blockers) const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash_ad5eec7dfbf9d5a5dcc92268767b964c5}{blocker\+Mask}}
+\item 
+const \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash_a19be5bc60af8840b74d8712011337f3e}{magic}}
+\item 
+const unsigned \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash_a84df53ac2ceb7c67130da7aa04895403}{down\+Shift}}
+\item 
+const unsigned \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash_a6db39d1750ad2fb9c2610ac9b20883b2}{table\+Offset}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classDagor_1_1MoveTables_1_1BlockerHash_a5a9c47a48295d28dea6de05a158a14a4}\label{classDagor_1_1MoveTables_1_1BlockerHash_a5a9c47a48295d28dea6de05a158a14a4} 
+\index{Dagor::MoveTables::BlockerHash@{Dagor::MoveTables::BlockerHash}!BlockerHash@{BlockerHash}}
+\index{BlockerHash@{BlockerHash}!Dagor::MoveTables::BlockerHash@{Dagor::MoveTables::BlockerHash}}
+\doxysubsubsection{\texorpdfstring{BlockerHash()}{BlockerHash()}}
+{\footnotesize\ttfamily Dagor\+::\+Move\+Tables\+::\+Blocker\+Hash\+::\+Blocker\+Hash (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}}}]{mask,  }\item[{\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}}}]{magic,  }\item[{unsigned}]{down\+Shift,  }\item[{unsigned}]{table\+Offset }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classDagor_1_1MoveTables_1_1BlockerHash_a7999babe6c3e20369b05feca803f485a}\label{classDagor_1_1MoveTables_1_1BlockerHash_a7999babe6c3e20369b05feca803f485a} 
+\index{Dagor::MoveTables::BlockerHash@{Dagor::MoveTables::BlockerHash}!hash@{hash}}
+\index{hash@{hash}!Dagor::MoveTables::BlockerHash@{Dagor::MoveTables::BlockerHash}}
+\doxysubsubsection{\texorpdfstring{hash()}{hash()}}
+{\footnotesize\ttfamily unsigned Dagor\+::\+Move\+Tables\+::\+Blocker\+Hash\+::hash (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}}}]{blockers }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classDagor_1_1MoveTables_1_1BlockerHash_a4ff30b20889a949f09d15068345afd12}\label{classDagor_1_1MoveTables_1_1BlockerHash_a4ff30b20889a949f09d15068345afd12} 
+\index{Dagor::MoveTables::BlockerHash@{Dagor::MoveTables::BlockerHash}!lookUp@{lookUp}}
+\index{lookUp@{lookUp}!Dagor::MoveTables::BlockerHash@{Dagor::MoveTables::BlockerHash}}
+\doxysubsubsection{\texorpdfstring{lookUp()}{lookUp()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} Dagor\+::\+Move\+Tables\+::\+Blocker\+Hash\+::look\+Up (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}}}]{blockers }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classDagor_1_1MoveTables_1_1BlockerHash_ad5eec7dfbf9d5a5dcc92268767b964c5}\label{classDagor_1_1MoveTables_1_1BlockerHash_ad5eec7dfbf9d5a5dcc92268767b964c5} 
+\index{Dagor::MoveTables::BlockerHash@{Dagor::MoveTables::BlockerHash}!blockerMask@{blockerMask}}
+\index{blockerMask@{blockerMask}!Dagor::MoveTables::BlockerHash@{Dagor::MoveTables::BlockerHash}}
+\doxysubsubsection{\texorpdfstring{blockerMask}{blockerMask}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} Dagor\+::\+Move\+Tables\+::\+Blocker\+Hash\+::blocker\+Mask}
+
+\Hypertarget{classDagor_1_1MoveTables_1_1BlockerHash_a84df53ac2ceb7c67130da7aa04895403}\label{classDagor_1_1MoveTables_1_1BlockerHash_a84df53ac2ceb7c67130da7aa04895403} 
+\index{Dagor::MoveTables::BlockerHash@{Dagor::MoveTables::BlockerHash}!downShift@{downShift}}
+\index{downShift@{downShift}!Dagor::MoveTables::BlockerHash@{Dagor::MoveTables::BlockerHash}}
+\doxysubsubsection{\texorpdfstring{downShift}{downShift}}
+{\footnotesize\ttfamily const unsigned Dagor\+::\+Move\+Tables\+::\+Blocker\+Hash\+::down\+Shift}
+
+\Hypertarget{classDagor_1_1MoveTables_1_1BlockerHash_a19be5bc60af8840b74d8712011337f3e}\label{classDagor_1_1MoveTables_1_1BlockerHash_a19be5bc60af8840b74d8712011337f3e} 
+\index{Dagor::MoveTables::BlockerHash@{Dagor::MoveTables::BlockerHash}!magic@{magic}}
+\index{magic@{magic}!Dagor::MoveTables::BlockerHash@{Dagor::MoveTables::BlockerHash}}
+\doxysubsubsection{\texorpdfstring{magic}{magic}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} Dagor\+::\+Move\+Tables\+::\+Blocker\+Hash\+::magic}
+
+\Hypertarget{classDagor_1_1MoveTables_1_1BlockerHash_a6db39d1750ad2fb9c2610ac9b20883b2}\label{classDagor_1_1MoveTables_1_1BlockerHash_a6db39d1750ad2fb9c2610ac9b20883b2} 
+\index{Dagor::MoveTables::BlockerHash@{Dagor::MoveTables::BlockerHash}!tableOffset@{tableOffset}}
+\index{tableOffset@{tableOffset}!Dagor::MoveTables::BlockerHash@{Dagor::MoveTables::BlockerHash}}
+\doxysubsubsection{\texorpdfstring{tableOffset}{tableOffset}}
+{\footnotesize\ttfamily const unsigned Dagor\+::\+Move\+Tables\+::\+Blocker\+Hash\+::table\+Offset}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{movetables_8h}{movetables.\+h}}\end{DoxyCompactItemize}

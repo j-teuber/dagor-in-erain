@@ -1,0 +1,466 @@
+\doxysection{Dagor\+::Board Namespace Reference}
+\hypertarget{namespaceDagor_1_1Board}{}\label{namespaceDagor_1_1Board}\index{Dagor::Board@{Dagor::Board}}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespaceDagor_1_1Board_a6c832c33003cd58dd947e02d409916f2}{Compass\+Offsets}} \{ \newline
+\mbox{\hyperlink{namespaceDagor_1_1Board_a6c832c33003cd58dd947e02d409916f2ab70d1f46116790747bc55794c50acae7}{north\+\_\+west}} = +7
+, \mbox{\hyperlink{namespaceDagor_1_1Board_a6c832c33003cd58dd947e02d409916f2a67197b1aa0a6d76cb66a25088b9111e8}{north}} = +8
+, \mbox{\hyperlink{namespaceDagor_1_1Board_a6c832c33003cd58dd947e02d409916f2af516d427643bb3b5fc7d6914683b5edd}{north\+\_\+east}} = +9
+, \mbox{\hyperlink{namespaceDagor_1_1Board_a6c832c33003cd58dd947e02d409916f2afff28b0ccdb0b6b28070c82130179278}{west}} = -\/1
+, \newline
+\mbox{\hyperlink{namespaceDagor_1_1Board_a6c832c33003cd58dd947e02d409916f2a4e35c2e133e9023120008c7d828e7fc4}{east}} = 1
+, \mbox{\hyperlink{namespaceDagor_1_1Board_a6c832c33003cd58dd947e02d409916f2a23ce2f706c4c56bf442095948da668c9}{south\+\_\+west}} = -\/9
+, \mbox{\hyperlink{namespaceDagor_1_1Board_a6c832c33003cd58dd947e02d409916f2a0e53ef6bb1f2a2d19b4ebe3880428dcd}{south}} = -\/8
+, \mbox{\hyperlink{namespaceDagor_1_1Board_a6c832c33003cd58dd947e02d409916f2a4ca68f102d115104c6d1476652642b61}{south\+\_\+east}} = -\/7
+ \}
+\item 
+enum \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7}{Square}} \{ \newline
+\mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a63301435748f3419db67d9ccc400dcde}{a1}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a9004194243dfa6091ffadea06e0cd153}{b1}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a67870912c27c89d26f7400d1e3d744de}{c1}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a1a352eb0af20617160e8c188defa04a0}{d1}}
+, \newline
+\mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a6d02b40e9ec2d2590074e8b1f25c4a24}{e1}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a84ea95d66e75038f3fff3e46a33c6cb5}{f1}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7ab7d9b7d17fc6fc716866377c461204e1}{g1}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a5757c5b035e7a5f3d0e499a763567ff0}{h1}}
+, \newline
+\mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a8ae7b5cc4778b1f1e0aecbb4835ba182}{a2}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a5ace8f128e2269ee12dc221e4b7785c7}{b2}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7aead2c13f1f342a86ec095240d2814bb1}{c2}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7ac7dd2bf195729f99a46a77462fcd2548}{d2}}
+, \newline
+\mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a26720e837ec351ec3a695b312d489772}{e2}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a244f255b480b41d40420a0bcaffc7ad4}{f2}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7ad83c6cbac2ef61b1b74566194303083a}{g2}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a3bb1a1b0474a483258d4f5933fdb1aa6}{h2}}
+, \newline
+\mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7ac3a466b7aed2f20179bb0f17ccb56373}{a3}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a5551910cb9d56741f729441e4abc4ee3}{b3}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a71c17a10d8995d79c3acfeff230d11ae}{c3}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a0f239f6608fb930511e81fcb5ec6b749}{d3}}
+, \newline
+\mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7acb52cd40d9d35a84a11d1ab6b0e66da2}{e3}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a86cfec0adf4c98e1ced2140aded2a2d3}{f3}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a308d1be2262e24e72cb1eca89d2ec1e7}{g3}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a345d083153537c25f75222b6cf29b647}{h3}}
+, \newline
+\mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7abd6dbe052c4a4c9c7adb1aebc374d471}{a4}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a8107ab376772a21e959b80666ad8e99d}{b4}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a4c67ce8c1dcd97710f8a938cac8cdebf}{c4}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a68f88e504710b81d4ddb297937cb6b24}{d4}}
+, \newline
+\mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a43b5af36e7cfe7057353434fe4a528d3}{e4}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a6859c4405f0691fa4cc9d846ff0a6c2b}{f4}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7ad76d5e51fc7cd895d2f02f2af713e608}{g4}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a9d871f709e93f085e3b861d4b2849a49}{h4}}
+, \newline
+\mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a8bbccb8cf1a4af12e3906758818fe87a}{a5}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a559dcedb4e9c81380a2b72aa4ad7a87d}{b5}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a32376a668bdd4ab0e6751d612b41ff34}{c5}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7aeecdf4f1afab6aa260e959efa1a5fd48}{d5}}
+, \newline
+\mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a488f1ad1351ec8dfc36e68f0db50c024}{e5}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a8058d770fffb0bb14ddd098753a0708b}{f5}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a35c30f40961b77c837c0f4b6e6f11433}{g5}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7ae4b121ac8cd9187ce819fd339d93d29d}{h5}}
+, \newline
+\mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a5a7514342ac5b5f618dff99b1af9ee51}{a6}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7abf8e5e27a274d964ed2c86cba973b966}{b6}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7ae1eabfbafefff3373da317441725ab1b}{c6}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a9edf7a0f047d926a4499f7890d1636fb}{d6}}
+, \newline
+\mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7af78f738343ee23f69e5a9d7fb833698e}{e6}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a23bd9f44d5933583fe30e0822b73e4ba}{f6}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7aaeb2c66b2c1ba043102274bc8bee3e74}{g6}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a4503248d062b0e824da4068e714b2efa}{h6}}
+, \newline
+\mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a9d4bbef6023be2948e4c4d2b12ab24e2}{a7}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7aee0a2179980f025c32f3b82931b08147}{b7}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a55f2dd46fe3ded2d564c99d3f9cbd404}{c7}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7af1b21b409a9db684188736a3ac1d3c8e}{d7}}
+, \newline
+\mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a05ee4709ffdc105174c22a74f3736f42}{e7}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a41c3f314e7d9629d96e6ddf8faf5f21b}{f7}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a90e64d9d7ae8b4692cd76422120b20cf}{g7}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a61f00f6d8840eff076316450daf3ae67}{h7}}
+, \newline
+\mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a63171947adb37dbc1d5833761891f988}{a8}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a33ad7724f934727bb66202e3bfd61b08}{b8}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a2a5892c9ae6285c79710d6e7e7c37c9c}{c8}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7aadae129f9aebadae0ab5db8ce9d66d70}{d8}}
+, \newline
+\mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7ad0c5af748880c285f1da0e41d5d70144}{e8}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a331360f07c7fbe4780791358fa3fed8d}{f8}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a83904c13c64555da577a2ff7bc9a53c6}{g8}}
+, \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a1cb2af72dc268da618ec0964488e868e}{h8}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+constexpr int \mbox{\hyperlink{namespaceDagor_1_1Board_a1a056a60f75b6a3403ddd3956672ed80}{file}} (int square)
+\item 
+constexpr int \mbox{\hyperlink{namespaceDagor_1_1Board_ad04c43bb0b07e524ba5fce64d40b9556}{rank}} (int square)
+\item 
+constexpr int \mbox{\hyperlink{namespaceDagor_1_1Board_a69903bda8e4bb5ad2972950839224290}{index}} (int \mbox{\hyperlink{namespaceDagor_1_1Board_a1a056a60f75b6a3403ddd3956672ed80}{file}}, int \mbox{\hyperlink{namespaceDagor_1_1Board_ad04c43bb0b07e524ba5fce64d40b9556}{rank}})
+\item 
+constexpr char \mbox{\hyperlink{namespaceDagor_1_1Board_a51e0a7e47ac736f3f63fee742c0716f4}{file\+\_\+name}} (int \mbox{\hyperlink{namespaceDagor_1_1Board_a1a056a60f75b6a3403ddd3956672ed80}{file}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+constexpr int \mbox{\hyperlink{namespaceDagor_1_1Board_aa84d2af871e9678b20fd70c566e6293b}{width}} \{8\}
+\item 
+constexpr int \mbox{\hyperlink{namespaceDagor_1_1Board_a4fc79744a70cb9f3ae68d0d32a2f9e5a}{size}} \{\mbox{\hyperlink{namespaceDagor_1_1Board_aa84d2af871e9678b20fd70c566e6293b}{width}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespaceDagor_1_1Board_aa84d2af871e9678b20fd70c566e6293b}{width}}\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{namespaceDagor_1_1Board_a6c832c33003cd58dd947e02d409916f2}\label{namespaceDagor_1_1Board_a6c832c33003cd58dd947e02d409916f2} 
+\index{Dagor::Board@{Dagor::Board}!CompassOffsets@{CompassOffsets}}
+\index{CompassOffsets@{CompassOffsets}!Dagor::Board@{Dagor::Board}}
+\doxysubsubsection{\texorpdfstring{CompassOffsets}{CompassOffsets}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{namespaceDagor_1_1Board_a6c832c33003cd58dd947e02d409916f2}{Dagor\+::\+Board\+::\+Compass\+Offsets}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{north\_west@{north\_west}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!north\_west@{north\_west}}}\Hypertarget{namespaceDagor_1_1Board_a6c832c33003cd58dd947e02d409916f2ab70d1f46116790747bc55794c50acae7}\label{namespaceDagor_1_1Board_a6c832c33003cd58dd947e02d409916f2ab70d1f46116790747bc55794c50acae7} 
+north\+\_\+west&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{north@{north}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!north@{north}}}\Hypertarget{namespaceDagor_1_1Board_a6c832c33003cd58dd947e02d409916f2a67197b1aa0a6d76cb66a25088b9111e8}\label{namespaceDagor_1_1Board_a6c832c33003cd58dd947e02d409916f2a67197b1aa0a6d76cb66a25088b9111e8} 
+north&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{north\_east@{north\_east}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!north\_east@{north\_east}}}\Hypertarget{namespaceDagor_1_1Board_a6c832c33003cd58dd947e02d409916f2af516d427643bb3b5fc7d6914683b5edd}\label{namespaceDagor_1_1Board_a6c832c33003cd58dd947e02d409916f2af516d427643bb3b5fc7d6914683b5edd} 
+north\+\_\+east&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{west@{west}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!west@{west}}}\Hypertarget{namespaceDagor_1_1Board_a6c832c33003cd58dd947e02d409916f2afff28b0ccdb0b6b28070c82130179278}\label{namespaceDagor_1_1Board_a6c832c33003cd58dd947e02d409916f2afff28b0ccdb0b6b28070c82130179278} 
+west&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{east@{east}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!east@{east}}}\Hypertarget{namespaceDagor_1_1Board_a6c832c33003cd58dd947e02d409916f2a4e35c2e133e9023120008c7d828e7fc4}\label{namespaceDagor_1_1Board_a6c832c33003cd58dd947e02d409916f2a4e35c2e133e9023120008c7d828e7fc4} 
+east&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{south\_west@{south\_west}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!south\_west@{south\_west}}}\Hypertarget{namespaceDagor_1_1Board_a6c832c33003cd58dd947e02d409916f2a23ce2f706c4c56bf442095948da668c9}\label{namespaceDagor_1_1Board_a6c832c33003cd58dd947e02d409916f2a23ce2f706c4c56bf442095948da668c9} 
+south\+\_\+west&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{south@{south}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!south@{south}}}\Hypertarget{namespaceDagor_1_1Board_a6c832c33003cd58dd947e02d409916f2a0e53ef6bb1f2a2d19b4ebe3880428dcd}\label{namespaceDagor_1_1Board_a6c832c33003cd58dd947e02d409916f2a0e53ef6bb1f2a2d19b4ebe3880428dcd} 
+south&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{south\_east@{south\_east}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!south\_east@{south\_east}}}\Hypertarget{namespaceDagor_1_1Board_a6c832c33003cd58dd947e02d409916f2a4ca68f102d115104c6d1476652642b61}\label{namespaceDagor_1_1Board_a6c832c33003cd58dd947e02d409916f2a4ca68f102d115104c6d1476652642b61} 
+south\+\_\+east&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7} 
+\index{Dagor::Board@{Dagor::Board}!Square@{Square}}
+\index{Square@{Square}!Dagor::Board@{Dagor::Board}}
+\doxysubsubsection{\texorpdfstring{Square}{Square}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7}{Dagor\+::\+Board\+::\+Square}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{a1@{a1}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!a1@{a1}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a63301435748f3419db67d9ccc400dcde}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a63301435748f3419db67d9ccc400dcde} 
+a1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{b1@{b1}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!b1@{b1}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a9004194243dfa6091ffadea06e0cd153}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a9004194243dfa6091ffadea06e0cd153} 
+b1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{c1@{c1}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!c1@{c1}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a67870912c27c89d26f7400d1e3d744de}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a67870912c27c89d26f7400d1e3d744de} 
+c1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{d1@{d1}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!d1@{d1}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a1a352eb0af20617160e8c188defa04a0}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a1a352eb0af20617160e8c188defa04a0} 
+d1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{e1@{e1}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!e1@{e1}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a6d02b40e9ec2d2590074e8b1f25c4a24}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a6d02b40e9ec2d2590074e8b1f25c4a24} 
+e1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{f1@{f1}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!f1@{f1}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a84ea95d66e75038f3fff3e46a33c6cb5}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a84ea95d66e75038f3fff3e46a33c6cb5} 
+f1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{g1@{g1}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!g1@{g1}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7ab7d9b7d17fc6fc716866377c461204e1}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7ab7d9b7d17fc6fc716866377c461204e1} 
+g1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{h1@{h1}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!h1@{h1}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a5757c5b035e7a5f3d0e499a763567ff0}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a5757c5b035e7a5f3d0e499a763567ff0} 
+h1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{a2@{a2}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!a2@{a2}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a8ae7b5cc4778b1f1e0aecbb4835ba182}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a8ae7b5cc4778b1f1e0aecbb4835ba182} 
+a2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{b2@{b2}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!b2@{b2}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a5ace8f128e2269ee12dc221e4b7785c7}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a5ace8f128e2269ee12dc221e4b7785c7} 
+b2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{c2@{c2}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!c2@{c2}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7aead2c13f1f342a86ec095240d2814bb1}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7aead2c13f1f342a86ec095240d2814bb1} 
+c2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{d2@{d2}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!d2@{d2}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7ac7dd2bf195729f99a46a77462fcd2548}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7ac7dd2bf195729f99a46a77462fcd2548} 
+d2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{e2@{e2}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!e2@{e2}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a26720e837ec351ec3a695b312d489772}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a26720e837ec351ec3a695b312d489772} 
+e2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{f2@{f2}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!f2@{f2}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a244f255b480b41d40420a0bcaffc7ad4}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a244f255b480b41d40420a0bcaffc7ad4} 
+f2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{g2@{g2}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!g2@{g2}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7ad83c6cbac2ef61b1b74566194303083a}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7ad83c6cbac2ef61b1b74566194303083a} 
+g2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{h2@{h2}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!h2@{h2}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a3bb1a1b0474a483258d4f5933fdb1aa6}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a3bb1a1b0474a483258d4f5933fdb1aa6} 
+h2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{a3@{a3}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!a3@{a3}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7ac3a466b7aed2f20179bb0f17ccb56373}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7ac3a466b7aed2f20179bb0f17ccb56373} 
+a3&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{b3@{b3}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!b3@{b3}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a5551910cb9d56741f729441e4abc4ee3}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a5551910cb9d56741f729441e4abc4ee3} 
+b3&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{c3@{c3}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!c3@{c3}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a71c17a10d8995d79c3acfeff230d11ae}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a71c17a10d8995d79c3acfeff230d11ae} 
+c3&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{d3@{d3}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!d3@{d3}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a0f239f6608fb930511e81fcb5ec6b749}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a0f239f6608fb930511e81fcb5ec6b749} 
+d3&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{e3@{e3}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!e3@{e3}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7acb52cd40d9d35a84a11d1ab6b0e66da2}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7acb52cd40d9d35a84a11d1ab6b0e66da2} 
+e3&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{f3@{f3}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!f3@{f3}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a86cfec0adf4c98e1ced2140aded2a2d3}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a86cfec0adf4c98e1ced2140aded2a2d3} 
+f3&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{g3@{g3}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!g3@{g3}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a308d1be2262e24e72cb1eca89d2ec1e7}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a308d1be2262e24e72cb1eca89d2ec1e7} 
+g3&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{h3@{h3}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!h3@{h3}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a345d083153537c25f75222b6cf29b647}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a345d083153537c25f75222b6cf29b647} 
+h3&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{a4@{a4}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!a4@{a4}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7abd6dbe052c4a4c9c7adb1aebc374d471}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7abd6dbe052c4a4c9c7adb1aebc374d471} 
+a4&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{b4@{b4}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!b4@{b4}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a8107ab376772a21e959b80666ad8e99d}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a8107ab376772a21e959b80666ad8e99d} 
+b4&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{c4@{c4}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!c4@{c4}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a4c67ce8c1dcd97710f8a938cac8cdebf}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a4c67ce8c1dcd97710f8a938cac8cdebf} 
+c4&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{d4@{d4}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!d4@{d4}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a68f88e504710b81d4ddb297937cb6b24}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a68f88e504710b81d4ddb297937cb6b24} 
+d4&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{e4@{e4}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!e4@{e4}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a43b5af36e7cfe7057353434fe4a528d3}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a43b5af36e7cfe7057353434fe4a528d3} 
+e4&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{f4@{f4}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!f4@{f4}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a6859c4405f0691fa4cc9d846ff0a6c2b}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a6859c4405f0691fa4cc9d846ff0a6c2b} 
+f4&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{g4@{g4}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!g4@{g4}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7ad76d5e51fc7cd895d2f02f2af713e608}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7ad76d5e51fc7cd895d2f02f2af713e608} 
+g4&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{h4@{h4}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!h4@{h4}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a9d871f709e93f085e3b861d4b2849a49}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a9d871f709e93f085e3b861d4b2849a49} 
+h4&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{a5@{a5}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!a5@{a5}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a8bbccb8cf1a4af12e3906758818fe87a}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a8bbccb8cf1a4af12e3906758818fe87a} 
+a5&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{b5@{b5}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!b5@{b5}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a559dcedb4e9c81380a2b72aa4ad7a87d}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a559dcedb4e9c81380a2b72aa4ad7a87d} 
+b5&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{c5@{c5}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!c5@{c5}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a32376a668bdd4ab0e6751d612b41ff34}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a32376a668bdd4ab0e6751d612b41ff34} 
+c5&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{d5@{d5}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!d5@{d5}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7aeecdf4f1afab6aa260e959efa1a5fd48}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7aeecdf4f1afab6aa260e959efa1a5fd48} 
+d5&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{e5@{e5}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!e5@{e5}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a488f1ad1351ec8dfc36e68f0db50c024}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a488f1ad1351ec8dfc36e68f0db50c024} 
+e5&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{f5@{f5}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!f5@{f5}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a8058d770fffb0bb14ddd098753a0708b}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a8058d770fffb0bb14ddd098753a0708b} 
+f5&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{g5@{g5}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!g5@{g5}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a35c30f40961b77c837c0f4b6e6f11433}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a35c30f40961b77c837c0f4b6e6f11433} 
+g5&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{h5@{h5}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!h5@{h5}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7ae4b121ac8cd9187ce819fd339d93d29d}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7ae4b121ac8cd9187ce819fd339d93d29d} 
+h5&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{a6@{a6}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!a6@{a6}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a5a7514342ac5b5f618dff99b1af9ee51}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a5a7514342ac5b5f618dff99b1af9ee51} 
+a6&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{b6@{b6}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!b6@{b6}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7abf8e5e27a274d964ed2c86cba973b966}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7abf8e5e27a274d964ed2c86cba973b966} 
+b6&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{c6@{c6}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!c6@{c6}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7ae1eabfbafefff3373da317441725ab1b}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7ae1eabfbafefff3373da317441725ab1b} 
+c6&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{d6@{d6}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!d6@{d6}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a9edf7a0f047d926a4499f7890d1636fb}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a9edf7a0f047d926a4499f7890d1636fb} 
+d6&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{e6@{e6}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!e6@{e6}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7af78f738343ee23f69e5a9d7fb833698e}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7af78f738343ee23f69e5a9d7fb833698e} 
+e6&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{f6@{f6}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!f6@{f6}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a23bd9f44d5933583fe30e0822b73e4ba}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a23bd9f44d5933583fe30e0822b73e4ba} 
+f6&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{g6@{g6}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!g6@{g6}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7aaeb2c66b2c1ba043102274bc8bee3e74}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7aaeb2c66b2c1ba043102274bc8bee3e74} 
+g6&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{h6@{h6}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!h6@{h6}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a4503248d062b0e824da4068e714b2efa}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a4503248d062b0e824da4068e714b2efa} 
+h6&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{a7@{a7}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!a7@{a7}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a9d4bbef6023be2948e4c4d2b12ab24e2}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a9d4bbef6023be2948e4c4d2b12ab24e2} 
+a7&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{b7@{b7}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!b7@{b7}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7aee0a2179980f025c32f3b82931b08147}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7aee0a2179980f025c32f3b82931b08147} 
+b7&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{c7@{c7}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!c7@{c7}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a55f2dd46fe3ded2d564c99d3f9cbd404}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a55f2dd46fe3ded2d564c99d3f9cbd404} 
+c7&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{d7@{d7}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!d7@{d7}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7af1b21b409a9db684188736a3ac1d3c8e}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7af1b21b409a9db684188736a3ac1d3c8e} 
+d7&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{e7@{e7}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!e7@{e7}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a05ee4709ffdc105174c22a74f3736f42}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a05ee4709ffdc105174c22a74f3736f42} 
+e7&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{f7@{f7}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!f7@{f7}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a41c3f314e7d9629d96e6ddf8faf5f21b}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a41c3f314e7d9629d96e6ddf8faf5f21b} 
+f7&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{g7@{g7}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!g7@{g7}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a90e64d9d7ae8b4692cd76422120b20cf}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a90e64d9d7ae8b4692cd76422120b20cf} 
+g7&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{h7@{h7}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!h7@{h7}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a61f00f6d8840eff076316450daf3ae67}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a61f00f6d8840eff076316450daf3ae67} 
+h7&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{a8@{a8}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!a8@{a8}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a63171947adb37dbc1d5833761891f988}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a63171947adb37dbc1d5833761891f988} 
+a8&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{b8@{b8}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!b8@{b8}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a33ad7724f934727bb66202e3bfd61b08}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a33ad7724f934727bb66202e3bfd61b08} 
+b8&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{c8@{c8}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!c8@{c8}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a2a5892c9ae6285c79710d6e7e7c37c9c}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a2a5892c9ae6285c79710d6e7e7c37c9c} 
+c8&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{d8@{d8}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!d8@{d8}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7aadae129f9aebadae0ab5db8ce9d66d70}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7aadae129f9aebadae0ab5db8ce9d66d70} 
+d8&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{e8@{e8}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!e8@{e8}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7ad0c5af748880c285f1da0e41d5d70144}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7ad0c5af748880c285f1da0e41d5d70144} 
+e8&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{f8@{f8}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!f8@{f8}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a331360f07c7fbe4780791358fa3fed8d}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a331360f07c7fbe4780791358fa3fed8d} 
+f8&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{g8@{g8}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!g8@{g8}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a83904c13c64555da577a2ff7bc9a53c6}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a83904c13c64555da577a2ff7bc9a53c6} 
+g8&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{h8@{h8}!Dagor::Board@{Dagor::Board}}\index{Dagor::Board@{Dagor::Board}!h8@{h8}}}\Hypertarget{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a1cb2af72dc268da618ec0964488e868e}\label{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a1cb2af72dc268da618ec0964488e868e} 
+h8&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceDagor_1_1Board_a1a056a60f75b6a3403ddd3956672ed80}\label{namespaceDagor_1_1Board_a1a056a60f75b6a3403ddd3956672ed80} 
+\index{Dagor::Board@{Dagor::Board}!file@{file}}
+\index{file@{file}!Dagor::Board@{Dagor::Board}}
+\doxysubsubsection{\texorpdfstring{file()}{file()}}
+{\footnotesize\ttfamily constexpr int Dagor\+::\+Board\+::file (\begin{DoxyParamCaption}\item[{int}]{square }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+\Hypertarget{namespaceDagor_1_1Board_a51e0a7e47ac736f3f63fee742c0716f4}\label{namespaceDagor_1_1Board_a51e0a7e47ac736f3f63fee742c0716f4} 
+\index{Dagor::Board@{Dagor::Board}!file\_name@{file\_name}}
+\index{file\_name@{file\_name}!Dagor::Board@{Dagor::Board}}
+\doxysubsubsection{\texorpdfstring{file\_name()}{file\_name()}}
+{\footnotesize\ttfamily constexpr char Dagor\+::\+Board\+::file\+\_\+name (\begin{DoxyParamCaption}\item[{int}]{file }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+\Hypertarget{namespaceDagor_1_1Board_a69903bda8e4bb5ad2972950839224290}\label{namespaceDagor_1_1Board_a69903bda8e4bb5ad2972950839224290} 
+\index{Dagor::Board@{Dagor::Board}!index@{index}}
+\index{index@{index}!Dagor::Board@{Dagor::Board}}
+\doxysubsubsection{\texorpdfstring{index()}{index()}}
+{\footnotesize\ttfamily constexpr int Dagor\+::\+Board\+::index (\begin{DoxyParamCaption}\item[{int}]{file,  }\item[{int}]{rank }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+\Hypertarget{namespaceDagor_1_1Board_ad04c43bb0b07e524ba5fce64d40b9556}\label{namespaceDagor_1_1Board_ad04c43bb0b07e524ba5fce64d40b9556} 
+\index{Dagor::Board@{Dagor::Board}!rank@{rank}}
+\index{rank@{rank}!Dagor::Board@{Dagor::Board}}
+\doxysubsubsection{\texorpdfstring{rank()}{rank()}}
+{\footnotesize\ttfamily constexpr int Dagor\+::\+Board\+::rank (\begin{DoxyParamCaption}\item[{int}]{square }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespaceDagor_1_1Board_a4fc79744a70cb9f3ae68d0d32a2f9e5a}\label{namespaceDagor_1_1Board_a4fc79744a70cb9f3ae68d0d32a2f9e5a} 
+\index{Dagor::Board@{Dagor::Board}!size@{size}}
+\index{size@{size}!Dagor::Board@{Dagor::Board}}
+\doxysubsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily constexpr int Dagor\+::\+Board\+::size \{\mbox{\hyperlink{namespaceDagor_1_1Board_aa84d2af871e9678b20fd70c566e6293b}{width}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespaceDagor_1_1Board_aa84d2af871e9678b20fd70c566e6293b}{width}}\}\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\Hypertarget{namespaceDagor_1_1Board_aa84d2af871e9678b20fd70c566e6293b}\label{namespaceDagor_1_1Board_aa84d2af871e9678b20fd70c566e6293b} 
+\index{Dagor::Board@{Dagor::Board}!width@{width}}
+\index{width@{width}!Dagor::Board@{Dagor::Board}}
+\doxysubsubsection{\texorpdfstring{width}{width}}
+{\footnotesize\ttfamily constexpr int Dagor\+::\+Board\+::width \{8\}\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
