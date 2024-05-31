@@ -3,8 +3,6 @@
 
 #include <string_view>
 
-#include "int_types.h"
-
 namespace Dagor::Board {
 
 inline constexpr int width{8};

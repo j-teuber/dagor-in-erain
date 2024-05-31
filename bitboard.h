@@ -9,6 +9,9 @@
 
 namespace Dagor::BitBoard {
 
+static_assert(sizeof(std::uint64_t) == 8,
+              "For its BitBoards, this program assumes 64 bit integers.");
+
 class BitBoard {
  private:
   std::uint64_t board;
