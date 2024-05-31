@@ -20,6 +20,8 @@ class BitBoard {
   BitBoard();
   BitBoard(std::uint64_t bitboard);
 
+  std::uint64_t as_uint() const { return board; }
+
   BitBoard &operator&=(BitBoard other) {
     board &= other.board;
     return *this;
@@ -49,14 +51,11 @@ class BitBoard {
   }
 
   void unset_bit(int square) { board &= ~single_square_set(square).board; }
-
-  friend std::ostream &operator<<(std::ostream &out, const BitBoard &printer);
-  friend inline BitBoard operator~(BitBoard a);
 };
 
 inline BitBoard operator&(BitBoard a, BitBoard b) { return a &= b; }
 inline BitBoard operator|(BitBoard a, BitBoard b) { return a |= b; }
-inline BitBoard operator~(BitBoard a) { return BitBoard(~a.board); }
+inline BitBoard operator~(BitBoard a) { return BitBoard(~a.as_uint()); }
 
 std::ostream &operator<<(std::ostream &out, const BitBoard &printer);
 

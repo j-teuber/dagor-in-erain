@@ -19,11 +19,11 @@ std::ostream &operator<<(std::ostream &out, const BitBoard &board) {
   }
   out << "    ";
   for (int file = 0; file < Board::width; file++) out << "--";
-  out << "\t as decimal: " << std::dec << board.board;
+  out << "\t as decimal: " << std::dec << board.as_uint();
   out << "\n    ";
   for (int file = 0; file < Board::width; file++)
     out << Board::file_name(file) << ' ';
-  out << "\t as hex:     0x" << std::hex << board.board << std::dec
+  out << "\t as hex:     0x" << std::hex << board.as_uint() << std::dec
       << std::endl;
 
   return out;
