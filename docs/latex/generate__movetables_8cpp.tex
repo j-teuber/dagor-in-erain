@@ -345,10 +345,20 @@ a bitboard with all the squares set, to which the bishop can move.
 
 Spreads the given bits out to cover the ones of the mask. If the {\ttfamily n}th bit in {\ttfamily bits\+To\+Spread} is set, then the {\ttfamily n}th set square in mask will be set in the result as well. This is used to generate subsets of the mask.
 
-Example\+:
-
-bits\+To\+Spread\+: 0b101010101010 → result\+: mask\+: 8 \texorpdfstring{$\vert$}{|} . . . . . . . . 8 \texorpdfstring{$\vert$}{|} . . . . . . . . 7 \texorpdfstring{$\vert$}{|} @ . . . . . . . 7 \texorpdfstring{$\vert$}{|} . . . . . . . . 6 \texorpdfstring{$\vert$}{|} @ . . . . . . . 6 \texorpdfstring{$\vert$}{|} @ . . . . . . . 5 \texorpdfstring{$\vert$}{|} @ . . . . . . . 5 \texorpdfstring{$\vert$}{|} . . . . . . . . 4 \texorpdfstring{$\vert$}{|} @ . . . . . . . 4 \texorpdfstring{$\vert$}{|} @ . . . . . . . 3 \texorpdfstring{$\vert$}{|} @ . . . . . . . 3 \texorpdfstring{$\vert$}{|} . . . . . . . . 2 \texorpdfstring{$\vert$}{|} @ . . . . . . . 2 \texorpdfstring{$\vert$}{|} @ . . . . . . . 1 \texorpdfstring{$\vert$}{|} . @ @ @ @ @ @ . 1 \texorpdfstring{$\vert$}{|} . @ . @ . @ . . \DoxyHorRuler{0}
- a b c d e f g h a b c d e f g h 
+Example\+: \begin{DoxyVerb}bitsToSpread: 0b101010101010      →     result:
+mask:
+8 | . . . . . . . .                     8 | . . . . . . . .
+7 | @ . . . . . . .                     7 | . . . . . . . .
+6 | @ . . . . . . .                     6 | @ . . . . . . .
+5 | @ . . . . . . .                     5 | . . . . . . . .
+4 | @ . . . . . . .                     4 | @ . . . . . . .
+3 | @ . . . . . . .                     3 | . . . . . . . .
+2 | @ . . . . . . .                     2 | @ . . . . . . .
+1 | . @ @ @ @ @ @ .                     1 | . @ . @ . @ . .
+   ----------------                        ----------------
+    a b c d e f g h                         a b c d e f g h
+\end{DoxyVerb}
+ 
 \begin{DoxyParams}{Parameters}
 {\em bits\+To\+Spread} & the binary data to fill the mask with. \\
 \hline

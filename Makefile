@@ -16,7 +16,7 @@ release_objects := $(foreach u, $(units), $(release_obj_dir)/$(u).o)
 
 .PHONY: all run clean dirs docs
 
-all: debug release
+all: debug release docs
 
 debug: $(app_dir)/debug
 
@@ -38,6 +38,7 @@ clean:
 
 docs:
 	doxygen > /dev/null
+	cd docs/latex && make pdf &> /dev/null && cd ../..
 
 $(app_dir)/release: $(release_objects)
 	g++ $(flags) $(release_flags) -o $@ $^

@@ -263,18 +263,18 @@ BitBoard::BitBoard rookMoves(int square, BitBoard::BitBoard blockers) {
 ///
 /// Example:
 ///
-///    bitsToSpread: 0b101010101010      →     result:
-///    mask:
-///    8 | . . . . . . . .                     8 | . . . . . . . .
-///    7 | @ . . . . . . .                     7 | . . . . . . . .
-///    6 | @ . . . . . . .                     6 | @ . . . . . . .
-///    5 | @ . . . . . . .                     5 | . . . . . . . .
-///    4 | @ . . . . . . .                     4 | @ . . . . . . .
-///    3 | @ . . . . . . .                     3 | . . . . . . . .
-///    2 | @ . . . . . . .                     2 | @ . . . . . . .
-///    1 | . @ @ @ @ @ @ .                     1 | . @ . @ . @ . .
-///       ----------------                        ----------------
-///        a b c d e f g h                         a b c d e f g h
+///     bitsToSpread: 0b101010101010      →     result:
+///     mask:
+///     8 | . . . . . . . .                     8 | . . . . . . . .
+///     7 | @ . . . . . . .                     7 | . . . . . . . .
+///     6 | @ . . . . . . .                     6 | @ . . . . . . .
+///     5 | @ . . . . . . .                     5 | . . . . . . . .
+///     4 | @ . . . . . . .                     4 | @ . . . . . . .
+///     3 | @ . . . . . . .                     3 | . . . . . . . .
+///     2 | @ . . . . . . .                     2 | @ . . . . . . .
+///     1 | . @ @ @ @ @ @ .                     1 | . @ . @ . @ . .
+///        ----------------                        ----------------
+///         a b c d e f g h                         a b c d e f g h
 /// @param bitsToSpread the binary data to fill the mask with.
 /// @param mask the places where the binary data should
 /// @return A bitboard, in which a square is set iff it’s the `n`th set

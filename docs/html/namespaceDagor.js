@@ -76,7 +76,8 @@ var namespaceDagor =
         [ "e8", "namespaceDagor_1_1Board.html#aaa7a78fb4d36e038f01d566093eb10e7ad0c5af748880c285f1da0e41d5d70144", null ],
         [ "f8", "namespaceDagor_1_1Board.html#aaa7a78fb4d36e038f01d566093eb10e7a331360f07c7fbe4780791358fa3fed8d", null ],
         [ "g8", "namespaceDagor_1_1Board.html#aaa7a78fb4d36e038f01d566093eb10e7a83904c13c64555da577a2ff7bc9a53c6", null ],
-        [ "h8", "namespaceDagor_1_1Board.html#aaa7a78fb4d36e038f01d566093eb10e7a1cb2af72dc268da618ec0964488e868e", null ]
+        [ "h8", "namespaceDagor_1_1Board.html#aaa7a78fb4d36e038f01d566093eb10e7a1cb2af72dc268da618ec0964488e868e", null ],
+        [ "no_square", "namespaceDagor_1_1Board.html#aaa7a78fb4d36e038f01d566093eb10e7a64829685ca6df6522977eebca9e174f7", null ]
       ] ],
       [ "file", "namespaceDagor_1_1Board.html#a1a056a60f75b6a3403ddd3956672ed80", null ],
       [ "file_name", "namespaceDagor_1_1Board.html#a51e0a7e47ac736f3f63fee742c0716f4", null ],

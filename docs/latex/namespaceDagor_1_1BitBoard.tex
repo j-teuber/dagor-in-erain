@@ -4,7 +4,7 @@
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Bit\+Boards represent some subset of the chess boards pieces, such as the set of all fields occupied by whit pawns or the set of all pieces to which a given piece can move on it’s next turn etc. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -22,7 +22,7 @@ std\+::ostream \& \mbox{\hyperlink{namespaceDagor_1_1BitBoard_a42d50eff7b95ed8aa
 \begin{DoxyCompactItemize}
 \item 
 const \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board}} \mbox{\hyperlink{namespaceDagor_1_1BitBoard_a6ba130a05600f4ed39ef1c7b760ce090}{edges\+Only}} \{0xff818181818181ff\}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em A bitboard containing all squares adjacent to one of the edges of the board. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
@@ -65,4 +65,19 @@ const \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board}} \mbox{\h
 \doxysubsubsection{\texorpdfstring{edgesOnly}{edgesOnly}}
 {\footnotesize\ttfamily const \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board}} Dagor\+::\+Bit\+Board\+::edges\+Only \{0xff818181818181ff\}\hspace{0.3cm}{\ttfamily [inline]}}
 
-8 \texorpdfstring{$\vert$}{|} @ @ @ @ @ @ @ @ 7 \texorpdfstring{$\vert$}{|} @ . . . . . . @ 6 \texorpdfstring{$\vert$}{|} @ . . . . . . @ 5 \texorpdfstring{$\vert$}{|} @ . . . . . . @ 4 \texorpdfstring{$\vert$}{|} @ . . . . . . @ 3 \texorpdfstring{$\vert$}{|} @ . . . . . . @ 2 \texorpdfstring{$\vert$}{|} @ . . . . . . @ 1 \texorpdfstring{$\vert$}{|} @ @ @ @ @ @ @ @ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- as decimal\+: 18411139144890810879 a b c d e f g h as hex\+: 0xff818181818181ff 
+
+
+A bitboard containing all squares adjacent to one of the edges of the board. 
+
+\begin{DoxyVerb}8 | @ @ @ @ @ @ @ @
+7 | @ . . . . . . @
+6 | @ . . . . . . @
+5 | @ . . . . . . @
+4 | @ . . . . . . @
+3 | @ . . . . . . @
+2 | @ . . . . . . @
+1 | @ @ @ @ @ @ @ @
+    ----------------     as decimal: 18411139144890810879
+    a b c d e f g h      as hex:     0xff818181818181ff 
+\end{DoxyVerb}
+ 

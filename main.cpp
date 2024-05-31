@@ -1,3 +1,5 @@
+/// @file main.cpp
+
 #include <iostream>
 
 #include "bitboard.h"

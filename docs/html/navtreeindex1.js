@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"namespaceDagor_1_1Board.html#aaa7a78fb4d36e038f01d566093eb10e7a90e64d9d7ae8b4692cd76422120b20cf":[0,0,0,1,1,54],
 "namespaceDagor_1_1Board.html#aaa7a78fb4d36e038f01d566093eb10e7a9d4bbef6023be2948e4c4d2b12ab24e2":[0,0,0,1,1,48],
 "namespaceDagor_1_1Board.html#aaa7a78fb4d36e038f01d566093eb10e7a9d871f709e93f085e3b861d4b2849a49":[0,0,0,1,1,31],
 "namespaceDagor_1_1Board.html#aaa7a78fb4d36e038f01d566093eb10e7a9edf7a0f047d926a4499f7890d1636fb":[0,0,0,1,1,43],

@@ -28,9 +28,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Dagor-in-Erain<span id="projectnumber">&#160;0.0.0</span>
+   <div id="projectname">Dagor-in-Erain<span id="projectnumber">&#160;v0.0.0</span>
    </div>
-   <div id="projectbrief">a c++ chess engine</div>
+   <div id="projectbrief">a C++ chess engine</div>
   </td>
  </tr>
  </tbody>
@@ -101,41 +101,56 @@ $(function(){initNavTree('classDagor_1_1BitBoard_1_1BitBoard.html',''); initResi
 </div><!--header-->
 <div class="contents">
 
+<p>BitBoards represent some subset of the chess boards pieces, such as the set of all fields occupied by whit pawns or the set of all pieces to which a given piece can move on it’s next turn etc.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="bitboard_8h_source.html">bitboard.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:acfcf1cec99b18cc2781ff97cbc42339e" id="r_acfcf1cec99b18cc2781ff97cbc42339e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acfcf1cec99b18cc2781ff97cbc42339e">BitBoard</a> ()</td></tr>
+<tr class="memdesc:acfcf1cec99b18cc2781ff97cbc42339e"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructs an empty <a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html" title="BitBoards represent some subset of the chess boards pieces, such as the set of all fields occupied by...">BitBoard</a>.  <br /></td></tr>
 <tr class="separator:acfcf1cec99b18cc2781ff97cbc42339e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af807fbb91b1cb2db56941e7fb1b886cf" id="r_af807fbb91b1cb2db56941e7fb1b886cf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af807fbb91b1cb2db56941e7fb1b886cf">BitBoard</a> (std::uint64_t bitboard)</td></tr>
 <tr class="separator:af807fbb91b1cb2db56941e7fb1b886cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af139c9a1f96439d4cd103c95121f0c81" id="r_af139c9a1f96439d4cd103c95121f0c81"><td class="memItemLeft" align="right" valign="top">std::uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af139c9a1f96439d4cd103c95121f0c81">as_uint</a> () const</td></tr>
 <tr class="separator:af139c9a1f96439d4cd103c95121f0c81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8eaf5514c48573a1704acc3b253e0cf6" id="r_a8eaf5514c48573a1704acc3b253e0cf6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8eaf5514c48573a1704acc3b253e0cf6">operator&amp;=</a> (<a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard</a> other)</td></tr>
+<tr class="memdesc:a8eaf5514c48573a1704acc3b253e0cf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">removes all the squares that are not also present in <code>other</code>.  <br /></td></tr>
 <tr class="separator:a8eaf5514c48573a1704acc3b253e0cf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2326cc3e6d69ee6d10a6f2751a327bf5" id="r_a2326cc3e6d69ee6d10a6f2751a327bf5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2326cc3e6d69ee6d10a6f2751a327bf5">operator|=</a> (<a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard</a> other)</td></tr>
+<tr class="memdesc:a2326cc3e6d69ee6d10a6f2751a327bf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">adds all the squares of the <code>other</code> bitboard to this one.  <br /></td></tr>
 <tr class="separator:a2326cc3e6d69ee6d10a6f2751a327bf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa390bfd4e2e0eac7f2c1cf283609a72f" id="r_aa390bfd4e2e0eac7f2c1cf283609a72f"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa390bfd4e2e0eac7f2c1cf283609a72f">is_empty</a> () const</td></tr>
+<tr class="memdesc:aa390bfd4e2e0eac7f2c1cf283609a72f"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks whether the bitboard is empty, that is whether no squares are set.  <br /></td></tr>
 <tr class="separator:aa390bfd4e2e0eac7f2c1cf283609a72f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9cb1bf9f0fd7624c32d7d1c58427d616" id="r_a9cb1bf9f0fd7624c32d7d1c58427d616"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9cb1bf9f0fd7624c32d7d1c58427d616">is_set</a> (int square) const</td></tr>
+<tr class="memdesc:a9cb1bf9f0fd7624c32d7d1c58427d616"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether a particular square is set.  <br /></td></tr>
 <tr class="separator:a9cb1bf9f0fd7624c32d7d1c58427d616"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6118b0ff7d0288ebb10d74c0cff35083" id="r_a6118b0ff7d0288ebb10d74c0cff35083"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6118b0ff7d0288ebb10d74c0cff35083">set_bit</a> (int square)</td></tr>
+<tr class="memdesc:a6118b0ff7d0288ebb10d74c0cff35083"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the given square to the bitboard.  <br /></td></tr>
 <tr class="separator:a6118b0ff7d0288ebb10d74c0cff35083"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad83a5f4805d026d1dedbfec6f4b29779" id="r_ad83a5f4805d026d1dedbfec6f4b29779"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad83a5f4805d026d1dedbfec6f4b29779">set_bit_if_index_valid</a> (int file, int rank)</td></tr>
 <tr class="separator:ad83a5f4805d026d1dedbfec6f4b29779"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1dc2dc5b908629810cb7ef8076945903" id="r_a1dc2dc5b908629810cb7ef8076945903"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1dc2dc5b908629810cb7ef8076945903">unset_bit</a> (int square)</td></tr>
+<tr class="memdesc:a1dc2dc5b908629810cb7ef8076945903"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a given square from the bitboard.  <br /></td></tr>
 <tr class="separator:a1dc2dc5b908629810cb7ef8076945903"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e2a184f099d05bcf19dcca519d5baff" id="r_a4e2a184f099d05bcf19dcca519d5baff"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4e2a184f099d05bcf19dcca519d5baff">popcount</a> () const</td></tr>
+<tr class="memdesc:a4e2a184f099d05bcf19dcca519d5baff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counts the number of set squares in the bitboard.  <br /></td></tr>
 <tr class="separator:a4e2a184f099d05bcf19dcca519d5baff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a970d1b70069f4566f17fa82fb7ad72c5" id="r_a970d1b70069f4566f17fa82fb7ad72c5"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a970d1b70069f4566f17fa82fb7ad72c5">findFirstSet</a> () const</td></tr>
+<tr class="memdesc:a970d1b70069f4566f17fa82fb7ad72c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the index of the first set square in the bitboard. Do not call this function for the empty bitboard.  <br /></td></tr>
 <tr class="separator:a970d1b70069f4566f17fa82fb7ad72c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a989cf4aa39e05b8e5df9810f647a6098" id="r_a989cf4aa39e05b8e5df9810f647a6098"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a989cf4aa39e05b8e5df9810f647a6098">single_square_set</a> (int square)</td></tr>
+<tr class="memdesc:a989cf4aa39e05b8e5df9810f647a6098"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a bitboard with only a single square set.  <br /></td></tr>
 <tr class="separator:a989cf4aa39e05b8e5df9810f647a6098"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>BitBoards represent some subset of the chess boards pieces, such as the set of all fields occupied by whit pawns or the set of all pieces to which a given piece can move on it’s next turn etc. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="acfcf1cec99b18cc2781ff97cbc42339e" name="acfcf1cec99b18cc2781ff97cbc42339e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acfcf1cec99b18cc2781ff97cbc42339e">&#9670;&#160;</a></span>BitBoard() <span class="overload">[1/2]</span></h2>
 
@@ -150,6 +165,8 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>constructs an empty <a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html" title="BitBoards represent some subset of the chess boards pieces, such as the set of all fields occupied by...">BitBoard</a>. </p>
 
 </div>
 </div>
@@ -167,6 +184,12 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bitboard</td><td>a uint64 as returned by the <code>as_uint</code> function. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -193,6 +216,7 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>a uint64 where all the 1 bits indicate the set squares </dd></dl>
 
 </div>
 </div>
@@ -219,6 +243,9 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Finds the index of the first set square in the bitboard. Do not call this function for the empty bitboard. </p>
+<dl class="section return"><dt>Returns</dt><dd>the index of the first set square. </dd></dl>
+
 </div>
 </div>
 <a id="aa390bfd4e2e0eac7f2c1cf283609a72f" name="aa390bfd4e2e0eac7f2c1cf283609a72f"></a>
@@ -243,6 +270,9 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>checks whether the bitboard is empty, that is whether no squares are set. </p>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code>, iff no squares are set. </dd></dl>
 
 </div>
 </div>
@@ -269,6 +299,15 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Checks whether a particular square is set. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">square</td><td>the square to check. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code>, iff the square is set. </dd></dl>
+
 </div>
 </div>
 <a id="a8eaf5514c48573a1704acc3b253e0cf6" name="a8eaf5514c48573a1704acc3b253e0cf6"></a>
@@ -293,6 +332,15 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>removes all the squares that are not also present in <code>other</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>this bitboard after the modification </dd></dl>
 
 </div>
 </div>
@@ -319,6 +367,15 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>adds all the squares of the <code>other</code> bitboard to this one. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>this bitboard after the modification </dd></dl>
+
 </div>
 </div>
 <a id="a4e2a184f099d05bcf19dcca519d5baff" name="a4e2a184f099d05bcf19dcca519d5baff"></a>
@@ -344,6 +401,9 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Counts the number of set squares in the bitboard. </p>
+<dl class="section return"><dt>Returns</dt><dd>the number of set squares in the bitboard. </dd></dl>
+
 </div>
 </div>
 <a id="a6118b0ff7d0288ebb10d74c0cff35083" name="a6118b0ff7d0288ebb10d74c0cff35083"></a>
@@ -368,6 +428,14 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Adds the given square to the bitboard. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">square</td><td>the square to add. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -397,6 +465,13 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Adds the given square to the bitboard, if the coordinates are valid on a chess board, that is, if <code>file, rank are from {0,...,7}</code>. If this is not the case, nothing happens. This function exists to protect against warping around the edges of the board when calculating moves etc. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>the file (i. e. column) of the square to add. </td></tr>
+    <tr><td class="paramname">rank</td><td>the rank (i. e. row) of the square to add. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -423,6 +498,15 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Constructs a bitboard with only a single square set. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">square</td><td>the square to be set </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the bitboard </dd></dl>
+
 </div>
 </div>
 <a id="a1dc2dc5b908629810cb7ef8076945903" name="a1dc2dc5b908629810cb7ef8076945903"></a>
@@ -447,6 +531,14 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Removes a given square from the bitboard. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">square</td><td>the square to remove. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

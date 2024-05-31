@@ -28,9 +28,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Dagor-in-Erain<span id="projectnumber">&#160;0.0.0</span>
+   <div id="projectname">Dagor-in-Erain<span id="projectnumber">&#160;v0.0.0</span>
    </div>
-   <div id="projectbrief">a c++ chess engine</div>
+   <div id="projectbrief">a C++ chess engine</div>
   </td>
  </tr>
  </tbody>
@@ -103,21 +103,28 @@ $(function(){initNavTree('namespaceDagor_1_1MoveTables.html',''); initResizable(
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDagor_1_1MoveTables_1_1BlockerHash.html">BlockerHash</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A hash function that maps a configuration of blocking pieces to an index into the <code>slidingMoves</code> table, where the possible moves of a rook or bishop are stored. Both rooks and bishops have one separate hash function for each square.  <a href="classDagor_1_1MoveTables_1_1BlockerHash.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:ae94889e676dfc8681dfc6f5d246f4c11" id="r_ae94889e676dfc8681dfc6f5d246f4c11"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae94889e676dfc8681dfc6f5d246f4c11">pawnAttacks</a> [2][<a class="el" href="namespaceDagor_1_1Board.html#a4fc79744a70cb9f3ae68d0d32a2f9e5a">Board::size</a>]</td></tr>
+<tr class="memdesc:ae94889e676dfc8681dfc6f5d246f4c11"><td class="mdescLeft">&#160;</td><td class="mdescRight">The attacks a pawn can make on a given square. Access: <code>pawnAttacks[color][square]</code>, where white is <code>0</code> and black is <code>1</code>.  <br /></td></tr>
 <tr class="separator:ae94889e676dfc8681dfc6f5d246f4c11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad07b5ba240dd6dbcc6e8e4d11219e707" id="r_ad07b5ba240dd6dbcc6e8e4d11219e707"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad07b5ba240dd6dbcc6e8e4d11219e707">knightMoves</a> [<a class="el" href="namespaceDagor_1_1Board.html#a4fc79744a70cb9f3ae68d0d32a2f9e5a">Board::size</a>]</td></tr>
+<tr class="memdesc:ad07b5ba240dd6dbcc6e8e4d11219e707"><td class="mdescLeft">&#160;</td><td class="mdescRight">The moves a knight can make on a given square.  <br /></td></tr>
 <tr class="separator:ad07b5ba240dd6dbcc6e8e4d11219e707"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c371e3655a82c723693e76d264404ea" id="r_a2c371e3655a82c723693e76d264404ea"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c371e3655a82c723693e76d264404ea">kingMoves</a> [<a class="el" href="namespaceDagor_1_1Board.html#a4fc79744a70cb9f3ae68d0d32a2f9e5a">Board::size</a>]</td></tr>
+<tr class="memdesc:a2c371e3655a82c723693e76d264404ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">The moves a king can make on a given square. For his home square this does not include castling moves.  <br /></td></tr>
 <tr class="separator:a2c371e3655a82c723693e76d264404ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a90834459bd3798f289eb204aab39a500" id="r_a90834459bd3798f289eb204aab39a500"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classDagor_1_1MoveTables_1_1BlockerHash.html">BlockerHash</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a90834459bd3798f289eb204aab39a500">bishopHashes</a> [<a class="el" href="namespaceDagor_1_1Board.html#a4fc79744a70cb9f3ae68d0d32a2f9e5a">Board::size</a>]</td></tr>
+<tr class="memdesc:a90834459bd3798f289eb204aab39a500"><td class="mdescLeft">&#160;</td><td class="mdescRight">the hash functions to look up bishop moves, by square.  <br /></td></tr>
 <tr class="separator:a90834459bd3798f289eb204aab39a500"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a631b0c06c74d837bd1b2eac9d028a954" id="r_a631b0c06c74d837bd1b2eac9d028a954"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classDagor_1_1MoveTables_1_1BlockerHash.html">BlockerHash</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a631b0c06c74d837bd1b2eac9d028a954">rookHashes</a> [<a class="el" href="namespaceDagor_1_1Board.html#a4fc79744a70cb9f3ae68d0d32a2f9e5a">Board::size</a>]</td></tr>
+<tr class="memdesc:a631b0c06c74d837bd1b2eac9d028a954"><td class="mdescLeft">&#160;</td><td class="mdescRight">the hash function to look up rook moves, by square.  <br /></td></tr>
 <tr class="separator:a631b0c06c74d837bd1b2eac9d028a954"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e59cfd123a19556a38b40dec4306aa4" id="r_a7e59cfd123a19556a38b40dec4306aa4"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e59cfd123a19556a38b40dec4306aa4">slidingMoves</a> []</td></tr>
+<tr class="memdesc:a7e59cfd123a19556a38b40dec4306aa4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The move that a sliding piece (bishop, rook or queen) can make on a given square. Access through the hash functions in <code>bishopHashes</code> and <code>rookHashes</code>.  <br /></td></tr>
 <tr class="separator:a7e59cfd123a19556a38b40dec4306aa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Variable Documentation</h2>
@@ -133,6 +140,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>the hash functions to look up bishop moves, by square. </p>
+
 </div>
 </div>
 <a id="a2c371e3655a82c723693e76d264404ea" name="a2c371e3655a82c723693e76d264404ea"></a>
@@ -146,6 +155,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>The moves a king can make on a given square. For his home square this does not include castling moves. </p>
 
 </div>
 </div>
@@ -161,6 +172,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>The moves a knight can make on a given square. </p>
+
 </div>
 </div>
 <a id="ae94889e676dfc8681dfc6f5d246f4c11" name="ae94889e676dfc8681dfc6f5d246f4c11"></a>
@@ -175,6 +188,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>The attacks a pawn can make on a given square. Access: <code>pawnAttacks[color][square]</code>, where white is <code>0</code> and black is <code>1</code>. </p>
+
 </div>
 </div>
 <a id="a631b0c06c74d837bd1b2eac9d028a954" name="a631b0c06c74d837bd1b2eac9d028a954"></a>
@@ -188,6 +203,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>the hash function to look up rook moves, by square. </p>
 
 </div>
 </div>
@@ -210,6 +227,8 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The move that a sliding piece (bishop, rook or queen) can make on a given square. Access through the hash functions in <code>bishopHashes</code> and <code>rookHashes</code>. </p>
 
 </div>
 </div>

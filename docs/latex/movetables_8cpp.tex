@@ -12,14 +12,14 @@ namespace \mbox{\hyperlink{namespaceDagor_1_1MoveTables}{Dagor\+::\+Move\+Tables
 \begin{DoxyCompactItemize}
 \item 
 const \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} \mbox{\hyperlink{namespaceDagor_1_1MoveTables_ae94889e676dfc8681dfc6f5d246f4c11}{Dagor\+::\+Move\+Tables\+::pawn\+Attacks}} \mbox{[}2\mbox{]}\mbox{[}\mbox{\hyperlink{namespaceDagor_1_1Board_a4fc79744a70cb9f3ae68d0d32a2f9e5a}{Board\+::size}}\mbox{]}
-\item 
+\begin{DoxyCompactList}\small\item\em The attacks a pawn can make on a given square. Access\+: {\ttfamily pawn\+Attacks\mbox{[}color\mbox{]}\mbox{[}square\mbox{]}}, where white is {\ttfamily 0} and black is {\ttfamily 1}. \end{DoxyCompactList}\item 
 const \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} \mbox{\hyperlink{namespaceDagor_1_1MoveTables_ad07b5ba240dd6dbcc6e8e4d11219e707}{Dagor\+::\+Move\+Tables\+::knight\+Moves}} \mbox{[}\mbox{\hyperlink{namespaceDagor_1_1Board_a4fc79744a70cb9f3ae68d0d32a2f9e5a}{Board\+::size}}\mbox{]}
-\item 
+\begin{DoxyCompactList}\small\item\em The moves a knight can make on a given square. \end{DoxyCompactList}\item 
 const \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} \mbox{\hyperlink{namespaceDagor_1_1MoveTables_a2c371e3655a82c723693e76d264404ea}{Dagor\+::\+Move\+Tables\+::king\+Moves}} \mbox{[}\mbox{\hyperlink{namespaceDagor_1_1Board_a4fc79744a70cb9f3ae68d0d32a2f9e5a}{Board\+::size}}\mbox{]}
-\item 
+\begin{DoxyCompactList}\small\item\em The moves a king can make on a given square. For his home square this does not include castling moves. \end{DoxyCompactList}\item 
 const \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash}{Blocker\+Hash}} \mbox{\hyperlink{namespaceDagor_1_1MoveTables_a90834459bd3798f289eb204aab39a500}{Dagor\+::\+Move\+Tables\+::bishop\+Hashes}} \mbox{[}\mbox{\hyperlink{namespaceDagor_1_1Board_a4fc79744a70cb9f3ae68d0d32a2f9e5a}{Board\+::size}}\mbox{]}
-\item 
+\begin{DoxyCompactList}\small\item\em the hash functions to look up bishop moves, by square. \end{DoxyCompactList}\item 
 const \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash}{Blocker\+Hash}} \mbox{\hyperlink{namespaceDagor_1_1MoveTables_a631b0c06c74d837bd1b2eac9d028a954}{Dagor\+::\+Move\+Tables\+::rook\+Hashes}} \mbox{[}\mbox{\hyperlink{namespaceDagor_1_1Board_a4fc79744a70cb9f3ae68d0d32a2f9e5a}{Board\+::size}}\mbox{]}
-\item 
+\begin{DoxyCompactList}\small\item\em the hash function to look up rook moves, by square. \end{DoxyCompactList}\item 
 const \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} \mbox{\hyperlink{namespaceDagor_1_1MoveTables_a7e59cfd123a19556a38b40dec4306aa4}{Dagor\+::\+Move\+Tables\+::sliding\+Moves}} \mbox{[}$\,$\mbox{]}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The move that a sliding piece (bishop, rook or queen) can make on a given square. Access through the hash functions in {\ttfamily bishop\+Hashes} and {\ttfamily rook\+Hashes}. \end{DoxyCompactList}\end{DoxyCompactItemize}

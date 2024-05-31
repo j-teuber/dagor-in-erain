@@ -28,9 +28,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Dagor-in-Erain<span id="projectnumber">&#160;0.0.0</span>
+   <div id="projectname">Dagor-in-Erain<span id="projectnumber">&#160;v0.0.0</span>
    </div>
-   <div id="projectbrief">a c++ chess engine</div>
+   <div id="projectbrief">a C++ chess engine</div>
   </td>
  </tr>
  </tbody>
@@ -609,9 +609,19 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Spreads the given bits out to cover the ones of the mask. If the <code>n</code>th bit in <code>bitsToSpread</code> is set, then the <code>n</code>th set square in mask will be set in the result as well. This is used to generate subsets of the mask.</p>
-<p>Example:</p>
-<p>bitsToSpread: 0b101010101010 → result: mask: 8 | . . . . . . . . 8 | . . . . . . . . 7 | @ . . . . . . . 7 | . . . . . . . . 6 | @ . . . . . . . 6 | @ . . . . . . . 5 | @ . . . . . . . 5 | . . . . . . . . 4 | @ . . . . . . . 4 | @ . . . . . . . 3 | @ . . . . . . . 3 | . . . . . . . . 2 | @ . . . . . . . 2 | @ . . . . . . . 1 | . @ @ @ @ @ @ . 1 | . @ . @ . @ . . </p><hr  />
-<p> a b c d e f g h a b c d e f g h </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Example: </p><pre class="fragment">bitsToSpread: 0b101010101010      →     result:
+mask:
+8 | . . . . . . . .                     8 | . . . . . . . .
+7 | @ . . . . . . .                     7 | . . . . . . . .
+6 | @ . . . . . . .                     6 | @ . . . . . . .
+5 | @ . . . . . . .                     5 | . . . . . . . .
+4 | @ . . . . . . .                     4 | @ . . . . . . .
+3 | @ . . . . . . .                     3 | . . . . . . . .
+2 | @ . . . . . . .                     2 | @ . . . . . . .
+1 | . @ @ @ @ @ @ .                     1 | . @ . @ . @ . .
+   ----------------                        ----------------
+    a b c d e f g h                         a b c d e f g h
+</pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">bitsToSpread</td><td>the binary data to fill the mask with. </td></tr>
     <tr><td class="paramname">mask</td><td>the places where the binary data should </td></tr>

@@ -28,9 +28,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Dagor-in-Erain<span id="projectnumber">&#160;0.0.0</span>
+   <div id="projectname">Dagor-in-Erain<span id="projectnumber">&#160;v0.0.0</span>
    </div>
-   <div id="projectbrief">a c++ chess engine</div>
+   <div id="projectbrief">a C++ chess engine</div>
   </td>
  </tr>
  </tbody>
@@ -101,6 +101,9 @@ $(function(){initNavTree('classDagor_1_1MoveTables_1_1BlockerHash.html',''); ini
 </div><!--header-->
 <div class="contents">
 
+<p>A hash function that maps a configuration of blocking pieces to an index into the <code>slidingMoves</code> table, where the possible moves of a rook or bishop are stored. Both rooks and bishops have one separate hash function for each square.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="movetables_8h_source.html">movetables.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -108,22 +111,30 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5a9c47a48295d28dea6de05a158a14a4" id="r_a5a9c47a48295d28dea6de05a158a14a4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a9c47a48295d28dea6de05a158a14a4">BlockerHash</a> (<a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a> mask, <a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a> <a class="el" href="#a19be5bc60af8840b74d8712011337f3e">magic</a>, unsigned <a class="el" href="#a84df53ac2ceb7c67130da7aa04895403">downShift</a>, unsigned <a class="el" href="#a6db39d1750ad2fb9c2610ac9b20883b2">tableOffset</a>)</td></tr>
 <tr class="separator:a5a9c47a48295d28dea6de05a158a14a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7999babe6c3e20369b05feca803f485a" id="r_a7999babe6c3e20369b05feca803f485a"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7999babe6c3e20369b05feca803f485a">hash</a> (<a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a> blockers) const</td></tr>
+<tr class="memdesc:a7999babe6c3e20369b05feca803f485a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the hash for a configuration of blocking pieces.  <br /></td></tr>
 <tr class="separator:a7999babe6c3e20369b05feca803f485a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ff30b20889a949f09d15068345afd12" id="r_a4ff30b20889a949f09d15068345afd12"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ff30b20889a949f09d15068345afd12">lookUp</a> (<a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a> blockers) const</td></tr>
+<tr class="memdesc:a4ff30b20889a949f09d15068345afd12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Looks up the possible moves for a bishop/rook with the specified blocking pieces.  <br /></td></tr>
 <tr class="separator:a4ff30b20889a949f09d15068345afd12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:ad5eec7dfbf9d5a5dcc92268767b964c5" id="r_ad5eec7dfbf9d5a5dcc92268767b964c5"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5eec7dfbf9d5a5dcc92268767b964c5">blockerMask</a></td></tr>
+<tr class="memdesc:ad5eec7dfbf9d5a5dcc92268767b964c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">The mask singling out the blocking pieces that actually matter to the figure under consideration.  <br /></td></tr>
 <tr class="separator:ad5eec7dfbf9d5a5dcc92268767b964c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a19be5bc60af8840b74d8712011337f3e" id="r_a19be5bc60af8840b74d8712011337f3e"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classDagor_1_1BitBoard_1_1BitBoard.html">BitBoard::BitBoard</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a19be5bc60af8840b74d8712011337f3e">magic</a></td></tr>
+<tr class="memdesc:a19be5bc60af8840b74d8712011337f3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The magic number that yields the perfect hash function.  <br /></td></tr>
 <tr class="separator:a19be5bc60af8840b74d8712011337f3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a84df53ac2ceb7c67130da7aa04895403" id="r_a84df53ac2ceb7c67130da7aa04895403"><td class="memItemLeft" align="right" valign="top">const unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a84df53ac2ceb7c67130da7aa04895403">downShift</a></td></tr>
+<tr class="memdesc:a84df53ac2ceb7c67130da7aa04895403"><td class="mdescLeft">&#160;</td><td class="mdescRight">The amount by which the hash should be shifted down.  <br /></td></tr>
 <tr class="separator:a84df53ac2ceb7c67130da7aa04895403"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6db39d1750ad2fb9c2610ac9b20883b2" id="r_a6db39d1750ad2fb9c2610ac9b20883b2"><td class="memItemLeft" align="right" valign="top">const unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6db39d1750ad2fb9c2610ac9b20883b2">tableOffset</a></td></tr>
+<tr class="memdesc:a6db39d1750ad2fb9c2610ac9b20883b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The offset that should be added to the hash. In <code>slidingMoves</code> all entries lie consecutively, this marks where the entries begin, that can be accessed through this hash function.  <br /></td></tr>
 <tr class="separator:a6db39d1750ad2fb9c2610ac9b20883b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A hash function that maps a configuration of blocking pieces to an index into the <code>slidingMoves</code> table, where the possible moves of a rook or bishop are stored. Both rooks and bishops have one separate hash function for each square. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a5a9c47a48295d28dea6de05a158a14a4" name="a5a9c47a48295d28dea6de05a158a14a4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5a9c47a48295d28dea6de05a158a14a4">&#9670;&#160;</a></span>BlockerHash()</h2>
 
@@ -187,6 +198,15 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Computes the hash for a configuration of blocking pieces. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">blockers</td><td>pieces blocking the bishop’s/rook’s movement. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the hash. </dd></dl>
+
 </div>
 </div>
 <a id="a4ff30b20889a949f09d15068345afd12" name="a4ff30b20889a949f09d15068345afd12"></a>
@@ -212,6 +232,15 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Looks up the possible moves for a bishop/rook with the specified blocking pieces. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">blockers</td><td>pieces blocking the bishop’s/rook’s movement. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a bitboard where all squares, to which the bishop/rook can move, are set. </dd></dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -227,6 +256,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>The mask singling out the blocking pieces that actually matter to the figure under consideration. </p>
+
 </div>
 </div>
 <a id="a84df53ac2ceb7c67130da7aa04895403" name="a84df53ac2ceb7c67130da7aa04895403"></a>
@@ -240,6 +271,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>The amount by which the hash should be shifted down. </p>
 
 </div>
 </div>
@@ -255,6 +288,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>The magic number that yields the perfect hash function. </p>
+
 </div>
 </div>
 <a id="a6db39d1750ad2fb9c2610ac9b20883b2" name="a6db39d1750ad2fb9c2610ac9b20883b2"></a>
@@ -268,6 +303,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>The offset that should be added to the hash. In <code>slidingMoves</code> all entries lie consecutively, this marks where the entries begin, that can be accessed through this hash function. </p>
 
 </div>
 </div>

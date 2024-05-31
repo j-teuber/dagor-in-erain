@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Fedora 40) (preloaded format=pdflatex 2024.5.19)  31 MAY 2024 17:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Fedora 40) (preloaded format=pdflatex 2024.5.31)  31 MAY 2024 22:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -254,20 +254,17 @@ Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
 \multirow@dima=\skip64
 \bigstrutjot=\dimen171
 )
-
-! LaTeX Error: File `hanging.sty' not found.
-
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: sty)
-
-Enter file name: test
-
-! LaTeX Error: File `test.sty' not found.
-
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: sty)
-
-Enter file name: 
+(/usr/share/texlive/texmf-dist/tex/latex/hanging/hanging.sty
+Package: hanging 2009/09/02 v1.2b hanging paragraphs and punctuation
+\h@ngcommawd=\skip65
+\h@ngfstopwd=\skip66
+\h@ngquotewd=\skip67
+\h@ngdquotewd=\skip68
+\h@ngquerywd=\skip69
+\h@ngexclwd=\skip70
+\h@ngcolonwd=\skip71
+\h@ngscolonwd=\skip72
+)
 (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifpdf.sty
 Package: ifpdf 2019/10/25 v3.4 ifpdf legacy package. Use iftex instead.
 
@@ -367,10 +364,10 @@ Package: listofitems 2019/08/21 v1.63 Grab items in lists using user-specified
 sep char (CT)
 )
 \c@@stackindex=\count297
-\@boxshift=\skip65
-\stack@tmplength=\skip66
-\temp@stkl=\skip67
-\@stackedboxwidth=\skip68
+\@boxshift=\skip73
+\stack@tmplength=\skip74
+\temp@stkl=\skip75
+\@stackedboxwidth=\skip76
 \@addedbox=\box109
 \@anchorbox=\box110
 \@insetbox=\box111
@@ -381,7 +378,7 @@ sep char (CT)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty
 Package: enumitem 2019/06/20 v3.9 Customized lists
-\labelindent=\skip69
+\labelindent=\skip77
 \enit@outerparindent=\dimen186
 \enit@toks=\toks30
 \enit@inbox=\box115
@@ -397,7 +394,7 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 (/usr/share/texlive/texmf-dist/tex/generic/ulem/ulem.sty
 \UL@box=\box116
 \UL@hyphenbox=\box117
-\UL@skip=\skip70
+\UL@skip=\skip78
 \UL@hook=\toks31
 \UL@height=\dimen187
 \UL@pe=\count301
@@ -407,10 +404,10 @@ Package: ulem 2019/11/18
 \ULdepth=\dimen189
 )
 \xrefbox=\box119
-\xreflength=\skip71
-\CodeWidthChar=\skip72
-\CodeHeightChar=\skip73
-\DoxyCodeWidth=\skip74
+\xreflength=\skip79
+\CodeWidthChar=\skip80
+\CodeHeightChar=\skip81
+\DoxyCodeWidth=\skip82
 \c@DoxyEnumeratei=\count302
 \c@DoxyEnumerateii=\count303
 \c@DoxyEnumerateiii=\count304
@@ -487,59 +484,71 @@ LaTeX Info: Redefining \checkoddpage on input line 59.
 (/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2022/11/09 v4.1 Extensive control of page headers and footers
 
-\f@nch@headwidth=\skip75
-\f@nch@O@elh=\skip76
-\f@nch@O@erh=\skip77
-\f@nch@O@olh=\skip78
-\f@nch@O@orh=\skip79
-\f@nch@O@elf=\skip80
-\f@nch@O@erf=\skip81
-\f@nch@O@olf=\skip82
-\f@nch@O@orf=\skip83
+\f@nch@headwidth=\skip83
+\f@nch@O@elh=\skip84
+\f@nch@O@erh=\skip85
+\f@nch@O@olh=\skip86
+\f@nch@O@orh=\skip87
+\f@nch@O@elf=\skip88
+\f@nch@O@erf=\skip89
+\f@nch@O@olf=\skip90
+\f@nch@O@orf=\skip91
 )
 (/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip84
-\bibsep=\skip85
+\bibhang=\skip92
+\bibsep=\skip93
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count325
 )
-
-! LaTeX Error: File `tocloft.sty' not found.
-
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: sty)
-
-Enter file name: 
+(/usr/share/texlive/texmf-dist/tex/latex/tocloft/tocloft.sty
+Package: tocloft 2017/08/31 v2.3i parameterised ToC, etc., typesetting
+Package tocloft Info: The document has chapter divisions on input line 51.
+\cftparskip=\skip94
+\cftbeforetoctitleskip=\skip95
+\cftaftertoctitleskip=\skip96
+\cftbeforepartskip=\skip97
+\cftpartnumwidth=\skip98
+\cftpartindent=\skip99
+\cftbeforechapskip=\skip100
+\cftchapindent=\skip101
+\cftchapnumwidth=\skip102
+\cftbeforesecskip=\skip103
+\cftsecindent=\skip104
+\cftsecnumwidth=\skip105
+\cftbeforesubsecskip=\skip106
+\cftsubsecindent=\skip107
+\cftsubsecnumwidth=\skip108
+\cftbeforesubsubsecskip=\skip109
+\cftsubsubsecindent=\skip110
+\cftsubsubsecnumwidth=\skip111
+\cftbeforeparaskip=\skip112
+\cftparaindent=\skip113
+\cftparanumwidth=\skip114
+\cftbeforesubparaskip=\skip115
+\cftsubparaindent=\skip116
+\cftsubparanumwidth=\skip117
+\cftbeforeloftitleskip=\skip118
+\cftafterloftitleskip=\skip119
+\cftbeforefigskip=\skip120
+\cftfigindent=\skip121
+\cftfignumwidth=\skip122
+\c@lofdepth=\count326
+\c@lotdepth=\count327
+\cftbeforelottitleskip=\skip123
+\cftafterlottitleskip=\skip124
+\cftbeforetabskip=\skip125
+\cfttabindent=\skip126
+\cfttabnumwidth=\skip127
+)
 \@indexfile=\write4
 \openout4 = `refman.idx'.
 
+
 Writing index file refman.idx
-
-! LaTeX Error: File `newunicodechar.sty' not found.
-
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: sty)
-
-Enter file name: 
-! Undefined control sequence.
-\doxynewunicodechar ...uc@tempa \@nil }\nuc@check 
-                                                  \if@tempswa \@namedef {u8:...
-l.140   \doxynewunicodechar{⁻}{${}^{-}$}
-                                          % Superscript minus
-? 
-! Undefined control sequence.
-\doxynewunicodechar ...uc@tempa \@nil }\nuc@check 
-                                                  \if@tempswa \@namedef {u8:...
-l.141   \doxynewunicodechar{²}{${}^{2}$}
-                                         % Superscript two
-? 
-! Undefined control sequence.
-\doxynewunicodechar ...uc@tempa \@nil }\nuc@check 
-                                                  \if@tempswa \@namedef {u8:...
-l.142   \doxynewunicodechar{³}{${}^{3}$}
-                                         % Superscript three
-? 
+(/usr/share/texlive/texmf-dist/tex/latex/newunicodechar/newunicodechar.sty
+Package: newunicodechar 2018/04/08 v1.2 Defining Unicode characters
+)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2023-02-07 v7.00v Hypertext links for LaTeX
 
@@ -583,11 +592,11 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 (/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
-\c@section@level=\count326
+\c@section@level=\count328
 )
 \@linkdim=\dimen198
-\Hy@linkcounter=\count327
-\Hy@pagecounter=\count328
+\Hy@linkcounter=\count329
+\Hy@pagecounter=\count330
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2023-02-07 v7.00v Hyperref: PDFDocEncoding definition (HO)
@@ -597,7 +606,7 @@ Now handling font encoding PD1 ...
 (/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
-\Hy@SavedSpaceFactor=\count329
+\Hy@SavedSpaceFactor=\count331
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2023-02-07 v7.00v Hyperref: PDF Unicode definition (HO)
@@ -633,7 +642,7 @@ Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 85.
 ))
-\c@Hy@tempcnt=\count330
+\c@Hy@tempcnt=\count332
 
 (/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip16
@@ -645,7 +654,7 @@ LaTeX Info: Redefining \url on input line 4763.
 (/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 )
-\Fld@menulength=\count331
+\Fld@menulength=\count333
 \Field@Width=\dimen256
 \Fld@charsize=\dimen257
 Package hyperref Info: Hyper figures OFF on input line 6042.
@@ -660,17 +669,17 @@ Package hyperref Info: PDF/A mode OFF on input line 6072.
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count332
-\c@Item=\count333
-\c@Hfootnote=\count334
+\Hy@abspage=\count334
+\c@Item=\count335
+\c@Hfootnote=\count336
 )
 Package hyperref Info: Driver: hpdftex.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2023-02-07 v7.00v Hyperref driver for pdfTeX
-\Fld@listcount=\count335
-\c@bookmark@seq@number=\count336
-\Hy@SectionHShift=\skip86
+\Fld@listcount=\count337
+\c@bookmark@seq@number=\count338
+\Hy@SectionHShift=\skip128
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 161.
 Package hyperref Info: Option `unicode' set `true' on input line 161.
@@ -690,8 +699,8 @@ Package: caption3 2023/03/12 v2.4 caption3 kernel (AR)
 \caption@hangindent=\dimen265
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count337
-\c@continuedfloat=\count338
+\c@caption@flags=\count339
+\c@continuedfloat=\count340
 Package caption Info: changepage package is loaded.
 \caption@adjustwidth@hsize=\dimen266
 \caption@adjustwidth@linewidth=\dimen267
@@ -705,7 +714,7 @@ Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
 (./etoc_doxygen.sty
 Package: etoc_doxygen 2023/07/01 v1.2b Completely customisable TOCs (JFB)
 \Etoc@toctoks=\toks35
-\c@etoc@tocid=\count339
+\c@etoc@tocid=\count341
 \etoc@framed@titlebox=\box120
 \etoc@framed@contentsbox=\box121
 )
@@ -719,10 +728,10 @@ LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count340
+\l__color_backend_stack_int=\count342
 \l__pdf_internal_box=\box122
 )
-No file refman.aux.
+(./refman.aux)
 \openout1 = `refman.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 183.
@@ -743,18 +752,19 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 183.
 LaTeX Font Info:    ... okay on input line 183.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 183.
 LaTeX Font Info:    ... okay on input line 183.
+
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count341
+\scratchcounter=\count343
 \scratchdimen=\dimen268
 \scratchbox=\box123
-\nofMPsegments=\count342
-\nofMParguments=\count343
+\nofMPsegments=\count344
+\nofMParguments=\count345
 \everyMPshowfont=\toks36
-\MPscratchCnt=\count344
+\MPscratchCnt=\count346
 \MPscratchDim=\dimen269
-\MPnumerator=\count345
-\makeMPintoPDFobject=\count346
+\MPnumerator=\count347
+\makeMPintoPDFobject=\count348
 \everyMPtoPDFconversion=\toks37
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -801,12 +811,13 @@ e
 
 Package backref Info: ** backref set up for natbib ** on input line 183.
 Package hyperref Info: Link coloring ON on input line 183.
+(./refman.out) (./refman.out)
 \@outlinefile=\write5
 \openout5 = `refman.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-No file refman.toc.
+\Etoc@tf=\read4
 Package hyperref Info: Option `pageanchor' set `false' on input line 191.
 Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 191.
 
@@ -817,6 +828,7 @@ LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 6.29996pt on input line 196.
 LaTeX Font Info:    Trying to load font information for U+msa on input line 196
 .
+
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
@@ -844,127 +856,334 @@ st/fonts/enc/dvips/base/8r.enc}] [2
 \tf@toc=\write6
 \openout6 = `refman.toc'.
 
-Package hyperref Info: Option `pageanchor' set `true' on input line 208.
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 8.99994pt on input line 205.
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 6.29996pt on input line 205.
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 20
+5.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+)
+[1]
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 7.19995pt on input line 205.
+ [2] [3] [4
 
+]
+Package hyperref Info: Option `pageanchor' set `true' on input line 208.
+ (./index.tex
 Chapter 1.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 18.66588pt on input line 210.
+(Font)              scaled to size 18.66588pt on input line 1.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 18.66588pt on input line 210.
+(Font)              scaled to size 18.66588pt on input line 1.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 22.39185pt on input line 210.
-(./annotated.tex
-LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 12.9599pt on input line 1.
-LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 8.99994pt on input line 3.
-
-
-LaTeX Warning: Reference `classDagor_1_1BitBoard_1_1BitBoard' on page 1 undefin
-ed on input line 3.
-
-
-LaTeX Warning: Reference `classDagor_1_1MoveTables_1_1BlockerHash' on page 1 un
-defined on input line 4.
-
-)
-LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 6.29996pt on input line 212.
- [1
-
+(Font)              scaled to size 22.39185pt on input line 1.
+LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10> not available
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 7.
+LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
+(Font)              scaled to size 8.99994pt on input line 7.
+LaTeX Font Info:    Font shape `T1/phv/m/it' in size <7> not available
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 7.
+LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
+(Font)              scaled to size 6.29996pt on input line 7.
+) [1
 
 ] [2
 
 ]
 Chapter 2.
-(./files.tex
-
-LaTeX Warning: Reference `bitboard_8h_source' on page 3 undefined on input line
- 3.
-
-
-LaTeX Warning: Reference `board_8h_source' on page 3 undefined on input line 4.
-
-
-
-LaTeX Warning: Reference `constants_8h_source' on page 3 undefined on input lin
-e 5.
-
-
-LaTeX Warning: Reference `movetables_8h_source' on page 3 undefined on input li
-ne 6.
-
-
-LaTeX Warning: Reference `print_8h_source' on page 3 undefined on input line 7.
-
-
+(./namespaces.tex
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 12.9599pt on input line 1.
 ) [3] [4
 
 ]
 Chapter 3.
-(./classDagor_1_1BitBoard_1_1BitBoard.tex
+(./annotated.tex) [5] [6
+
+]
+Chapter 4.
+(./files.tex) [7] [8
+
+]
+Chapter 5.
+(./namespaceDagor.tex
 LaTeX Font Info:    Trying to load font information for TS1+phv on input line 6
 .
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1phv.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1phv.fd
 File: ts1phv.fd 2020/03/25 scalable font definitions for TS1/phv.
 )
 LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
 (Font)              scaled to size 8.99994pt on input line 6.
+) (./namespaceDagor_1_1BitBoard.tex
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 8.09995pt on input line 7.
+LaTeX Font Info:    Font shape `T1/phv/m/it' in size <9> not available
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 7.
+LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
+(Font)              scaled to size 8.09995pt on input line 7.
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 10.79993pt on input line 28.
+LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <8> not available
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 33.
+ [9]) (./namespaceDagor_1_1Board.tex
+[10]
+LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <9> not available
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 101.
+LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <7> not available
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 101.
+ [11] [12] [13]
+Underfull \hbox (badness 10000) detected at line 457
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 471
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 491
+[][][]
+ []
+
+[14]
+Underfull \hbox (badness 10000) detected at line 509
+[][][]
+ []
+
+) (./namespaceDagor_1_1MoveTables.tex [15]) [16]
+Chapter 6.
+(./classDagor_1_1BitBoard_1_1BitBoard.tex
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 7.19995pt on input line 53.
+ [17
+
+]
+Underfull \hbox (badness 10000) detected at line 80
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 93
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 106
+[][][]
+ []
+
+[18]
+Underfull \hbox (badness 10000) detected at line 124
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 142
+[][][]
+ []
+
+[19]
+Underfull \hbox (badness 10000) detected at line 160
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 173
+[][][]
+ []
+
+[20]
+Underfull \hbox (badness 10000) detected at line 219
+[][][]
+ []
+
+) (./classDagor_1_1MoveTables_1_1BlockerHash.tex [21]
+Underfull \hbox (badness 10000) detected at line 62
+[][][]
+ []
+
+[22]
+Underfull \hbox (badness 10000) detected at line 80
+[][][]
+ []
+
+) [23] [24
+
+]
+Chapter 7.
+(./bitboard_8cpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--6
+
+ []
+
+) (./bitboard_8h.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--6
+
+ []
+
+[25]) (./bitboard_8h_source.tex [26]) (./board_8h.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+
+ []
+
+[27]) (./board_8h_source.tex [28]) (./constants_8h.tex)
+(./constants_8h_source.tex [29]) (./generate__movetables_8cpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--13
+
+ []
+
+[30] [31]
+Underfull \hbox (badness 10000) detected at line 88
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 112
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 132
+[][][]
+ []
+
+[32]
+Underfull \hbox (badness 10000) detected at line 150
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 168
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 186
+[][][]
+ []
+
+[33]
+Underfull \hbox (badness 10000) detected at line 204
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 230
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 243
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 256
+[][][]
+ []
+
+[34]
+Underfull \hbox (badness 10000) detected at line 285
+[][][]
+ []
+
+
+Overfull \vbox (33.94672pt too high) has occurred while \output is active []
+
+
+[35]
+Underfull \hbox (badness 10000) detected at line 317
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 337
+[][][]
+ []
+
+
+Package textcomp Warning: Symbol \textrightarrow not provided by
+(textcomp)                font family pcr in TS1 encoding.
+(textcomp)                Default family used instead on input line 348.
+
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 3
+48.
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2022/07/10 v2.5l Standard LaTeX font definitions
 )
-(./classDagor_1_1MoveTables_1_1BlockerHash.tex [5]) [6]
-Chapter 4.
-(./bitboard_8h_source.tex
-LaTeX Font Info:    Trying to load font information for T1+pcr on input line 3.
+LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
+348.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmtt.fd
+File: ts1cmtt.fd 2022/07/10 v2.5l Standard LaTeX font definitions
+) [36{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+
+Underfull \hbox (badness 10000) detected at line 368
+[][][]
+ []
+
+[37] [38]) (./main_8cpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--5
+
+ []
+
+) (./movetables_8cpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+
+ []
+
+[39]) (./movetables_8h.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--6
+
+ []
+
+) (./movetables_8h_source.tex [40]) (./print_8cpp.tex) (./print_8h.tex)
+(./print_8h_source.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--1
+
+ []
+
+) (./Readme_8md.tex) [41] [42
+
+] (./refman.ind
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 22.39185pt on input line 1.
+ [43
 
 
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
-File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-)
-! Undefined control sequence.
-<argument>  \hangpara 
-                      {\DoxyCodeWidth }{1}{00001\ }\par 
-l.4 \DoxyCodeLine{00001\ }
-                          
-? 
-! Missing number, treated as zero.
-<to be read again> 
-                   }
-l.4 \DoxyCodeLine{00001\ }
-                          
-? 
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   }
-l.4 \DoxyCodeLine{00001\ }
-                          
-? 
-! Undefined control sequence.
-<argument>  \hangpara 
-                      {\DoxyCodeWidth }{1}{00002\ \textcolor {preprocessor}{...
-l.5 ...color{preprocessor}{\#ifndef\ BITBOARD\_H}}
-                                                  
-? 
-! Missing number, treated as zero.
-<to be read again> 
-                   }
-l.5 ...color{preprocessor}{\#ifndef\ BITBOARD\_H}}
-                                                  
-? 
-! Emergency stop.
-<to be read again> 
-                   }
-l.5 ...color{preprocessor}{\#ifndef\ BITBOARD\_H}}
-                                                  
-End of file on the terminal!
-
- 
+] [44] [45] [46]) (./refman.aux)
+Package rerunfilecheck Info: File `refman.out' has not changed.
+(rerunfilecheck)             Checksum: C3C1AB26709F93FE1543E05375DD79F4;21074.
+ ) 
 Here is how much of TeX's memory you used:
- 17554 strings out of 477136
- 284571 string characters out of 5813382
- 1866388 words of memory out of 6000000
- 37495 multiletter control sequences out of 15000+600000
- 541940 words of font info for 65 fonts, out of 8000000 for 9000
+ 18930 strings out of 477136
+ 322579 string characters out of 5813382
+ 1909388 words of memory out of 6000000
+ 38430 multiletter control sequences out of 15000+600000
+ 570853 words of font info for 108 fonts, out of 8000000 for 9000
  430 hyphenation exceptions out of 8191
- 101i,11n,117p,334b,550s stack positions out of 10000i,1000n,20000p,200000b,200000s
-!  ==> Fatal error occurred, no output PDF file produced!
+ 101i,16n,117p,749b,742s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/cm-super/sftt0800.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
+w/courier/ucrb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucr
+r8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/urw/helvetic/uhvb8ac.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/urw/helvetic/uhvro8a.pfb>
+Output written on refman.pdf (52 pages, 251943 bytes).
+PDF statistics:
+ 2106 PDF objects out of 2487 (max. 8388607)
+ 2003 compressed objects within 21 object streams
+ 385 named destinations out of 1000 (max. 500000)
+ 897 words of extra memory for PDF output out of 10000 (max. 10000000)
+

@@ -5,15 +5,32 @@
 
 namespace Dagor::Board {
 
+/// @brief The width of a chess board, that is `8`.
 inline constexpr int width{8};
+/// @brief The number of squares of a chess board, that is `64`.
 inline constexpr int size{width * width};
 
+/// @brief Computes the rank (i. e. row) of a square from its index.
+/// @param square the index of the square.
+/// @return its rank.
 constexpr int file(int square) { return square % width; }
+
+/// @brief Computes the file (i. e. column) of a square from its index
+/// @param square the index of a square.
+/// @return its file.
 constexpr int rank(int square) { return square / width; }
+
+/// @brief Computes the index of a square from its file and rank.
+/// @param file file (i. e. column)
+/// @param rank rank (i. e. row)
+/// @return the index of the specified square.
 constexpr int index(int file, int rank) { return file + width * rank; }
 
+/// @param file the numeric value of a file (i. e. column) form {0,...,7}.
+/// @return the name of that file in algebraic chess notation from {a,...,h}.
 constexpr char file_name(int file) { return static_cast<char>('a' + file); }
 
+/// @brief The offsets to add to a square index to go in the intended direction.
 enum CompassOffsets {
   north_west = +7,
   north = +8,
@@ -25,6 +42,9 @@ enum CompassOffsets {
   south_east = -7
 };
 
+/// @brief The names of the squares in algebraic notation. The indices of
+/// squares are counted sequentially with `a1` being equal to `0` and `h8` being
+/// equal to `63`. A special `no_square` constant denotes an absent value.
 enum Square {
   a1,
   b1,
@@ -89,7 +109,8 @@ enum Square {
   e8,
   f8,
   g8,
-  h8
+  h8,
+  no_square
 };
 
 }  // namespace Dagor::Board

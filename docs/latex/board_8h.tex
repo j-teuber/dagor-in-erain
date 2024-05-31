@@ -22,7 +22,7 @@ enum \mbox{\hyperlink{namespaceDagor_1_1Board_a6c832c33003cd58dd947e02d409916f2}
 , \mbox{\hyperlink{namespaceDagor_1_1Board_a6c832c33003cd58dd947e02d409916f2a0e53ef6bb1f2a2d19b4ebe3880428dcd}{Dagor\+::\+Board\+::south}} = -\/8
 , \mbox{\hyperlink{namespaceDagor_1_1Board_a6c832c33003cd58dd947e02d409916f2a4ca68f102d115104c6d1476652642b61}{Dagor\+::\+Board\+::south\+\_\+east}} = -\/7
  \}
-\item 
+\begin{DoxyCompactList}\small\item\em The offsets to add to a square index to go in the intended direction. \end{DoxyCompactList}\item 
 enum \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7}{Dagor\+::\+Board\+::\+Square}} \{ \newline
 \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a63301435748f3419db67d9ccc400dcde}{Dagor\+::\+Board\+::a1}}
 , \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a9004194243dfa6091ffadea06e0cd153}{Dagor\+::\+Board\+::b1}}
@@ -103,23 +103,25 @@ enum \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7}
 , \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a331360f07c7fbe4780791358fa3fed8d}{Dagor\+::\+Board\+::f8}}
 , \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a83904c13c64555da577a2ff7bc9a53c6}{Dagor\+::\+Board\+::g8}}
 , \mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a1cb2af72dc268da618ec0964488e868e}{Dagor\+::\+Board\+::h8}}
+, \newline
+\mbox{\hyperlink{namespaceDagor_1_1Board_aaa7a78fb4d36e038f01d566093eb10e7a64829685ca6df6522977eebca9e174f7}{Dagor\+::\+Board\+::no\+\_\+square}}
  \}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The names of the squares in algebraic notation. The indices of squares are counted sequentially with {\ttfamily a1} being equal to {\ttfamily 0} and {\ttfamily h8} being equal to {\ttfamily 63}. A special {\ttfamily no\+\_\+square} constant denotes an absent value. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 constexpr int \mbox{\hyperlink{namespaceDagor_1_1Board_a1a056a60f75b6a3403ddd3956672ed80}{Dagor\+::\+Board\+::file}} (int square)
-\item 
+\begin{DoxyCompactList}\small\item\em Computes the rank (i. e. row) of a square from its index. \end{DoxyCompactList}\item 
 constexpr int \mbox{\hyperlink{namespaceDagor_1_1Board_ad04c43bb0b07e524ba5fce64d40b9556}{Dagor\+::\+Board\+::rank}} (int square)
-\item 
+\begin{DoxyCompactList}\small\item\em Computes the file (i. e. column) of a square from its index. \end{DoxyCompactList}\item 
 constexpr int \mbox{\hyperlink{namespaceDagor_1_1Board_a69903bda8e4bb5ad2972950839224290}{Dagor\+::\+Board\+::index}} (int \mbox{\hyperlink{namespaceDagor_1_1Board_a1a056a60f75b6a3403ddd3956672ed80}{file}}, int \mbox{\hyperlink{namespaceDagor_1_1Board_ad04c43bb0b07e524ba5fce64d40b9556}{rank}})
-\item 
+\begin{DoxyCompactList}\small\item\em Computes the index of a square from its file and rank. \end{DoxyCompactList}\item 
 constexpr char \mbox{\hyperlink{namespaceDagor_1_1Board_a51e0a7e47ac736f3f63fee742c0716f4}{Dagor\+::\+Board\+::file\+\_\+name}} (int \mbox{\hyperlink{namespaceDagor_1_1Board_a1a056a60f75b6a3403ddd3956672ed80}{file}})
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 constexpr int \mbox{\hyperlink{namespaceDagor_1_1Board_aa84d2af871e9678b20fd70c566e6293b}{Dagor\+::\+Board\+::width}} \{8\}
-\item 
+\begin{DoxyCompactList}\small\item\em The width of a chess board, that is {\ttfamily 8}. \end{DoxyCompactList}\item 
 constexpr int \mbox{\hyperlink{namespaceDagor_1_1Board_a4fc79744a70cb9f3ae68d0d32a2f9e5a}{Dagor\+::\+Board\+::size}} \{\mbox{\hyperlink{namespaceDagor_1_1Board_aa84d2af871e9678b20fd70c566e6293b}{width}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespaceDagor_1_1Board_aa84d2af871e9678b20fd70c566e6293b}{width}}\}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The number of squares of a chess board, that is {\ttfamily 64}. \end{DoxyCompactList}\end{DoxyCompactItemize}

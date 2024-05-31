@@ -9,5 +9,6 @@ var searchData=
   ['e7_6',['e7',['../namespaceDagor_1_1Board.html#aaa7a78fb4d36e038f01d566093eb10e7a05ee4709ffdc105174c22a74f3736f42',1,'Dagor::Board']]],
   ['e8_7',['e8',['../namespaceDagor_1_1Board.html#aaa7a78fb4d36e038f01d566093eb10e7ad0c5af748880c285f1da0e41d5d70144',1,'Dagor::Board']]],
   ['east_8',['east',['../namespaceDagor_1_1Board.html#a6c832c33003cd58dd947e02d409916f2a4e35c2e133e9023120008c7d828e7fc4',1,'Dagor::Board']]],
-  ['edgesonly_9',['edgesOnly',['../namespaceDagor_1_1BitBoard.html#a6ba130a05600f4ed39ef1c7b760ce090',1,'Dagor::BitBoard']]]
+  ['edgesonly_9',['edgesOnly',['../namespaceDagor_1_1BitBoard.html#a6ba130a05600f4ed39ef1c7b760ce090',1,'Dagor::BitBoard']]],
+  ['erain_10',['Dagor-in-Erain',['../index.html',1,'']]]
 ];

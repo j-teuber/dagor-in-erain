@@ -2,6 +2,11 @@
 \hypertarget{classDagor_1_1MoveTables_1_1BlockerHash}{}\label{classDagor_1_1MoveTables_1_1BlockerHash}\index{Dagor::MoveTables::BlockerHash@{Dagor::MoveTables::BlockerHash}}
 
 
+A hash function that maps a configuration of blocking pieces to an index into the {\ttfamily sliding\+Moves} table, where the possible moves of a rook or bishop are stored. Both rooks and bishops have one separate hash function for each square.  
+
+
+
+
 {\ttfamily \#include $<$movetables.\+h$>$}
 
 \doxysubsubsection*{Public Member Functions}
@@ -10,21 +15,24 @@
 \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash_a5a9c47a48295d28dea6de05a158a14a4}{Blocker\+Hash}} (\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} mask, \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash_a19be5bc60af8840b74d8712011337f3e}{magic}}, unsigned \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash_a84df53ac2ceb7c67130da7aa04895403}{down\+Shift}}, unsigned \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash_a6db39d1750ad2fb9c2610ac9b20883b2}{table\+Offset}})
 \item 
 unsigned \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash_a7999babe6c3e20369b05feca803f485a}{hash}} (\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} blockers) const
-\item 
+\begin{DoxyCompactList}\small\item\em Computes the hash for a configuration of blocking pieces. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash_a4ff30b20889a949f09d15068345afd12}{look\+Up}} (\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} blockers) const
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Looks up the possible moves for a bishop/rook with the specified blocking pieces. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 const \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash_ad5eec7dfbf9d5a5dcc92268767b964c5}{blocker\+Mask}}
-\item 
+\begin{DoxyCompactList}\small\item\em The mask singling out the blocking pieces that actually matter to the figure under consideration. \end{DoxyCompactList}\item 
 const \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash_a19be5bc60af8840b74d8712011337f3e}{magic}}
-\item 
+\begin{DoxyCompactList}\small\item\em The magic number that yields the perfect hash function. \end{DoxyCompactList}\item 
 const unsigned \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash_a84df53ac2ceb7c67130da7aa04895403}{down\+Shift}}
-\item 
+\begin{DoxyCompactList}\small\item\em The amount by which the hash should be shifted down. \end{DoxyCompactList}\item 
 const unsigned \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash_a6db39d1750ad2fb9c2610ac9b20883b2}{table\+Offset}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The offset that should be added to the hash. In {\ttfamily sliding\+Moves} all entries lie consecutively, this marks where the entries begin, that can be accessed through this hash function. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+A hash function that maps a configuration of blocking pieces to an index into the {\ttfamily sliding\+Moves} table, where the possible moves of a rook or bishop are stored. Both rooks and bishops have one separate hash function for each square. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{classDagor_1_1MoveTables_1_1BlockerHash_a5a9c47a48295d28dea6de05a158a14a4}\label{classDagor_1_1MoveTables_1_1BlockerHash_a5a9c47a48295d28dea6de05a158a14a4} 
@@ -42,12 +50,36 @@ const unsigned \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash_a6db39d1
 \doxysubsubsection{\texorpdfstring{hash()}{hash()}}
 {\footnotesize\ttfamily unsigned Dagor\+::\+Move\+Tables\+::\+Blocker\+Hash\+::hash (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}}}]{blockers }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Computes the hash for a configuration of blocking pieces. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em blockers} & pieces blocking the bishop’s/rook’s movement. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the hash. 
+\end{DoxyReturn}
 \Hypertarget{classDagor_1_1MoveTables_1_1BlockerHash_a4ff30b20889a949f09d15068345afd12}\label{classDagor_1_1MoveTables_1_1BlockerHash_a4ff30b20889a949f09d15068345afd12} 
 \index{Dagor::MoveTables::BlockerHash@{Dagor::MoveTables::BlockerHash}!lookUp@{lookUp}}
 \index{lookUp@{lookUp}!Dagor::MoveTables::BlockerHash@{Dagor::MoveTables::BlockerHash}}
 \doxysubsubsection{\texorpdfstring{lookUp()}{lookUp()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} Dagor\+::\+Move\+Tables\+::\+Blocker\+Hash\+::look\+Up (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}}}]{blockers }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Looks up the possible moves for a bishop/rook with the specified blocking pieces. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em blockers} & pieces blocking the bishop’s/rook’s movement. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a bitboard where all squares, to which the bishop/rook can move, are set. 
+\end{DoxyReturn}
 
 
 \doxysubsection{Member Data Documentation}
@@ -57,11 +89,19 @@ const unsigned \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash_a6db39d1
 \doxysubsubsection{\texorpdfstring{blockerMask}{blockerMask}}
 {\footnotesize\ttfamily const \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} Dagor\+::\+Move\+Tables\+::\+Blocker\+Hash\+::blocker\+Mask}
 
+
+
+The mask singling out the blocking pieces that actually matter to the figure under consideration. 
+
 \Hypertarget{classDagor_1_1MoveTables_1_1BlockerHash_a84df53ac2ceb7c67130da7aa04895403}\label{classDagor_1_1MoveTables_1_1BlockerHash_a84df53ac2ceb7c67130da7aa04895403} 
 \index{Dagor::MoveTables::BlockerHash@{Dagor::MoveTables::BlockerHash}!downShift@{downShift}}
 \index{downShift@{downShift}!Dagor::MoveTables::BlockerHash@{Dagor::MoveTables::BlockerHash}}
 \doxysubsubsection{\texorpdfstring{downShift}{downShift}}
 {\footnotesize\ttfamily const unsigned Dagor\+::\+Move\+Tables\+::\+Blocker\+Hash\+::down\+Shift}
+
+
+
+The amount by which the hash should be shifted down. 
 
 \Hypertarget{classDagor_1_1MoveTables_1_1BlockerHash_a19be5bc60af8840b74d8712011337f3e}\label{classDagor_1_1MoveTables_1_1BlockerHash_a19be5bc60af8840b74d8712011337f3e} 
 \index{Dagor::MoveTables::BlockerHash@{Dagor::MoveTables::BlockerHash}!magic@{magic}}
@@ -69,11 +109,19 @@ const unsigned \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash_a6db39d1
 \doxysubsubsection{\texorpdfstring{magic}{magic}}
 {\footnotesize\ttfamily const \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} Dagor\+::\+Move\+Tables\+::\+Blocker\+Hash\+::magic}
 
+
+
+The magic number that yields the perfect hash function. 
+
 \Hypertarget{classDagor_1_1MoveTables_1_1BlockerHash_a6db39d1750ad2fb9c2610ac9b20883b2}\label{classDagor_1_1MoveTables_1_1BlockerHash_a6db39d1750ad2fb9c2610ac9b20883b2} 
 \index{Dagor::MoveTables::BlockerHash@{Dagor::MoveTables::BlockerHash}!tableOffset@{tableOffset}}
 \index{tableOffset@{tableOffset}!Dagor::MoveTables::BlockerHash@{Dagor::MoveTables::BlockerHash}}
 \doxysubsubsection{\texorpdfstring{tableOffset}{tableOffset}}
 {\footnotesize\ttfamily const unsigned Dagor\+::\+Move\+Tables\+::\+Blocker\+Hash\+::table\+Offset}
+
+
+
+The offset that should be added to the hash. In {\ttfamily sliding\+Moves} all entries lie consecutively, this marks where the entries begin, that can be accessed through this hash function. 
 
 
 

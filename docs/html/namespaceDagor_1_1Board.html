@@ -28,9 +28,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Dagor-in-Erain<span id="projectnumber">&#160;0.0.0</span>
+   <div id="projectname">Dagor-in-Erain<span id="projectnumber">&#160;v0.0.0</span>
    </div>
-   <div id="projectbrief">a c++ chess engine</div>
+   <div id="projectbrief">a C++ chess engine</div>
   </td>
  </tr>
  </tbody>
@@ -115,6 +115,7 @@ Enumerations</h2></td></tr>
 , <a class="el" href="#a6c832c33003cd58dd947e02d409916f2a4ca68f102d115104c6d1476652642b61">south_east</a> = -7
 <br />
  }</td></tr>
+<tr class="memdesc:a6c832c33003cd58dd947e02d409916f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The offsets to add to a square index to go in the intended direction.  <a href="#a6c832c33003cd58dd947e02d409916f2">More...</a><br /></td></tr>
 <tr class="separator:a6c832c33003cd58dd947e02d409916f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaa7a78fb4d36e038f01d566093eb10e7" id="r_aaa7a78fb4d36e038f01d566093eb10e7"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaa7a78fb4d36e038f01d566093eb10e7">Square</a> { <br />
 &#160;&#160;<a class="el" href="#aaa7a78fb4d36e038f01d566093eb10e7a63301435748f3419db67d9ccc400dcde">a1</a>
@@ -196,17 +197,23 @@ Enumerations</h2></td></tr>
 , <a class="el" href="#aaa7a78fb4d36e038f01d566093eb10e7a331360f07c7fbe4780791358fa3fed8d">f8</a>
 , <a class="el" href="#aaa7a78fb4d36e038f01d566093eb10e7a83904c13c64555da577a2ff7bc9a53c6">g8</a>
 , <a class="el" href="#aaa7a78fb4d36e038f01d566093eb10e7a1cb2af72dc268da618ec0964488e868e">h8</a>
+, <br />
+&#160;&#160;<a class="el" href="#aaa7a78fb4d36e038f01d566093eb10e7a64829685ca6df6522977eebca9e174f7">no_square</a>
 <br />
  }</td></tr>
+<tr class="memdesc:aaa7a78fb4d36e038f01d566093eb10e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The names of the squares in algebraic notation. The indices of squares are counted sequentially with <code>a1</code> being equal to <code>0</code> and <code>h8</code> being equal to <code>63</code>. A special <code>no_square</code> constant denotes an absent value.  <a href="#aaa7a78fb4d36e038f01d566093eb10e7">More...</a><br /></td></tr>
 <tr class="separator:aaa7a78fb4d36e038f01d566093eb10e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a1a056a60f75b6a3403ddd3956672ed80" id="r_a1a056a60f75b6a3403ddd3956672ed80"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a056a60f75b6a3403ddd3956672ed80">file</a> (int square)</td></tr>
+<tr class="memdesc:a1a056a60f75b6a3403ddd3956672ed80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the rank (i. e. row) of a square from its index.  <br /></td></tr>
 <tr class="separator:a1a056a60f75b6a3403ddd3956672ed80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad04c43bb0b07e524ba5fce64d40b9556" id="r_ad04c43bb0b07e524ba5fce64d40b9556"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad04c43bb0b07e524ba5fce64d40b9556">rank</a> (int square)</td></tr>
+<tr class="memdesc:ad04c43bb0b07e524ba5fce64d40b9556"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the file (i. e. column) of a square from its index.  <br /></td></tr>
 <tr class="separator:ad04c43bb0b07e524ba5fce64d40b9556"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69903bda8e4bb5ad2972950839224290" id="r_a69903bda8e4bb5ad2972950839224290"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69903bda8e4bb5ad2972950839224290">index</a> (int <a class="el" href="#a1a056a60f75b6a3403ddd3956672ed80">file</a>, int <a class="el" href="#ad04c43bb0b07e524ba5fce64d40b9556">rank</a>)</td></tr>
+<tr class="memdesc:a69903bda8e4bb5ad2972950839224290"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the index of a square from its file and rank.  <br /></td></tr>
 <tr class="separator:a69903bda8e4bb5ad2972950839224290"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51e0a7e47ac736f3f63fee742c0716f4" id="r_a51e0a7e47ac736f3f63fee742c0716f4"><td class="memItemLeft" align="right" valign="top">constexpr char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a51e0a7e47ac736f3f63fee742c0716f4">file_name</a> (int <a class="el" href="#a1a056a60f75b6a3403ddd3956672ed80">file</a>)</td></tr>
 <tr class="separator:a51e0a7e47ac736f3f63fee742c0716f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -214,8 +221,10 @@ Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:aa84d2af871e9678b20fd70c566e6293b" id="r_aa84d2af871e9678b20fd70c566e6293b"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa84d2af871e9678b20fd70c566e6293b">width</a> {8}</td></tr>
+<tr class="memdesc:aa84d2af871e9678b20fd70c566e6293b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The width of a chess board, that is <code>8</code>.  <br /></td></tr>
 <tr class="separator:aa84d2af871e9678b20fd70c566e6293b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4fc79744a70cb9f3ae68d0d32a2f9e5a" id="r_a4fc79744a70cb9f3ae68d0d32a2f9e5a"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4fc79744a70cb9f3ae68d0d32a2f9e5a">size</a> {<a class="el" href="#aa84d2af871e9678b20fd70c566e6293b">width</a> * <a class="el" href="#aa84d2af871e9678b20fd70c566e6293b">width</a>}</td></tr>
+<tr class="memdesc:a4fc79744a70cb9f3ae68d0d32a2f9e5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of squares of a chess board, that is <code>64</code>.  <br /></td></tr>
 <tr class="separator:a4fc79744a70cb9f3ae68d0d32a2f9e5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
@@ -230,6 +239,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>The offsets to add to a square index to go in the intended direction. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a6c832c33003cd58dd947e02d409916f2ab70d1f46116790747bc55794c50acae7" name="a6c832c33003cd58dd947e02d409916f2ab70d1f46116790747bc55794c50acae7"></a>north_west&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a6c832c33003cd58dd947e02d409916f2a67197b1aa0a6d76cb66a25088b9111e8" name="a6c832c33003cd58dd947e02d409916f2a67197b1aa0a6d76cb66a25088b9111e8"></a>north&#160;</td><td class="fielddoc"></td></tr>
@@ -254,6 +265,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>The names of the squares in algebraic notation. The indices of squares are counted sequentially with <code>a1</code> being equal to <code>0</code> and <code>h8</code> being equal to <code>63</code>. A special <code>no_square</code> constant denotes an absent value. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aaa7a78fb4d36e038f01d566093eb10e7a63301435748f3419db67d9ccc400dcde" name="aaa7a78fb4d36e038f01d566093eb10e7a63301435748f3419db67d9ccc400dcde"></a>a1&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aaa7a78fb4d36e038f01d566093eb10e7a9004194243dfa6091ffadea06e0cd153" name="aaa7a78fb4d36e038f01d566093eb10e7a9004194243dfa6091ffadea06e0cd153"></a>b1&#160;</td><td class="fielddoc"></td></tr>
@@ -319,6 +332,7 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="aaa7a78fb4d36e038f01d566093eb10e7a331360f07c7fbe4780791358fa3fed8d" name="aaa7a78fb4d36e038f01d566093eb10e7a331360f07c7fbe4780791358fa3fed8d"></a>f8&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aaa7a78fb4d36e038f01d566093eb10e7a83904c13c64555da577a2ff7bc9a53c6" name="aaa7a78fb4d36e038f01d566093eb10e7a83904c13c64555da577a2ff7bc9a53c6"></a>g8&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aaa7a78fb4d36e038f01d566093eb10e7a1cb2af72dc268da618ec0964488e868e" name="aaa7a78fb4d36e038f01d566093eb10e7a1cb2af72dc268da618ec0964488e868e"></a>h8&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aaa7a78fb4d36e038f01d566093eb10e7a64829685ca6df6522977eebca9e174f7" name="aaa7a78fb4d36e038f01d566093eb10e7a64829685ca6df6522977eebca9e174f7"></a>no_square&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
@@ -347,6 +361,15 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Computes the rank (i. e. row) of a square from its index. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">square</td><td>the index of the square. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>its rank. </dd></dl>
+
 </div>
 </div>
 <a id="a51e0a7e47ac736f3f63fee742c0716f4" name="a51e0a7e47ac736f3f63fee742c0716f4"></a>
@@ -371,6 +394,13 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>the numeric value of a file (i. e. column) form {0,...,7}. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the name of that file in algebraic chess notation from {a,...,h}. </dd></dl>
 
 </div>
 </div>
@@ -401,6 +431,16 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Computes the index of a square from its file and rank. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>file (i. e. column) </td></tr>
+    <tr><td class="paramname">rank</td><td>rank (i. e. row) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the index of the specified square. </dd></dl>
+
 </div>
 </div>
 <a id="ad04c43bb0b07e524ba5fce64d40b9556" name="ad04c43bb0b07e524ba5fce64d40b9556"></a>
@@ -426,6 +466,15 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Computes the file (i. e. column) of a square from its index. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">square</td><td>the index of a square. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>its file. </dd></dl>
+
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
@@ -449,6 +498,8 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The number of squares of a chess board, that is <code>64</code>. </p>
+
 </div>
 </div>
 <a id="aa84d2af871e9678b20fd70c566e6293b" name="aa84d2af871e9678b20fd70c566e6293b"></a>
@@ -470,6 +521,8 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The width of a chess board, that is <code>8</code>. </p>
 
 </div>
 </div>

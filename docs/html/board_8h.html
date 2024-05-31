@@ -28,9 +28,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Dagor-in-Erain<span id="projectnumber">&#160;0.0.0</span>
+   <div id="projectname">Dagor-in-Erain<span id="projectnumber">&#160;v0.0.0</span>
    </div>
-   <div id="projectbrief">a c++ chess engine</div>
+   <div id="projectbrief">a C++ chess engine</div>
   </td>
  </tr>
  </tbody>
@@ -126,6 +126,7 @@ Enumerations</h2></td></tr>
 , <a class="el" href="namespaceDagor_1_1Board.html#a6c832c33003cd58dd947e02d409916f2a4ca68f102d115104c6d1476652642b61">Dagor::Board::south_east</a> = -7
 <br />
  }</td></tr>
+<tr class="memdesc:a6c832c33003cd58dd947e02d409916f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The offsets to add to a square index to go in the intended direction.  <a href="namespaceDagor_1_1Board.html#a6c832c33003cd58dd947e02d409916f2">More...</a><br /></td></tr>
 <tr class="separator:a6c832c33003cd58dd947e02d409916f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaa7a78fb4d36e038f01d566093eb10e7" id="r_aaa7a78fb4d36e038f01d566093eb10e7"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceDagor_1_1Board.html#aaa7a78fb4d36e038f01d566093eb10e7">Dagor::Board::Square</a> { <br />
 &#160;&#160;<a class="el" href="namespaceDagor_1_1Board.html#aaa7a78fb4d36e038f01d566093eb10e7a63301435748f3419db67d9ccc400dcde">Dagor::Board::a1</a>
@@ -207,17 +208,23 @@ Enumerations</h2></td></tr>
 , <a class="el" href="namespaceDagor_1_1Board.html#aaa7a78fb4d36e038f01d566093eb10e7a331360f07c7fbe4780791358fa3fed8d">Dagor::Board::f8</a>
 , <a class="el" href="namespaceDagor_1_1Board.html#aaa7a78fb4d36e038f01d566093eb10e7a83904c13c64555da577a2ff7bc9a53c6">Dagor::Board::g8</a>
 , <a class="el" href="namespaceDagor_1_1Board.html#aaa7a78fb4d36e038f01d566093eb10e7a1cb2af72dc268da618ec0964488e868e">Dagor::Board::h8</a>
+, <br />
+&#160;&#160;<a class="el" href="namespaceDagor_1_1Board.html#aaa7a78fb4d36e038f01d566093eb10e7a64829685ca6df6522977eebca9e174f7">Dagor::Board::no_square</a>
 <br />
  }</td></tr>
+<tr class="memdesc:aaa7a78fb4d36e038f01d566093eb10e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The names of the squares in algebraic notation. The indices of squares are counted sequentially with <code>a1</code> being equal to <code>0</code> and <code>h8</code> being equal to <code>63</code>. A special <code>no_square</code> constant denotes an absent value.  <a href="namespaceDagor_1_1Board.html#aaa7a78fb4d36e038f01d566093eb10e7">More...</a><br /></td></tr>
 <tr class="separator:aaa7a78fb4d36e038f01d566093eb10e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a1a056a60f75b6a3403ddd3956672ed80" id="r_a1a056a60f75b6a3403ddd3956672ed80"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceDagor_1_1Board.html#a1a056a60f75b6a3403ddd3956672ed80">Dagor::Board::file</a> (int square)</td></tr>
+<tr class="memdesc:a1a056a60f75b6a3403ddd3956672ed80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the rank (i. e. row) of a square from its index.  <br /></td></tr>
 <tr class="separator:a1a056a60f75b6a3403ddd3956672ed80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad04c43bb0b07e524ba5fce64d40b9556" id="r_ad04c43bb0b07e524ba5fce64d40b9556"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceDagor_1_1Board.html#ad04c43bb0b07e524ba5fce64d40b9556">Dagor::Board::rank</a> (int square)</td></tr>
+<tr class="memdesc:ad04c43bb0b07e524ba5fce64d40b9556"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the file (i. e. column) of a square from its index.  <br /></td></tr>
 <tr class="separator:ad04c43bb0b07e524ba5fce64d40b9556"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69903bda8e4bb5ad2972950839224290" id="r_a69903bda8e4bb5ad2972950839224290"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceDagor_1_1Board.html#a69903bda8e4bb5ad2972950839224290">Dagor::Board::index</a> (int <a class="el" href="namespaceDagor_1_1Board.html#a1a056a60f75b6a3403ddd3956672ed80">file</a>, int <a class="el" href="namespaceDagor_1_1Board.html#ad04c43bb0b07e524ba5fce64d40b9556">rank</a>)</td></tr>
+<tr class="memdesc:a69903bda8e4bb5ad2972950839224290"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the index of a square from its file and rank.  <br /></td></tr>
 <tr class="separator:a69903bda8e4bb5ad2972950839224290"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51e0a7e47ac736f3f63fee742c0716f4" id="r_a51e0a7e47ac736f3f63fee742c0716f4"><td class="memItemLeft" align="right" valign="top">constexpr char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceDagor_1_1Board.html#a51e0a7e47ac736f3f63fee742c0716f4">Dagor::Board::file_name</a> (int <a class="el" href="namespaceDagor_1_1Board.html#a1a056a60f75b6a3403ddd3956672ed80">file</a>)</td></tr>
 <tr class="separator:a51e0a7e47ac736f3f63fee742c0716f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -225,8 +232,10 @@ Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:aa84d2af871e9678b20fd70c566e6293b" id="r_aa84d2af871e9678b20fd70c566e6293b"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceDagor_1_1Board.html#aa84d2af871e9678b20fd70c566e6293b">Dagor::Board::width</a> {8}</td></tr>
+<tr class="memdesc:aa84d2af871e9678b20fd70c566e6293b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The width of a chess board, that is <code>8</code>.  <br /></td></tr>
 <tr class="separator:aa84d2af871e9678b20fd70c566e6293b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4fc79744a70cb9f3ae68d0d32a2f9e5a" id="r_a4fc79744a70cb9f3ae68d0d32a2f9e5a"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceDagor_1_1Board.html#a4fc79744a70cb9f3ae68d0d32a2f9e5a">Dagor::Board::size</a> {<a class="el" href="namespaceDagor_1_1Board.html#aa84d2af871e9678b20fd70c566e6293b">width</a> * <a class="el" href="namespaceDagor_1_1Board.html#aa84d2af871e9678b20fd70c566e6293b">width</a>}</td></tr>
+<tr class="memdesc:a4fc79744a70cb9f3ae68d0d32a2f9e5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of squares of a chess board, that is <code>64</code>.  <br /></td></tr>
 <tr class="separator:a4fc79744a70cb9f3ae68d0d32a2f9e5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->

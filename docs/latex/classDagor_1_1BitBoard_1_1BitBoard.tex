@@ -2,41 +2,49 @@
 \hypertarget{classDagor_1_1BitBoard_1_1BitBoard}{}\label{classDagor_1_1BitBoard_1_1BitBoard}\index{Dagor::BitBoard::BitBoard@{Dagor::BitBoard::BitBoard}}
 
 
+Bit\+Boards represent some subset of the chess boards pieces, such as the set of all fields occupied by whit pawns or the set of all pieces to which a given piece can move on it’s next turn etc.  
+
+
+
+
 {\ttfamily \#include $<$bitboard.\+h$>$}
 
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard_acfcf1cec99b18cc2781ff97cbc42339e}{Bit\+Board}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em constructs an empty \doxylink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board}. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard_af807fbb91b1cb2db56941e7fb1b886cf}{Bit\+Board}} (std\+::uint64\+\_\+t bitboard)
 \item 
 std\+::uint64\+\_\+t \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard_af139c9a1f96439d4cd103c95121f0c81}{as\+\_\+uint}} () const
 \item 
 \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board}} \& \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard_a8eaf5514c48573a1704acc3b253e0cf6}{operator\&=}} (\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board}} other)
-\item 
+\begin{DoxyCompactList}\small\item\em removes all the squares that are not also present in {\ttfamily other}. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board}} \& \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard_a2326cc3e6d69ee6d10a6f2751a327bf5}{operator\texorpdfstring{$\vert$}{|}=}} (\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board}} other)
-\item 
+\begin{DoxyCompactList}\small\item\em adds all the squares of the {\ttfamily other} bitboard to this one. \end{DoxyCompactList}\item 
 constexpr bool \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard_aa390bfd4e2e0eac7f2c1cf283609a72f}{is\+\_\+empty}} () const
-\item 
+\begin{DoxyCompactList}\small\item\em checks whether the bitboard is empty, that is whether no squares are set. \end{DoxyCompactList}\item 
 constexpr bool \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard_a9cb1bf9f0fd7624c32d7d1c58427d616}{is\+\_\+set}} (int square) const
-\item 
+\begin{DoxyCompactList}\small\item\em Checks whether a particular square is set. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard_a6118b0ff7d0288ebb10d74c0cff35083}{set\+\_\+bit}} (int square)
-\item 
+\begin{DoxyCompactList}\small\item\em Adds the given square to the bitboard. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard_ad83a5f4805d026d1dedbfec6f4b29779}{set\+\_\+bit\+\_\+if\+\_\+index\+\_\+valid}} (int file, int rank)
 \item 
 void \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard_a1dc2dc5b908629810cb7ef8076945903}{unset\+\_\+bit}} (int square)
-\item 
+\begin{DoxyCompactList}\small\item\em Removes a given square from the bitboard. \end{DoxyCompactList}\item 
 constexpr int \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard_a4e2a184f099d05bcf19dcca519d5baff}{popcount}} () const
-\item 
+\begin{DoxyCompactList}\small\item\em Counts the number of set squares in the bitboard. \end{DoxyCompactList}\item 
 constexpr int \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard_a970d1b70069f4566f17fa82fb7ad72c5}{find\+First\+Set}} () const
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Finds the index of the first set square in the bitboard. Do not call this function for the empty bitboard. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 static \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board}} \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard_a989cf4aa39e05b8e5df9810f647a6098}{single\+\_\+square\+\_\+set}} (int square)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Constructs a bitboard with only a single square set. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+Bit\+Boards represent some subset of the chess boards pieces, such as the set of all fields occupied by whit pawns or the set of all pieces to which a given piece can move on it’s next turn etc. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{classDagor_1_1BitBoard_1_1BitBoard_acfcf1cec99b18cc2781ff97cbc42339e}\label{classDagor_1_1BitBoard_1_1BitBoard_acfcf1cec99b18cc2781ff97cbc42339e} 
@@ -45,12 +53,21 @@ static \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board}} \mbox{\
 \doxysubsubsection{\texorpdfstring{BitBoard()}{BitBoard()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily Dagor\+::\+Bit\+Board\+::\+Bit\+Board\+::\+Bit\+Board (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+
+
+constructs an empty \doxylink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board}. 
+
 \Hypertarget{classDagor_1_1BitBoard_1_1BitBoard_af807fbb91b1cb2db56941e7fb1b886cf}\label{classDagor_1_1BitBoard_1_1BitBoard_af807fbb91b1cb2db56941e7fb1b886cf} 
 \index{Dagor::BitBoard::BitBoard@{Dagor::BitBoard::BitBoard}!BitBoard@{BitBoard}}
 \index{BitBoard@{BitBoard}!Dagor::BitBoard::BitBoard@{Dagor::BitBoard::BitBoard}}
 \doxysubsubsection{\texorpdfstring{BitBoard()}{BitBoard()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily Dagor\+::\+Bit\+Board\+::\+Bit\+Board\+::\+Bit\+Board (\begin{DoxyParamCaption}\item[{std\+::uint64\+\_\+t}]{bitboard }\end{DoxyParamCaption})}
 
+
+\begin{DoxyParams}{Parameters}
+{\em bitboard} & a uint64 as returned by the {\ttfamily as\+\_\+uint} function. \\
+\hline
+\end{DoxyParams}
 
 
 \doxysubsection{Member Function Documentation}
@@ -60,66 +77,163 @@ static \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board}} \mbox{\
 \doxysubsubsection{\texorpdfstring{as\_uint()}{as\_uint()}}
 {\footnotesize\ttfamily std\+::uint64\+\_\+t Dagor\+::\+Bit\+Board\+::\+Bit\+Board\+::as\+\_\+uint (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
+\begin{DoxyReturn}{Returns}
+a uint64 where all the 1 bits indicate the set squares 
+\end{DoxyReturn}
 \Hypertarget{classDagor_1_1BitBoard_1_1BitBoard_a970d1b70069f4566f17fa82fb7ad72c5}\label{classDagor_1_1BitBoard_1_1BitBoard_a970d1b70069f4566f17fa82fb7ad72c5} 
 \index{Dagor::BitBoard::BitBoard@{Dagor::BitBoard::BitBoard}!findFirstSet@{findFirstSet}}
 \index{findFirstSet@{findFirstSet}!Dagor::BitBoard::BitBoard@{Dagor::BitBoard::BitBoard}}
 \doxysubsubsection{\texorpdfstring{findFirstSet()}{findFirstSet()}}
 {\footnotesize\ttfamily constexpr int Dagor\+::\+Bit\+Board\+::\+Bit\+Board\+::find\+First\+Set (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
 
+
+
+Finds the index of the first set square in the bitboard. Do not call this function for the empty bitboard. 
+
+\begin{DoxyReturn}{Returns}
+the index of the first set square. 
+\end{DoxyReturn}
 \Hypertarget{classDagor_1_1BitBoard_1_1BitBoard_aa390bfd4e2e0eac7f2c1cf283609a72f}\label{classDagor_1_1BitBoard_1_1BitBoard_aa390bfd4e2e0eac7f2c1cf283609a72f} 
 \index{Dagor::BitBoard::BitBoard@{Dagor::BitBoard::BitBoard}!is\_empty@{is\_empty}}
 \index{is\_empty@{is\_empty}!Dagor::BitBoard::BitBoard@{Dagor::BitBoard::BitBoard}}
 \doxysubsubsection{\texorpdfstring{is\_empty()}{is\_empty()}}
 {\footnotesize\ttfamily constexpr bool Dagor\+::\+Bit\+Board\+::\+Bit\+Board\+::is\+\_\+empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
 
+
+
+checks whether the bitboard is empty, that is whether no squares are set. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true}, iff no squares are set. 
+\end{DoxyReturn}
 \Hypertarget{classDagor_1_1BitBoard_1_1BitBoard_a9cb1bf9f0fd7624c32d7d1c58427d616}\label{classDagor_1_1BitBoard_1_1BitBoard_a9cb1bf9f0fd7624c32d7d1c58427d616} 
 \index{Dagor::BitBoard::BitBoard@{Dagor::BitBoard::BitBoard}!is\_set@{is\_set}}
 \index{is\_set@{is\_set}!Dagor::BitBoard::BitBoard@{Dagor::BitBoard::BitBoard}}
 \doxysubsubsection{\texorpdfstring{is\_set()}{is\_set()}}
 {\footnotesize\ttfamily constexpr bool Dagor\+::\+Bit\+Board\+::\+Bit\+Board\+::is\+\_\+set (\begin{DoxyParamCaption}\item[{int}]{square }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
 
+
+
+Checks whether a particular square is set. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em square} & the square to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true}, iff the square is set. 
+\end{DoxyReturn}
 \Hypertarget{classDagor_1_1BitBoard_1_1BitBoard_a8eaf5514c48573a1704acc3b253e0cf6}\label{classDagor_1_1BitBoard_1_1BitBoard_a8eaf5514c48573a1704acc3b253e0cf6} 
 \index{Dagor::BitBoard::BitBoard@{Dagor::BitBoard::BitBoard}!operator\&=@{operator\&=}}
 \index{operator\&=@{operator\&=}!Dagor::BitBoard::BitBoard@{Dagor::BitBoard::BitBoard}}
 \doxysubsubsection{\texorpdfstring{operator\&=()}{operator\&=()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board}} \& Dagor\+::\+Bit\+Board\+::\+Bit\+Board\+::operator\&= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board}}}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+removes all the squares that are not also present in {\ttfamily other}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+this bitboard after the modification 
+\end{DoxyReturn}
 \Hypertarget{classDagor_1_1BitBoard_1_1BitBoard_a2326cc3e6d69ee6d10a6f2751a327bf5}\label{classDagor_1_1BitBoard_1_1BitBoard_a2326cc3e6d69ee6d10a6f2751a327bf5} 
 \index{Dagor::BitBoard::BitBoard@{Dagor::BitBoard::BitBoard}!operator\texttt{"|}=@{operator\texttt{"|}=}}
 \index{operator\texttt{"|}=@{operator\texttt{"|}=}!Dagor::BitBoard::BitBoard@{Dagor::BitBoard::BitBoard}}
 \doxysubsubsection{\texorpdfstring{operator\texttt{"|}=()}{operator|=()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board}} \& Dagor\+::\+Bit\+Board\+::\+Bit\+Board\+::operator\texorpdfstring{$\vert$}{|}= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board}}}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+adds all the squares of the {\ttfamily other} bitboard to this one. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+this bitboard after the modification 
+\end{DoxyReturn}
 \Hypertarget{classDagor_1_1BitBoard_1_1BitBoard_a4e2a184f099d05bcf19dcca519d5baff}\label{classDagor_1_1BitBoard_1_1BitBoard_a4e2a184f099d05bcf19dcca519d5baff} 
 \index{Dagor::BitBoard::BitBoard@{Dagor::BitBoard::BitBoard}!popcount@{popcount}}
 \index{popcount@{popcount}!Dagor::BitBoard::BitBoard@{Dagor::BitBoard::BitBoard}}
 \doxysubsubsection{\texorpdfstring{popcount()}{popcount()}}
 {\footnotesize\ttfamily constexpr int Dagor\+::\+Bit\+Board\+::\+Bit\+Board\+::popcount (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
 
+
+
+Counts the number of set squares in the bitboard. 
+
+\begin{DoxyReturn}{Returns}
+the number of set squares in the bitboard. 
+\end{DoxyReturn}
 \Hypertarget{classDagor_1_1BitBoard_1_1BitBoard_a6118b0ff7d0288ebb10d74c0cff35083}\label{classDagor_1_1BitBoard_1_1BitBoard_a6118b0ff7d0288ebb10d74c0cff35083} 
 \index{Dagor::BitBoard::BitBoard@{Dagor::BitBoard::BitBoard}!set\_bit@{set\_bit}}
 \index{set\_bit@{set\_bit}!Dagor::BitBoard::BitBoard@{Dagor::BitBoard::BitBoard}}
 \doxysubsubsection{\texorpdfstring{set\_bit()}{set\_bit()}}
 {\footnotesize\ttfamily void Dagor\+::\+Bit\+Board\+::\+Bit\+Board\+::set\+\_\+bit (\begin{DoxyParamCaption}\item[{int}]{square }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Adds the given square to the bitboard. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em square} & the square to add. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classDagor_1_1BitBoard_1_1BitBoard_ad83a5f4805d026d1dedbfec6f4b29779}\label{classDagor_1_1BitBoard_1_1BitBoard_ad83a5f4805d026d1dedbfec6f4b29779} 
 \index{Dagor::BitBoard::BitBoard@{Dagor::BitBoard::BitBoard}!set\_bit\_if\_index\_valid@{set\_bit\_if\_index\_valid}}
 \index{set\_bit\_if\_index\_valid@{set\_bit\_if\_index\_valid}!Dagor::BitBoard::BitBoard@{Dagor::BitBoard::BitBoard}}
 \doxysubsubsection{\texorpdfstring{set\_bit\_if\_index\_valid()}{set\_bit\_if\_index\_valid()}}
 {\footnotesize\ttfamily void Dagor\+::\+Bit\+Board\+::\+Bit\+Board\+::set\+\_\+bit\+\_\+if\+\_\+index\+\_\+valid (\begin{DoxyParamCaption}\item[{int}]{file,  }\item[{int}]{rank }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+Adds the given square to the bitboard, if the coordinates are valid on a chess board, that is, if {\ttfamily file, rank are from \{0,...,7\}}. If this is not the case, nothing happens. This function exists to protect against warping around the edges of the board when calculating moves etc. 
+\begin{DoxyParams}{Parameters}
+{\em file} & the file (i. e. column) of the square to add. \\
+\hline
+{\em rank} & the rank (i. e. row) of the square to add. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classDagor_1_1BitBoard_1_1BitBoard_a989cf4aa39e05b8e5df9810f647a6098}\label{classDagor_1_1BitBoard_1_1BitBoard_a989cf4aa39e05b8e5df9810f647a6098} 
 \index{Dagor::BitBoard::BitBoard@{Dagor::BitBoard::BitBoard}!single\_square\_set@{single\_square\_set}}
 \index{single\_square\_set@{single\_square\_set}!Dagor::BitBoard::BitBoard@{Dagor::BitBoard::BitBoard}}
 \doxysubsubsection{\texorpdfstring{single\_square\_set()}{single\_square\_set()}}
 {\footnotesize\ttfamily static \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board}} Dagor\+::\+Bit\+Board\+::\+Bit\+Board\+::single\+\_\+square\+\_\+set (\begin{DoxyParamCaption}\item[{int}]{square }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
+
+
+Constructs a bitboard with only a single square set. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em square} & the square to be set \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the bitboard 
+\end{DoxyReturn}
 \Hypertarget{classDagor_1_1BitBoard_1_1BitBoard_a1dc2dc5b908629810cb7ef8076945903}\label{classDagor_1_1BitBoard_1_1BitBoard_a1dc2dc5b908629810cb7ef8076945903} 
 \index{Dagor::BitBoard::BitBoard@{Dagor::BitBoard::BitBoard}!unset\_bit@{unset\_bit}}
 \index{unset\_bit@{unset\_bit}!Dagor::BitBoard::BitBoard@{Dagor::BitBoard::BitBoard}}
 \doxysubsubsection{\texorpdfstring{unset\_bit()}{unset\_bit()}}
 {\footnotesize\ttfamily void Dagor\+::\+Bit\+Board\+::\+Bit\+Board\+::unset\+\_\+bit (\begin{DoxyParamCaption}\item[{int}]{square }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Removes a given square from the bitboard. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em square} & the square to remove. \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

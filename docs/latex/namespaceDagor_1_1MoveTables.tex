@@ -4,22 +4,22 @@
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash}{Blocker\+Hash}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em A hash function that maps a configuration of blocking pieces to an index into the {\ttfamily sliding\+Moves} table, where the possible moves of a rook or bishop are stored. Both rooks and bishops have one separate hash function for each square. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 const \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} \mbox{\hyperlink{namespaceDagor_1_1MoveTables_ae94889e676dfc8681dfc6f5d246f4c11}{pawn\+Attacks}} \mbox{[}2\mbox{]}\mbox{[}\mbox{\hyperlink{namespaceDagor_1_1Board_a4fc79744a70cb9f3ae68d0d32a2f9e5a}{Board\+::size}}\mbox{]}
-\item 
+\begin{DoxyCompactList}\small\item\em The attacks a pawn can make on a given square. Access\+: {\ttfamily pawn\+Attacks\mbox{[}color\mbox{]}\mbox{[}square\mbox{]}}, where white is {\ttfamily 0} and black is {\ttfamily 1}. \end{DoxyCompactList}\item 
 const \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} \mbox{\hyperlink{namespaceDagor_1_1MoveTables_ad07b5ba240dd6dbcc6e8e4d11219e707}{knight\+Moves}} \mbox{[}\mbox{\hyperlink{namespaceDagor_1_1Board_a4fc79744a70cb9f3ae68d0d32a2f9e5a}{Board\+::size}}\mbox{]}
-\item 
+\begin{DoxyCompactList}\small\item\em The moves a knight can make on a given square. \end{DoxyCompactList}\item 
 const \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} \mbox{\hyperlink{namespaceDagor_1_1MoveTables_a2c371e3655a82c723693e76d264404ea}{king\+Moves}} \mbox{[}\mbox{\hyperlink{namespaceDagor_1_1Board_a4fc79744a70cb9f3ae68d0d32a2f9e5a}{Board\+::size}}\mbox{]}
-\item 
+\begin{DoxyCompactList}\small\item\em The moves a king can make on a given square. For his home square this does not include castling moves. \end{DoxyCompactList}\item 
 const \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash}{Blocker\+Hash}} \mbox{\hyperlink{namespaceDagor_1_1MoveTables_a90834459bd3798f289eb204aab39a500}{bishop\+Hashes}} \mbox{[}\mbox{\hyperlink{namespaceDagor_1_1Board_a4fc79744a70cb9f3ae68d0d32a2f9e5a}{Board\+::size}}\mbox{]}
-\item 
+\begin{DoxyCompactList}\small\item\em the hash functions to look up bishop moves, by square. \end{DoxyCompactList}\item 
 const \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash}{Blocker\+Hash}} \mbox{\hyperlink{namespaceDagor_1_1MoveTables_a631b0c06c74d837bd1b2eac9d028a954}{rook\+Hashes}} \mbox{[}\mbox{\hyperlink{namespaceDagor_1_1Board_a4fc79744a70cb9f3ae68d0d32a2f9e5a}{Board\+::size}}\mbox{]}
-\item 
+\begin{DoxyCompactList}\small\item\em the hash function to look up rook moves, by square. \end{DoxyCompactList}\item 
 const \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} \mbox{\hyperlink{namespaceDagor_1_1MoveTables_a7e59cfd123a19556a38b40dec4306aa4}{sliding\+Moves}} \mbox{[}$\,$\mbox{]}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The move that a sliding piece (bishop, rook or queen) can make on a given square. Access through the hash functions in {\ttfamily bishop\+Hashes} and {\ttfamily rook\+Hashes}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Variable Documentation}
@@ -29,11 +29,19 @@ const \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+
 \doxysubsubsection{\texorpdfstring{bishopHashes}{bishopHashes}}
 {\footnotesize\ttfamily const \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash}{Blocker\+Hash}} Dagor\+::\+Move\+Tables\+::bishop\+Hashes}
 
+
+
+the hash functions to look up bishop moves, by square. 
+
 \Hypertarget{namespaceDagor_1_1MoveTables_a2c371e3655a82c723693e76d264404ea}\label{namespaceDagor_1_1MoveTables_a2c371e3655a82c723693e76d264404ea} 
 \index{Dagor::MoveTables@{Dagor::MoveTables}!kingMoves@{kingMoves}}
 \index{kingMoves@{kingMoves}!Dagor::MoveTables@{Dagor::MoveTables}}
 \doxysubsubsection{\texorpdfstring{kingMoves}{kingMoves}}
 {\footnotesize\ttfamily const \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} Dagor\+::\+Move\+Tables\+::king\+Moves}
+
+
+
+The moves a king can make on a given square. For his home square this does not include castling moves. 
 
 \Hypertarget{namespaceDagor_1_1MoveTables_ad07b5ba240dd6dbcc6e8e4d11219e707}\label{namespaceDagor_1_1MoveTables_ad07b5ba240dd6dbcc6e8e4d11219e707} 
 \index{Dagor::MoveTables@{Dagor::MoveTables}!knightMoves@{knightMoves}}
@@ -41,11 +49,19 @@ const \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+
 \doxysubsubsection{\texorpdfstring{knightMoves}{knightMoves}}
 {\footnotesize\ttfamily const \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} Dagor\+::\+Move\+Tables\+::knight\+Moves}
 
+
+
+The moves a knight can make on a given square. 
+
 \Hypertarget{namespaceDagor_1_1MoveTables_ae94889e676dfc8681dfc6f5d246f4c11}\label{namespaceDagor_1_1MoveTables_ae94889e676dfc8681dfc6f5d246f4c11} 
 \index{Dagor::MoveTables@{Dagor::MoveTables}!pawnAttacks@{pawnAttacks}}
 \index{pawnAttacks@{pawnAttacks}!Dagor::MoveTables@{Dagor::MoveTables}}
 \doxysubsubsection{\texorpdfstring{pawnAttacks}{pawnAttacks}}
 {\footnotesize\ttfamily const \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} Dagor\+::\+Move\+Tables\+::pawn\+Attacks}
+
+
+
+The attacks a pawn can make on a given square. Access\+: {\ttfamily pawn\+Attacks\mbox{[}color\mbox{]}\mbox{[}square\mbox{]}}, where white is {\ttfamily 0} and black is {\ttfamily 1}. 
 
 \Hypertarget{namespaceDagor_1_1MoveTables_a631b0c06c74d837bd1b2eac9d028a954}\label{namespaceDagor_1_1MoveTables_a631b0c06c74d837bd1b2eac9d028a954} 
 \index{Dagor::MoveTables@{Dagor::MoveTables}!rookHashes@{rookHashes}}
@@ -53,9 +69,17 @@ const \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+
 \doxysubsubsection{\texorpdfstring{rookHashes}{rookHashes}}
 {\footnotesize\ttfamily const \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash}{Blocker\+Hash}} Dagor\+::\+Move\+Tables\+::rook\+Hashes}
 
+
+
+the hash function to look up rook moves, by square. 
+
 \Hypertarget{namespaceDagor_1_1MoveTables_a7e59cfd123a19556a38b40dec4306aa4}\label{namespaceDagor_1_1MoveTables_a7e59cfd123a19556a38b40dec4306aa4} 
 \index{Dagor::MoveTables@{Dagor::MoveTables}!slidingMoves@{slidingMoves}}
 \index{slidingMoves@{slidingMoves}!Dagor::MoveTables@{Dagor::MoveTables}}
 \doxysubsubsection{\texorpdfstring{slidingMoves}{slidingMoves}}
 {\footnotesize\ttfamily const \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} Dagor\+::\+Move\+Tables\+::sliding\+Moves\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+The move that a sliding piece (bishop, rook or queen) can make on a given square. Access through the hash functions in {\ttfamily bishop\+Hashes} and {\ttfamily rook\+Hashes}. 
 
