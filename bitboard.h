@@ -51,6 +51,9 @@ class BitBoard {
   }
 
   void unset_bit(int square) { board &= ~single_square_set(square).board; }
+
+  constexpr int popcount() const { return __builtin_popcountll(board); }
+  constexpr int findFirstSet() const { return __builtin_ffsll(board); }
 };
 
 inline BitBoard operator&(BitBoard a, BitBoard b) { return a &= b; }
