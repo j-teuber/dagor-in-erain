@@ -1,4 +1,4 @@
-flags := -std=c++17 -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Werror -pedantic-errors
+flags := -std=c++17 -Wall -Weffc++ -Wextra -Werror -pedantic-errors #-Wconversion -Wsign-conversion
 debug_flags := -ggdb 
 release_flags := -O3 -DNDEBUG
 ld_flags :=

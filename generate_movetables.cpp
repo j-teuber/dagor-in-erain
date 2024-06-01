@@ -4,6 +4,7 @@
  */
 
 #include <cassert>
+#include <cstdlib>
 #include <fstream>
 #include <ios>
 #include <iostream>
@@ -326,25 +327,51 @@ vector<BitBoard> generatePossibleBlockers(BitBoard mask) {
   return blockers;
 }
 
+vector<BitBoard> generatePossibleMoves(int square,
+                                       const vector<BitBoard> &blockers,
+                                       bool isBishop) {
+  vector<BitBoard> moves;
+  for (BitBoard blocker : blockers) {
+    BitBoard move{isBishop ? bishopMoves(square, blocker)
+                           : rookMoves(square, blocker)};
+    moves.push_back(move);
+  }
+  return moves;
+}
+
+class LeaperInfo {
+ public:
+  bool isBishop;
+  int square;
+  BitBoard blockerMask;
+  vector<BitBoard> blockers;
+  vector<BitBoard> moves;
+
+  LeaperInfo(bool isBishop, int square)
+      : isBishop{isBishop},
+        square{square},
+        blockerMask{isBishop ? bishopBlockers(square) : rookBlockers(square)},
+        blockers(generatePossibleBlockers(blockerMask)),
+        moves(generatePossibleMoves(square, blockers, isBishop)) {}
+};
+
 /// @brief Finds the configuration for a perfect hash function for the
 /// powerset of the given mask.
 /// @param mask
 /// @return An object implementing the hash function.
 /// `MoveTables::BlockerHash({0}, {0}, 0, 0)` is returned if the generation has
 /// failed.
-MoveTables::BlockerHash findPerfectHash(BitBoard mask) {
+MoveTables::BlockerHash findPerfectHash(LeaperInfo &info) {
   unsigned maxTries = 1u << 31;
-  int bitCount = mask.popcount();
-  unsigned noOfBlockers = 1u << bitCount;
-  vector<BitBoard> blockers = generatePossibleBlockers(mask);
+  int bitCount = info.blockerMask.popcount();
 
   for (unsigned k = 0; k < maxTries; k++) {
-    MoveTables::BlockerHash candidate{mask, randomFewBitsSet(),
+    MoveTables::BlockerHash candidate{info.blockerMask, randomFewBitsSet(),
                                       static_cast<unsigned>(64 - bitCount), 0};
-    vector<bool> hits(noOfBlockers, false);
+    vector<bool> hits(info.blockers.size(), false);
     bool failed = false;
-    for (unsigned i = 0; !failed && i < noOfBlockers; i++) {
-      unsigned hash = candidate.hash(blockers[i]);
+    for (unsigned i = 0; !failed && i < info.blockers.size(); i++) {
+      unsigned hash = candidate.hash(info.blockers[i]);
       if (hits[hash])
         failed = true;
       else
@@ -363,53 +390,76 @@ MoveTables::BlockerHash findPerfectHash(BitBoard mask) {
 /// @param hash
 /// @param offset a new offset, potentially differing from the one
 /// specified in the hash function.
-void writeHash(std::ofstream &f, MoveTables::BlockerHash &hash,
+void writeHash(std::ostream &f, MoveTables::BlockerHash &hash,
                unsigned offset) {
   f << "{{" << hash.blockerMask.as_uint() << "UL}, "
     << "{" << hash.magic.as_uint() << "UL}, " << hash.downShift << "U, "
     << offset << "U}";
 }
 
-/// @brief Writes the hashes and moves for the leaping pieces (bishop and rook)
-/// to a file.
-/// @param f
-void writeHashes(std::ofstream &f) {
-  f << "const BlockerHash bishopHashes[Board::size] = {\n";
-  unsigned offset = 0;
-  vector<BitBoard> moves;
+void initHashFunctions(vector<LeaperInfo> &squareInfo,
+                       vector<MoveTables::BlockerHash> &hashFunctions,
+                       unsigned &numberOfMoves, bool isBishop) {
   for (int square = 0; square < Board::size; square++) {
-    BitBoard mask = bishopBlockers(square);
-    MoveTables::BlockerHash hash = findPerfectHash(mask);
-    writeHash(f, hash, offset);
-    for (auto b : generatePossibleBlockers(mask)) {
-      moves.push_back(bishopMoves(square, b));
+    LeaperInfo info(isBishop, square);
+    squareInfo.push_back(info);
+    MoveTables::BlockerHash hash{findPerfectHash(info)};
+    hashFunctions.push_back(hash);
+    numberOfMoves += info.moves.size();
+  }
+}
+
+void hashMoves(vector<BitBoard> &moves, vector<LeaperInfo> &squareInfo,
+               vector<MoveTables::BlockerHash> &hashFunctions,
+               unsigned &currentOffset) {
+  for (int square = 0; square < Board::size; square++) {
+    MoveTables::BlockerHash hash{hashFunctions[square]};
+    LeaperInfo info{squareInfo[square]};
+    for (unsigned i = 0; i < info.blockers.size(); i++) {
+      unsigned h = hash.hash(info.blockers[i]) + currentOffset;
+      moves[h] = info.moves[i];
     }
-    offset += 1u << mask.popcount();
+    currentOffset += squareInfo[square].moves.size();
+  }
+}
+
+void writeLeapers(std::ostream &f) {
+  vector<LeaperInfo> bishopInfo;
+  vector<MoveTables::BlockerHash> bishopHashes;
+  vector<LeaperInfo> rookInfo;
+  vector<MoveTables::BlockerHash> rookHashes;
+  unsigned numberOfMoves = 0;
+  initHashFunctions(bishopInfo, bishopHashes, numberOfMoves, true);
+  initHashFunctions(rookInfo, rookHashes, numberOfMoves, false);
+
+  vector<BitBoard> moves(numberOfMoves);
+  unsigned currentOffset = 0;
+  hashMoves(moves, bishopInfo, bishopHashes, currentOffset);
+  hashMoves(moves, rookInfo, rookHashes, currentOffset);
+
+  currentOffset = 0;
+  f << "const BlockerHash bishopHashes[Board::size] = {\n";
+  for (int square = 0; square < Board::size; square++) {
+    writeHash(f, bishopHashes[square], currentOffset);
+    currentOffset += bishopInfo[square].moves.size();
     if (square < Board::size - 1) f << ",\n";
   }
-  f << "};\n\n";
+  f << "\n};\n\n";
 
   f << "const BlockerHash rookHashes[Board::size] = {\n";
   for (int square = 0; square < Board::size; square++) {
-    BitBoard mask = rookBlockers(square);
-    MoveTables::BlockerHash hash = findPerfectHash(mask);
-    writeHash(f, hash, offset);
-    for (auto b : generatePossibleBlockers(mask)) {
-      moves.push_back(rookMoves(square, b));
-    }
-    offset += 1u << mask.popcount();
+    writeHash(f, rookHashes[square], currentOffset);
+    currentOffset += rookInfo[square].moves.size();
     if (square < Board::size - 1) f << ",\n";
   }
-  f << "};\n\n";
+  f << "\n};\n\n";
 
-  f << "/* Entries: " << offset << ", " << offset * 8 / (2 << 10)
-    << " KiB */\n";
-  f << "extern const BitBoard slidingMoves[] = {";
-  for (unsigned i = 0; i <= offset; i++) {
+  f << "const BitBoards::BitBoard slidingMoves[] = {\n";
+  for (unsigned i = 0; i < moves.size(); i++) {
     f << "{" << moves[i].as_uint() << "UL}";
-    if (i < offset) f << ",\n";
+    if (i < moves.size() - 1) f << ",\n";
   }
-  f << "};\n\n";
+  f << "\n};\n\n";
 }
 
 int main() {
@@ -425,7 +475,7 @@ int main() {
   writePawnAttacks(f);
   writeKnightMoves(f);
   writeKingMoves(f);
-  writeHashes(f);
+  writeLeapers(f);
 
   f << "}\n";
 

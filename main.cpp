@@ -3,10 +3,12 @@
 #include <iostream>
 
 #include "bitboard.h"
+#include "movetables.h"
 
 using namespace Dagor;
 
 int main() {
-  std::cout << BitBoard::edgesOnly;
+  std::cout << MoveTables::rookHashes[Board::Square::a1].lookUp(
+      BitBoards::BitBoard::single_square_set(Board::Square::h1));
   return 0;
 }
