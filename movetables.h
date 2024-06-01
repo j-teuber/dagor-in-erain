@@ -10,19 +10,19 @@ namespace Dagor::MoveTables {
 
 /// @brief The attacks a pawn can make on a given square.
 /// Access: `pawnAttacks[color][square]`, where white is `0` and black is `1`.
-extern const BitBoard::BitBoard pawnAttacks[2][Board::size];
+extern const BitBoards::BitBoard pawnAttacks[2][Board::size];
 
 /// @brief The moves a knight can make on a given square.
-extern const BitBoard::BitBoard knightMoves[Board::size];
+extern const BitBoards::BitBoard knightMoves[Board::size];
 
 /// @brief The moves a king can make on a given square. For his home square
 /// this does not include castling moves.
-extern const BitBoard::BitBoard kingMoves[Board::size];
+extern const BitBoards::BitBoard kingMoves[Board::size];
 
 /// @brief The move that a sliding piece (bishop, rook or queen) can
 /// make on a given square. Access through the hash functions in
 /// `bishopHashes` and `rookHashes`.
-extern const BitBoard::BitBoard slidingMoves[];
+extern const BitBoards::BitBoard slidingMoves[];
 
 /// @brief A hash function that maps a configuration of blocking
 /// pieces to an index into the `slidingMoves` table, where the
@@ -32,9 +32,9 @@ class BlockerHash {
  public:
   /// @brief The mask singling out the blocking pieces that actually matter
   /// to the figure under consideration.
-  const BitBoard::BitBoard blockerMask;
+  const BitBoards::BitBoard blockerMask;
   /// @brief The magic number that yields the perfect hash function.
-  const BitBoard::BitBoard magic;
+  const BitBoards::BitBoard magic;
   /// @brief The amount by which the hash should be shifted down.
   const unsigned downShift;
   /// @brief The offset that should be added to the hash. In `slidingMoves` all
@@ -42,7 +42,7 @@ class BlockerHash {
   /// accessed through this hash function.
   const unsigned tableOffset;
 
-  BlockerHash(BitBoard::BitBoard mask, BitBoard::BitBoard magic,
+  BlockerHash(BitBoards::BitBoard mask, BitBoards::BitBoard magic,
               unsigned downShift, unsigned tableOffset)
       : blockerMask{mask},
         magic{magic},
@@ -52,7 +52,7 @@ class BlockerHash {
   /// @brief Computes the hash for a configuration of blocking pieces.
   /// @param blockers pieces blocking the bishop’s/rook’s movement.
   /// @return the hash.
-  unsigned hash(BitBoard::BitBoard blockers) const {
+  unsigned hash(BitBoards::BitBoard blockers) const {
     blockers &= blockerMask;
     std::uint64_t h = blockers.as_uint() * magic.as_uint();
     return static_cast<unsigned>(h >> downShift) + tableOffset;
@@ -63,7 +63,7 @@ class BlockerHash {
   /// @param blockers pieces blocking the bishop’s/rook’s movement.
   /// @return a bitboard where all squares, to which the bishop/rook can move,
   /// are set.
-  BitBoard::BitBoard lookUp(BitBoard::BitBoard blockers) const {
+  BitBoards::BitBoard lookUp(BitBoards::BitBoard blockers) const {
     return slidingMoves[hash(blockers)];
   }
 };

@@ -4,7 +4,7 @@
 
 #include "board.h"
 
-namespace Dagor::BitBoard {
+namespace Dagor::BitBoards {
 
 BitBoard::BitBoard() : board{0} {}
 BitBoard::BitBoard(std::uint64_t bitboard) : board{bitboard} {}
@@ -29,4 +29,4 @@ std::ostream &operator<<(std::ostream &out, const BitBoard &board) {
   return out;
 }
 
-}  // namespace Dagor::BitBoard
+}  // namespace Dagor::BitBoards

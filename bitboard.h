@@ -7,7 +7,7 @@
 
 #include "board.h"
 
-namespace Dagor::BitBoard {
+namespace Dagor::BitBoards {
 
 static_assert(sizeof(std::uint64_t) == 8,
               "For its BitBoards, this program assumes 64 bit integers.");
@@ -100,8 +100,11 @@ inline BitBoard operator&(BitBoard a, BitBoard b) { return a &= b; }
 inline BitBoard operator|(BitBoard a, BitBoard b) { return a |= b; }
 inline BitBoard operator~(BitBoard a) { return BitBoard(~a.as_uint()); }
 
-inline BitBoard operator==(BitBoard a, BitBoard b) {
+inline bool operator==(BitBoard a, BitBoard b) {
   return a.as_uint() == b.as_uint();
+}
+inline bool operator!=(BitBoard a, BitBoard b) {
+  return a.as_uint() != b.as_uint();
 }
 
 std::ostream &operator<<(std::ostream &out, const BitBoard &printer);
@@ -121,6 +124,6 @@ std::ostream &operator<<(std::ostream &out, const BitBoard &printer);
 ///         a b c d e f g h      as hex:     0xff818181818181ff
 inline const BitBoard edgesOnly{0xff818181818181ff};
 
-}  // namespace Dagor::BitBoard
+}  // namespace Dagor::BitBoards
 
 #endif
