@@ -156,7 +156,8 @@ BitBoard bishopBlockers(int square) {
 /// otherwise to the left.
 /// @param rankUp if `true`, the ray will travel to the top of the board,
 /// otherwise to the bottom.
-/// @param blockers the pieces blocking the bishops movement.
+/// @param blockers the pieces blocking the bishops movement. This function
+/// assumes that all blockers are enemy pieces and can be captured.
 /// @return a bitboard with all the squares set, to which the bishop can move in
 /// that rey.
 BitBoard bishopMoveRay(int square, bool fileUp, bool rankUp,
@@ -167,15 +168,16 @@ BitBoard bishopMoveRay(int square, bool fileUp, bool rankUp,
   for (int offset = 0; offset < Board::width; offset++) {
     int currentFile = fileUp ? f + offset : f - offset;
     int currentRank = rankUp ? r + offset : r - offset;
-    if (blockers.is_set(Board::index(currentFile, currentRank))) break;
     b.set_bit_if_index_valid(currentFile, currentRank);
+    if (blockers.is_set(Board::index(currentFile, currentRank))) break;
   }
   return b;
 }
 
 /// @brief Computes the moves for a bishop.
 /// @param square the position of the bishop.
-/// @param blockers the pieces blocking the bishops movement.
+/// @param blockers the pieces blocking the bishops movement. This function
+/// assumes that all blockers are enemy pieces and can be captured.
 /// @return a bitboard with all the squares set, to which the bishop can move.
 BitBoard bishopMoves(int square, BitBoard blockers) {
   return bishopMoveRay(square, true, true, blockers) |
@@ -230,7 +232,8 @@ BitBoard rookBlockers(int square) {
 /// will travel to the left, if `0` the rook won’t change its file.
 /// @param addRank If `1`, the rook will travel to the top, if `-1` the rook
 /// will travel to the bottom, if `0` the rook won’t change its rank.
-/// @param blockers the pieces blocking the rook’s movement.
+/// @param blockers the pieces blocking the rook’s movement. This function
+/// assumes that all blockers are enemy pieces and can be captured.
 /// @return a bitboard with the moves of this ray set.
 BitBoard rookMoveRay(int square, int addFile, int addRank, BitBoard blockers) {
   assert(addFile * addRank == 0 && addFile * addFile <= 1 &&
@@ -241,15 +244,16 @@ BitBoard rookMoveRay(int square, int addFile, int addRank, BitBoard blockers) {
   for (int offset = 0; offset < Board::width; offset++) {
     int currentFile = f + addFile * offset;
     int currentRank = r + addRank * offset;
-    if (blockers.is_set(Board::index(currentFile, currentRank))) break;
     b.set_bit_if_index_valid(currentFile, currentRank);
+    if (blockers.is_set(Board::index(currentFile, currentRank))) break;
   }
   return b;
 }
 
 /// @brief Computes the possible move for a rook.
 /// @param square the position of the rook.
-/// @param blockers the pieces blocking the rook’s movement.
+/// @param blockers the pieces blocking the rook’s movement. This function
+/// assumes that all blockers are enemy pieces and can be captured.
 /// @return a bitboard with all the squares set, to which the bishop can move.
 BitBoard rookMoves(int square, BitBoard blockers) {
   return rookMoveRay(square, 1, 0, blockers) |
