@@ -17,7 +17,7 @@
   \item {a8}
     \subitem {Dagor::Board}, \hyperpage{13}
   \item {as\_uint}
-    \subitem {Dagor::BitBoard::BitBoard}, \hyperpage{18}
+    \subitem {Dagor::BitBoards::BitBoard}, \hyperpage{18}
 
   \indexspace
 
@@ -46,7 +46,7 @@
   \item {bishopMoves}
     \subitem {generate\_movetables.cpp}, \hyperpage{32}
   \item {BitBoard}
-    \subitem {Dagor::BitBoard::BitBoard}, \hyperpage{18}
+    \subitem {Dagor::BitBoards::BitBoard}, \hyperpage{18}
   \item {bitboard.cpp}, \hyperpage{25}
   \item {bitboard.h}, \hyperpage{25}
   \item {black}
@@ -55,6 +55,9 @@
     \subitem {Dagor::MoveTables::BlockerHash}, \hyperpage{22}
   \item {blockerMask}
     \subitem {Dagor::MoveTables::BlockerHash}, \hyperpage{23}
+    \subitem {LeaperInfo}, \hyperpage{24}
+  \item {blockers}
+    \subitem {LeaperInfo}, \hyperpage{24}
   \item {board.h}, \hyperpage{27}
 
   \indexspace
@@ -104,15 +107,16 @@
     \subitem {Dagor::Board}, \hyperpage{13}
   \item {Dagor}, \hyperpage{9}
   \item {Dagor-\/in-\/Erain}, \hyperpage{1}
-  \item {Dagor::BitBoard}, \hyperpage{9}
+  \item {Dagor::BitBoards}, \hyperpage{9}
     \subitem {edgesOnly}, \hyperpage{10}
+    \subitem {operator!=}, \hyperpage{10}
     \subitem {operator$<$$<$}, \hyperpage{10}
     \subitem {operator==}, \hyperpage{10}
     \subitem {operator\&}, \hyperpage{10}
     \subitem {operator\texorpdfstring{$\sim$}{\string~}}, 
 		\hyperpage{10}
     \subitem {operator\texttt{|}}, \hyperpage{10}
-  \item {Dagor::BitBoard::BitBoard}, \hyperpage{17}
+  \item {Dagor::BitBoards::BitBoard}, \hyperpage{17}
     \subitem {as\_uint}, \hyperpage{18}
     \subitem {BitBoard}, \hyperpage{18}
     \subitem {findFirstSet}, \hyperpage{18}
@@ -246,7 +250,7 @@
   \item {east}
     \subitem {Dagor::Board}, \hyperpage{12}
   \item {edgesOnly}
-    \subitem {Dagor::BitBoard}, \hyperpage{10}
+    \subitem {Dagor::BitBoards}, \hyperpage{10}
 
   \indexspace
 
@@ -271,7 +275,7 @@
   \item {file\_name}
     \subitem {Dagor::Board}, \hyperpage{14}
   \item {findFirstSet}
-    \subitem {Dagor::BitBoard::BitBoard}, \hyperpage{18}
+    \subitem {Dagor::BitBoards::BitBoard}, \hyperpage{18}
   \item {findPerfectHash}
     \subitem {generate\_movetables.cpp}, \hyperpage{32}
 
@@ -299,22 +303,27 @@
     \subitem {bishopMoves}, \hyperpage{32}
     \subitem {findPerfectHash}, \hyperpage{32}
     \subitem {generatePossibleBlockers}, \hyperpage{33}
-    \subitem {kingMove}, \hyperpage{33}
-    \subitem {knightMove}, \hyperpage{33}
+    \subitem {generatePossibleMoves}, \hyperpage{33}
+    \subitem {hashMoves}, \hyperpage{33}
+    \subitem {initHashFunctions}, \hyperpage{33}
+    \subitem {kingMove}, \hyperpage{34}
+    \subitem {knightMove}, \hyperpage{34}
     \subitem {main}, \hyperpage{34}
     \subitem {pawnAttack}, \hyperpage{34}
-    \subitem {randomFewBitsSet}, \hyperpage{34}
-    \subitem {randomLong}, \hyperpage{34}
-    \subitem {rookBlockers}, \hyperpage{34}
-    \subitem {rookMoveRay}, \hyperpage{35}
+    \subitem {randomFewBitsSet}, \hyperpage{35}
+    \subitem {randomLong}, \hyperpage{35}
+    \subitem {rookBlockers}, \hyperpage{35}
+    \subitem {rookMoveRay}, \hyperpage{36}
     \subitem {rookMoves}, \hyperpage{36}
-    \subitem {spreadBitsInMask}, \hyperpage{36}
+    \subitem {spreadBitsInMask}, \hyperpage{37}
     \subitem {writeHash}, \hyperpage{37}
-    \subitem {writeHashes}, \hyperpage{37}
-    \subitem {writeKingMoves}, \hyperpage{37}
-    \subitem {writeKnightMoves}, \hyperpage{37}
-    \subitem {writePawnAttacks}, \hyperpage{39}
+    \subitem {writeKingMoves}, \hyperpage{38}
+    \subitem {writeKnightMoves}, \hyperpage{38}
+    \subitem {writeLeapers}, \hyperpage{38}
+    \subitem {writePawnAttacks}, \hyperpage{38}
   \item {generatePossibleBlockers}
+    \subitem {generate\_movetables.cpp}, \hyperpage{33}
+  \item {generatePossibleMoves}
     \subitem {generate\_movetables.cpp}, \hyperpage{33}
 
   \indexspace
@@ -337,29 +346,42 @@
     \subitem {Dagor::Board}, \hyperpage{13}
   \item {hash}
     \subitem {Dagor::MoveTables::BlockerHash}, \hyperpage{22}
+  \item {hashMoves}
+    \subitem {generate\_movetables.cpp}, \hyperpage{33}
 
   \indexspace
 
   \item {index}
     \subitem {Dagor::Board}, \hyperpage{14}
+  \item {initHashFunctions}
+    \subitem {generate\_movetables.cpp}, \hyperpage{33}
   \item {is\_empty}
-    \subitem {Dagor::BitBoard::BitBoard}, \hyperpage{18}
+    \subitem {Dagor::BitBoards::BitBoard}, \hyperpage{18}
   \item {is\_set}
-    \subitem {Dagor::BitBoard::BitBoard}, \hyperpage{19}
+    \subitem {Dagor::BitBoards::BitBoard}, \hyperpage{19}
+  \item {isBishop}
+    \subitem {LeaperInfo}, \hyperpage{24}
 
   \indexspace
 
   \item {kingMove}
-    \subitem {generate\_movetables.cpp}, \hyperpage{33}
+    \subitem {generate\_movetables.cpp}, \hyperpage{34}
   \item {kingMoves}
     \subitem {Dagor::MoveTables}, \hyperpage{16}
   \item {knightMove}
-    \subitem {generate\_movetables.cpp}, \hyperpage{33}
+    \subitem {generate\_movetables.cpp}, \hyperpage{34}
   \item {knightMoves}
     \subitem {Dagor::MoveTables}, \hyperpage{16}
 
   \indexspace
 
+  \item {LeaperInfo}, \hyperpage{23}
+    \subitem {blockerMask}, \hyperpage{24}
+    \subitem {blockers}, \hyperpage{24}
+    \subitem {isBishop}, \hyperpage{24}
+    \subitem {LeaperInfo}, \hyperpage{24}
+    \subitem {moves}, \hyperpage{24}
+    \subitem {square}, \hyperpage{24}
   \item {lookUp}
     \subitem {Dagor::MoveTables::BlockerHash}, \hyperpage{22}
 
@@ -372,6 +394,8 @@
     \subitem {main.cpp}, \hyperpage{39}
   \item {main.cpp}, \hyperpage{39}
     \subitem {main}, \hyperpage{39}
+  \item {moves}
+    \subitem {LeaperInfo}, \hyperpage{24}
   \item {movetables.cpp}, \hyperpage{39}
   \item {movetables.h}, \hyperpage{40}
 
@@ -388,20 +412,22 @@
 
   \indexspace
 
+  \item {operator!=}
+    \subitem {Dagor::BitBoards}, \hyperpage{10}
   \item {operator$<$$<$}
-    \subitem {Dagor::BitBoard}, \hyperpage{10}
+    \subitem {Dagor::BitBoards}, \hyperpage{10}
   \item {operator==}
-    \subitem {Dagor::BitBoard}, \hyperpage{10}
+    \subitem {Dagor::BitBoards}, \hyperpage{10}
   \item {operator\&}
-    \subitem {Dagor::BitBoard}, \hyperpage{10}
+    \subitem {Dagor::BitBoards}, \hyperpage{10}
   \item {operator\&=}
-    \subitem {Dagor::BitBoard::BitBoard}, \hyperpage{19}
+    \subitem {Dagor::BitBoards::BitBoard}, \hyperpage{19}
   \item {operator\texorpdfstring{$\sim$}{\string~}}
-    \subitem {Dagor::BitBoard}, \hyperpage{10}
+    \subitem {Dagor::BitBoards}, \hyperpage{10}
   \item {operator\texttt{|}}
-    \subitem {Dagor::BitBoard}, \hyperpage{10}
+    \subitem {Dagor::BitBoards}, \hyperpage{10}
   \item {operator\texttt{|}=}
-    \subitem {Dagor::BitBoard::BitBoard}, \hyperpage{19}
+    \subitem {Dagor::BitBoards::BitBoard}, \hyperpage{19}
 
   \indexspace
 
@@ -410,36 +436,34 @@
   \item {pawnAttacks}
     \subitem {Dagor::MoveTables}, \hyperpage{16}
   \item {popcount}
-    \subitem {Dagor::BitBoard::BitBoard}, \hyperpage{20}
-  \item {print.cpp}, \hyperpage{41}
-  \item {print.h}, \hyperpage{41}
+    \subitem {Dagor::BitBoards::BitBoard}, \hyperpage{20}
 
   \indexspace
 
   \item {randomFewBitsSet}
-    \subitem {generate\_movetables.cpp}, \hyperpage{34}
+    \subitem {generate\_movetables.cpp}, \hyperpage{35}
   \item {randomLong}
-    \subitem {generate\_movetables.cpp}, \hyperpage{34}
+    \subitem {generate\_movetables.cpp}, \hyperpage{35}
   \item {rank}
     \subitem {Dagor::Board}, \hyperpage{14}
   \item {Readme.md}, \hyperpage{41}
   \item {rookBlockers}
-    \subitem {generate\_movetables.cpp}, \hyperpage{34}
+    \subitem {generate\_movetables.cpp}, \hyperpage{35}
   \item {rookHashes}
     \subitem {Dagor::MoveTables}, \hyperpage{16}
   \item {rookMoveRay}
-    \subitem {generate\_movetables.cpp}, \hyperpage{35}
+    \subitem {generate\_movetables.cpp}, \hyperpage{36}
   \item {rookMoves}
     \subitem {generate\_movetables.cpp}, \hyperpage{36}
 
   \indexspace
 
   \item {set\_bit}
-    \subitem {Dagor::BitBoard::BitBoard}, \hyperpage{20}
+    \subitem {Dagor::BitBoards::BitBoard}, \hyperpage{20}
   \item {set\_bit\_if\_index\_valid}
-    \subitem {Dagor::BitBoard::BitBoard}, \hyperpage{20}
+    \subitem {Dagor::BitBoards::BitBoard}, \hyperpage{20}
   \item {single\_square\_set}
-    \subitem {Dagor::BitBoard::BitBoard}, \hyperpage{20}
+    \subitem {Dagor::BitBoards::BitBoard}, \hyperpage{20}
   \item {size}
     \subitem {Dagor::Board}, \hyperpage{15}
   \item {slidingMoves}
@@ -451,9 +475,11 @@
   \item {south\_west}
     \subitem {Dagor::Board}, \hyperpage{12}
   \item {spreadBitsInMask}
-    \subitem {generate\_movetables.cpp}, \hyperpage{36}
+    \subitem {generate\_movetables.cpp}, \hyperpage{37}
   \item {Square}
     \subitem {Dagor::Board}, \hyperpage{12}
+  \item {square}
+    \subitem {LeaperInfo}, \hyperpage{24}
 
   \indexspace
 
@@ -463,7 +489,7 @@
   \indexspace
 
   \item {unset\_bit}
-    \subitem {Dagor::BitBoard::BitBoard}, \hyperpage{21}
+    \subitem {Dagor::BitBoards::BitBoard}, \hyperpage{21}
 
   \indexspace
 
@@ -475,13 +501,13 @@
     \subitem {Dagor::Board}, \hyperpage{15}
   \item {writeHash}
     \subitem {generate\_movetables.cpp}, \hyperpage{37}
-  \item {writeHashes}
-    \subitem {generate\_movetables.cpp}, \hyperpage{37}
   \item {writeKingMoves}
-    \subitem {generate\_movetables.cpp}, \hyperpage{37}
+    \subitem {generate\_movetables.cpp}, \hyperpage{38}
   \item {writeKnightMoves}
-    \subitem {generate\_movetables.cpp}, \hyperpage{37}
+    \subitem {generate\_movetables.cpp}, \hyperpage{38}
+  \item {writeLeapers}
+    \subitem {generate\_movetables.cpp}, \hyperpage{38}
   \item {writePawnAttacks}
-    \subitem {generate\_movetables.cpp}, \hyperpage{39}
+    \subitem {generate\_movetables.cpp}, \hyperpage{38}
 
 \end{theindex}

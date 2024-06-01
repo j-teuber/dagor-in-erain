@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['magic_0',['magic',['../classDagor_1_1MoveTables_1_1BlockerHash.html#a19be5bc60af8840b74d8712011337f3e',1,'Dagor::MoveTables::BlockerHash']]]
+  ['kingmoves_0',['kingMoves',['../namespaceDagor_1_1MoveTables.html#af37738129dad956149ee2bc98739cb7a',1,'Dagor::MoveTables']]],
+  ['knightmoves_1',['knightMoves',['../namespaceDagor_1_1MoveTables.html#a83efbb7b75fd72abdd2c8e6eca77528a',1,'Dagor::MoveTables']]]
 ];

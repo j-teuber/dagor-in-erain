@@ -10,70 +10,73 @@
 \DoxyCodeLine{00007\ }
 \DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{board_8h}{board.h}}"{}}}
 \DoxyCodeLine{00009\ }
-\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceDagor_1_1BitBoard}{Dagor::BitBoard}}\ \{}
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceDagor_1_1BitBoards}{Dagor::BitBoards}}\ \{}
 \DoxyCodeLine{00011\ }
 \DoxyCodeLine{00012\ \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}(std::uint64\_t)\ ==\ 8,}
 \DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}For\ its\ BitBoards,\ this\ program\ assumes\ 64\ bit\ integers."{}});}
 \DoxyCodeLine{00014\ }
-\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{BitBoard}}\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{BitBoard}}\ \{}
 \DoxyCodeLine{00020\ \ \textcolor{keyword}{private}:}
 \DoxyCodeLine{00021\ \ \ std::uint64\_t\ board;}
 \DoxyCodeLine{00022\ }
 \DoxyCodeLine{00023\ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00025\ \ \ \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard_acfcf1cec99b18cc2781ff97cbc42339e}{BitBoard}}();}
-\DoxyCodeLine{00028\ \ \ \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard_acfcf1cec99b18cc2781ff97cbc42339e}{BitBoard}}(std::uint64\_t\ bitboard);}
+\DoxyCodeLine{00025\ \ \ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard_a85325aac35a6fdcfdc51d3896b603d42}{BitBoard}}();}
+\DoxyCodeLine{00028\ \ \ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard_a85325aac35a6fdcfdc51d3896b603d42}{BitBoard}}(std::uint64\_t\ bitboard);}
 \DoxyCodeLine{00029\ }
-\DoxyCodeLine{00032\ \ \ std::uint64\_t\ \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard_af139c9a1f96439d4cd103c95121f0c81}{as\_uint}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ board;\ \}}
+\DoxyCodeLine{00032\ \ \ std::uint64\_t\ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard_a68f0a5c9559b05a39d5d6343f3fbd852}{as\_uint}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ board;\ \}}
 \DoxyCodeLine{00033\ }
-\DoxyCodeLine{00037\ \ \ \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{BitBoard}}\ \&\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard_a8eaf5514c48573a1704acc3b253e0cf6}{operator\&=}}(\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{BitBoard}}\ other)\ \{}
+\DoxyCodeLine{00037\ \ \ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{BitBoard}}\ \&\mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard_ae7299e5985307da0c8530b51c7753190}{operator\&=}}(\mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{BitBoard}}\ other)\ \{}
 \DoxyCodeLine{00038\ \ \ \ \ board\ \&=\ other.board;}
 \DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
 \DoxyCodeLine{00040\ \ \ \}}
 \DoxyCodeLine{00041\ }
-\DoxyCodeLine{00045\ \ \ \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{BitBoard}}\ \&\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard_a2326cc3e6d69ee6d10a6f2751a327bf5}{operator|=}}(\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{BitBoard}}\ other)\ \{}
+\DoxyCodeLine{00045\ \ \ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{BitBoard}}\ \&\mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard_a4466ab93cb0899877069aa3b9f3ddebc}{operator|=}}(\mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{BitBoard}}\ other)\ \{}
 \DoxyCodeLine{00046\ \ \ \ \ board\ |=\ other.board;}
 \DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
 \DoxyCodeLine{00048\ \ \ \}}
 \DoxyCodeLine{00049\ }
-\DoxyCodeLine{00053\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{BitBoard}}\ \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard_a989cf4aa39e05b8e5df9810f647a6098}{single\_square\_set}}(\textcolor{keywordtype}{int}\ square)\ \{}
-\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard_acfcf1cec99b18cc2781ff97cbc42339e}{BitBoard}}(\textcolor{keyword}{static\_cast<}std::uint64\_t\textcolor{keyword}{>}(1)\ <<\ square);}
+\DoxyCodeLine{00053\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{BitBoard}}\ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard_a8a4f7443177f3908a9ca3c8fdfa62a8a}{single\_square\_set}}(\textcolor{keywordtype}{int}\ square)\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard_a85325aac35a6fdcfdc51d3896b603d42}{BitBoard}}(\textcolor{keyword}{static\_cast<}std::uint64\_t\textcolor{keyword}{>}(1)\ <<\ square);}
 \DoxyCodeLine{00055\ \ \ \}}
 \DoxyCodeLine{00056\ }
-\DoxyCodeLine{00060\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard_aa390bfd4e2e0eac7f2c1cf283609a72f}{is\_empty}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ board\ ==\ 0;\ \}}
+\DoxyCodeLine{00060\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard_ae44f073ac29c087ac53452f3777659fa}{is\_empty}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ board\ ==\ 0;\ \}}
 \DoxyCodeLine{00061\ }
-\DoxyCodeLine{00065\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard_a9cb1bf9f0fd7624c32d7d1c58427d616}{is\_set}}(\textcolor{keywordtype}{int}\ square)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00065\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard_aea50ad743989dde7957830fd124937fc}{is\_set}}(\textcolor{keywordtype}{int}\ square)\textcolor{keyword}{\ const\ }\{}
 \DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordflow}{return}\ (board\ \&\ (\textcolor{keyword}{static\_cast<}std::uint64\_t\textcolor{keyword}{>}(1)\ <<\ square))\ !=\ 0;}
 \DoxyCodeLine{00067\ \ \ \}}
 \DoxyCodeLine{00068\ }
-\DoxyCodeLine{00071\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard_a6118b0ff7d0288ebb10d74c0cff35083}{set\_bit}}(\textcolor{keywordtype}{int}\ square)\ \{\ *\textcolor{keyword}{this}\ |=\ \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard_a989cf4aa39e05b8e5df9810f647a6098}{single\_square\_set}}(square);\ \}}
+\DoxyCodeLine{00071\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard_a6d296c0275e09ea4ca3f1be99b22cadd}{set\_bit}}(\textcolor{keywordtype}{int}\ square)\ \{\ *\textcolor{keyword}{this}\ |=\ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard_a8a4f7443177f3908a9ca3c8fdfa62a8a}{single\_square\_set}}(square);\ \}}
 \DoxyCodeLine{00072\ }
-\DoxyCodeLine{00079\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard_ad83a5f4805d026d1dedbfec6f4b29779}{set\_bit\_if\_index\_valid}}(\textcolor{keywordtype}{int}\ file,\ \textcolor{keywordtype}{int}\ rank)\ \{}
+\DoxyCodeLine{00079\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard_ad7ac5c2c2ede064673ccb2bbc724cc6d}{set\_bit\_if\_index\_valid}}(\textcolor{keywordtype}{int}\ file,\ \textcolor{keywordtype}{int}\ rank)\ \{}
 \DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordflow}{if}\ (0\ <=\ file\ \&\&\ file\ <\ \mbox{\hyperlink{namespaceDagor_1_1Board_aa84d2af871e9678b20fd70c566e6293b}{Board::width}}\ \&\&\ 0\ <=\ rank\ \&\&\ rank\ <\ \mbox{\hyperlink{namespaceDagor_1_1Board_aa84d2af871e9678b20fd70c566e6293b}{Board::width}})\ \{}
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard_a6118b0ff7d0288ebb10d74c0cff35083}{set\_bit}}(\mbox{\hyperlink{namespaceDagor_1_1Board_a69903bda8e4bb5ad2972950839224290}{Board::index}}(file,\ rank));}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard_a6d296c0275e09ea4ca3f1be99b22cadd}{set\_bit}}(\mbox{\hyperlink{namespaceDagor_1_1Board_a69903bda8e4bb5ad2972950839224290}{Board::index}}(file,\ rank));}
 \DoxyCodeLine{00082\ \ \ \ \ \}}
 \DoxyCodeLine{00083\ \ \ \}}
 \DoxyCodeLine{00084\ }
-\DoxyCodeLine{00087\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard_a1dc2dc5b908629810cb7ef8076945903}{unset\_bit}}(\textcolor{keywordtype}{int}\ square)\ \{\ board\ \&=\ \string~single\_square\_set(square).board;\ \}}
+\DoxyCodeLine{00087\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard_a2a9c1b57a0f78ee265df27517425b273}{unset\_bit}}(\textcolor{keywordtype}{int}\ square)\ \{\ board\ \&=\ \string~single\_square\_set(square).board;\ \}}
 \DoxyCodeLine{00088\ }
-\DoxyCodeLine{00091\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard_a4e2a184f099d05bcf19dcca519d5baff}{popcount}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \_\_builtin\_popcountll(board);\ \}}
+\DoxyCodeLine{00091\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard_a3b6bd9932edf8d990c5e8fe90d01d3c1}{popcount}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \_\_builtin\_popcountll(board);\ \}}
 \DoxyCodeLine{00092\ }
-\DoxyCodeLine{00096\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard_a970d1b70069f4566f17fa82fb7ad72c5}{findFirstSet}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \_\_builtin\_ctzll(board);\ \}}
+\DoxyCodeLine{00096\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard_a2b4355a82bfd584fd9b100975a3d2204}{findFirstSet}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \_\_builtin\_ctzll(board);\ \}}
 \DoxyCodeLine{00097\ \};}
 \DoxyCodeLine{00098\ }
-\DoxyCodeLine{00099\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{BitBoard}}\ \mbox{\hyperlink{namespaceDagor_1_1BitBoard_a2180cde64e50d8d905c305323a4faa2a}{operator\&}}(\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{BitBoard}}\ a,\ \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{BitBoard}}\ b)\ \{\ \textcolor{keywordflow}{return}\ a\ \&=\ b;\ \}}
-\DoxyCodeLine{00100\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{BitBoard}}\ \mbox{\hyperlink{namespaceDagor_1_1BitBoard_ae6b9169738f78a48956f69d38e81361e}{operator|}}(\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{BitBoard}}\ a,\ \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{BitBoard}}\ b)\ \{\ \textcolor{keywordflow}{return}\ a\ |=\ b;\ \}}
-\DoxyCodeLine{00101\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{BitBoard}}\ \mbox{\hyperlink{namespaceDagor_1_1BitBoard_a1c075756a2fb13d84256954db7bb303b}{operator\string~}}(\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{BitBoard}}\ a)\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{BitBoard}}(\string~a.\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard_af139c9a1f96439d4cd103c95121f0c81}{as\_uint}}());\ \}}
+\DoxyCodeLine{00099\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{BitBoard}}\ \mbox{\hyperlink{namespaceDagor_1_1BitBoards_a1bef5ef874bfa3bc5fcf42453ae06f23}{operator\&}}(\mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{BitBoard}}\ a,\ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{BitBoard}}\ b)\ \{\ \textcolor{keywordflow}{return}\ a\ \&=\ b;\ \}}
+\DoxyCodeLine{00100\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{BitBoard}}\ \mbox{\hyperlink{namespaceDagor_1_1BitBoards_ae5ecff4ca81af3cb39ccb51eef9c9929}{operator|}}(\mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{BitBoard}}\ a,\ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{BitBoard}}\ b)\ \{\ \textcolor{keywordflow}{return}\ a\ |=\ b;\ \}}
+\DoxyCodeLine{00101\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{BitBoard}}\ \mbox{\hyperlink{namespaceDagor_1_1BitBoards_a96f00a27fc606585d2eaf7df241c460c}{operator\string~}}(\mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{BitBoard}}\ a)\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{BitBoard}}(\string~a.\mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard_a68f0a5c9559b05a39d5d6343f3fbd852}{as\_uint}}());\ \}}
 \DoxyCodeLine{00102\ }
-\DoxyCodeLine{00103\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{BitBoard}}\ \mbox{\hyperlink{namespaceDagor_1_1BitBoard_abc905cdd24c34e7e94fa0842df74cdf4}{operator==}}(\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{BitBoard}}\ a,\ \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{BitBoard}}\ b)\ \{}
-\DoxyCodeLine{00104\ \ \ \textcolor{keywordflow}{return}\ a.\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard_af139c9a1f96439d4cd103c95121f0c81}{as\_uint}}()\ ==\ b.\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard_af139c9a1f96439d4cd103c95121f0c81}{as\_uint}}();}
+\DoxyCodeLine{00103\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceDagor_1_1BitBoards_adc670ab0adba5e9a1413df86a7cfab3f}{operator==}}(\mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{BitBoard}}\ a,\ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{BitBoard}}\ b)\ \{}
+\DoxyCodeLine{00104\ \ \ \textcolor{keywordflow}{return}\ a.\mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard_a68f0a5c9559b05a39d5d6343f3fbd852}{as\_uint}}()\ ==\ b.\mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard_a68f0a5c9559b05a39d5d6343f3fbd852}{as\_uint}}();}
 \DoxyCodeLine{00105\ \}}
-\DoxyCodeLine{00106\ }
-\DoxyCodeLine{00107\ std::ostream\ \&\mbox{\hyperlink{namespaceDagor_1_1BitBoard_a42d50eff7b95ed8aa25017902dd36e40}{operator<<}}(std::ostream\ \&out,\ \textcolor{keyword}{const}\ BitBoard\ \&printer);}
-\DoxyCodeLine{00108\ }
-\DoxyCodeLine{00122\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{BitBoard}}\ \mbox{\hyperlink{namespaceDagor_1_1BitBoard_a6ba130a05600f4ed39ef1c7b760ce090}{edgesOnly}}\{0xff818181818181ff\};}
-\DoxyCodeLine{00123\ }
-\DoxyCodeLine{00124\ \}\ \ \textcolor{comment}{//\ namespace\ Dagor::BitBoard}}
-\DoxyCodeLine{00125\ }
-\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00106\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceDagor_1_1BitBoards_af275df45047a865c78bb77062cd88515}{operator!=}}(\mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{BitBoard}}\ a,\ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{BitBoard}}\ b)\ \{}
+\DoxyCodeLine{00107\ \ \ \textcolor{keywordflow}{return}\ a.\mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard_a68f0a5c9559b05a39d5d6343f3fbd852}{as\_uint}}()\ !=\ b.\mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard_a68f0a5c9559b05a39d5d6343f3fbd852}{as\_uint}}();}
+\DoxyCodeLine{00108\ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ std::ostream\ \&\mbox{\hyperlink{namespaceDagor_1_1BitBoards_a9de0def2727856e3e33fca69b56b0c94}{operator<<}}(std::ostream\ \&out,\ \textcolor{keyword}{const}\ BitBoard\ \&printer);}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00125\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{BitBoard}}\ \mbox{\hyperlink{namespaceDagor_1_1BitBoards_ae34672fc232aa72291ff64a5077b5897}{edgesOnly}}\{0xff818181818181ff\};}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \}\ \ \textcolor{comment}{//\ namespace\ Dagor::BitBoards}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

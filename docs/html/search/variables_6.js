@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['rookhashes_0',['rookHashes',['../namespaceDagor_1_1MoveTables.html#a631b0c06c74d837bd1b2eac9d028a954',1,'Dagor::MoveTables']]]
+  ['pawnattacks_0',['pawnAttacks',['../namespaceDagor_1_1MoveTables.html#a3765a86cd4f93e2df40fb78891f76f11',1,'Dagor::MoveTables']]]
 ];

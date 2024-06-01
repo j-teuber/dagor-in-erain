@@ -7,7 +7,5 @@ var files_dup =
     [ "generate_movetables.cpp", "generate__movetables_8cpp.html", "generate__movetables_8cpp" ],
     [ "main.cpp", "main_8cpp.html", "main_8cpp" ],
     [ "movetables.cpp", "movetables_8cpp.html", "movetables_8cpp" ],
-    [ "movetables.h", "movetables_8h.html", "movetables_8h" ],
-    [ "print.cpp", "print_8cpp.html", null ],
-    [ "print.h", "print_8h.html", null ]
+    [ "movetables.h", "movetables_8h.html", "movetables_8h" ]
 ];

@@ -1,6 +1,7 @@
 \doxysection{generate\+\_\+movetables.\+cpp File Reference}
 \hypertarget{generate__movetables_8cpp}{}\label{generate__movetables_8cpp}\index{generate\_movetables.cpp@{generate\_movetables.cpp}}
 {\ttfamily \#include $<$cassert$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
 {\ttfamily \#include $<$fstream$>$}\newline
 {\ttfamily \#include $<$ios$>$}\newline
 {\ttfamily \#include $<$iostream$>$}\newline
@@ -10,47 +11,58 @@
 {\ttfamily \#include "{}board.\+h"{}}\newline
 {\ttfamily \#include "{}constants.\+h"{}}\newline
 {\ttfamily \#include "{}movetables.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classLeaperInfo}{Leaper\+Info}}
+\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} \mbox{\hyperlink{generate__movetables_8cpp_ae1fdd97fcfd39a0c790e47fb677e3b16}{pawn\+Attack}} (int square, int color)
+\mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} \mbox{\hyperlink{generate__movetables_8cpp_a98b90dcb7131ee579571c6b88bf967b1}{pawn\+Attack}} (int square, int color)
 \begin{DoxyCompactList}\small\item\em Compute the attacks that a pawn can make on a given square. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{generate__movetables_8cpp_a2c206eb0bdfa86b0501f5bbf298dafa6}{write\+Pawn\+Attacks}} (std\+::ofstream \&f)
 \begin{DoxyCompactList}\small\item\em writes all possible pawn attacks into a file. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} \mbox{\hyperlink{generate__movetables_8cpp_aadb3e885a15a0499b2e603ab5376a456}{knight\+Move}} (int square)
+\mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} \mbox{\hyperlink{generate__movetables_8cpp_a91e59d76bf53c7bf376550ffdff4f2fd}{knight\+Move}} (int square)
 \begin{DoxyCompactList}\small\item\em Computes all moves a knight can make on a given square. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{generate__movetables_8cpp_ae9b6d1df8d0af4b40ed8039a61e5de68}{write\+Knight\+Moves}} (std\+::ofstream \&f)
 \begin{DoxyCompactList}\small\item\em writes the knight moves to a file. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} \mbox{\hyperlink{generate__movetables_8cpp_a19e8d4d69847ba7939f40f7781764860}{king\+Move}} (int square)
+\mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} \mbox{\hyperlink{generate__movetables_8cpp_a5e3f1759a82c2c9be4a738e9d84a4575}{king\+Move}} (int square)
 \begin{DoxyCompactList}\small\item\em Computes the possible moves of a king on a given square (assuming the board is empty otherwise). This includes only the ‘standard’ moves, not castling, which needs to be handled as a special case. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{generate__movetables_8cpp_aedbef7beda50fa3e304e3e00d69b3537}{write\+King\+Moves}} (std\+::ofstream \&f)
 \begin{DoxyCompactList}\small\item\em writes the king moves to a file. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} \mbox{\hyperlink{generate__movetables_8cpp_ac545ab9b99848ffd145607e99f89bf44}{bishop\+Blockers}} (int square)
+\mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} \mbox{\hyperlink{generate__movetables_8cpp_a62401bd275d93e28c74e110c2b8e7c6d}{bishop\+Blockers}} (int square)
 \begin{DoxyCompactList}\small\item\em Computes a mask, where all locations are set, where a blocking piece could impede the further movement of a bishop. Squares on the edge are not considered, because they can only be endpoints of a move anyway. For example, this is the result for a bishop on d5\+: \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} \mbox{\hyperlink{generate__movetables_8cpp_a0e5d44c79b6e3f6fc73b1ebf8dc5d81b}{bishop\+Move\+Ray}} (int square, bool file\+Up, bool rank\+Up, \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} blockers)
+\mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} \mbox{\hyperlink{generate__movetables_8cpp_a639dbe4fd06a372a8042b7135c3b4d31}{bishop\+Move\+Ray}} (int square, bool file\+Up, bool rank\+Up, \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} blockers)
 \begin{DoxyCompactList}\small\item\em Computes one ray of a bishops movement. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} \mbox{\hyperlink{generate__movetables_8cpp_ae79b7785d063e6f0520a83d7b8e04945}{bishop\+Moves}} (int square, \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} blockers)
+\mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} \mbox{\hyperlink{generate__movetables_8cpp_a90d5daa79aba1d8e51eeec7550eec296}{bishop\+Moves}} (int square, \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} blockers)
 \begin{DoxyCompactList}\small\item\em Computes the moves for a bishop. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} \mbox{\hyperlink{generate__movetables_8cpp_a0a59d4d97b628baf9a328b4c47654a22}{rook\+Blockers}} (int square)
+\mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} \mbox{\hyperlink{generate__movetables_8cpp_a0e62c963e085456c6600344e69a3aa54}{rook\+Blockers}} (int square)
 \begin{DoxyCompactList}\small\item\em Computes a mask, where all locations are set, where a blocking piece could impede the further movement of a rook. Squares on the edge are not considered, because they can only be endpoints of a move anyway. For example, this is the result for a rook on d5\+: \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} \mbox{\hyperlink{generate__movetables_8cpp_a354055978c03f7bf0457ff255aa71ff6}{rook\+Move\+Ray}} (int square, int add\+File, int add\+Rank, \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} blockers)
+\mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} \mbox{\hyperlink{generate__movetables_8cpp_a688d206b7343f59284cfdefa78615fe8}{rook\+Move\+Ray}} (int square, int add\+File, int add\+Rank, \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} blockers)
 \item 
-\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} \mbox{\hyperlink{generate__movetables_8cpp_a54d2a5e5496a9d69a939c3ab016749bb}{rook\+Moves}} (int square, \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} blockers)
+\mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} \mbox{\hyperlink{generate__movetables_8cpp_ac4c455169e99ebe1e491cde60584d02c}{rook\+Moves}} (int square, \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} blockers)
 \begin{DoxyCompactList}\small\item\em Computes the possible move for a rook. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} \mbox{\hyperlink{generate__movetables_8cpp_a0b0fbe74096d63af14232439c5816de3}{spread\+Bits\+In\+Mask}} (unsigned bits\+To\+Spread, \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} mask)
+\mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} \mbox{\hyperlink{generate__movetables_8cpp_a385c2bcbad9e498e2eec18e9774e741f}{spread\+Bits\+In\+Mask}} (unsigned bits\+To\+Spread, \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} mask)
 \item 
 std\+::uint64\+\_\+t \mbox{\hyperlink{generate__movetables_8cpp_a8751e177f8a883750c6fb3e9506f7c39}{random\+Long}} ()
 \begin{DoxyCompactList}\small\item\em Generates an uniformly distributed uint64. \end{DoxyCompactList}\item 
 std\+::uint64\+\_\+t \mbox{\hyperlink{generate__movetables_8cpp_a2eacc3675e0b020c9add38b7746ce141}{random\+Few\+Bits\+Set}} ()
 \begin{DoxyCompactList}\small\item\em Generates a random number with a bias towards numbers where only a few bits are set. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} $>$ \mbox{\hyperlink{generate__movetables_8cpp_ac757e5c1cbf3229f93d1bb6e82847061}{generate\+Possible\+Blockers}} (\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} mask)
+vector$<$ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} $>$ \mbox{\hyperlink{generate__movetables_8cpp_affc97788c4427df10e7f62c8720db38b}{generate\+Possible\+Blockers}} (\mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} mask)
 \begin{DoxyCompactList}\small\item\em Generates all possibilities for how blocking pieces can be distributed within the range of the given mask. Mathematically speaking, this produces the powerset of the mask. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash}{Move\+Tables\+::\+Blocker\+Hash}} \mbox{\hyperlink{generate__movetables_8cpp_a57fd67821762c297597f5f8c2509f258}{find\+Perfect\+Hash}} (\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} mask)
+vector$<$ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} $>$ \mbox{\hyperlink{generate__movetables_8cpp_ad6d54aef18c66b132d1bbfa282318286}{generate\+Possible\+Moves}} (int square, const vector$<$ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} $>$ \&blockers, bool is\+Bishop)
+\item 
+\mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash}{Move\+Tables\+::\+Blocker\+Hash}} \mbox{\hyperlink{generate__movetables_8cpp_a79a2d5cdef9d857259ba1de2bcfb9f13}{find\+Perfect\+Hash}} (\mbox{\hyperlink{classLeaperInfo}{Leaper\+Info}} \&info)
 \begin{DoxyCompactList}\small\item\em Finds the configuration for a perfect hash function for the powerset of the given mask. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{generate__movetables_8cpp_a42fb4bdbe58ef6d98e607f0430fa3006}{write\+Hash}} (std\+::ofstream \&f, \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash}{Move\+Tables\+::\+Blocker\+Hash}} \&hash, unsigned offset)
+void \mbox{\hyperlink{generate__movetables_8cpp_ab4f27facf13ebae29e4890ec345431cd}{write\+Hash}} (std\+::ostream \&f, \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash}{Move\+Tables\+::\+Blocker\+Hash}} \&hash, unsigned offset)
 \begin{DoxyCompactList}\small\item\em Write the representation of a hash function to a file. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{generate__movetables_8cpp_aee1e6efad6f68ffc0c3cbbb20559e0c3}{write\+Hashes}} (std\+::ofstream \&f)
-\begin{DoxyCompactList}\small\item\em Writes the hashes and moves for the leaping pieces (bishop and rook) to a file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{generate__movetables_8cpp_a40851e36edec89dac63d9e065146fe4a}{init\+Hash\+Functions}} (vector$<$ \mbox{\hyperlink{classLeaperInfo}{Leaper\+Info}} $>$ \&square\+Info, vector$<$ \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash}{Move\+Tables\+::\+Blocker\+Hash}} $>$ \&hash\+Functions, unsigned \&number\+Of\+Moves, bool is\+Bishop)
+\item 
+void \mbox{\hyperlink{generate__movetables_8cpp_a4fd91d30c17ef34ce0abaffe511aff12}{hash\+Moves}} (vector$<$ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} $>$ \&moves, vector$<$ \mbox{\hyperlink{classLeaperInfo}{Leaper\+Info}} $>$ \&square\+Info, vector$<$ \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash}{Move\+Tables\+::\+Blocker\+Hash}} $>$ \&hash\+Functions, unsigned \&current\+Offset)
+\item 
+void \mbox{\hyperlink{generate__movetables_8cpp_a5ba18d45e652e5b08dbc219ae06a34be}{write\+Leapers}} (std\+::ostream \&f)
+\item 
 int \mbox{\hyperlink{generate__movetables_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
 \end{DoxyCompactItemize}
 
@@ -59,11 +71,11 @@ int \mbox{\hyperlink{generate__movetables_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4
 This file generates {\ttfamily \doxylink{movetables_8cpp}{movetables.\+cpp}}. It pre-\/calculates the possible moves for a given position to speed up move generation in the search. 
 
 \doxysubsection{Function Documentation}
-\Hypertarget{generate__movetables_8cpp_ac545ab9b99848ffd145607e99f89bf44}\label{generate__movetables_8cpp_ac545ab9b99848ffd145607e99f89bf44} 
+\Hypertarget{generate__movetables_8cpp_a62401bd275d93e28c74e110c2b8e7c6d}\label{generate__movetables_8cpp_a62401bd275d93e28c74e110c2b8e7c6d} 
 \index{generate\_movetables.cpp@{generate\_movetables.cpp}!bishopBlockers@{bishopBlockers}}
 \index{bishopBlockers@{bishopBlockers}!generate\_movetables.cpp@{generate\_movetables.cpp}}
 \doxysubsubsection{\texorpdfstring{bishopBlockers()}{bishopBlockers()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} bishop\+Blockers (\begin{DoxyParamCaption}\item[{int}]{square }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} bishop\+Blockers (\begin{DoxyParamCaption}\item[{int}]{square }\end{DoxyParamCaption})}
 
 
 
@@ -88,11 +100,11 @@ Computes a mask, where all locations are set, where a blocking piece could imped
 \begin{DoxyReturn}{Returns}
 a bitboard with the relevant squares set. 
 \end{DoxyReturn}
-\Hypertarget{generate__movetables_8cpp_a0e5d44c79b6e3f6fc73b1ebf8dc5d81b}\label{generate__movetables_8cpp_a0e5d44c79b6e3f6fc73b1ebf8dc5d81b} 
+\Hypertarget{generate__movetables_8cpp_a639dbe4fd06a372a8042b7135c3b4d31}\label{generate__movetables_8cpp_a639dbe4fd06a372a8042b7135c3b4d31} 
 \index{generate\_movetables.cpp@{generate\_movetables.cpp}!bishopMoveRay@{bishopMoveRay}}
 \index{bishopMoveRay@{bishopMoveRay}!generate\_movetables.cpp@{generate\_movetables.cpp}}
 \doxysubsubsection{\texorpdfstring{bishopMoveRay()}{bishopMoveRay()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} bishop\+Move\+Ray (\begin{DoxyParamCaption}\item[{int}]{square,  }\item[{bool}]{file\+Up,  }\item[{bool}]{rank\+Up,  }\item[{\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}}}]{blockers }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} bishop\+Move\+Ray (\begin{DoxyParamCaption}\item[{int}]{square,  }\item[{bool}]{file\+Up,  }\item[{bool}]{rank\+Up,  }\item[{\mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}}}]{blockers }\end{DoxyParamCaption})}
 
 
 
@@ -112,11 +124,11 @@ Computes one ray of a bishops movement.
 \begin{DoxyReturn}{Returns}
 a bitboard with all the squares set, to which the bishop can move in that rey. 
 \end{DoxyReturn}
-\Hypertarget{generate__movetables_8cpp_ae79b7785d063e6f0520a83d7b8e04945}\label{generate__movetables_8cpp_ae79b7785d063e6f0520a83d7b8e04945} 
+\Hypertarget{generate__movetables_8cpp_a90d5daa79aba1d8e51eeec7550eec296}\label{generate__movetables_8cpp_a90d5daa79aba1d8e51eeec7550eec296} 
 \index{generate\_movetables.cpp@{generate\_movetables.cpp}!bishopMoves@{bishopMoves}}
 \index{bishopMoves@{bishopMoves}!generate\_movetables.cpp@{generate\_movetables.cpp}}
 \doxysubsubsection{\texorpdfstring{bishopMoves()}{bishopMoves()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} bishop\+Moves (\begin{DoxyParamCaption}\item[{int}]{square,  }\item[{\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}}}]{blockers }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} bishop\+Moves (\begin{DoxyParamCaption}\item[{int}]{square,  }\item[{\mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}}}]{blockers }\end{DoxyParamCaption})}
 
 
 
@@ -132,11 +144,11 @@ Computes the moves for a bishop.
 \begin{DoxyReturn}{Returns}
 a bitboard with all the squares set, to which the bishop can move. 
 \end{DoxyReturn}
-\Hypertarget{generate__movetables_8cpp_a57fd67821762c297597f5f8c2509f258}\label{generate__movetables_8cpp_a57fd67821762c297597f5f8c2509f258} 
+\Hypertarget{generate__movetables_8cpp_a79a2d5cdef9d857259ba1de2bcfb9f13}\label{generate__movetables_8cpp_a79a2d5cdef9d857259ba1de2bcfb9f13} 
 \index{generate\_movetables.cpp@{generate\_movetables.cpp}!findPerfectHash@{findPerfectHash}}
 \index{findPerfectHash@{findPerfectHash}!generate\_movetables.cpp@{generate\_movetables.cpp}}
 \doxysubsubsection{\texorpdfstring{findPerfectHash()}{findPerfectHash()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash}{Move\+Tables\+::\+Blocker\+Hash}} find\+Perfect\+Hash (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}}}]{mask }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash}{Move\+Tables\+::\+Blocker\+Hash}} find\+Perfect\+Hash (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classLeaperInfo}{Leaper\+Info}} \&}]{info }\end{DoxyParamCaption})}
 
 
 
@@ -150,11 +162,11 @@ Finds the configuration for a perfect hash function for the powerset of the give
 \begin{DoxyReturn}{Returns}
 An object implementing the hash function. {\ttfamily Move\+Tables\+::\+Blocker\+Hash(\{0\}, \{0\}, 0, 0)} is returned if the generation has failed. 
 \end{DoxyReturn}
-\Hypertarget{generate__movetables_8cpp_ac757e5c1cbf3229f93d1bb6e82847061}\label{generate__movetables_8cpp_ac757e5c1cbf3229f93d1bb6e82847061} 
+\Hypertarget{generate__movetables_8cpp_affc97788c4427df10e7f62c8720db38b}\label{generate__movetables_8cpp_affc97788c4427df10e7f62c8720db38b} 
 \index{generate\_movetables.cpp@{generate\_movetables.cpp}!generatePossibleBlockers@{generatePossibleBlockers}}
 \index{generatePossibleBlockers@{generatePossibleBlockers}!generate\_movetables.cpp@{generate\_movetables.cpp}}
 \doxysubsubsection{\texorpdfstring{generatePossibleBlockers()}{generatePossibleBlockers()}}
-{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} $>$ generate\+Possible\+Blockers (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}}}]{mask }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} $>$ generate\+Possible\+Blockers (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}}}]{mask }\end{DoxyParamCaption})}
 
 
 
@@ -168,11 +180,29 @@ Generates all possibilities for how blocking pieces can be distributed within th
 \begin{DoxyReturn}{Returns}
 the powerset of that mask. 
 \end{DoxyReturn}
-\Hypertarget{generate__movetables_8cpp_a19e8d4d69847ba7939f40f7781764860}\label{generate__movetables_8cpp_a19e8d4d69847ba7939f40f7781764860} 
+\Hypertarget{generate__movetables_8cpp_ad6d54aef18c66b132d1bbfa282318286}\label{generate__movetables_8cpp_ad6d54aef18c66b132d1bbfa282318286} 
+\index{generate\_movetables.cpp@{generate\_movetables.cpp}!generatePossibleMoves@{generatePossibleMoves}}
+\index{generatePossibleMoves@{generatePossibleMoves}!generate\_movetables.cpp@{generate\_movetables.cpp}}
+\doxysubsubsection{\texorpdfstring{generatePossibleMoves()}{generatePossibleMoves()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} $>$ generate\+Possible\+Moves (\begin{DoxyParamCaption}\item[{int}]{square,  }\item[{const vector$<$ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} $>$ \&}]{blockers,  }\item[{bool}]{is\+Bishop }\end{DoxyParamCaption})}
+
+\Hypertarget{generate__movetables_8cpp_a4fd91d30c17ef34ce0abaffe511aff12}\label{generate__movetables_8cpp_a4fd91d30c17ef34ce0abaffe511aff12} 
+\index{generate\_movetables.cpp@{generate\_movetables.cpp}!hashMoves@{hashMoves}}
+\index{hashMoves@{hashMoves}!generate\_movetables.cpp@{generate\_movetables.cpp}}
+\doxysubsubsection{\texorpdfstring{hashMoves()}{hashMoves()}}
+{\footnotesize\ttfamily void hash\+Moves (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} $>$ \&}]{moves,  }\item[{vector$<$ \mbox{\hyperlink{classLeaperInfo}{Leaper\+Info}} $>$ \&}]{square\+Info,  }\item[{vector$<$ \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash}{Move\+Tables\+::\+Blocker\+Hash}} $>$ \&}]{hash\+Functions,  }\item[{unsigned \&}]{current\+Offset }\end{DoxyParamCaption})}
+
+\Hypertarget{generate__movetables_8cpp_a40851e36edec89dac63d9e065146fe4a}\label{generate__movetables_8cpp_a40851e36edec89dac63d9e065146fe4a} 
+\index{generate\_movetables.cpp@{generate\_movetables.cpp}!initHashFunctions@{initHashFunctions}}
+\index{initHashFunctions@{initHashFunctions}!generate\_movetables.cpp@{generate\_movetables.cpp}}
+\doxysubsubsection{\texorpdfstring{initHashFunctions()}{initHashFunctions()}}
+{\footnotesize\ttfamily void init\+Hash\+Functions (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{classLeaperInfo}{Leaper\+Info}} $>$ \&}]{square\+Info,  }\item[{vector$<$ \mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash}{Move\+Tables\+::\+Blocker\+Hash}} $>$ \&}]{hash\+Functions,  }\item[{unsigned \&}]{number\+Of\+Moves,  }\item[{bool}]{is\+Bishop }\end{DoxyParamCaption})}
+
+\Hypertarget{generate__movetables_8cpp_a5e3f1759a82c2c9be4a738e9d84a4575}\label{generate__movetables_8cpp_a5e3f1759a82c2c9be4a738e9d84a4575} 
 \index{generate\_movetables.cpp@{generate\_movetables.cpp}!kingMove@{kingMove}}
 \index{kingMove@{kingMove}!generate\_movetables.cpp@{generate\_movetables.cpp}}
 \doxysubsubsection{\texorpdfstring{kingMove()}{kingMove()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} king\+Move (\begin{DoxyParamCaption}\item[{int}]{square }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} king\+Move (\begin{DoxyParamCaption}\item[{int}]{square }\end{DoxyParamCaption})}
 
 
 
@@ -186,11 +216,11 @@ Computes the possible moves of a king on a given square (assuming the board is e
 \begin{DoxyReturn}{Returns}
 a bitboard with all the squares set, to which a king can move. 
 \end{DoxyReturn}
-\Hypertarget{generate__movetables_8cpp_aadb3e885a15a0499b2e603ab5376a456}\label{generate__movetables_8cpp_aadb3e885a15a0499b2e603ab5376a456} 
+\Hypertarget{generate__movetables_8cpp_a91e59d76bf53c7bf376550ffdff4f2fd}\label{generate__movetables_8cpp_a91e59d76bf53c7bf376550ffdff4f2fd} 
 \index{generate\_movetables.cpp@{generate\_movetables.cpp}!knightMove@{knightMove}}
 \index{knightMove@{knightMove}!generate\_movetables.cpp@{generate\_movetables.cpp}}
 \doxysubsubsection{\texorpdfstring{knightMove()}{knightMove()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} knight\+Move (\begin{DoxyParamCaption}\item[{int}]{square }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} knight\+Move (\begin{DoxyParamCaption}\item[{int}]{square }\end{DoxyParamCaption})}
 
 
 
@@ -210,11 +240,11 @@ a bitboard with all squares set to which the knight could move (assuming the boa
 \doxysubsubsection{\texorpdfstring{main()}{main()}}
 {\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\Hypertarget{generate__movetables_8cpp_ae1fdd97fcfd39a0c790e47fb677e3b16}\label{generate__movetables_8cpp_ae1fdd97fcfd39a0c790e47fb677e3b16} 
+\Hypertarget{generate__movetables_8cpp_a98b90dcb7131ee579571c6b88bf967b1}\label{generate__movetables_8cpp_a98b90dcb7131ee579571c6b88bf967b1} 
 \index{generate\_movetables.cpp@{generate\_movetables.cpp}!pawnAttack@{pawnAttack}}
 \index{pawnAttack@{pawnAttack}!generate\_movetables.cpp@{generate\_movetables.cpp}}
 \doxysubsubsection{\texorpdfstring{pawnAttack()}{pawnAttack()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} pawn\+Attack (\begin{DoxyParamCaption}\item[{int}]{square,  }\item[{int}]{color }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} pawn\+Attack (\begin{DoxyParamCaption}\item[{int}]{square,  }\item[{int}]{color }\end{DoxyParamCaption})}
 
 
 
@@ -256,11 +286,11 @@ Generates an uniformly distributed uint64.
 \begin{DoxyReturn}{Returns}
 the random number. 
 \end{DoxyReturn}
-\Hypertarget{generate__movetables_8cpp_a0a59d4d97b628baf9a328b4c47654a22}\label{generate__movetables_8cpp_a0a59d4d97b628baf9a328b4c47654a22} 
+\Hypertarget{generate__movetables_8cpp_a0e62c963e085456c6600344e69a3aa54}\label{generate__movetables_8cpp_a0e62c963e085456c6600344e69a3aa54} 
 \index{generate\_movetables.cpp@{generate\_movetables.cpp}!rookBlockers@{rookBlockers}}
 \index{rookBlockers@{rookBlockers}!generate\_movetables.cpp@{generate\_movetables.cpp}}
 \doxysubsubsection{\texorpdfstring{rookBlockers()}{rookBlockers()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} rook\+Blockers (\begin{DoxyParamCaption}\item[{int}]{square }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} rook\+Blockers (\begin{DoxyParamCaption}\item[{int}]{square }\end{DoxyParamCaption})}
 
 
 
@@ -285,11 +315,11 @@ Computes a mask, where all locations are set, where a blocking piece could imped
 \begin{DoxyReturn}{Returns}
 a bitboard with the relevant squares set. 
 \end{DoxyReturn}
-\Hypertarget{generate__movetables_8cpp_a354055978c03f7bf0457ff255aa71ff6}\label{generate__movetables_8cpp_a354055978c03f7bf0457ff255aa71ff6} 
+\Hypertarget{generate__movetables_8cpp_a688d206b7343f59284cfdefa78615fe8}\label{generate__movetables_8cpp_a688d206b7343f59284cfdefa78615fe8} 
 \index{generate\_movetables.cpp@{generate\_movetables.cpp}!rookMoveRay@{rookMoveRay}}
 \index{rookMoveRay@{rookMoveRay}!generate\_movetables.cpp@{generate\_movetables.cpp}}
 \doxysubsubsection{\texorpdfstring{rookMoveRay()}{rookMoveRay()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} rook\+Move\+Ray (\begin{DoxyParamCaption}\item[{int}]{square,  }\item[{int}]{add\+File,  }\item[{int}]{add\+Rank,  }\item[{\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}}}]{blockers }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} rook\+Move\+Ray (\begin{DoxyParamCaption}\item[{int}]{square,  }\item[{int}]{add\+File,  }\item[{int}]{add\+Rank,  }\item[{\mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}}}]{blockers }\end{DoxyParamCaption})}
 
 Computes one ray of a rooks movement. The pair {\ttfamily (add\+File, add\+Rank)} describes the direction of the ray\+:
 
@@ -317,11 +347,11 @@ Other values should not be uses.
 \begin{DoxyReturn}{Returns}
 a bitboard with the moves of this ray set. 
 \end{DoxyReturn}
-\Hypertarget{generate__movetables_8cpp_a54d2a5e5496a9d69a939c3ab016749bb}\label{generate__movetables_8cpp_a54d2a5e5496a9d69a939c3ab016749bb} 
+\Hypertarget{generate__movetables_8cpp_ac4c455169e99ebe1e491cde60584d02c}\label{generate__movetables_8cpp_ac4c455169e99ebe1e491cde60584d02c} 
 \index{generate\_movetables.cpp@{generate\_movetables.cpp}!rookMoves@{rookMoves}}
 \index{rookMoves@{rookMoves}!generate\_movetables.cpp@{generate\_movetables.cpp}}
 \doxysubsubsection{\texorpdfstring{rookMoves()}{rookMoves()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} rook\+Moves (\begin{DoxyParamCaption}\item[{int}]{square,  }\item[{\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}}}]{blockers }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} rook\+Moves (\begin{DoxyParamCaption}\item[{int}]{square,  }\item[{\mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}}}]{blockers }\end{DoxyParamCaption})}
 
 
 
@@ -337,11 +367,11 @@ Computes the possible move for a rook.
 \begin{DoxyReturn}{Returns}
 a bitboard with all the squares set, to which the bishop can move. 
 \end{DoxyReturn}
-\Hypertarget{generate__movetables_8cpp_a0b0fbe74096d63af14232439c5816de3}\label{generate__movetables_8cpp_a0b0fbe74096d63af14232439c5816de3} 
+\Hypertarget{generate__movetables_8cpp_a385c2bcbad9e498e2eec18e9774e741f}\label{generate__movetables_8cpp_a385c2bcbad9e498e2eec18e9774e741f} 
 \index{generate\_movetables.cpp@{generate\_movetables.cpp}!spreadBitsInMask@{spreadBitsInMask}}
 \index{spreadBitsInMask@{spreadBitsInMask}!generate\_movetables.cpp@{generate\_movetables.cpp}}
 \doxysubsubsection{\texorpdfstring{spreadBitsInMask()}{spreadBitsInMask()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}} spread\+Bits\+In\+Mask (\begin{DoxyParamCaption}\item[{unsigned}]{bits\+To\+Spread,  }\item[{\mbox{\hyperlink{classDagor_1_1BitBoard_1_1BitBoard}{Bit\+Board\+::\+Bit\+Board}}}]{mask }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}} spread\+Bits\+In\+Mask (\begin{DoxyParamCaption}\item[{unsigned}]{bits\+To\+Spread,  }\item[{\mbox{\hyperlink{classDagor_1_1BitBoards_1_1BitBoard}{Bit\+Board}}}]{mask }\end{DoxyParamCaption})}
 
 Spreads the given bits out to cover the ones of the mask. If the {\ttfamily n}th bit in {\ttfamily bits\+To\+Spread} is set, then the {\ttfamily n}th set square in mask will be set in the result as well. This is used to generate subsets of the mask.
 
@@ -368,11 +398,11 @@ mask:
 \begin{DoxyReturn}{Returns}
 A bitboard, in which a square is set iff it’s the {\ttfamily n}th set square of the mask and the {\ttfamily n}th bit of {\ttfamily bits\+To\+Spread} is set. 
 \end{DoxyReturn}
-\Hypertarget{generate__movetables_8cpp_a42fb4bdbe58ef6d98e607f0430fa3006}\label{generate__movetables_8cpp_a42fb4bdbe58ef6d98e607f0430fa3006} 
+\Hypertarget{generate__movetables_8cpp_ab4f27facf13ebae29e4890ec345431cd}\label{generate__movetables_8cpp_ab4f27facf13ebae29e4890ec345431cd} 
 \index{generate\_movetables.cpp@{generate\_movetables.cpp}!writeHash@{writeHash}}
 \index{writeHash@{writeHash}!generate\_movetables.cpp@{generate\_movetables.cpp}}
 \doxysubsubsection{\texorpdfstring{writeHash()}{writeHash()}}
-{\footnotesize\ttfamily void write\+Hash (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{f,  }\item[{\mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash}{Move\+Tables\+::\+Blocker\+Hash}} \&}]{hash,  }\item[{unsigned}]{offset }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void write\+Hash (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{f,  }\item[{\mbox{\hyperlink{classDagor_1_1MoveTables_1_1BlockerHash}{Move\+Tables\+::\+Blocker\+Hash}} \&}]{hash,  }\item[{unsigned}]{offset }\end{DoxyParamCaption})}
 
 
 
@@ -385,21 +415,6 @@ Write the representation of a hash function to a file.
 {\em hash} & \\
 \hline
 {\em offset} & a new offset, potentially differing from the one specified in the hash function. \\
-\hline
-\end{DoxyParams}
-\Hypertarget{generate__movetables_8cpp_aee1e6efad6f68ffc0c3cbbb20559e0c3}\label{generate__movetables_8cpp_aee1e6efad6f68ffc0c3cbbb20559e0c3} 
-\index{generate\_movetables.cpp@{generate\_movetables.cpp}!writeHashes@{writeHashes}}
-\index{writeHashes@{writeHashes}!generate\_movetables.cpp@{generate\_movetables.cpp}}
-\doxysubsubsection{\texorpdfstring{writeHashes()}{writeHashes()}}
-{\footnotesize\ttfamily void write\+Hashes (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{f }\end{DoxyParamCaption})}
-
-
-
-Writes the hashes and moves for the leaping pieces (bishop and rook) to a file. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em f} & \\
 \hline
 \end{DoxyParams}
 \Hypertarget{generate__movetables_8cpp_aedbef7beda50fa3e304e3e00d69b3537}\label{generate__movetables_8cpp_aedbef7beda50fa3e304e3e00d69b3537} 
@@ -432,6 +447,12 @@ writes the knight moves to a file.
 {\em f} & \\
 \hline
 \end{DoxyParams}
+\Hypertarget{generate__movetables_8cpp_a5ba18d45e652e5b08dbc219ae06a34be}\label{generate__movetables_8cpp_a5ba18d45e652e5b08dbc219ae06a34be} 
+\index{generate\_movetables.cpp@{generate\_movetables.cpp}!writeLeapers@{writeLeapers}}
+\index{writeLeapers@{writeLeapers}!generate\_movetables.cpp@{generate\_movetables.cpp}}
+\doxysubsubsection{\texorpdfstring{writeLeapers()}{writeLeapers()}}
+{\footnotesize\ttfamily void write\+Leapers (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{f }\end{DoxyParamCaption})}
+
 \Hypertarget{generate__movetables_8cpp_a2c206eb0bdfa86b0501f5bbf298dafa6}\label{generate__movetables_8cpp_a2c206eb0bdfa86b0501f5bbf298dafa6} 
 \index{generate\_movetables.cpp@{generate\_movetables.cpp}!writePawnAttacks@{writePawnAttacks}}
 \index{writePawnAttacks@{writePawnAttacks}!generate\_movetables.cpp@{generate\_movetables.cpp}}

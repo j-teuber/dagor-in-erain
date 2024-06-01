@@ -10,6 +10,6 @@ var searchData=
   ['f8_7',['f8',['../namespaceDagor_1_1Board.html#aaa7a78fb4d36e038f01d566093eb10e7a331360f07c7fbe4780791358fa3fed8d',1,'Dagor::Board']]],
   ['file_8',['file',['../namespaceDagor_1_1Board.html#a1a056a60f75b6a3403ddd3956672ed80',1,'Dagor::Board']]],
   ['file_5fname_9',['file_name',['../namespaceDagor_1_1Board.html#a51e0a7e47ac736f3f63fee742c0716f4',1,'Dagor::Board']]],
-  ['findfirstset_10',['findFirstSet',['../classDagor_1_1BitBoard_1_1BitBoard.html#a970d1b70069f4566f17fa82fb7ad72c5',1,'Dagor::BitBoard::BitBoard']]],
-  ['findperfecthash_11',['findPerfectHash',['../generate__movetables_8cpp.html#a57fd67821762c297597f5f8c2509f258',1,'generate_movetables.cpp']]]
+  ['findfirstset_10',['findFirstSet',['../classDagor_1_1BitBoards_1_1BitBoard.html#a2b4355a82bfd584fd9b100975a3d2204',1,'Dagor::BitBoards::BitBoard']]],
+  ['findperfecthash_11',['findPerfectHash',['../generate__movetables_8cpp.html#a79a2d5cdef9d857259ba1de2bcfb9f13',1,'generate_movetables.cpp']]]
 ];

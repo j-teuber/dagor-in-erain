@@ -1,10 +1,11 @@
 var bitboard_8h =
 [
-    [ "Dagor::BitBoard::BitBoard", "classDagor_1_1BitBoard_1_1BitBoard.html", "classDagor_1_1BitBoard_1_1BitBoard" ],
-    [ "operator&", "bitboard_8h.html#a2180cde64e50d8d905c305323a4faa2a", null ],
-    [ "operator<<", "bitboard_8h.html#a42d50eff7b95ed8aa25017902dd36e40", null ],
-    [ "operator==", "bitboard_8h.html#abc905cdd24c34e7e94fa0842df74cdf4", null ],
-    [ "operator|", "bitboard_8h.html#ae6b9169738f78a48956f69d38e81361e", null ],
-    [ "operator~", "bitboard_8h.html#a1c075756a2fb13d84256954db7bb303b", null ],
-    [ "edgesOnly", "bitboard_8h.html#a6ba130a05600f4ed39ef1c7b760ce090", null ]
+    [ "Dagor::BitBoards::BitBoard", "classDagor_1_1BitBoards_1_1BitBoard.html", "classDagor_1_1BitBoards_1_1BitBoard" ],
+    [ "operator!=", "bitboard_8h.html#af275df45047a865c78bb77062cd88515", null ],
+    [ "operator&", "bitboard_8h.html#a1bef5ef874bfa3bc5fcf42453ae06f23", null ],
+    [ "operator<<", "bitboard_8h.html#a9de0def2727856e3e33fca69b56b0c94", null ],
+    [ "operator==", "bitboard_8h.html#adc670ab0adba5e9a1413df86a7cfab3f", null ],
+    [ "operator|", "bitboard_8h.html#ae5ecff4ca81af3cb39ccb51eef9c9929", null ],
+    [ "operator~", "bitboard_8h.html#a96f00a27fc606585d2eaf7df241c460c", null ],
+    [ "edgesOnly", "bitboard_8h.html#ae34672fc232aa72291ff64a5077b5897", null ]
 ];

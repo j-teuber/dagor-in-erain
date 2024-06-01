@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['edgesonly_0',['edgesOnly',['../namespaceDagor_1_1BitBoard.html#a6ba130a05600f4ed39ef1c7b760ce090',1,'Dagor::BitBoard']]]
+  ['edgesonly_0',['edgesOnly',['../namespaceDagor_1_1BitBoards.html#ae34672fc232aa72291ff64a5077b5897',1,'Dagor::BitBoards']]]
 ];

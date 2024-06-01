@@ -8,5 +8,5 @@ var searchData=
   ['a6_5',['a6',['../namespaceDagor_1_1Board.html#aaa7a78fb4d36e038f01d566093eb10e7a5a7514342ac5b5f618dff99b1af9ee51',1,'Dagor::Board']]],
   ['a7_6',['a7',['../namespaceDagor_1_1Board.html#aaa7a78fb4d36e038f01d566093eb10e7a9d4bbef6023be2948e4c4d2b12ab24e2',1,'Dagor::Board']]],
   ['a8_7',['a8',['../namespaceDagor_1_1Board.html#aaa7a78fb4d36e038f01d566093eb10e7a63171947adb37dbc1d5833761891f988',1,'Dagor::Board']]],
-  ['as_5fuint_8',['as_uint',['../classDagor_1_1BitBoard_1_1BitBoard.html#af139c9a1f96439d4cd103c95121f0c81',1,'Dagor::BitBoard::BitBoard']]]
+  ['as_5fuint_8',['as_uint',['../classDagor_1_1BitBoards_1_1BitBoard.html#a68f0a5c9559b05a39d5d6343f3fbd852',1,'Dagor::BitBoards::BitBoard']]]
 ];

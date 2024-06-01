@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Fedora 40) (preloaded format=pdflatex 2024.5.31)  31 MAY 2024 22:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Fedora 40) (preloaded format=pdflatex 2024.5.31)  1 JUN 2024 16:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -868,9 +868,7 @@ File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 [1]
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 7.19995pt on input line 205.
- [2] [3] [4
-
-]
+ [2] [3] [4]
 Package hyperref Info: Option `pageanchor' set `true' on input line 208.
  (./index.tex
 Chapter 1.
@@ -889,6 +887,7 @@ LaTeX Font Info:    Font shape `T1/phv/m/it' in size <7> not available
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
 (Font)              scaled to size 6.29996pt on input line 7.
 ) [1
+
 
 ] [2
 
@@ -917,7 +916,7 @@ File: ts1phv.fd 2020/03/25 scalable font definitions for TS1/phv.
 )
 LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
 (Font)              scaled to size 8.99994pt on input line 6.
-) (./namespaceDagor_1_1BitBoard.tex
+) (./namespaceDagor_1_1BitBoards.tex
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 8.09995pt on input line 7.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <9> not available
@@ -925,9 +924,9 @@ LaTeX Font Info:    Font shape `T1/phv/m/it' in size <9> not available
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
 (Font)              scaled to size 8.09995pt on input line 7.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 10.79993pt on input line 28.
+(Font)              scaled to size 10.79993pt on input line 30.
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <8> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 33.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 35.
  [9]) (./namespaceDagor_1_1Board.tex
 [10]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <9> not available
@@ -956,7 +955,7 @@ Underfull \hbox (badness 10000) detected at line 509
 
 ) (./namespaceDagor_1_1MoveTables.tex [15]) [16]
 Chapter 6.
-(./classDagor_1_1BitBoard_1_1BitBoard.tex
+(./classDagor_1_1BitBoards_1_1BitBoard.tex
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 7.19995pt on input line 53.
  [17
@@ -1001,7 +1000,12 @@ Underfull \hbox (badness 10000) detected at line 219
 [][][]
  []
 
-) (./classDagor_1_1MoveTables_1_1BlockerHash.tex [21]
+) (./classDagor_1_1MoveTables_1_1BlockerHash.tex
+Underfull \hbox (badness 3148) in paragraph at lines 15--17
+[][] \T1/phv/m/n/10 ([] mask, [] [], un-signed [], un-signed
+ []
+
+[21]
 Underfull \hbox (badness 10000) detected at line 62
 [][][]
  []
@@ -1011,9 +1015,7 @@ Underfull \hbox (badness 10000) detected at line 80
 [][][]
  []
 
-) [23] [24
-
-]
+) (./classLeaperInfo.tex [23]) [24]
 Chapter 7.
 (./bitboard_8cpp.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--6
@@ -1025,145 +1027,147 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--6
 
  []
 
-[25]) (./bitboard_8h_source.tex [26]) (./board_8h.tex
+[25
+
+]) (./bitboard_8h_source.tex [26]) (./board_8h.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
 [27]) (./board_8h_source.tex [28]) (./constants_8h.tex)
 (./constants_8h_source.tex [29]) (./generate__movetables_8cpp.tex
-Underfull \hbox (badness 10000) in paragraph at lines 3--13
+Underfull \hbox (badness 10000) in paragraph at lines 3--14
 
  []
 
-[30] [31]
-Underfull \hbox (badness 10000) detected at line 88
+[30]
+Overfull \hbox (32.88354pt too wide) in paragraph at lines 62--64
+[]\T1/phv/m/n/10 void [] (vector$\OML/cmm/m/it/10 <$ [] $>$ \T1/phv/m/n/10 &mov
+es, vector$\OML/cmm/m/it/10 <$ [] $>$ \T1/phv/m/n/10 &square[]Info, vector$\OML
+/cmm/m/it/10 <$ []
+ []
+
+[31]
+Underfull \hbox (badness 10000) detected at line 100
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 112
+Underfull \hbox (badness 10000) detected at line 124
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 132
+Underfull \hbox (badness 10000) detected at line 144
 [][][]
  []
 
 [32]
-Underfull \hbox (badness 10000) detected at line 150
+Underfull \hbox (badness 10000) detected at line 162
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 168
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 186
+Underfull \hbox (badness 10000) detected at line 180
 [][][]
  []
 
 [33]
-Underfull \hbox (badness 10000) detected at line 204
+Underfull \hbox (badness 10000) detected at line 216
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 230
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 243
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 256
+Underfull \hbox (badness 10000) detected at line 234
 [][][]
  []
 
 [34]
-Underfull \hbox (badness 10000) detected at line 285
+Underfull \hbox (badness 10000) detected at line 260
 [][][]
  []
 
 
-Overfull \vbox (33.94672pt too high) has occurred while \output is active []
+Underfull \hbox (badness 10000) detected at line 273
+[][][]
+ []
 
+
+Underfull \hbox (badness 10000) detected at line 286
+[][][]
+ []
 
 [35]
-Underfull \hbox (badness 10000) detected at line 317
+Underfull \hbox (badness 10000) detected at line 315
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 337
+Underfull \hbox (badness 10000) detected at line 347
+[][][]
+ []
+
+[36]
+Underfull \hbox (badness 10000) detected at line 367
 [][][]
  []
 
 
 Package textcomp Warning: Symbol \textrightarrow not provided by
 (textcomp)                font family pcr in TS1 encoding.
-(textcomp)                Default family used instead on input line 348.
+(textcomp)                Default family used instead on input line 378.
 
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 3
-48.
+78.
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2022/07/10 v2.5l Standard LaTeX font definitions
 )
 LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
-348.
+378.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmtt.fd
 File: ts1cmtt.fd 2022/07/10 v2.5l Standard LaTeX font definitions
-) [36{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-
-Underfull \hbox (badness 10000) detected at line 368
+)
+Underfull \hbox (badness 10000) detected at line 398
 [][][]
  []
 
-[37] [38]) (./main_8cpp.tex
-Underfull \hbox (badness 10000) in paragraph at lines 3--5
-
- []
-
-) (./movetables_8cpp.tex
-Underfull \hbox (badness 10000) in paragraph at lines 3--4
-
- []
-
-[39]) (./movetables_8h.tex
+[37{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}])
+(./main_8cpp.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--6
 
  []
 
-) (./movetables_8h_source.tex [40]) (./print_8cpp.tex) (./print_8h.tex)
-(./print_8h_source.tex
-Underfull \hbox (badness 10000) in paragraph at lines 3--1
+[38]) (./movetables_8cpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
-) (./Readme_8md.tex) [41] [42
+) (./movetables_8h.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--6
 
-] (./refman.ind
+ []
+
+[39]) (./movetables_8h_source.tex) (./Readme_8md.tex) [40] [41] [42
+
+]
+(./refman.ind
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 22.39185pt on input line 1.
  [43
 
 
-] [44] [45] [46]) (./refman.aux)
+] [44] [45] [46] [47
+
+]) (./refman.aux)
 Package rerunfilecheck Info: File `refman.out' has not changed.
-(rerunfilecheck)             Checksum: C3C1AB26709F93FE1543E05375DD79F4;21074.
+(rerunfilecheck)             Checksum: 13220E7B1C0E373C60E16D5F0F2DA753;23080.
  ) 
 Here is how much of TeX's memory you used:
- 18930 strings out of 477136
- 322579 string characters out of 5813382
+ 18957 strings out of 477136
+ 323968 string characters out of 5813382
  1909388 words of memory out of 6000000
- 38430 multiletter control sequences out of 15000+600000
+ 38441 multiletter control sequences out of 15000+600000
  570853 words of font info for 108 fonts, out of 8000000 for 9000
  430 hyphenation exceptions out of 8191
  101i,16n,117p,749b,742s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1180,10 +1184,10 @@ r/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/urw/helvetic/uhvb8ac.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/urw/helvetic/uhvro8a.pfb>
-Output written on refman.pdf (52 pages, 251943 bytes).
+Output written on refman.pdf (53 pages, 259033 bytes).
 PDF statistics:
- 2106 PDF objects out of 2487 (max. 8388607)
- 2003 compressed objects within 21 object streams
- 385 named destinations out of 1000 (max. 500000)
- 897 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2235 PDF objects out of 2487 (max. 8388607)
+ 2130 compressed objects within 22 object streams
+ 406 named destinations out of 1000 (max. 500000)
+ 977 words of extra memory for PDF output out of 10000 (max. 10000000)
 

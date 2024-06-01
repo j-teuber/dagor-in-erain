@@ -1,6 +1,6 @@
 var namespaceDagor =
 [
-    [ "BitBoard", "namespaceDagor_1_1BitBoard.html", "namespaceDagor_1_1BitBoard" ],
+    [ "BitBoards", "namespaceDagor_1_1BitBoards.html", "namespaceDagor_1_1BitBoards" ],
     [ "Board", "namespaceDagor_1_1Board.html", [
       [ "CompassOffsets", "namespaceDagor_1_1Board.html#a6c832c33003cd58dd947e02d409916f2", [
         [ "north_west", "namespaceDagor_1_1Board.html#a6c832c33003cd58dd947e02d409916f2ab70d1f46116790747bc55794c50acae7", null ],
