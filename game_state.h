@@ -2,7 +2,8 @@
 #define GAME_STATE_H
 
 #include <array>
-#include <string_view>
+#include <iostream>
+#include <string>
 
 #include "bitboard.h"
 #include "constants.h"
@@ -22,8 +23,8 @@ class Move {
 
 class GameState {
  public:
-  static inline const std::string_view startingPosition =
-      "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
+  static inline const std::string startingPosition =
+      "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
   std::array<BitBoards::BitBoard, Piece::noPieces> pieces;
   std::array<BitBoards::BitBoard, Color::noColors> colors;
@@ -37,11 +38,22 @@ class GameState {
       : pieces(),
         colors(),
         moveCounter{0},
-        castlingRights{CastlingRights::all},
+        castlingRights{0},
         uneventfulHalfMoves{0},
         enPassantSquare{Board::Square::no_square},
         isWhiteNext{true} {
     parseFenString(startingPosition);
+  }
+
+  GameState(std::string fen)
+      : pieces(),
+        colors(),
+        moveCounter{0},
+        castlingRights{0},
+        uneventfulHalfMoves{0},
+        enPassantSquare{Board::Square::no_square},
+        isWhiteNext{true} {
+    parseFenString(fen);
   }
 
   BitBoards::BitBoard bitboardFor(unsigned piece, unsigned color) {
@@ -64,10 +76,11 @@ class GameState {
   }
 
   void executeMove(Move move);
-  void parseFenString(std::string_view fenString);
+  void parseFenString(std::string fenString);
 };
 
 std::ostream &operator<<(std::ostream &out, const GameState &board);
+std::ostream &operator<<(std::ostream &out, const Move &move);
 
 }  // namespace Dagor
 

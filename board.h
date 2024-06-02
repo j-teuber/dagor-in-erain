@@ -30,6 +30,12 @@ constexpr int index(int file, int rank) { return file + width * rank; }
 /// @return the name of that file in algebraic chess notation from {a,...,h}.
 constexpr char file_name(int file) { return static_cast<char>('a' + file); }
 
+inline std::string squareName(int square) {
+  char fileChar = 'a' + file(square);
+  char rankChar = '1' + rank(square);
+  return std::string(1, fileChar) + std::string(1, rankChar);
+}
+
 /// @brief The offsets to add to a square index to go in the intended direction.
 enum CompassOffsets {
   north_west = +7,

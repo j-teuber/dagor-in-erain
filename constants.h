@@ -44,11 +44,11 @@ constexpr unsigned pieceTypeFromChar(char type) {
 }
 
 enum CastlingRights {
-  whiteLong = 1,
-  whiteShort = 2,
-  blackLong = 4,
-  blackShort = 8,
-  all = whiteLong | whiteShort | blackLong | blackShort
+  whiteKingSide = 1,
+  whiteQueenSide = 2,
+  blackKingSide = 4,
+  blackQueenSide = 8,
+  all = whiteKingSide | whiteQueenSide | blackKingSide | blackQueenSide
 };
 
 #endif

@@ -1,14 +1,30 @@
 #include "game_state.h"
 
+#include <sstream>
+#include <vector>
+
 namespace Dagor {
 
 void executeMove(Move) {}
 
-void GameState::parseFenString(std::string_view fenString) {
+std::vector<std::string> splitFenFields(std::string const &fenString) {
+  std::istringstream iss(fenString);
+  std::vector<std::string> fields;
+  std::string field;
+  while (iss >> field) {
+    fields.push_back(field);
+  }
+  return fields;
+}
+
+void GameState::parseFenString(std::string fenString) {
+  std::vector<std::string> fields = splitFenFields(fenString);
   int file = 0;
   int rank = Board::width - 1;
-  for (char c : fenString) {
-    if ('0' < c && c <= '8') {
+  for (char c : fields[0]) {
+    if (c == ' ') {
+      break;
+    } else if ('0' < c && c <= '8') {
       file += static_cast<int>(c - '0');
     } else if (c == '/') {
       file = 0;
@@ -25,6 +41,32 @@ void GameState::parseFenString(std::string_view fenString) {
       }
     }
   }
+  isWhiteNext = (fields[1][0] == 'w');
+  for (char c : fields[2]) {
+    switch (c) {
+      case 'K':
+        castlingRights |= CastlingRights::whiteKingSide;
+        break;
+      case 'Q':
+        castlingRights |= CastlingRights::whiteQueenSide;
+        break;
+      case 'k':
+        castlingRights |= CastlingRights::blackKingSide;
+        break;
+      case 'q':
+        castlingRights |= CastlingRights::blackQueenSide;
+        break;
+    }
+  }
+  if (fields[3][0] == '-') {
+    enPassantSquare = Board::Square::no_square;
+  } else {
+    int file = fields[3][0] - 'a';
+    int rank = fields[3][1] - '0';
+    enPassantSquare = Board::index(file, rank);
+  }
+  uneventfulHalfMoves = std::stoi(fields[4]);
+  moveCounter = std::stoi(fields[5]);
 }
 
 std::ostream &operator<<(std::ostream &out, const GameState &board) {
@@ -48,9 +90,20 @@ std::ostream &operator<<(std::ostream &out, const GameState &board) {
   for (int file = 0; file < Board::width; file++)
     out << Board::file_name(file) << ' ';
   out << "\t en passant: "
-      << (board.enPassantSquare == Board::Square::no_square ? "-" : "!")
+      << (board.enPassantSquare == Board::Square::no_square
+              ? "-"
+              : Board::squareName(board.enPassantSquare))
       << ", castling rights: " << static_cast<int>(board.castlingRights);
   out << std::endl;
+  return out;
+}
+
+std::ostream &operator<<(std::ostream &out, const Move &move) {
+  out << Board::file_name(Board::file(move.start)) << Board::rank(move.start)
+      << Board::file_name(Board::file(move.end)) << Board::rank(move.end);
+  if (move.promotion != 0) {
+    out << piecePrintChar(move.promotion, Color::white);
+  }
   return out;
 }
 

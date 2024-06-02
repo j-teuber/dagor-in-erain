@@ -9,7 +9,10 @@
 using namespace Dagor;
 
 int main() {
-  GameState state{};
+  GameState state{
+      "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2"};
   std::cout << state;
+  std::cout << Move(Board::a7, Board::a8, Piece::knight);
+
   return 0;
 }
