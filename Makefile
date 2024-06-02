@@ -38,7 +38,6 @@ clean:
 
 docs:
 	doxygen > /dev/null
-	cd docs/latex && make pdf &> /dev/null && cd ../..
 
 $(app_dir)/release: $(release_objects)
 	g++ $(flags) $(release_flags) -o $@ $^
