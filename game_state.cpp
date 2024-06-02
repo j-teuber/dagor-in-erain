@@ -5,7 +5,13 @@
 
 namespace Dagor {
 
-void executeMove(Move) {}
+Move::Move(std::string algebraic) : start{0}, end{0}, promotion{0}, flags{0} {
+  start = Board::index(algebraic[0] - 'a', algebraic[1] - '0');
+  end = Board::index(algebraic[2] - 'a', algebraic[3] - '0');
+  if (algebraic.size() > 4) {
+    promotion = pieceTypeFromChar(algebraic[4]);
+  }
+}
 
 std::vector<std::string> splitFenFields(std::string const &fenString) {
   std::istringstream iss(fenString);

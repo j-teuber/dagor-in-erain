@@ -19,6 +19,8 @@ class Move {
 
   Move(std::uint8_t start, std::uint8_t end, std::uint8_t promotion)
       : start{start}, end{end}, promotion{promotion}, flags{0} {}
+
+  Move(std::string algebraic);
 };
 
 class GameState {
