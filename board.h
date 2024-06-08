@@ -31,8 +31,8 @@ constexpr int index(int file, int rank) { return file + width * rank; }
 constexpr char file_name(int file) { return static_cast<char>('a' + file); }
 
 inline std::string squareName(int square) {
-  char fileChar = 'a' + file(square);
-  char rankChar = '1' + rank(square);
+  char fileChar = file_name(file(square));
+  char rankChar = static_cast<char>('1' + rank(square));
   return std::string(1, fileChar) + std::string(1, rankChar);
 }
 

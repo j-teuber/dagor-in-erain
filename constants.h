@@ -48,7 +48,6 @@ enum CastlingRights {
   whiteQueenSide = 2,
   blackKingSide = 4,
   blackQueenSide = 8,
-  all = whiteKingSide | whiteQueenSide | blackKingSide | blackQueenSide
 };
 
 #endif

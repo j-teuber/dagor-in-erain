@@ -55,8 +55,17 @@ namespace Dagor::Test {
                      "Rook with blocking pieces");
     }
 
+    void moveClass() {
+        assertEquals(Move{"a1a3"}, Move{Board::a1, Board::a3, 0},
+                     "Moves can be constructed from algebraic notation");
+        assertEquals(Move{"a2a1r"}, Move{Board::a2, Board::a1, Piece::rook},
+                     "Moves can be constructed from algebraic notation with promotion");
+    }
+
     void test() {
+        std::cout << "\nRun Test suits ================================================================\n";
         pieceMovement();
+        moveClass();
 
         std::cout << "\nTests: " << tests << " (" << (tests - failures) << " passed, "
                   << failures << " failed)\n";

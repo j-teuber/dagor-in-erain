@@ -21,8 +21,12 @@ class Move {
   Move(std::uint8_t start, std::uint8_t end, std::uint8_t promotion)
       : start{start}, end{end}, promotion{promotion}, flags{0} {}
 
-  explicit Move(std::string algebraic);
+  explicit Move(std::string const& algebraic);
 };
+
+inline bool operator==(Move const& a, Move const& b) {
+    return a.start == b.start && a.end == b.end && a.promotion == b.promotion && a.flags == b.flags;
+}
 
 class GameState {
  public:
@@ -48,7 +52,7 @@ class GameState {
     parseFenString(startingPosition);
   }
 
-  explicit GameState(std::string fen)
+  explicit GameState(std::string const& fen)
       : pieces(),
         colors(),
         moveCounter{0},
@@ -120,7 +124,7 @@ class GameState {
   }
 
   void executeMove(Move move);
-  void parseFenString(std::string fenString);
+  void parseFenString(const std::string &fenString);
 };
 
 std::ostream &operator<<(std::ostream &out, const GameState &board);

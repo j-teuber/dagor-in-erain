@@ -1,13 +1,14 @@
 #include "game_state.h"
 
+#include <stdexcept>
 #include <sstream>
 #include <vector>
 
 namespace Dagor {
 
-Move::Move(std::string algebraic) : start{0}, end{0}, promotion{0}, flags{0} {
-  start = Board::index(algebraic[0] - 'a', algebraic[1] - '0');
-  end = Board::index(algebraic[2] - 'a', algebraic[3] - '0');
+Move::Move(std::string const &algebraic) : start{0}, end{0}, promotion{0}, flags{0} {
+  start = Board::index(algebraic[0] - 'a', algebraic[1] - '1');
+  end = Board::index(algebraic[2] - 'a', algebraic[3] - '1');
   if (algebraic.size() > 4) {
     promotion = pieceTypeFromChar(algebraic[4]);
   }
@@ -23,7 +24,7 @@ std::vector<std::string> splitFenFields(std::string const &fenString) {
   return fields;
 }
 
-void GameState::parseFenString(std::string fenString) {
+void GameState::parseFenString(const std::string &fenString) {
   std::vector<std::string> fields = splitFenFields(fenString);
   int file = 0;
   int rank = Board::width - 1;
@@ -43,7 +44,7 @@ void GameState::parseFenString(std::string fenString) {
         colors[color].set_bit(Board::index(file, rank));
         file++;
       } else {
-        throw "unrecognized piece " + c;
+        throw std::invalid_argument{"unknown character"};
       }
     }
   }
@@ -105,8 +106,8 @@ std::ostream &operator<<(std::ostream &out, const GameState &board) {
 }
 
 std::ostream &operator<<(std::ostream &out, const Move &move) {
-  out << Board::file_name(Board::file(move.start)) << Board::rank(move.start)
-      << Board::file_name(Board::file(move.end)) << Board::rank(move.end);
+  out << Board::squareName(move.start)
+      << Board::squareName(move.end);
   if (move.promotion != 0) {
     out << piecePrintChar(move.promotion, Color::white);
   }

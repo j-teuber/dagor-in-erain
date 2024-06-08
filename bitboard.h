@@ -29,7 +29,7 @@ class BitBoard {
 
   /// @brief
   /// @return a uint64 where all the 1 bits indicate the set squares
-  std::uint64_t as_uint() const { return board; }
+  constexpr std::uint64_t as_uint() const { return board; }
 
   /// @brief removes all the squares that are not also present in `other`.
   /// @param other
@@ -51,7 +51,7 @@ class BitBoard {
   /// @param square the square to be set
   /// @return the bitboard
   static inline BitBoard single_square_set(int square) {
-    return BitBoard(static_cast<std::uint64_t>(1) << square);
+    return {static_cast<std::uint64_t>(1) << square};
   }
 
   /// @brief checks whether the bitboard is empty, that is whether no squares
