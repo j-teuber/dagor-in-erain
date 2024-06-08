@@ -21,11 +21,12 @@ class Move {
   Move(std::uint8_t start, std::uint8_t end, std::uint8_t promotion)
       : start{start}, end{end}, promotion{promotion}, flags{0} {}
 
-  explicit Move(std::string const& algebraic);
+  explicit Move(std::string const &algebraic);
 };
 
-inline bool operator==(Move const& a, Move const& b) {
-    return a.start == b.start && a.end == b.end && a.promotion == b.promotion && a.flags == b.flags;
+inline bool operator==(Move const &a, Move const &b) {
+  return a.start == b.start && a.end == b.end && a.promotion == b.promotion &&
+         a.flags == b.flags;
 }
 
 class GameState {
@@ -52,7 +53,7 @@ class GameState {
     parseFenString(startingPosition);
   }
 
-  explicit GameState(std::string const& fen)
+  explicit GameState(std::string const &fen)
       : pieces(),
         colors(),
         moveCounter{0},
@@ -82,46 +83,8 @@ class GameState {
     return Color::noColors;
   }
 
-  BitBoards::BitBoard getMoves(unsigned piece, unsigned color, unsigned square) {
-    auto occupancy = colors[Color::black] & colors[Color::white];
-    auto moves = BitBoards::BitBoard();
-    switch (piece) {
-      case Piece::pawn:
-      {int offset = color == Color::white ? Board::CompassOffsets::north
-                                           : Board::CompassOffsets::south;
-        moves |= BitBoards::BitBoard(1UL << (square + offset)) & ~occupancy;
-        moves |= MoveTables::pawnAttacks[color][square] & occupancy;}
-        break;
-      case Piece::knight:
-        moves |= MoveTables::knightMoves[square];
-        break;
-      case Piece::king:
-        moves |= MoveTables::kingMoves[square];
-        break;
-      case Piece::bishop:
-        moves |= MoveTables::bishopHashes[square].lookUp(occupancy);
-        break;
-      case Piece::rook:
-        moves |= MoveTables::rookHashes[square].lookUp(occupancy);
-        break;
-      case Piece::queen:
-        moves |= MoveTables::bishopHashes[square].lookUp(occupancy);
-        moves |= MoveTables::rookHashes[square].lookUp(occupancy);
-        break;
-
-      default:
-          return {};
-    }
-    return moves & ~colors[color];
-  }
-
-  bool isSquareAttacked(int square, int color) {
-    auto attackers = BitBoards::BitBoard();
-    for (unsigned piece = 0; piece < pieces.size(); piece++) {
-      attackers |= getMoves(piece, color, square) & pieces[piece];
-    }
-    return !attackers.is_empty();
-  }
+  BitBoards::BitBoard getMoves(unsigned piece, unsigned color, unsigned square);
+  bool isSquareAttacked(int square, int color);
 
   void executeMove(Move move);
   void parseFenString(const std::string &fenString);

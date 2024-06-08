@@ -1,12 +1,55 @@
 #include "game_state.h"
 
-#include <stdexcept>
 #include <sstream>
+#include <stdexcept>
 #include <vector>
 
 namespace Dagor {
 
-Move::Move(std::string const &algebraic) : start{0}, end{0}, promotion{0}, flags{0} {
+BitBoards::BitBoard GameState::getMoves(unsigned piece, unsigned color,
+                                        unsigned square) {
+  auto occupancy = colors[Color::black] & colors[Color::white];
+  auto moves = BitBoards::BitBoard();
+  switch (piece) {
+    case Piece::pawn: {
+      int offset = color == Color::white ? Board::CompassOffsets::north
+                                         : Board::CompassOffsets::south;
+      moves |= BitBoards::BitBoard(1UL << (square + offset)) & ~occupancy;
+      moves |= MoveTables::pawnAttacks[color][square] & occupancy;
+    } break;
+    case Piece::knight:
+      moves |= MoveTables::knightMoves[square];
+      break;
+    case Piece::king:
+      moves |= MoveTables::kingMoves[square];
+      break;
+    case Piece::bishop:
+      moves |= MoveTables::bishopHashes[square].lookUp(occupancy);
+      break;
+    case Piece::rook:
+      moves |= MoveTables::rookHashes[square].lookUp(occupancy);
+      break;
+    case Piece::queen:
+      moves |= MoveTables::bishopHashes[square].lookUp(occupancy);
+      moves |= MoveTables::rookHashes[square].lookUp(occupancy);
+      break;
+
+    default:
+      return {};
+  }
+  return moves & ~colors[color];
+}
+
+bool GameState::isSquareAttacked(int square, int color) {
+  auto attackers = BitBoards::BitBoard();
+  for (unsigned piece = 0; piece < pieces.size(); piece++) {
+    attackers |= getMoves(piece, color, square) & pieces[piece];
+  }
+  return !attackers.is_empty();
+}
+
+Move::Move(std::string const &algebraic)
+    : start{0}, end{0}, promotion{0}, flags{0} {
   start = Board::index(algebraic[0] - 'a', algebraic[1] - '1');
   end = Board::index(algebraic[2] - 'a', algebraic[3] - '1');
   if (algebraic.size() > 4) {
@@ -106,8 +149,7 @@ std::ostream &operator<<(std::ostream &out, const GameState &board) {
 }
 
 std::ostream &operator<<(std::ostream &out, const Move &move) {
-  out << Board::squareName(move.start)
-      << Board::squareName(move.end);
+  out << Board::squareName(move.start) << Board::squareName(move.end);
   if (move.promotion != 0) {
     out << piecePrintChar(move.promotion, Color::white);
   }
