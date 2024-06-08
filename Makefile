@@ -9,12 +9,12 @@ release_obj_dir := $(obj_dir)/release
 debug_obj_dir := $(obj_dir)/debug
 app_dir := $(build_dir)/app_dir
 
-units := main bitboard movetables game_state uci
+units := main bitboard movetables game_state uci test
 src_files := $(foreach u, $(units), $(u).cpp)
 debug_objects := $(foreach u, $(units), $(debug_obj_dir)/$(u).o)
 release_objects := $(foreach u, $(units), $(release_obj_dir)/$(u).o)
 
-.PHONY: all run clean dirs docs
+.PHONY: all run clean dirs docs test
 
 all: debug release docs
 
@@ -24,6 +24,9 @@ release: $(app_dir)/release
 
 run: $(app_dir)/debug
 	$(app_dir)/debug
+
+test: $(app_dir)/debug
+	$(app_dir)/debug test
 
 dirs:
 	mkdir -p $(release_obj_dir)
