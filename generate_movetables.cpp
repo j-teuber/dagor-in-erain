@@ -302,8 +302,7 @@ BitBoard spreadBitsInMask(unsigned bitsToSpread, BitBoard mask) {
 /// @brief Generates an uniformly distributed uint64.
 /// @return the random number.
 std::uint64_t randomLong() {
-  static constexpr std::uint64_t seed = 0;
-  static std::mt19937_64 engine{seed};
+  static std::mt19937_64 engine{0}; // we want a predictable generator, NOLINT(*-msc51-cpp)
   static std::uniform_int_distribution<std::uint64_t> distribution{};
   return distribution(engine);
 }
@@ -343,7 +342,7 @@ vector<BitBoard> generatePossibleMoves(int square,
   return moves;
 }
 
-class LeaperInfo {
+class SliderInfo {
  public:
   bool isBishop;
   int square;
@@ -351,7 +350,7 @@ class LeaperInfo {
   vector<BitBoard> blockers;
   vector<BitBoard> moves;
 
-  LeaperInfo(bool isBishop, int square)
+  SliderInfo(bool isBishop, int square)
       : isBishop{isBishop},
         square{square},
         blockerMask{isBishop ? bishopBlockers(square) : rookBlockers(square)},
@@ -365,7 +364,7 @@ class LeaperInfo {
 /// @return An object implementing the hash function.
 /// `MoveTables::BlockerHash({0}, {0}, 0, 0)` is returned if the generation has
 /// failed.
-MoveTables::BlockerHash findPerfectHash(LeaperInfo &info) {
+MoveTables::BlockerHash findPerfectHash(SliderInfo &info) {
   unsigned maxTries = 1u << 31;
   int bitCount = info.blockerMask.popcount();
 
@@ -386,7 +385,7 @@ MoveTables::BlockerHash findPerfectHash(LeaperInfo &info) {
     }
   }
   std::cerr << "Hash generation has failed!";
-  return MoveTables::BlockerHash({0}, {0}, 0, 0);
+  return {{0}, {0}, 0, 0};
 }
 
 /// @brief Write the representation of a hash function to a file
@@ -401,11 +400,11 @@ void writeHash(std::ostream &f, MoveTables::BlockerHash &hash,
     << offset << "U}";
 }
 
-void initHashFunctions(vector<LeaperInfo> &squareInfo,
+void initHashFunctions(vector<SliderInfo> &squareInfo,
                        vector<MoveTables::BlockerHash> &hashFunctions,
                        unsigned &numberOfMoves, bool isBishop) {
   for (int square = 0; square < Board::size; square++) {
-    LeaperInfo info(isBishop, square);
+    SliderInfo info(isBishop, square);
     squareInfo.push_back(info);
     MoveTables::BlockerHash hash{findPerfectHash(info)};
     hashFunctions.push_back(hash);
@@ -413,12 +412,12 @@ void initHashFunctions(vector<LeaperInfo> &squareInfo,
   }
 }
 
-void hashMoves(vector<BitBoard> &moves, vector<LeaperInfo> &squareInfo,
+void hashMoves(vector<BitBoard> &moves, vector<SliderInfo> &squareInfo,
                vector<MoveTables::BlockerHash> &hashFunctions,
                unsigned &currentOffset) {
   for (int square = 0; square < Board::size; square++) {
     MoveTables::BlockerHash hash{hashFunctions[square]};
-    LeaperInfo info{squareInfo[square]};
+    SliderInfo info{squareInfo[square]};
     for (unsigned i = 0; i < info.blockers.size(); i++) {
       unsigned h = hash.hash(info.blockers[i]) + currentOffset;
       moves[h] = info.moves[i];
@@ -427,10 +426,10 @@ void hashMoves(vector<BitBoard> &moves, vector<LeaperInfo> &squareInfo,
   }
 }
 
-void writeLeapers(std::ostream &f) {
-  vector<LeaperInfo> bishopInfo;
+void writeSlidingPieces(std::ostream &f) {
+  vector<SliderInfo> bishopInfo;
   vector<MoveTables::BlockerHash> bishopHashes;
-  vector<LeaperInfo> rookInfo;
+  vector<SliderInfo> rookInfo;
   vector<MoveTables::BlockerHash> rookHashes;
   unsigned numberOfMoves = 0;
   initHashFunctions(bishopInfo, bishopHashes, numberOfMoves, true);
@@ -479,7 +478,7 @@ int main() {
   writePawnAttacks(f);
   writeKnightMoves(f);
   writeKingMoves(f);
-  writeLeapers(f);
+    writeSlidingPieces(f);
 
   f << "}\n";
 
