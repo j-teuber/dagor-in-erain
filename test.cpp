@@ -13,6 +13,16 @@ static unsigned tests = 0;
 static unsigned failures = 0;
 
 template <typename T>
+std::ostream& operator<<(std::ostream& out, const std::vector<T>& v) {
+  out << "[";
+  for (auto e : v) {
+    out << e << ", ";
+  }
+  out << "]\n";
+  return out;
+}
+
+template <typename T>
 void assertEquals(T actual, T expected, std::string_view name) {
   tests++;
   std::cout << name << "... ";
@@ -20,12 +30,32 @@ void assertEquals(T actual, T expected, std::string_view name) {
     std::cout << "Check!\n";
   } else {
     std::cout << "Fail!\n";
-    std::cout << "expected:\n" << expected << "\nbut got:\n" << actual;
+    std::cout << "expected:\n" << expected << "\nbut got:\n" << actual << '\n';
     failures++;
   }
 }
 
+void header(std::string_view name) {
+  std::cout << "\n\033[1m" << name << "\033[0m\n";
+}
+
+void bitBoards() {
+  header("BitBoards");
+
+  BitBoards::BitBoard b{0xc0000000000e1805};
+  assertEquals(static_cast<int>(*(++(++b.begin()))), 11,
+               "First element of iterator");
+  std::vector<int> expected{0, 2, 11, 12, 17, 18, 19, 62, 63};
+  std::vector<int> squares{};
+  for (auto square : b) {
+    squares.push_back(square);
+  }
+  assertEquals(squares, expected,
+               "BitBoards can iterate through their set bit");
+}
+
 void pseudoLegalMoves() {
+  header("Pseudo-Legal Move Generation");
   assertEquals(GameState{"8/8/8/2r1p3/3P4/8/8/8 w - - 0 1"}.getMoves(
                    Piece::pawn, Color::white, Board::d4),
                {0x1c00000000}, "pawn can capture diagonally and move forward");
@@ -53,6 +83,7 @@ void pseudoLegalMoves() {
 }
 
 void pieceMovement() {
+  header("Movement of Single Pieces");
   using namespace MoveTables;
   assertEquals(pawnAttacks[Color::white][Board::c8], {},
                "Pawn in last row cannot move further");
@@ -82,6 +113,7 @@ void pieceMovement() {
 }
 
 void moveClass() {
+  header("The Move Class");
   assertEquals(Move{"a1a3"}, Move{Board::a1, Board::a3, 0},
                "Moves can be constructed from algebraic notation");
   assertEquals(
@@ -90,11 +122,11 @@ void moveClass() {
 }
 
 void test() {
-  std::cout
-      << "\nRun Test suits "
-         "================================================================\n";
+  header("\nRun Test suits...\n");
   pieceMovement();
+  pseudoLegalMoves();
   moveClass();
+  bitBoards();
 
   if (failures == 0) {
     std::cout << "\033[1;32m";

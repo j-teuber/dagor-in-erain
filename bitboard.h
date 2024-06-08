@@ -3,6 +3,7 @@
 #define BITBOARD_H
 
 #include <cstdint>
+#include <iterator>
 #include <ostream>
 
 #include "board.h"
@@ -94,6 +95,51 @@ class BitBoard {
   /// Do not call this function for the empty bitboard.
   /// @return the index of the first set square.
   constexpr int findFirstSet() const { return __builtin_ctzll(board); }
+  struct Iterator {
+    using iterator_category = std::input_iterator_tag;
+    using difference_type = std::ptrdiff_t;
+    using value_type = std::uint8_t;
+    using pointer = value_type *;
+    using reference = value_type &;
+
+    Iterator(std::uint64_t board, std::uint8_t index)
+        : board{board}, index{index} {
+      advance();
+    }
+    value_type operator*() const { return index; }
+    Iterator &operator++() {
+      index++;
+      advance();
+      return *this;
+    }
+    Iterator operator++(int) {
+      Iterator tmp = *this;
+      ++(*this);
+      return tmp;
+    }
+    bool operator==(const Iterator &other) const {
+      return board == other.board && index == other.index;
+    }
+    bool operator!=(const Iterator &other) const { return !(*this == other); }
+
+   private:
+    std::uint64_t board;
+    std::uint8_t index;
+    void advance() {
+      std::uint64_t lower = (1UL << index) - 1;
+      board &= ~lower;
+      if (board == 0 || index >= Board::size) {
+        board = 0;
+        index = Board::size;
+      } else {
+        index = __builtin_ctzll(board);
+      }
+    }
+  };
+
+  using const_iterator = Iterator;
+  Iterator begin() { return {as_uint(), 0}; }
+  Iterator end() { return {as_uint(), Board::size}; }
 };
 
 inline BitBoard operator&(BitBoard a, BitBoard b) { return a &= b; }
