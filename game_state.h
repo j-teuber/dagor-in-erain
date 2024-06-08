@@ -7,6 +7,7 @@
 
 #include "bitboard.h"
 #include "constants.h"
+#include "movetables.h"
 
 namespace Dagor {
 
@@ -20,7 +21,7 @@ class Move {
   Move(std::uint8_t start, std::uint8_t end, std::uint8_t promotion)
       : start{start}, end{end}, promotion{promotion}, flags{0} {}
 
-  Move(std::string algebraic);
+  explicit Move(std::string algebraic);
 };
 
 class GameState {
@@ -47,7 +48,7 @@ class GameState {
     parseFenString(startingPosition);
   }
 
-  GameState(std::string fen)
+  explicit GameState(std::string fen)
       : pieces(),
         colors(),
         moveCounter{0},
@@ -75,6 +76,47 @@ class GameState {
     if (colors[Color::black].is_set(square)) return Color::black;
     if (colors[Color::white].is_set(square)) return Color::white;
     return Color::noColors;
+  }
+
+  BitBoards::BitBoard getMoves(unsigned piece, unsigned color, unsigned square) {
+    auto occupancy = colors[Color::black] & colors[Color::white];
+    auto moves = BitBoards::BitBoard();
+    switch (piece) {
+      case Piece::pawn:
+      {int offset = color == Color::white ? Board::CompassOffsets::north
+                                           : Board::CompassOffsets::south;
+        moves |= BitBoards::BitBoard(1UL << (square + offset)) & ~occupancy;
+        moves |= MoveTables::pawnAttacks[color][square] & occupancy;}
+        break;
+      case Piece::knight:
+        moves |= MoveTables::knightMoves[square];
+        break;
+      case Piece::king:
+        moves |= MoveTables::kingMoves[square];
+        break;
+      case Piece::bishop:
+        moves |= MoveTables::bishopHashes[square].lookUp(occupancy);
+        break;
+      case Piece::rook:
+        moves |= MoveTables::rookHashes[square].lookUp(occupancy);
+        break;
+      case Piece::queen:
+        moves |= MoveTables::bishopHashes[square].lookUp(occupancy);
+        moves |= MoveTables::rookHashes[square].lookUp(occupancy);
+        break;
+
+      default:
+          return {};
+    }
+    return moves & ~colors[color];
+  }
+
+  bool isSquareAttacked(int square, int color) {
+    auto attackers = BitBoards::BitBoard();
+    for (unsigned piece = 0; piece < pieces.size(); piece++) {
+      attackers |= getMoves(piece, color, square) & pieces[piece];
+    }
+    return !attackers.is_empty();
   }
 
   void executeMove(Move move);
