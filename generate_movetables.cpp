@@ -165,7 +165,7 @@ BitBoard bishopMoveRay(int square, bool fileUp, bool rankUp,
   BitBoard b;
   int r = Board::rank(square);
   int f = Board::file(square);
-  for (int offset = 0; offset < Board::width; offset++) {
+  for (int offset = 1; offset < Board::width; offset++) {
     int currentFile = fileUp ? f + offset : f - offset;
     int currentRank = rankUp ? r + offset : r - offset;
     b.set_bit_if_index_valid(currentFile, currentRank);
@@ -241,7 +241,7 @@ BitBoard rookMoveRay(int square, int addFile, int addRank, BitBoard blockers) {
   BitBoard b;
   int r = Board::rank(square);
   int f = Board::file(square);
-  for (int offset = 0; offset < Board::width; offset++) {
+  for (int offset = 1; offset < Board::width; offset++) {
     int currentFile = f + addFile * offset;
     int currentRank = r + addRank * offset;
     b.set_bit_if_index_valid(currentFile, currentRank);
