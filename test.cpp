@@ -26,16 +26,16 @@ void assertEquals(T actual, T expected, std::string_view name) {
   tests++;
   std::cout << name << "... ";
   if (actual == expected) {
-    std::cout << "Check!\n";
+    std::cout << "\033[1;32mCheck!\033[0m\n";
   } else {
-    std::cout << "Fail!\n";
+    std::cout << "\033[1;31mFail!\033[0m\n";
     std::cout << "expected:\n" << expected << "\nbut got:\n" << actual << '\n';
     failures++;
   }
 }
 
 void header(std::string_view name) {
-  std::cout << "\n\033[1m" << name << "\033[0m\n";
+  std::cout << "\n\033[1;34m" << name << "\033[0m\n";
 }
 
 void bitBoards() {
