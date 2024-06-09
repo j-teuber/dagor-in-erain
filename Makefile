@@ -23,10 +23,10 @@ debug: $(app_dir)/debug
 release: $(app_dir)/release
 
 run: $(app_dir)/debug
-	$(app_dir)/debug
+	@^
 
-test: $(app_dir)/debug
-	$(app_dir)/debug test
+test: $(app_dir)/release
+	$^ test
 
 dirs:
 	mkdir -p $(release_obj_dir)
@@ -35,6 +35,7 @@ dirs:
 
 clean: 
 	rm -rf $(build_dir)
+	rm movetables.cpp
 	mkdir -p $(release_obj_dir)
 	mkdir -p $(debug_obj_dir)
 	mkdir -p $(app_dir)
@@ -54,9 +55,14 @@ $(release_objects): $(release_obj_dir)/%.o : %.cpp
 $(debug_objects): $(debug_obj_dir)/%.o : %.cpp
 	g++ $(flags) $(debug_flags) -c -o $@ $^
 
-movetables.cpp: generate_movetables.cpp $(debug_obj_dir)/bitboard.o
-	g++ $(flags) $(debug_flags) -c -o $(debug_obj_dir)/generate_movetables.o generate_movetables.cpp
-	g++ $(flags) $(debug_flags) -o $(app_dir)/generate_movetables $(debug_obj_dir)/generate_movetables.o $(debug_obj_dir)/bitboard.o
+movetables.cpp: generate_movetables.cpp $(release_obj_dir)/bitboard.o
+	g++ $(flags) $(release_flags) -c -o $(release_obj_dir)/generate_movetables.o generate_movetables.cpp
+	g++ $(flags) $(release_flags) -o $(app_dir)/generate_movetables $(release_obj_dir)/generate_movetables.o $(release_obj_dir)/bitboard.o
 	$(app_dir)/generate_movetables
+
+#movetables.cpp: generate_movetables.cpp $(debug_obj_dir)/bitboard.o
+#	g++ $(flags) $(debug_flags) -c -o $(debug_obj_dir)/generate_movetables.o generate_movetables.cpp
+#	g++ $(flags) $(debug_flags) -o $(app_dir)/generate_movetables $(debug_obj_dir)/generate_movetables.o $(debug_obj_dir)/bitboard.o
+#	$(app_dir)/generate_movetables
 
 
