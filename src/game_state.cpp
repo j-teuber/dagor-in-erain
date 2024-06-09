@@ -68,8 +68,9 @@ struct MoveGenerator {
   const Square::t kingSquare;
 
   const GameState &state;
-  BitBoards::BitBoard intercepts;
+  BitBoards::BitBoard targets;
   BitBoards::BitBoard pins;
+  std::vector<BitBoards::BitBoard> pinRays;
 
   std::vector<Move> moves;
 
@@ -79,23 +80,19 @@ struct MoveGenerator {
         opponentColor{Color::opponent(state.next)},
         kingSquare{state.bitboardFor(Piece::king, myColor).findFirstSet()},
         state{state},
-        intercepts{0},
+        targets{BitBoards::all},
         pins{0},
+        pinRays{},
         moves{} {
     handleLeaperAttacks(Piece::pawn);
     handleLeaperAttacks(Piece::knight);
     handleSliderAttacks();
 
-    if (attacksOnKing > 1) {
-      intercepts = {0};
-
-      // We may have generated moves for pinned pieces already, but they
-      // don’t matter any more, because in double check, only the king can
-      // move.
-      moves.clear();
-    } else {
+    if (attacksOnKing <= 1) {
       standardNonPins();
-      castling();
+      if (attacksOnKing == 0) {
+        generateCastling();
+      }
       if (state.enPassantSquare != Square::noSquare) {
         enPassantCaptures();
       }
@@ -106,24 +103,78 @@ struct MoveGenerator {
 
  private:
   void enPassantCaptures() {
-    // TODO
+    auto electablePawns =
+        state.getMoves(Piece::pawn, opponentColor, state.enPassantSquare);
+    BitBoards::BitBoard occupancy{state.occupancy()};
+    Square::t pawnPush =
+        (myColor == Color::white) ? Square::north : Square::south;
+    Square::t capturePawn = state.enPassantSquare + pawnPush;
+    occupancy.unset_bit(capturePawn);
   }
 
-  void castling() {
-    // TODO
+  void generateCastling() {
+    BitBoards::BitBoard wkEmpty{0xe};
+    BitBoards::BitBoard wqEmpty{0x60};
+    BitBoards::BitBoard bkEmpty{0xe00000000000000};
+    BitBoards::BitBoard bqEmpty{0x6000000000000000};
+    BitBoards::BitBoard occupancy{state.occupancy()};
+    if (myColor == Color::white) {
+      bool right = state.castlingRights & CastlingRights::whiteQueenSide;
+      right = right && (occupancy & wqEmpty).is_empty();
+      right = right && state.getAttacks(Square::d1, myColor).is_empty();
+      right = right && state.getAttacks(Square::c1, myColor).is_empty();
+      if (right) {
+        moves.push_back(Move{Square::e1, Square::c1});
+      }
+
+      right = state.castlingRights & CastlingRights::whiteKingSide;
+      right = right && (occupancy & wkEmpty).is_empty();
+      right = right && state.getAttacks(Square::f1, myColor).is_empty();
+      right = right && state.getAttacks(Square::g1, myColor).is_empty();
+      if (right) {
+        moves.push_back(Move{Square::e1, Square::g1});
+      }
+    } else {
+      bool right = state.castlingRights & CastlingRights::blackQueenSide;
+      right = right && (occupancy & bqEmpty).is_empty();
+      right = right && state.getAttacks(Square::d8, myColor).is_empty();
+      right = right && state.getAttacks(Square::c8, myColor).is_empty();
+      if (right) {
+        moves.push_back(Move{Square::e8, Square::c8});
+      }
+
+      right = state.castlingRights & CastlingRights::blackKingSide;
+      right = right && (occupancy & bkEmpty).is_empty();
+      right = right && state.getAttacks(Square::f8, myColor).is_empty();
+      right = right && state.getAttacks(Square::g8, myColor).is_empty();
+      if (right) {
+        moves.push_back(Move{Square::e8, Square::g8});
+      }
+    }
   }
 
   void standardNonPins() {
     for (auto piece : Piece::nonKing) {
-      auto notPinned = state.bitboardFor(piece, myColor) & ~pins;
+      auto positions = state.bitboardFor(piece, myColor);
+      auto notPinned = positions & ~pins;
       for (auto start : notPinned) {
         enterMoves(start, piece, state.getMoves(piece, myColor, start));
+      }
+      auto pinned = positions & pins;
+      for (auto start : pinned) {
+        for (auto ray : pinRays) {
+          if (!(ray & BitBoards::single(start)).is_empty()) {
+            enterMoves(start, piece,
+                       state.getMoves(piece, myColor, start) & ray);
+          }
+        }
       }
     }
   }
 
   void generatePlainKingMoves() {
     for (auto end : state.getMoves(Piece::king, myColor, kingSquare)) {
+      // TODO: remove king from occupancy
       if (state.getAttacks(end, myColor).is_empty()) {
         moves.push_back(Move{kingSquare, end});
       }
@@ -175,13 +226,10 @@ struct MoveGenerator {
     if (!attackers.is_empty()) {
       if (ourBlockers.is_empty()) {
         attacksOnKing++;
-        intercepts |= ray;
+        targets |= ray;
       } else if (ourBlockers.popcount() == 1 && attacksOnKing <= 1) {
         pins |= ourBlockers;
-        unsigned square = ourBlockers.findFirstSet();
-        unsigned piece = state.getPiece(square);
-        auto pseudoLegal = state.getMoves(piece, myColor, square);
-        enterMoves(square, piece, pseudoLegal & ray);
+        pinRays.push_back(ray);
       }
     }
   }
@@ -189,12 +237,11 @@ struct MoveGenerator {
   void handleLeaperAttacks(Piece::t piece) {
     auto attacks = state.getMoves(piece, myColor, kingSquare);
     if (!attacks.is_empty()) attacksOnKing++;
-    intercepts |= attacks;
+    targets |= attacks;
   }
 
-  void enterMoves(Square::t start, Piece::t piece,
-                  BitBoards::BitBoard targets) {
-    for (auto end : targets) {
+  void enterMoves(Square::t start, Piece::t piece, BitBoards::BitBoard ends) {
+    for (auto end : (ends & targets)) {
       if (piece == Piece::pawn &&
           ((myColor == Color::white && Square::rank(end) == 7) ||
            (myColor == Color::black && Square::rank(end) == 7))) {

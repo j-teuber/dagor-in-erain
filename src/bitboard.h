@@ -215,6 +215,8 @@ inline BitBoard below(Coord::t rank) {
 ///         a b c d e f g h      as hex:     0xff818181818181ff
 inline const BitBoard edgesOnly{0xff818181818181ff};
 
+inline const BitBoard all{0xffffffffffffffff};
+
 }  // namespace Dagor::BitBoards
 
 #endif

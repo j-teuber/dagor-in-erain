@@ -84,6 +84,10 @@ class GameState {
     return Color::empty;
   }
 
+  BitBoards::BitBoard occupancy() const {
+    return colors[Color::white] & colors[Color::black];
+  }
+
   BitBoards::BitBoard getMoves(Piece::t piece, Color::t color,
                                Square::t square) const;
   BitBoards::BitBoard getMoves(Piece::t piece, Color::t color, Square::t square,
