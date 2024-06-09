@@ -4,20 +4,22 @@
 #include <array>
 
 #include "bitboard.h"
-#include "board.h"
+#include "types.h"
 
 namespace Dagor::MoveTables {
 
 /// @brief The attacks a pawn can make on a given square.
 /// Access: `pawnAttacks[color][square]`, where white is `0` and black is `1`.
-extern const BitBoards::BitBoard pawnAttacks[2][Board::size];
+extern const std::array<std::array<BitBoards::BitBoard, Square::size>,
+                        Color::size>
+    pawnAttacks;
 
 /// @brief The moves a knight can make on a given square.
-extern const BitBoards::BitBoard knightMoves[Board::size];
+extern const std::array<BitBoards::BitBoard, Square::size> knightMoves;
 
 /// @brief The moves a king can make on a given square. For his home square
 /// this does not include castling moves.
-extern const BitBoards::BitBoard kingMoves[Board::size];
+extern const std::array<BitBoards::BitBoard, Square::size> kingMoves;
 
 /// @brief The move that a sliding piece (bishop, rook or queen) can
 /// make on a given square. Access through the hash functions in
@@ -69,9 +71,9 @@ class BlockerHash {
 };
 
 /// @brief the hash functions to look up bishop moves, by square.
-extern const BlockerHash bishopHashes[Board::size];
+extern const std::array<BlockerHash, Square::size> bishopHashes;
 /// @brief the hash function to look up rook moves, by square.
-extern const BlockerHash rookHashes[Board::size];
+extern const std::array<BlockerHash, Square::size> rookHashes;
 }  // namespace Dagor::MoveTables
 
 #endif

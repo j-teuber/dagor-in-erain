@@ -7,16 +7,16 @@
 namespace Dagor {
 
 // no special moves: en passant and castling
-BitBoards::BitBoard GameState::getMoves(unsigned piece, unsigned color,
-                                        unsigned square,
+BitBoards::BitBoard GameState::getMoves(Piece::t piece, Color::t color,
+                                        Square::t square,
                                         BitBoards::BitBoard occupancy) const {
   auto moves = BitBoards::BitBoard();
   switch (piece) {
     case Piece::pawn: {
-      int offset = color == Color::white ? Board::CompassOffsets::north
-                                         : Board::CompassOffsets::south;
-      bool canDoubleStep = (color == Color::white) ? Board::rank(square) == 1
-                                                   : Board::rank(square) == 6;
+      Square::t offset =
+          (color == Color::white) ? Square::north : Square::south;
+      bool canDoubleStep = (color == Color::white) ? Square::rank(square) == 1
+                                                   : Square::rank(square) == 6;
       if (canDoubleStep) {
         moves |= BitBoards::BitBoard(1UL << (square + offset * 2)) & ~occupancy;
       }
@@ -46,16 +46,16 @@ BitBoards::BitBoard GameState::getMoves(unsigned piece, unsigned color,
   return moves & ~colors[color];
 }
 
-BitBoards::BitBoard GameState::getMoves(unsigned piece, unsigned color,
-                                        unsigned square,
-                                        BitBoards::BitBoard occupancy) const {
+BitBoards::BitBoard GameState::getMoves(Piece::t piece, Color::t color,
+                                        Square::t square) const {
   auto occupancy = colors[Color::black] | colors[Color::white];
-  getMoves(piece, color, square, occupancy);
+  return getMoves(piece, color, square, occupancy);
 }
 
-BitBoards::BitBoard GameState::getAttacks(int square, int color) const {
+BitBoards::BitBoard GameState::getAttacks(Square::t square,
+                                          Color::t color) const {
   auto attackers = BitBoards::BitBoard();
-  for (unsigned piece = 0; piece < pieces.size(); piece++) {
+  for (auto piece : Piece::all) {
     attackers |= getMoves(piece, color, square) & pieces[piece];
   }
   return attackers;
@@ -63,9 +63,9 @@ BitBoards::BitBoard GameState::getAttacks(int square, int color) const {
 
 struct MoveGenerator {
   std::uint8_t attacksOnKing;
-  const std::uint8_t myColor;
-  const std::uint8_t opponentColor;
-  const std::uint8_t kingSquare;
+  const Color::t myColor;
+  const Color::t opponentColor;
+  const Square::t kingSquare;
 
   const GameState &state;
   BitBoards::BitBoard intercepts;
@@ -75,10 +75,10 @@ struct MoveGenerator {
 
   MoveGenerator(const GameState &state)
       : attacksOnKing{0},
-        myColor{state.isWhiteNext ? Color::white : Color::black},
-        opponentColor{state.isWhiteNext ? Color::black : Color::white},
+        myColor{state.next},
+        opponentColor{Color::opponent(state.next)},
         kingSquare{state.bitboardFor(Piece::king, myColor).findFirstSet()},
-        state(state),
+        state{state},
         intercepts{0},
         pins{0},
         moves{} {
@@ -96,7 +96,7 @@ struct MoveGenerator {
     } else {
       standardNonPins();
       castling();
-      if (state.enPassantSquare != Board::Square::no_square) {
+      if (state.enPassantSquare != Square::noSquare) {
         enPassantCaptures();
       }
     }
@@ -114,7 +114,7 @@ struct MoveGenerator {
   }
 
   void standardNonPins() {
-    for (unsigned piece = 0; piece < Piece::noPieces; piece++) {
+    for (auto piece : Piece::nonKing) {
       auto notPinned = state.bitboardFor(piece, myColor) & ~pins;
       for (auto start : notPinned) {
         enterMoves(start, piece, state.getMoves(piece, myColor, start));
@@ -139,10 +139,10 @@ struct MoveGenerator {
         state.bitboardFor(Piece::queen, opponentColor);
     auto rookAttacks = state.getMoves(Piece::rook, myColor, kingSquare,
                                       state.colors[opponentColor]);
-    auto upper = rookAttacks & BitBoards::above(Board::rank(kingSquare));
-    auto left = rookAttacks & BitBoards::leftOf(Board::file(kingSquare));
-    auto lower = rookAttacks & BitBoards::below(Board::rank(kingSquare));
-    auto right = rookAttacks & BitBoards::rightOf(Board::file(kingSquare));
+    auto upper = rookAttacks & BitBoards::above(Square::rank(kingSquare));
+    auto left = rookAttacks & BitBoards::leftOf(Square::file(kingSquare));
+    auto lower = rookAttacks & BitBoards::below(Square::rank(kingSquare));
+    auto right = rookAttacks & BitBoards::rightOf(Square::file(kingSquare));
     handleSliderRay(rookQueen, upper);
     handleSliderRay(rookQueen, left);
     handleSliderRay(rookQueen, lower);
@@ -150,16 +150,18 @@ struct MoveGenerator {
 
     auto bishopAttacks = state.getMoves(Piece::bishop, myColor, kingSquare,
                                         state.colors[opponentColor]);
-    auto upperLeft = bishopAttacks & BitBoards::above(Board::rank(kingSquare)) &
-                     BitBoards::leftOf(Board::file(kingSquare));
+    auto upperLeft = bishopAttacks &
+                     BitBoards::above(Square::rank(kingSquare)) &
+                     BitBoards::leftOf(Square::file(kingSquare));
     auto upperRight = bishopAttacks &
-                      BitBoards::above(Board::rank(kingSquare)) &
-                      BitBoards::rightOf(Board::file(kingSquare));
-    auto lowerLeft = bishopAttacks & BitBoards::below(Board::rank(kingSquare)) &
-                     BitBoards::leftOf(Board::file(kingSquare));
+                      BitBoards::above(Square::rank(kingSquare)) &
+                      BitBoards::rightOf(Square::file(kingSquare));
+    auto lowerLeft = bishopAttacks &
+                     BitBoards::below(Square::rank(kingSquare)) &
+                     BitBoards::leftOf(Square::file(kingSquare));
     auto lowerRight = bishopAttacks &
-                      BitBoards::below(Board::rank(kingSquare)) &
-                      BitBoards::rightOf(Board::file(kingSquare));
+                      BitBoards::below(Square::rank(kingSquare)) &
+                      BitBoards::rightOf(Square::file(kingSquare));
     handleSliderRay(bishopQueen, upperLeft);
     handleSliderRay(bishopQueen, upperRight);
     handleSliderRay(bishopQueen, lowerLeft);
@@ -184,17 +186,18 @@ struct MoveGenerator {
     }
   }
 
-  void handleLeaperAttacks(unsigned piece) {
+  void handleLeaperAttacks(Piece::t piece) {
     auto attacks = state.getMoves(piece, myColor, kingSquare);
     if (!attacks.is_empty()) attacksOnKing++;
     intercepts |= attacks;
   }
 
-  void enterMoves(unsigned start, unsigned piece, BitBoards::BitBoard targets) {
+  void enterMoves(Square::t start, Piece::t piece,
+                  BitBoards::BitBoard targets) {
     for (auto end : targets) {
       if (piece == Piece::pawn &&
-          ((myColor == Color::white && Board::rank(end) == 7) ||
-           (myColor == Color::black && Board::rank(end) == 7))) {
+          ((myColor == Color::white && Square::rank(end) == 7) ||
+           (myColor == Color::black && Square::rank(end) == 7))) {
         moves.push_back(Move{start, end, Piece::knight});
         moves.push_back(Move{start, end, Piece::bishop});
         moves.push_back(Move{start, end, Piece::rook});
@@ -207,14 +210,11 @@ struct MoveGenerator {
 };
 
 std::vector<Move> GameState::generateLegalMoves() const {
-  unsigned myColor = isWhiteNext ? Color::white : Color::black;
-  unsigned otherColor = isWhiteNext ? Color::black : Color::white;
-
   std::vector<Move> moves{};
-  for (unsigned piece = 0; piece < pieces.size(); piece++) {
-    BitBoards::BitBoard positions = bitboardFor(piece, myColor);
+  for (auto piece : Piece::all) {
+    BitBoards::BitBoard positions = bitboardFor(piece, next);
     for (auto start : positions) {
-      BitBoards::BitBoard targets = getMoves(piece, myColor, start);
+      BitBoards::BitBoard targets = getMoves(piece, next, start);
       for (auto end : targets) {
         moves.push_back(Move{start, end, 0});
       }
@@ -225,10 +225,10 @@ std::vector<Move> GameState::generateLegalMoves() const {
 
 Move::Move(std::string const &algebraic)
     : start{0}, end{0}, promotion{0}, flags{0} {
-  start = Board::index(algebraic[0] - 'a', algebraic[1] - '1');
-  end = Board::index(algebraic[2] - 'a', algebraic[3] - '1');
+  start = Square::byName(algebraic[0], algebraic[1]);
+  end = Square::byName(algebraic[2], algebraic[3]);
   if (algebraic.size() > 4) {
-    promotion = pieceTypeFromChar(algebraic[4]);
+    promotion = Piece::byName(algebraic[4]);
   }
 }
 
@@ -245,7 +245,7 @@ std::vector<std::string> splitFenFields(std::string const &fenString) {
 void GameState::parseFenString(const std::string &fenString) {
   std::vector<std::string> fields = splitFenFields(fenString);
   int file = 0;
-  int rank = Board::width - 1;
+  int rank = Coord::width - 1;
   for (char c : fields[0]) {
     if (c == ' ') {
       break;
@@ -255,18 +255,18 @@ void GameState::parseFenString(const std::string &fenString) {
       file = 0;
       rank--;
     } else {
-      unsigned color = pieceColorFromChar(c);
-      unsigned type = pieceTypeFromChar(c);
-      if (type < Piece::noPieces) {
-        pieces[type].set_bit(Board::index(file, rank));
-        colors[color].set_bit(Board::index(file, rank));
+      Color::t color = Color::pieceColorFromChar(c);
+      Piece::t type = Piece::byName(c);
+      if (Piece::inRange(type)) {
+        pieces[type].set_bit(Square::index(file, rank));
+        colors[color].set_bit(Square::index(file, rank));
         file++;
       } else {
         throw std::invalid_argument{"unknown character"};
       }
     }
   }
-  isWhiteNext = (fields[1][0] == 'w');
+  next = (fields[1][0] == 'w') ? Color::white : Color::black;
   for (char c : fields[2]) {
     switch (c) {
       case 'K':
@@ -284,49 +284,46 @@ void GameState::parseFenString(const std::string &fenString) {
     }
   }
   if (fields[3][0] == '-') {
-    enPassantSquare = Board::Square::no_square;
+    enPassantSquare = Square::noSquare;
   } else {
-    int file = fields[3][0] - 'a';
-    int rank = fields[3][1] - '0';
-    enPassantSquare = Board::index(file, rank);
+    enPassantSquare = Square::byName(fields[3][0], fields[3][1]);
   }
   uneventfulHalfMoves = std::stoi(fields[4]);
   moveCounter = std::stoi(fields[5]);
 }
 
 std::ostream &operator<<(std::ostream &out, const GameState &board) {
-  for (int rank = Board::width - 1; rank >= 0; rank--) {
+  for (auto rank : Coord::reverseRanks) {
     out << (rank + 1) << " | ";
-    for (int file = 0; file < Board::width; file++) {
-      int index = Board::index(file, rank);
+    for (auto file : Coord::files) {
+      int index = Square::index(file, rank);
       unsigned piece = board.getPiece(index);
       unsigned color = board.getColor(index);
-      out << (color >= Color::noColors ? '.' : piecePrintChar(piece, color));
+      out << Piece::name(piece, color);
       out << ' ';
     }
     out << '\n';
   }
   out << "    ";
-  for (int file = 0; file < Board::width; file++) out << "--";
+  for (auto _ : Coord::files) out << "--";
   out << "\t moves: " << board.moveCounter
       << ", uneventful: " << static_cast<int>(board.uneventfulHalfMoves)
-      << ", next: " << (board.isWhiteNext ? "white" : "black");
+      << ", next: " << (board.next == Color::white ? "white" : "black");
   out << "\n    ";
-  for (int file = 0; file < Board::width; file++)
-    out << Board::file_name(file) << ' ';
+  for (auto file : Coord::files) out << Coord::fileName(file) << ' ';
   out << "\t en passant: "
-      << (board.enPassantSquare == Board::Square::no_square
+      << (board.enPassantSquare == Square::noSquare
               ? "-"
-              : Board::squareName(board.enPassantSquare))
+              : Square::name(board.enPassantSquare))
       << ", castling rights: " << static_cast<int>(board.castlingRights);
   out << std::endl;
   return out;
 }
 
 std::ostream &operator<<(std::ostream &out, const Move &move) {
-  out << Board::squareName(move.start) << Board::squareName(move.end);
+  out << Square::name(move.start) << Square::name(move.end);
   if (move.promotion != 0) {
-    out << piecePrintChar(move.promotion, Color::white);
+    out << Piece::name(move.promotion, Color::white);
   }
   return out;
 }

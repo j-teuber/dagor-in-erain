@@ -6,7 +6,7 @@
 #include <iterator>
 #include <ostream>
 
-#include "board.h"
+#include "types.h"
 
 namespace Dagor::BitBoards {
 
@@ -23,10 +23,10 @@ class BitBoard {
 
  public:
   /// @brief constructs an empty BitBoard.
-  BitBoard();
+  BitBoard() : board{0} {}
   /// @brief
   /// @param bitboard a uint64 as returned by the `as_uint` function.
-  BitBoard(std::uint64_t bitboard);
+  BitBoard(std::uint64_t bitboard) : board{bitboard} {}
 
   /// @brief
   /// @return a uint64 where all the 1 bits indicate the set squares
@@ -56,11 +56,13 @@ class BitBoard {
   /// @brief Checks whether a particular square is set.
   /// @param square the square to check.
   /// @return `true`, iff the square is set.
-  constexpr bool is_set(int square) const { return board & (1ULL << square); }
+  constexpr bool is_set(Square::t square) const {
+    return board & (1ULL << square);
+  }
 
   /// @brief Adds the given square to the bitboard.
   /// @param square the square to add.
-  void set_bit(int square) { board |= (1ULL << square); }
+  void set_bit(Square::t square) { board |= (1ULL << square); }
 
   /// Adds the given square to the bitboard, if the coordinates are
   /// valid on a chess board, that is, if `file, rank are from {0,...,7}`. If
@@ -68,15 +70,15 @@ class BitBoard {
   /// against warping around the edges of the board when calculating moves etc.
   /// @param file the file (i. e. column) of the square to add.
   /// @param rank the rank (i. e. row) of the square to add.
-  void set_bit_if_index_valid(int file, int rank) {
-    if (0 <= file && file < Board::width && 0 <= rank && rank < Board::width) {
-      set_bit(Board::index(file, rank));
+  void set_bit_if_index_valid(Coord::t file, Coord::t rank) {
+    if (Coord::inRange(file) && Coord::inRange(rank)) {
+      set_bit(Square::index(file, rank));
     }
   }
 
   /// @brief Removes a given square from the bitboard.
   /// @param square the square to remove.
-  void unset_bit(int square) { board &= ~single(square).board; }
+  void unset_bit(Square::t square) { board &= ~(1ULL << square); }
 
   /// @brief Counts the number of set squares in the bitboard.
   /// @return the number of set squares in the bitboard.
@@ -85,52 +87,54 @@ class BitBoard {
   /// @brief Finds the index of the first set square in the bitboard.
   /// Do not call this function for the empty bitboard.
   /// @return the index of the first set square.
-  constexpr int findFirstSet() const { return __builtin_ctzll(board); }
-  struct Iterator {
+  constexpr Square::t findFirstSet() const {
+    return static_cast<Square::t>(__builtin_ctzll(board));
+  }
+  class Iterator {
+   private:
+    std::uint64_t board;
+
+   public:
     using iterator_category = std::input_iterator_tag;
     using difference_type = std::ptrdiff_t;
-    using value_type = std::uint8_t;
+    using value_type = Square::t;
     using pointer = value_type *;
     using reference = value_type &;
 
-    Iterator(std::uint64_t board, std::uint8_t index)
-        : board{board}, index{index} {
-      advance();
-    }
-    value_type operator*() const { return index; }
+    Iterator(std::uint64_t board) : board{board} {}
+
+    value_type operator*() const { return __builtin_ctzll(board); }
+
     Iterator &operator++() {
-      index++;
-      advance();
+      value_type index = operator*();
+      // In C++, you cannot shift by the word size or greater, so we need to do
+      // this explicitly. Hopefully this gets optimized away to a normal
+      // x68 shift instruction.
+      if (index >= 63) {
+        board = 0;
+      } else {
+        std::uint64_t upper = 0xffffffffffffffff << (index + 1);
+        board &= upper;
+      }
       return *this;
     }
+
     Iterator operator++(int) {
       Iterator tmp = *this;
       ++(*this);
       return tmp;
     }
-    bool operator==(const Iterator &other) const {
-      return board == other.board && index == other.index;
-    }
-    bool operator!=(const Iterator &other) const { return !(*this == other); }
 
-   private:
-    std::uint64_t board;
-    std::uint8_t index;
-    void advance() {
-      std::uint64_t lower = (1UL << index) - 1;
-      board &= ~lower;
-      if (board == 0 || index >= Board::size) {
-        board = 0;
-        index = Board::size;
-      } else {
-        index = __builtin_ctzll(board);
-      }
+    bool operator==(const Iterator &other) const {
+      return board == other.board;
     }
+
+    bool operator!=(const Iterator &other) const { return !(*this == other); }
   };
 
   using const_iterator = Iterator;
-  Iterator begin() { return {as_uint(), 0}; }
-  Iterator end() { return {as_uint(), Board::size}; }
+  Iterator begin() { return {as_uint()}; }
+  Iterator end() { return {0}; }
 };
 
 inline BitBoard operator&(BitBoard a, BitBoard b) { return a &= b; }
@@ -149,19 +153,19 @@ std::ostream &operator<<(std::ostream &out, const BitBoard &printer);
 /// @brief Constructs a bitboard with only a single square set.
 /// @param square the square to be set
 /// @return the bitboard
-inline BitBoard single(unsigned square) { return {1ULL << square}; }
+inline BitBoard single(Square::t square) { return {1ULL << square}; }
 
-inline BitBoard wholeFile(unsigned file) {
+inline BitBoard wholeFile(Coord::t file) {
   std::uint64_t a_file{0x101010101010101};
   return {a_file << file};
 }
 
-inline BitBoard wholeRank(unsigned rank) {
+inline BitBoard wholeRank(Coord::t rank) {
   std::uint64_t base_rank{0xff};
-  return {base_rank << (rank * Board::width)};
+  return {base_rank << (rank * Coord::width)};
 }
 
-inline BitBoard rightOf(unsigned file) {
+inline BitBoard rightOf(Coord::t file) {
   switch (file) {
     case 0:
       return {0xfefefefefefefefe};
@@ -184,16 +188,16 @@ inline BitBoard rightOf(unsigned file) {
   }
 }
 
-inline BitBoard leftOf(unsigned file) { return ~rightOf(file - 1); }
+inline BitBoard leftOf(Coord::t file) { return ~rightOf(file - 1); }
 
-inline BitBoard above(unsigned rank) {
+inline BitBoard above(Coord::t rank) {
   std::uint64_t all{0xffffffffffffffff};
-  return {all << ((rank + 1) * Board::width)};
+  return {all << ((rank + 1) * Coord::width)};
 }
 
-inline BitBoard below(unsigned rank) {
+inline BitBoard below(Coord::t rank) {
   std::uint64_t all{0xffffffffffffffff};
-  return {all >> ((rank - 1) * Board::width)};
+  return {all >> ((rank - 1) * Coord::width)};
 }
 
 /// @brief A bitboard containing all squares adjacent to one of the edges of

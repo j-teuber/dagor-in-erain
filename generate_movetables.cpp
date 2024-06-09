@@ -12,9 +12,8 @@
 #include <vector>
 
 #include "bitboard.h"
-#include "board.h"
-#include "constants.h"
 #include "movetables.h"
+#include "types.h"
 
 using namespace Dagor;
 using Dagor::BitBoards::BitBoard;
@@ -25,10 +24,10 @@ using std::vector;
 /// @param color the color of the pawn (`enum Color`). White pawns move upwards,
 /// black pawns move downwards.
 /// @return a bitboard with the attacked squares set.
-BitBoard pawnAttack(int square, int color) {
+BitBoard pawnAttack(Square::t square, Color::t color) {
   BitBoard b;
-  int r = Board::rank(square);
-  int f = Board::file(square);
+  int r = Square::rank(square);
+  int f = Square::file(square);
   if (color == Color::white) {
     b.set_bit_if_index_valid(f - 1, r + 1);
     b.set_bit_if_index_valid(f + 1, r + 1);
@@ -42,27 +41,26 @@ BitBoard pawnAttack(int square, int color) {
 /// @brief writes all possible pawn attacks into a file.
 /// @param f
 void writePawnAttacks(std::ofstream &f) {
-  f << "const BitBoard pawnAttacks[2][Board::size] = {{\n";
-  for (int square = 0; square < Board::size; square++) {
-    f << '{' << pawnAttack(square, Color::white).as_uint() << "UL}";
-    if (square < Board::size - 1) f << ",\n";
+  f << " const std::array<std::array<BitBoards::BitBoard, Square::size>, "
+       "Color::size> pawnAttacks = {\n ";
+  for (auto square : Square::all) {
+    f << "BitBoard{" << pawnAttack(square, Color::white).as_uint() << "UL},";
   }
-  f << "},\n{";
-  for (int square = 0; square < Board::size; square++) {
-    f << '{' << pawnAttack(square, Color::black).as_uint() << "UL}";
-    if (square < Board::size - 1) f << ",\n";
+  for (auto square : Square::all) {
+    f << "BitBoard{" << pawnAttack(square, Color::black).as_uint() << "UL}";
+    if (square < Square::size - 1) f << ",\n";
   }
-  f << "}};\n\n";
+  f << "};\n\n";
 }
 
 /// @brief Computes all moves a knight can make on a given square.
 /// @param square position of the knight
 /// @return a bitboard with all squares set to which the knight could move
 /// (assuming the board is otherwise empty).
-BitBoard knightMove(int square) {
+BitBoard knightMove(Square::t square) {
   BitBoard b;
-  int r = Board::rank(square);
-  int f = Board::file(square);
+  int r = Square::rank(square);
+  int f = Square::file(square);
   b.set_bit_if_index_valid(f + 1, r + 2);
   b.set_bit_if_index_valid(f - 1, r + 2);
   b.set_bit_if_index_valid(f - 1, r - 2);
@@ -78,12 +76,12 @@ BitBoard knightMove(int square) {
 /// @brief writes the knight moves to a file.
 /// @param f
 void writeKnightMoves(std::ofstream &f) {
-  f << "const BitBoard knightMoves[Board::size] = {\n";
-  for (int square = 0; square < Board::size; square++) {
-    f << '{' << knightMove(square).as_uint() << "UL}";
-    if (square < Board::size - 1) f << ",\n";
+  f << "const std::array<BitBoards::BitBoard, Square::size> knightMoves = {{\n";
+  for (auto square : Square::all) {
+    f << "{" << knightMove(square).as_uint() << "UL}";
+    if (square < Square::size - 1) f << ",\n";
   }
-  f << "};\n\n";
+  f << "}};\n\n";
 }
 
 /// @brief Computes the possible moves of a king on a given square (assuming the
@@ -91,10 +89,10 @@ void writeKnightMoves(std::ofstream &f) {
 /// castling, which needs to be handled as a special case.
 /// @param square the position of the king.
 /// @return a bitboard with all the squares set, to which a king can move.
-BitBoard kingMove(int square) {
+BitBoard kingMove(Square::t square) {
   BitBoard b;
-  int r = Board::rank(square);
-  int f = Board::file(square);
+  int r = Square::rank(square);
+  int f = Square::file(square);
   b.set_bit_if_index_valid(f + 1, r + 1);
   b.set_bit_if_index_valid(f + 0, r + 1);
   b.set_bit_if_index_valid(f - 1, r + 1);
@@ -111,12 +109,12 @@ BitBoard kingMove(int square) {
 /// @brief writes the king moves to a file.
 /// @param f
 void writeKingMoves(std::ofstream &f) {
-  f << "const BitBoard kingMoves[Board::size] = {\n";
-  for (int square = 0; square < Board::size; square++) {
-    f << '{' << kingMove(square).as_uint() << "UL}";
-    if (square < Board::size - 1) f << ",\n";
+  f << "const std::array<BitBoards::BitBoard, Square::size> kingMoves = {{\n";
+  for (auto square : Square::all) {
+    f << "{" << kingMove(square).as_uint() << "UL}";
+    if (square < Square::size - 1) f << ",\n";
   }
-  f << "};\n\n";
+  f << "}};\n\n";
 }
 
 /// @brief Computes a mask, where all locations are set, where a blocking piece
@@ -137,11 +135,11 @@ void writeKingMoves(std::ofstream &f) {
 ///
 /// @param square the position of the bishop.
 /// @return a bitboard with the relevant squares set.
-BitBoard bishopBlockers(int square) {
+BitBoard bishopBlockers(Square::t square) {
   BitBoard b;
-  int r = Board::rank(square);
-  int f = Board::file(square);
-  for (int offset = 1; offset < Board::width; offset++) {
+  Coord::t r = Square::rank(square);
+  Coord::t f = Square::file(square);
+  for (Coord::t offset = 1; Coord::inRange(offset); offset++) {
     b.set_bit_if_index_valid(f + offset, r - offset);
     b.set_bit_if_index_valid(f + offset, r + offset);
     b.set_bit_if_index_valid(f - offset, r - offset);
@@ -160,16 +158,16 @@ BitBoard bishopBlockers(int square) {
 /// assumes that all blockers are enemy pieces and can be captured.
 /// @return a bitboard with all the squares set, to which the bishop can move in
 /// that rey.
-BitBoard bishopMoveRay(int square, bool fileUp, bool rankUp,
+BitBoard bishopMoveRay(Square::t square, bool fileUp, bool rankUp,
                        BitBoard blockers) {
   BitBoard b;
-  int r = Board::rank(square);
-  int f = Board::file(square);
-  for (int offset = 1; offset < Board::width; offset++) {
-    int currentFile = fileUp ? f + offset : f - offset;
-    int currentRank = rankUp ? r + offset : r - offset;
+  Coord::t r = Square::rank(square);
+  Coord::t f = Square::file(square);
+  for (Coord::t offset = 1; Coord::inRange(offset); offset++) {
+    Coord::t currentFile = fileUp ? f + offset : f - offset;
+    Coord::t currentRank = rankUp ? r + offset : r - offset;
     b.set_bit_if_index_valid(currentFile, currentRank);
-    if (blockers.is_set(Board::index(currentFile, currentRank))) break;
+    if (blockers.is_set(Square::index(currentFile, currentRank))) break;
   }
   return b;
 }
@@ -179,7 +177,7 @@ BitBoard bishopMoveRay(int square, bool fileUp, bool rankUp,
 /// @param blockers the pieces blocking the bishops movement. This function
 /// assumes that all blockers are enemy pieces and can be captured.
 /// @return a bitboard with all the squares set, to which the bishop can move.
-BitBoard bishopMoves(int square, BitBoard blockers) {
+BitBoard bishopMoves(Square::t square, BitBoard blockers) {
   return bishopMoveRay(square, true, true, blockers) |
          bishopMoveRay(square, true, false, blockers) |
          bishopMoveRay(square, false, true, blockers) |
@@ -204,15 +202,17 @@ BitBoard bishopMoves(int square, BitBoard blockers) {
 ///
 /// @param square the position of the rook.
 /// @return a bitboard with the relevant squares set.
-BitBoard rookBlockers(int square) {
+BitBoard rookBlockers(Square::t square) {
   BitBoard b;
-  int r = Board::rank(square);
-  int f = Board::file(square);
-  for (int offset = 1; offset < Board::width; offset++) {
-    if (f + offset < Board::width - 1) b.set_bit_if_index_valid(f + offset, r);
-    if (f - offset > 0) b.set_bit_if_index_valid(f - offset, r);
-    if (r + offset < Board::width - 1) b.set_bit_if_index_valid(f, r + offset);
-    if (r - offset > 0) b.set_bit_if_index_valid(f, r - offset);
+  Coord::t r = Square::rank(square);
+  Coord::t f = Square::file(square);
+  for (Coord::t offset = 1; Coord::inRange(offset); offset++) {
+    if (f + offset < Coord::width - 1) b.set_bit_if_index_valid(f + offset, r);
+    if (f - offset > 0 && Coord::inRange(f - offset))
+      b.set_bit_if_index_valid(f - offset, r);
+    if (r + offset < Coord::width - 1) b.set_bit_if_index_valid(f, r + offset);
+    if (r - offset > 0 && Coord::inRange(r - offset))
+      b.set_bit_if_index_valid(f, r - offset);
   }
   return b;
 }
@@ -235,17 +235,18 @@ BitBoard rookBlockers(int square) {
 /// @param blockers the pieces blocking the rook’s movement. This function
 /// assumes that all blockers are enemy pieces and can be captured.
 /// @return a bitboard with the moves of this ray set.
-BitBoard rookMoveRay(int square, int addFile, int addRank, BitBoard blockers) {
+BitBoard rookMoveRay(Square::t square, Coord::t addFile, Coord::t addRank,
+                     BitBoard blockers) {
   assert(addFile * addRank == 0 && addFile * addFile <= 1 &&
          addRank * addRank <= 1);
   BitBoard b;
-  int r = Board::rank(square);
-  int f = Board::file(square);
-  for (int offset = 1; offset < Board::width; offset++) {
-    int currentFile = f + addFile * offset;
-    int currentRank = r + addRank * offset;
+  Coord::t r = Square::rank(square);
+  Coord::t f = Square::file(square);
+  for (Coord::t offset = 1; Coord::inRange(offset); offset++) {
+    Coord::t currentFile = f + addFile * offset;
+    Coord::t currentRank = r + addRank * offset;
     b.set_bit_if_index_valid(currentFile, currentRank);
-    if (blockers.is_set(Board::index(currentFile, currentRank))) break;
+    if (blockers.is_set(Square::index(currentFile, currentRank))) break;
   }
   return b;
 }
@@ -302,7 +303,8 @@ BitBoard spreadBitsInMask(unsigned bitsToSpread, BitBoard mask) {
 /// @brief Generates an uniformly distributed uint64.
 /// @return the random number.
 std::uint64_t randomLong() {
-  static std::mt19937_64 engine{0}; // we want a predictable generator, NOLINT(*-msc51-cpp)
+  static std::mt19937_64 engine{
+      0};  // we want a predictable generator, NOLINT(*-msc51-cpp)
   static std::uniform_int_distribution<std::uint64_t> distribution{};
   return distribution(engine);
 }
@@ -330,7 +332,7 @@ vector<BitBoard> generatePossibleBlockers(BitBoard mask) {
   return blockers;
 }
 
-vector<BitBoard> generatePossibleMoves(int square,
+vector<BitBoard> generatePossibleMoves(Square::t square,
                                        const vector<BitBoard> &blockers,
                                        bool isBishop) {
   vector<BitBoard> moves;
@@ -345,12 +347,12 @@ vector<BitBoard> generatePossibleMoves(int square,
 class SliderInfo {
  public:
   bool isBishop;
-  int square;
+  Square::t square;
   BitBoard blockerMask;
   vector<BitBoard> blockers;
   vector<BitBoard> moves;
 
-  SliderInfo(bool isBishop, int square)
+  SliderInfo(bool isBishop, Square::t square)
       : isBishop{isBishop},
         square{square},
         blockerMask{isBishop ? bishopBlockers(square) : rookBlockers(square)},
@@ -403,7 +405,7 @@ void writeHash(std::ostream &f, MoveTables::BlockerHash &hash,
 void initHashFunctions(vector<SliderInfo> &squareInfo,
                        vector<MoveTables::BlockerHash> &hashFunctions,
                        unsigned &numberOfMoves, bool isBishop) {
-  for (int square = 0; square < Board::size; square++) {
+  for (auto square : Square::all) {
     SliderInfo info(isBishop, square);
     squareInfo.push_back(info);
     MoveTables::BlockerHash hash{findPerfectHash(info)};
@@ -415,7 +417,7 @@ void initHashFunctions(vector<SliderInfo> &squareInfo,
 void hashMoves(vector<BitBoard> &moves, vector<SliderInfo> &squareInfo,
                vector<MoveTables::BlockerHash> &hashFunctions,
                unsigned &currentOffset) {
-  for (int square = 0; square < Board::size; square++) {
+  for (auto square : Square::all) {
     MoveTables::BlockerHash hash{hashFunctions[square]};
     SliderInfo info{squareInfo[square]};
     for (unsigned i = 0; i < info.blockers.size(); i++) {
@@ -441,21 +443,21 @@ void writeSlidingPieces(std::ostream &f) {
   hashMoves(moves, rookInfo, rookHashes, currentOffset);
 
   currentOffset = 0;
-  f << "const BlockerHash bishopHashes[Board::size] = {\n";
-  for (int square = 0; square < Board::size; square++) {
+  f << "const std::array<BlockerHash, Square::size> bishopHashes = {{\n";
+  for (auto square : Square::all) {
     writeHash(f, bishopHashes[square], currentOffset);
     currentOffset += bishopInfo[square].moves.size();
-    if (square < Board::size - 1) f << ",\n";
+    if (square < Square::size - 1) f << ",\n";
   }
-  f << "\n};\n\n";
+  f << "\n}};\n\n";
 
-  f << "const BlockerHash rookHashes[Board::size] = {\n";
-  for (int square = 0; square < Board::size; square++) {
+  f << "const std::array<BlockerHash, Square::size> rookHashes = {{\n";
+  for (auto square : Square::all) {
     writeHash(f, rookHashes[square], currentOffset);
     currentOffset += rookInfo[square].moves.size();
-    if (square < Board::size - 1) f << ",\n";
+    if (square < Square::size - 1) f << ",\n";
   }
-  f << "\n};\n\n";
+  f << "\n}};\n\n";
 
   f << "const BitBoards::BitBoard slidingMoves[] = {\n";
   for (unsigned i = 0; i < moves.size(); i++) {
@@ -478,7 +480,7 @@ int main() {
   writePawnAttacks(f);
   writeKnightMoves(f);
   writeKingMoves(f);
-    writeSlidingPieces(f);
+  writeSlidingPieces(f);
 
   f << "}\n";
 

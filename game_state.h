@@ -7,19 +7,19 @@
 #include <vector>
 
 #include "bitboard.h"
-#include "constants.h"
 #include "movetables.h"
+#include "types.h"
 
 namespace Dagor {
 
 class Move {
  public:
-  std::uint8_t start;
-  std::uint8_t end;
-  std::uint8_t promotion;
+  Square::t start;
+  Square::t end;
+  Piece::t promotion;
   std::uint8_t flags;
 
-  Move(std::uint8_t start, std::uint8_t end, std::uint8_t promotion = 0)
+  Move(Square::t start, Square::t end, Piece::t promotion = 0)
       : start{start}, end{end}, promotion{promotion}, flags{0} {}
 
   explicit Move(std::string const &algebraic);
@@ -35,22 +35,22 @@ class GameState {
   static inline const std::string startingPosition =
       "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
-  std::array<BitBoards::BitBoard, Piece::noPieces> pieces;
-  std::array<BitBoards::BitBoard, Color::noColors> colors;
-  std::size_t moveCounter;
-  std::uint8_t castlingRights;
+  std::array<BitBoards::BitBoard, Piece::all.size()> pieces;
+  std::array<BitBoards::BitBoard, Color::all.size()> colors;
+  unsigned moveCounter;
   std::uint8_t uneventfulHalfMoves;
-  std::uint8_t enPassantSquare;
-  bool isWhiteNext;
+  CastlingRights::t castlingRights;
+  Square::t enPassantSquare;
+  Color::t next;
 
   GameState()
       : pieces(),
         colors(),
         moveCounter{0},
-        castlingRights{0},
         uneventfulHalfMoves{0},
-        enPassantSquare{Board::Square::no_square},
-        isWhiteNext{true} {
+        castlingRights{CastlingRights::none},
+        enPassantSquare{Square::noSquare},
+        next{Color::white} {
     parseFenString(startingPosition);
   }
 
@@ -58,37 +58,37 @@ class GameState {
       : pieces(),
         colors(),
         moveCounter{0},
-        castlingRights{0},
         uneventfulHalfMoves{0},
-        enPassantSquare{Board::Square::no_square},
-        isWhiteNext{true} {
+        castlingRights{CastlingRights::none},
+        enPassantSquare{Square::noSquare},
+        next{Color::white} {
     parseFenString(fen);
   }
 
-  BitBoards::BitBoard bitboardFor(unsigned piece, unsigned color) const {
+  BitBoards::BitBoard bitboardFor(Piece::t piece, Color::t color) const {
     return pieces[piece] & colors[color];
   }
 
-  unsigned getPiece(int square) const {
-    for (unsigned type = 0; type < Piece::noPieces; type++) {
+  Piece::t getPiece(Square::t square) const {
+    for (Piece::t type : Piece::all) {
       if (pieces[type].is_set(square)) {
         return type;
       }
     }
-    return Piece::noPieces;
+    return Piece::empty;
   }
 
-  unsigned getColor(int square) const {
+  Color::t getColor(Square::t square) const {
     if (colors[Color::black].is_set(square)) return Color::black;
     if (colors[Color::white].is_set(square)) return Color::white;
-    return Color::noColors;
+    return Color::empty;
   }
 
-  BitBoards::BitBoard getMoves(unsigned piece, unsigned color,
-                               unsigned square) const;
-  BitBoards::BitBoard getMoves(unsigned piece, unsigned color, unsigned square,
+  BitBoards::BitBoard getMoves(Piece::t piece, Color::t color,
+                               Square::t square) const;
+  BitBoards::BitBoard getMoves(Piece::t piece, Color::t color, Square::t square,
                                BitBoards::BitBoard occupancy) const;
-  BitBoards::BitBoard getAttacks(int square, int color) const;
+  BitBoards::BitBoard getAttacks(Square::t square, Color::t color) const;
   std::vector<Move> generateLegalMoves() const;
 
   void executeMove(Move move);
