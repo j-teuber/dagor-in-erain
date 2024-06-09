@@ -3,6 +3,7 @@ debug_flags := -ggdb
 release_flags := -O3 -DNDEBUG
 ld_flags :=
 
+src := ./src
 build_dir := ./build
 obj_dir := $(build_dir)/objects
 release_obj_dir := $(obj_dir)/release
@@ -10,7 +11,7 @@ debug_obj_dir := $(obj_dir)/debug
 app_dir := $(build_dir)/app_dir
 
 units := main bitboard movetables game_state uci test
-src_files := $(foreach u, $(units), $(u).cpp)
+src_files := $(foreach u, $(units), $(src)/$(u).cpp)
 debug_objects := $(foreach u, $(units), $(debug_obj_dir)/$(u).o)
 release_objects := $(foreach u, $(units), $(release_obj_dir)/$(u).o)
 
@@ -35,7 +36,7 @@ dirs:
 
 clean: 
 	rm -rf $(build_dir)
-	rm movetables.cpp
+	rm -f $(src)/movetables.cpp
 	mkdir -p $(release_obj_dir)
 	mkdir -p $(debug_obj_dir)
 	mkdir -p $(app_dir)
@@ -49,20 +50,22 @@ $(app_dir)/release: $(release_objects)
 $(app_dir)/debug: $(debug_objects)
 	g++ $(flags) $(debug_flags) -o $@ $^
 
-$(release_objects): $(release_obj_dir)/%.o : %.cpp
+$(release_objects): $(release_obj_dir)/%.o : $(src)/%.cpp
 	g++ $(flags) $(release_flags) -c -o $@ $^
 
-$(debug_objects): $(debug_obj_dir)/%.o : %.cpp
+$(debug_objects): $(debug_obj_dir)/%.o : $(src)/%.cpp
 	g++ $(flags) $(debug_flags) -c -o $@ $^
 
-movetables.cpp: generate_movetables.cpp $(release_obj_dir)/bitboard.o
-	g++ $(flags) $(release_flags) -c -o $(release_obj_dir)/generate_movetables.o generate_movetables.cpp
+$(src)/movetables.cpp: $(src)/generate_movetables.cpp $(release_obj_dir)/bitboard.o
+	g++ $(flags) $(release_flags) -c -o $(release_obj_dir)/generate_movetables.o $(src)/generate_movetables.cpp
 	g++ $(flags) $(release_flags) -o $(app_dir)/generate_movetables $(release_obj_dir)/generate_movetables.o $(release_obj_dir)/bitboard.o
 	$(app_dir)/generate_movetables
+	mv movetables.cpp $(src)/movetables.cpp
 
 #movetables.cpp: generate_movetables.cpp $(debug_obj_dir)/bitboard.o
-#	g++ $(flags) $(debug_flags) -c -o $(debug_obj_dir)/generate_movetables.o generate_movetables.cpp
+#	g++ $(flags) $(debug_flags) -c -o $(debug_obj_dir)/generate_movetables.o $(src)/generate_movetables.cpp
 #	g++ $(flags) $(debug_flags) -o $(app_dir)/generate_movetables $(debug_obj_dir)/generate_movetables.o $(debug_obj_dir)/bitboard.o
 #	$(app_dir)/generate_movetables
+#	mv movetables.cpp $(src)/movetables.cpp
 
 
