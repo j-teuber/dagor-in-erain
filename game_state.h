@@ -4,6 +4,7 @@
 #include <array>
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include "bitboard.h"
 #include "constants.h"
@@ -18,7 +19,7 @@ class Move {
   std::uint8_t promotion;
   std::uint8_t flags;
 
-  Move(std::uint8_t start, std::uint8_t end, std::uint8_t promotion)
+  Move(std::uint8_t start, std::uint8_t end, std::uint8_t promotion = 0)
       : start{start}, end{end}, promotion{promotion}, flags{0} {}
 
   explicit Move(std::string const &algebraic);
@@ -64,7 +65,7 @@ class GameState {
     parseFenString(fen);
   }
 
-  BitBoards::BitBoard bitboardFor(unsigned piece, unsigned color) {
+  BitBoards::BitBoard bitboardFor(unsigned piece, unsigned color) const {
     return pieces[piece] & colors[color];
   }
 
@@ -83,8 +84,12 @@ class GameState {
     return Color::noColors;
   }
 
-  BitBoards::BitBoard getMoves(unsigned piece, unsigned color, unsigned square);
-  bool isSquareAttacked(int square, int color);
+  BitBoards::BitBoard getMoves(unsigned piece, unsigned color,
+                               unsigned square) const;
+  BitBoards::BitBoard getMoves(unsigned piece, unsigned color, unsigned square,
+                               BitBoards::BitBoard occupancy) const;
+  BitBoards::BitBoard getAttacks(int square, int color) const;
+  std::vector<Move> generateLegalMoves() const;
 
   void executeMove(Move move);
   void parseFenString(const std::string &fenString);

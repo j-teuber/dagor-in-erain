@@ -1,9 +1,9 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
-enum Color { white, black, noColors };
+enum Color : std::uint8_t { white, black, noColors };
 
-enum Piece { pawn, knight, bishop, rook, queen, king, noPieces };
+enum Piece : std::uint8_t { pawn, knight, bishop, rook, queen, king, noPieces };
 
 constexpr char piecePrintChar(unsigned type, unsigned color) {
   if (color >= Color::noColors || type >= Piece::noPieces) {
@@ -43,7 +43,7 @@ constexpr unsigned pieceTypeFromChar(char type) {
   }
 }
 
-enum CastlingRights {
+enum CastlingRights : std::uint8_t {
   whiteKingSide = 1,
   whiteQueenSide = 2,
   blackKingSide = 4,

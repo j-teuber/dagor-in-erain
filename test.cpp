@@ -121,12 +121,20 @@ void moveClass() {
       "Moves can be constructed from algebraic notation with promotion");
 }
 
+void legalMoves() {
+  header("Legal Moves");
+  assertEquals(GameState{}.generateLegalMoves().size(),
+               static_cast<std::size_t>(20),
+               "20 legal moves are available in starting position");
+}
+
 void test() {
   header("\nRun Test suits...\n");
   pieceMovement();
   pseudoLegalMoves();
   moveClass();
   bitBoards();
+  legalMoves();
 
   if (failures == 0) {
     std::cout << "\033[1;32m";

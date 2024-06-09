@@ -48,13 +48,6 @@ class BitBoard {
     return *this;
   }
 
-  /// @brief Constructs a bitboard with only a single square set.
-  /// @param square the square to be set
-  /// @return the bitboard
-  static inline BitBoard single_square_set(int square) {
-    return {static_cast<std::uint64_t>(1) << square};
-  }
-
   /// @brief checks whether the bitboard is empty, that is whether no squares
   /// are set.
   /// @return `true`, iff no squares are set.
@@ -63,13 +56,11 @@ class BitBoard {
   /// @brief Checks whether a particular square is set.
   /// @param square the square to check.
   /// @return `true`, iff the square is set.
-  constexpr bool is_set(int square) const {
-    return (board & (static_cast<std::uint64_t>(1) << square)) != 0;
-  }
+  constexpr bool is_set(int square) const { return board & (1ULL << square); }
 
   /// @brief Adds the given square to the bitboard.
   /// @param square the square to add.
-  void set_bit(int square) { *this |= single_square_set(square); }
+  void set_bit(int square) { board |= (1ULL << square); }
 
   /// Adds the given square to the bitboard, if the coordinates are
   /// valid on a chess board, that is, if `file, rank are from {0,...,7}`. If
@@ -85,7 +76,7 @@ class BitBoard {
 
   /// @brief Removes a given square from the bitboard.
   /// @param square the square to remove.
-  void unset_bit(int square) { board &= ~single_square_set(square).board; }
+  void unset_bit(int square) { board &= ~single(square).board; }
 
   /// @brief Counts the number of set squares in the bitboard.
   /// @return the number of set squares in the bitboard.
@@ -154,6 +145,56 @@ inline bool operator!=(BitBoard a, BitBoard b) {
 }
 
 std::ostream &operator<<(std::ostream &out, const BitBoard &printer);
+
+/// @brief Constructs a bitboard with only a single square set.
+/// @param square the square to be set
+/// @return the bitboard
+inline BitBoard single(unsigned square) { return {1ULL << square}; }
+
+inline BitBoard wholeFile(unsigned file) {
+  std::uint64_t a_file{0x101010101010101};
+  return {a_file << file};
+}
+
+inline BitBoard wholeRank(unsigned rank) {
+  std::uint64_t base_rank{0xff};
+  return {base_rank << (rank * Board::width)};
+}
+
+inline BitBoard rightOf(unsigned file) {
+  switch (file) {
+    case 0:
+      return {0xfefefefefefefefe};
+    case 1:
+      return {0xfcfcfcfcfcfcfcfc};
+    case 2:
+      return {0xf8f8f8f8f8f8f8f8};
+    case 3:
+      return {0xf0f0f0f0f0f0f0f0};
+    case 4:
+      return {0xe0e0e0e0e0e0e0e0};
+    case 5:
+      return {0xc0c0c0c0c0c0c0c0};
+    case 6:
+      return {0x8080808080808080};
+    case 7:
+      return {0};
+    default:
+      return {0};
+  }
+}
+
+inline BitBoard leftOf(unsigned file) { return ~rightOf(file - 1); }
+
+inline BitBoard above(unsigned rank) {
+  std::uint64_t all{0xffffffffffffffff};
+  return {all << ((rank + 1) * Board::width)};
+}
+
+inline BitBoard below(unsigned rank) {
+  std::uint64_t all{0xffffffffffffffff};
+  return {all >> ((rank - 1) * Board::width)};
+}
 
 /// @brief A bitboard containing all squares adjacent to one of the edges of
 /// the board.
