@@ -110,7 +110,10 @@ struct MoveGenerator {
     Square::t pawnPush =
         (myColor == Color::white) ? Square::north : Square::south;
     Square::t capturePawn = state.enPassantSquare + pawnPush;
-    occupancy.unset_bit(capturePawn);
+    occupancy.unsetSquare(capturePawn);
+    if (targets.isSet(capturePawn)) {
+      targets.setSquare(state.enPassantSquare);
+    }
 #endif
   }
 
@@ -122,33 +125,33 @@ struct MoveGenerator {
     BitBoards::BitBoard occupancy{state.occupancy()};
     if (myColor == Color::white) {
       bool right = state.castlingRights & CastlingRights::whiteQueenSide;
-      right = right && (occupancy & wqEmpty).is_empty();
-      right = right && state.getAttacks(Square::d1, myColor).is_empty();
-      right = right && state.getAttacks(Square::c1, myColor).is_empty();
+      right = right && (occupancy & wqEmpty).isEmpty();
+      right = right && state.getAttacks(Square::d1, myColor).isEmpty();
+      right = right && state.getAttacks(Square::c1, myColor).isEmpty();
       if (right) {
         moves.push_back(Move{Square::e1, Square::c1});
       }
 
       right = state.castlingRights & CastlingRights::whiteKingSide;
-      right = right && (occupancy & wkEmpty).is_empty();
-      right = right && state.getAttacks(Square::f1, myColor).is_empty();
-      right = right && state.getAttacks(Square::g1, myColor).is_empty();
+      right = right && (occupancy & wkEmpty).isEmpty();
+      right = right && state.getAttacks(Square::f1, myColor).isEmpty();
+      right = right && state.getAttacks(Square::g1, myColor).isEmpty();
       if (right) {
         moves.push_back(Move{Square::e1, Square::g1});
       }
     } else {
       bool right = state.castlingRights & CastlingRights::blackQueenSide;
-      right = right && (occupancy & bqEmpty).is_empty();
-      right = right && state.getAttacks(Square::d8, myColor).is_empty();
-      right = right && state.getAttacks(Square::c8, myColor).is_empty();
+      right = right && (occupancy & bqEmpty).isEmpty();
+      right = right && state.getAttacks(Square::d8, myColor).isEmpty();
+      right = right && state.getAttacks(Square::c8, myColor).isEmpty();
       if (right) {
         moves.push_back(Move{Square::e8, Square::c8});
       }
 
       right = state.castlingRights & CastlingRights::blackKingSide;
-      right = right && (occupancy & bkEmpty).is_empty();
-      right = right && state.getAttacks(Square::f8, myColor).is_empty();
-      right = right && state.getAttacks(Square::g8, myColor).is_empty();
+      right = right && (occupancy & bkEmpty).isEmpty();
+      right = right && state.getAttacks(Square::f8, myColor).isEmpty();
+      right = right && state.getAttacks(Square::g8, myColor).isEmpty();
       if (right) {
         moves.push_back(Move{Square::e8, Square::g8});
       }
@@ -165,7 +168,7 @@ struct MoveGenerator {
       auto pinned = positions & pins;
       for (auto start : pinned) {
         for (auto ray : pinRays) {
-          if (!(ray & BitBoards::single(start)).is_empty()) {
+          if (!(ray & BitBoards::single(start)).isEmpty()) {
             enterMoves(start, piece,
                        state.getMoves(piece, myColor, start) & ray);
           }
@@ -177,7 +180,7 @@ struct MoveGenerator {
   void generatePlainKingMoves() {
     for (auto end : state.getMoves(Piece::king, myColor, kingSquare)) {
       // TODO: remove king from occupancy
-      if (state.getAttacks(end, myColor).is_empty()) {
+      if (state.getAttacks(end, myColor).isEmpty()) {
         moves.push_back(Move{kingSquare, end});
       }
     }
@@ -225,11 +228,11 @@ struct MoveGenerator {
                        BitBoards::BitBoard ray) {
     auto attackers = opponentSliders & ray;
     auto ourBlockers = ray & state.colors[myColor];
-    if (!attackers.is_empty()) {
-      if (ourBlockers.is_empty()) {
+    if (!attackers.isEmpty()) {
+      if (ourBlockers.isEmpty()) {
         attacksOnKing++;
         targets |= ray;
-      } else if (ourBlockers.popcount() == 1 && attacksOnKing <= 1) {
+      } else if (ourBlockers.populationCount() == 1 && attacksOnKing <= 1) {
         pins |= ourBlockers;
         pinRays.push_back(ray);
       }
@@ -238,7 +241,7 @@ struct MoveGenerator {
 
   void handleLeaperAttacks(Piece::t piece) {
     auto attacks = state.getMoves(piece, myColor, kingSquare);
-    if (!attacks.is_empty()) attacksOnKing++;
+    if (!attacks.isEmpty()) attacksOnKing++;
     targets |= attacks;
   }
 
@@ -307,8 +310,8 @@ void GameState::parseFenString(const std::string &fenString) {
       Color::t color = Color::pieceColorFromChar(c);
       Piece::t type = Piece::byName(c);
       if (Piece::inRange(type)) {
-        pieces[type].set_bit(Square::index(file, rank));
-        colors[color].set_bit(Square::index(file, rank));
+        pieces[type].setSquare(Square::index(file, rank));
+        colors[color].setSquare(Square::index(file, rank));
         file++;
       } else {
         throw std::invalid_argument{"unknown character"};

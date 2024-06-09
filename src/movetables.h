@@ -67,7 +67,7 @@ class BlockerHash {
   /// @return the hash.
   unsigned hash(BitBoards::BitBoard blockers) const {
     blockers &= blockerMask;
-    std::uint64_t h = blockers.as_uint() * magic;
+    std::uint64_t h = blockers.asUint() * magic;
     return static_cast<unsigned>(h >> downShift) + tableOffset;
   }
 

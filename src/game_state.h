@@ -71,7 +71,7 @@ class GameState {
 
   Piece::t getPiece(Square::t square) const {
     for (Piece::t type : Piece::all) {
-      if (pieces[type].is_set(square)) {
+      if (pieces[type].isSet(square)) {
         return type;
       }
     }
@@ -79,8 +79,8 @@ class GameState {
   }
 
   Color::t getColor(Square::t square) const {
-    if (colors[Color::black].is_set(square)) return Color::black;
-    if (colors[Color::white].is_set(square)) return Color::white;
+    if (colors[Color::black].isSet(square)) return Color::black;
+    if (colors[Color::white].isSet(square)) return Color::white;
     return Color::empty;
   }
 

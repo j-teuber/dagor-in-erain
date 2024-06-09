@@ -29,11 +29,11 @@ BitBoard pawnAttack(Square::t square, Color::t color) {
   int r = Square::rank(square);
   int f = Square::file(square);
   if (color == Color::white) {
-    b.set_bit_if_index_valid(f - 1, r + 1);
-    b.set_bit_if_index_valid(f + 1, r + 1);
+    b.setSquareIfInRage(f - 1, r + 1);
+    b.setSquareIfInRage(f + 1, r + 1);
   } else {
-    b.set_bit_if_index_valid(f - 1, r - 1);
-    b.set_bit_if_index_valid(f + 1, r - 1);
+    b.setSquareIfInRage(f - 1, r - 1);
+    b.setSquareIfInRage(f + 1, r - 1);
   }
   return b;
 }
@@ -44,10 +44,10 @@ void writePawnAttacks(std::ofstream &f) {
   f << " const std::array<std::array<std::uint64_t, Square::size>, "
        "Color::size> _pawnAttacks = {\n ";
   for (auto square : Square::all) {
-    f << pawnAttack(square, Color::white).as_uint() << "ULL,";
+    f << pawnAttack(square, Color::white).asUint() << "ULL,";
   }
   for (auto square : Square::all) {
-    f << "" << pawnAttack(square, Color::black).as_uint() << "ULL";
+    f << "" << pawnAttack(square, Color::black).asUint() << "ULL";
     if (square < Square::size - 1) f << ",\n";
   }
   f << "};\n\n";
@@ -61,15 +61,15 @@ BitBoard knightMove(Square::t square) {
   BitBoard b;
   int r = Square::rank(square);
   int f = Square::file(square);
-  b.set_bit_if_index_valid(f + 1, r + 2);
-  b.set_bit_if_index_valid(f - 1, r + 2);
-  b.set_bit_if_index_valid(f - 1, r - 2);
-  b.set_bit_if_index_valid(f + 1, r - 2);
+  b.setSquareIfInRage(f + 1, r + 2);
+  b.setSquareIfInRage(f - 1, r + 2);
+  b.setSquareIfInRage(f - 1, r - 2);
+  b.setSquareIfInRage(f + 1, r - 2);
 
-  b.set_bit_if_index_valid(f + 2, r - 1);
-  b.set_bit_if_index_valid(f + 2, r + 1);
-  b.set_bit_if_index_valid(f - 2, r - 1);
-  b.set_bit_if_index_valid(f - 2, r + 1);
+  b.setSquareIfInRage(f + 2, r - 1);
+  b.setSquareIfInRage(f + 2, r + 1);
+  b.setSquareIfInRage(f - 2, r - 1);
+  b.setSquareIfInRage(f - 2, r + 1);
   return b;
 }
 
@@ -78,7 +78,7 @@ BitBoard knightMove(Square::t square) {
 void writeKnightMoves(std::ofstream &f) {
   f << "const std::array<std::uint64_t, Square::size> _knightMoves = {\n";
   for (auto square : Square::all) {
-    f << knightMove(square).as_uint() << "ULL";
+    f << knightMove(square).asUint() << "ULL";
     if (square < Square::size - 1) f << ",\n";
   }
   f << "};\n\n";
@@ -93,16 +93,16 @@ BitBoard kingMove(Square::t square) {
   BitBoard b;
   int r = Square::rank(square);
   int f = Square::file(square);
-  b.set_bit_if_index_valid(f + 1, r + 1);
-  b.set_bit_if_index_valid(f + 0, r + 1);
-  b.set_bit_if_index_valid(f - 1, r + 1);
+  b.setSquareIfInRage(f + 1, r + 1);
+  b.setSquareIfInRage(f + 0, r + 1);
+  b.setSquareIfInRage(f - 1, r + 1);
 
-  b.set_bit_if_index_valid(f + 1, r);
-  b.set_bit_if_index_valid(f - 1, r);
+  b.setSquareIfInRage(f + 1, r);
+  b.setSquareIfInRage(f - 1, r);
 
-  b.set_bit_if_index_valid(f + 1, r - 1);
-  b.set_bit_if_index_valid(f + 0, r - 1);
-  b.set_bit_if_index_valid(f - 1, r - 1);
+  b.setSquareIfInRage(f + 1, r - 1);
+  b.setSquareIfInRage(f + 0, r - 1);
+  b.setSquareIfInRage(f - 1, r - 1);
   return b;
 }
 
@@ -111,7 +111,7 @@ BitBoard kingMove(Square::t square) {
 void writeKingMoves(std::ofstream &f) {
   f << "const std::array<std::uint64_t, Square::size> _kingMoves = {\n";
   for (auto square : Square::all) {
-    f << kingMove(square).as_uint() << "ULL";
+    f << kingMove(square).asUint() << "ULL";
     if (square < Square::size - 1) f << ",\n";
   }
   f << "};\n\n";
@@ -140,10 +140,10 @@ BitBoard bishopBlockers(Square::t square) {
   Coord::t r = Square::rank(square);
   Coord::t f = Square::file(square);
   for (Coord::t offset = 1; Coord::inRange(offset); offset++) {
-    b.set_bit_if_index_valid(f + offset, r - offset);
-    b.set_bit_if_index_valid(f + offset, r + offset);
-    b.set_bit_if_index_valid(f - offset, r - offset);
-    b.set_bit_if_index_valid(f - offset, r + offset);
+    b.setSquareIfInRage(f + offset, r - offset);
+    b.setSquareIfInRage(f + offset, r + offset);
+    b.setSquareIfInRage(f - offset, r - offset);
+    b.setSquareIfInRage(f - offset, r + offset);
   }
   return b & ~BitBoards::edgesOnly;
 }
@@ -166,8 +166,8 @@ BitBoard bishopMoveRay(Square::t square, bool fileUp, bool rankUp,
   for (Coord::t offset = 1; Coord::inRange(offset); offset++) {
     Coord::t currentFile = fileUp ? f + offset : f - offset;
     Coord::t currentRank = rankUp ? r + offset : r - offset;
-    b.set_bit_if_index_valid(currentFile, currentRank);
-    if (blockers.is_set(Square::index(currentFile, currentRank))) break;
+    b.setSquareIfInRage(currentFile, currentRank);
+    if (blockers.isSet(Square::index(currentFile, currentRank))) break;
   }
   return b;
 }
@@ -207,12 +207,12 @@ BitBoard rookBlockers(Square::t square) {
   Coord::t r = Square::rank(square);
   Coord::t f = Square::file(square);
   for (Coord::t offset = 1; Coord::inRange(offset); offset++) {
-    if (f + offset < Coord::width - 1) b.set_bit_if_index_valid(f + offset, r);
+    if (f + offset < Coord::width - 1) b.setSquareIfInRage(f + offset, r);
     if (f - offset > 0 && Coord::inRange(f - offset))
-      b.set_bit_if_index_valid(f - offset, r);
-    if (r + offset < Coord::width - 1) b.set_bit_if_index_valid(f, r + offset);
+      b.setSquareIfInRage(f - offset, r);
+    if (r + offset < Coord::width - 1) b.setSquareIfInRage(f, r + offset);
     if (r - offset > 0 && Coord::inRange(r - offset))
-      b.set_bit_if_index_valid(f, r - offset);
+      b.setSquareIfInRage(f, r - offset);
   }
   return b;
 }
@@ -245,8 +245,8 @@ BitBoard rookMoveRay(Square::t square, Coord::t addFile, Coord::t addRank,
   for (Coord::t offset = 1; Coord::inRange(offset); offset++) {
     Coord::t currentFile = f + addFile * offset;
     Coord::t currentRank = r + addRank * offset;
-    b.set_bit_if_index_valid(currentFile, currentRank);
-    if (blockers.is_set(Square::index(currentFile, currentRank))) break;
+    b.setSquareIfInRage(currentFile, currentRank);
+    if (blockers.isSet(Square::index(currentFile, currentRank))) break;
   }
   return b;
 }
@@ -287,14 +287,14 @@ BitBoard rookMoves(int square, BitBoard blockers) {
 /// @return A bitboard, in which a square is set iff it’s the `n`th set
 /// square of the mask and the `n`th bit of `bitsToSpread` is set.
 BitBoard spreadBitsInMask(unsigned bitsToSpread, BitBoard mask) {
-  int bitCount = mask.popcount();
+  int bitCount = mask.populationCount();
   BitBoard result{};
   BitBoard bits{bitsToSpread};
   for (int bitIndex = 0; bitIndex < bitCount; bitIndex++) {
     int firstSet = mask.findFirstSet();
-    mask.unset_bit(firstSet);
-    if (bits.is_set(bitIndex)) {
-      result.set_bit(firstSet);
+    mask.unsetSquare(firstSet);
+    if (bits.isSet(bitIndex)) {
+      result.setSquare(firstSet);
     }
   }
   return result;
@@ -324,7 +324,7 @@ std::uint64_t randomFewBitsSet() {
 /// @return the powerset of that mask.
 vector<BitBoard> generatePossibleBlockers(BitBoard mask) {
   vector<BitBoard> blockers;
-  int bitCount = mask.popcount();
+  int bitCount = mask.populationCount();
   unsigned noOfCombinations = 1u << bitCount;
   for (unsigned i = 0; i < noOfCombinations; i++) {
     blockers.push_back(spreadBitsInMask(i, mask));
@@ -368,10 +368,10 @@ class SliderInfo {
 /// failed.
 MoveTables::BlockerHash findPerfectHash(SliderInfo &info) {
   unsigned maxTries = 1u << 31;
-  int bitCount = info.blockerMask.popcount();
+  int bitCount = info.blockerMask.populationCount();
 
   for (unsigned k = 0; k < maxTries; k++) {
-    MoveTables::BlockerHash candidate{info.blockerMask.as_uint(),
+    MoveTables::BlockerHash candidate{info.blockerMask.asUint(),
                                       randomFewBitsSet(),
                                       static_cast<unsigned>(64 - bitCount), 0};
     vector<bool> hits(info.blockers.size(), false);
@@ -461,7 +461,7 @@ void writeSlidingPieces(std::ostream &f) {
 
   f << "const std::uint64_t slidingMoves[] = {\n";
   for (unsigned i = 0; i < moves.size(); i++) {
-    f << "{" << moves[i].as_uint() << "UL}";
+    f << "{" << moves[i].asUint() << "UL}";
     if (i < moves.size() - 1) f << ",\n";
   }
   f << "\n};\n\n";

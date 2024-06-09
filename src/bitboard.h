@@ -25,12 +25,12 @@ class BitBoard {
   /// @brief constructs an empty BitBoard.
   BitBoard() : board{0} {}
   /// @brief
-  /// @param bitboard a uint64 as returned by the `as_uint` function.
+  /// @param bitboard a uint64 as returned by the `asUint` function.
   BitBoard(std::uint64_t bitboard) : board{bitboard} {}
 
   /// @brief
   /// @return a uint64 where all the 1 bits indicate the set squares
-  constexpr std::uint64_t as_uint() const { return board; }
+  constexpr std::uint64_t asUint() const { return board; }
 
   /// @brief removes all the squares that are not also present in `other`.
   /// @param other
@@ -51,18 +51,18 @@ class BitBoard {
   /// @brief checks whether the bitboard is empty, that is whether no squares
   /// are set.
   /// @return `true`, iff no squares are set.
-  constexpr bool is_empty() const { return board == 0; }
+  constexpr bool isEmpty() const { return board == 0; }
 
   /// @brief Checks whether a particular square is set.
   /// @param square the square to check.
   /// @return `true`, iff the square is set.
-  constexpr bool is_set(Square::t square) const {
+  constexpr bool isSet(Square::t square) const {
     return board & (1ULL << square);
   }
 
   /// @brief Adds the given square to the bitboard.
   /// @param square the square to add.
-  void set_bit(Square::t square) { board |= (1ULL << square); }
+  void setSquare(Square::t square) { board |= (1ULL << square); }
 
   /// Adds the given square to the bitboard, if the coordinates are
   /// valid on a chess board, that is, if `file, rank are from {0,...,7}`. If
@@ -70,19 +70,19 @@ class BitBoard {
   /// against warping around the edges of the board when calculating moves etc.
   /// @param file the file (i. e. column) of the square to add.
   /// @param rank the rank (i. e. row) of the square to add.
-  void set_bit_if_index_valid(Coord::t file, Coord::t rank) {
+  void setSquareIfInRage(Coord::t file, Coord::t rank) {
     if (Coord::inRange(file) && Coord::inRange(rank)) {
-      set_bit(Square::index(file, rank));
+      setSquare(Square::index(file, rank));
     }
   }
 
   /// @brief Removes a given square from the bitboard.
   /// @param square the square to remove.
-  void unset_bit(Square::t square) { board &= ~(1ULL << square); }
+  void unsetSquare(Square::t square) { board &= ~(1ULL << square); }
 
   /// @brief Counts the number of set squares in the bitboard.
   /// @return the number of set squares in the bitboard.
-  constexpr int popcount() const { return __builtin_popcountll(board); }
+  constexpr int populationCount() const { return __builtin_popcountll(board); }
 
   /// @brief Finds the index of the first set square in the bitboard.
   /// Do not call this function for the empty bitboard.
@@ -133,19 +133,19 @@ class BitBoard {
   };
 
   using const_iterator = Iterator;
-  Iterator begin() { return {as_uint()}; }
+  Iterator begin() { return {asUint()}; }
   Iterator end() { return {0}; }
 };
 
 inline BitBoard operator&(BitBoard a, BitBoard b) { return a &= b; }
 inline BitBoard operator|(BitBoard a, BitBoard b) { return a |= b; }
-inline BitBoard operator~(BitBoard a) { return BitBoard(~a.as_uint()); }
+inline BitBoard operator~(BitBoard a) { return BitBoard(~a.asUint()); }
 
 inline bool operator==(BitBoard a, BitBoard b) {
-  return a.as_uint() == b.as_uint();
+  return a.asUint() == b.asUint();
 }
 inline bool operator!=(BitBoard a, BitBoard b) {
-  return a.as_uint() != b.as_uint();
+  return a.asUint() != b.asUint();
 }
 
 std::ostream &operator<<(std::ostream &out, const BitBoard &printer);
