@@ -21,13 +21,13 @@ BitBoards::BitBoard GameState::getMoves(Piece::t piece, Color::t color,
         moves |= BitBoards::BitBoard(1UL << (square + offset * 2)) & ~occupancy;
       }
       moves |= BitBoards::BitBoard(1UL << (square + offset)) & ~occupancy;
-      moves |= MoveTables::pawnAttacks[color][square] & occupancy;
+      moves |= MoveTables::pawnAttacks(color, square) & occupancy;
     } break;
     case Piece::knight:
-      moves |= MoveTables::knightMoves[square];
+      moves |= MoveTables::knightMoves(square);
       break;
     case Piece::king:
-      moves |= MoveTables::kingMoves[square];
+      moves |= MoveTables::kingMoves(square);
       break;
     case Piece::bishop:
       moves |= MoveTables::bishopHashes[square].lookUp(occupancy);
@@ -103,6 +103,7 @@ struct MoveGenerator {
 
  private:
   void enPassantCaptures() {
+#if 0
     auto electablePawns =
         state.getMoves(Piece::pawn, opponentColor, state.enPassantSquare);
     BitBoards::BitBoard occupancy{state.occupancy()};
@@ -110,6 +111,7 @@ struct MoveGenerator {
         (myColor == Color::white) ? Square::north : Square::south;
     Square::t capturePawn = state.enPassantSquare + pawnPush;
     occupancy.unset_bit(capturePawn);
+#endif
   }
 
   void generateCastling() {

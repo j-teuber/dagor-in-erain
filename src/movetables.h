@@ -10,21 +10,32 @@ namespace Dagor::MoveTables {
 
 /// @brief The attacks a pawn can make on a given square.
 /// Access: `pawnAttacks[color][square]`, where white is `0` and black is `1`.
-extern const std::array<std::array<BitBoards::BitBoard, Square::size>,
-                        Color::size>
-    pawnAttacks;
+extern const std::array<std::array<std::uint64_t, Square::size>, Color::size>
+    _pawnAttacks;
+
+inline BitBoards::BitBoard pawnAttacks(Color::t color, Square::t square) {
+  return {_pawnAttacks[color][square]};
+}
 
 /// @brief The moves a knight can make on a given square.
-extern const std::array<BitBoards::BitBoard, Square::size> knightMoves;
+extern const std::array<std::uint64_t, Square::size> _knightMoves;
+
+inline BitBoards::BitBoard knightMoves(Square::t square) {
+  return {_knightMoves[square]};
+}
 
 /// @brief The moves a king can make on a given square. For his home square
 /// this does not include castling moves.
-extern const std::array<BitBoards::BitBoard, Square::size> kingMoves;
+extern const std::array<std::uint64_t, Square::size> _kingMoves;
+
+inline BitBoards::BitBoard kingMoves(Square::t square) {
+  return {_kingMoves[square]};
+}
 
 /// @brief The move that a sliding piece (bishop, rook or queen) can
 /// make on a given square. Access through the hash functions in
 /// `bishopHashes` and `rookHashes`.
-extern const BitBoards::BitBoard slidingMoves[];
+extern const std::uint64_t slidingMoves[];
 
 /// @brief A hash function that maps a configuration of blocking
 /// pieces to an index into the `slidingMoves` table, where the
@@ -34,9 +45,9 @@ class BlockerHash {
  public:
   /// @brief The mask singling out the blocking pieces that actually matter
   /// to the figure under consideration.
-  const BitBoards::BitBoard blockerMask;
+  const std::uint64_t blockerMask;
   /// @brief The magic number that yields the perfect hash function.
-  const BitBoards::BitBoard magic;
+  const std::uint64_t magic;
   /// @brief The amount by which the hash should be shifted down.
   const unsigned downShift;
   /// @brief The offset that should be added to the hash. In `slidingMoves` all
@@ -44,8 +55,8 @@ class BlockerHash {
   /// accessed through this hash function.
   const unsigned tableOffset;
 
-  BlockerHash(BitBoards::BitBoard mask, BitBoards::BitBoard magic,
-              unsigned downShift, unsigned tableOffset)
+  BlockerHash(std::uint64_t mask, std::uint64_t magic, unsigned downShift,
+              unsigned tableOffset)
       : blockerMask{mask},
         magic{magic},
         downShift{downShift},
@@ -56,7 +67,7 @@ class BlockerHash {
   /// @return the hash.
   unsigned hash(BitBoards::BitBoard blockers) const {
     blockers &= blockerMask;
-    std::uint64_t h = blockers.as_uint() * magic.as_uint();
+    std::uint64_t h = blockers.as_uint() * magic;
     return static_cast<unsigned>(h >> downShift) + tableOffset;
   }
 
@@ -66,7 +77,7 @@ class BlockerHash {
   /// @return a bitboard where all squares, to which the bishop/rook can move,
   /// are set.
   BitBoards::BitBoard lookUp(BitBoards::BitBoard blockers) const {
-    return slidingMoves[hash(blockers)];
+    return {slidingMoves[hash(blockers)]};
   }
 };
 

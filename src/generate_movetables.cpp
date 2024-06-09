@@ -41,13 +41,13 @@ BitBoard pawnAttack(Square::t square, Color::t color) {
 /// @brief writes all possible pawn attacks into a file.
 /// @param f
 void writePawnAttacks(std::ofstream &f) {
-  f << " const std::array<std::array<BitBoards::BitBoard, Square::size>, "
-       "Color::size> pawnAttacks = {\n ";
+  f << " const std::array<std::array<std::uint64_t, Square::size>, "
+       "Color::size> _pawnAttacks = {\n ";
   for (auto square : Square::all) {
-    f << "BitBoard{" << pawnAttack(square, Color::white).as_uint() << "UL},";
+    f << pawnAttack(square, Color::white).as_uint() << "ULL,";
   }
   for (auto square : Square::all) {
-    f << "BitBoard{" << pawnAttack(square, Color::black).as_uint() << "UL}";
+    f << "" << pawnAttack(square, Color::black).as_uint() << "ULL";
     if (square < Square::size - 1) f << ",\n";
   }
   f << "};\n\n";
@@ -76,12 +76,12 @@ BitBoard knightMove(Square::t square) {
 /// @brief writes the knight moves to a file.
 /// @param f
 void writeKnightMoves(std::ofstream &f) {
-  f << "const std::array<BitBoards::BitBoard, Square::size> knightMoves = {{\n";
+  f << "const std::array<std::uint64_t, Square::size> _knightMoves = {\n";
   for (auto square : Square::all) {
-    f << "{" << knightMove(square).as_uint() << "UL}";
+    f << knightMove(square).as_uint() << "ULL";
     if (square < Square::size - 1) f << ",\n";
   }
-  f << "}};\n\n";
+  f << "};\n\n";
 }
 
 /// @brief Computes the possible moves of a king on a given square (assuming the
@@ -109,12 +109,12 @@ BitBoard kingMove(Square::t square) {
 /// @brief writes the king moves to a file.
 /// @param f
 void writeKingMoves(std::ofstream &f) {
-  f << "const std::array<BitBoards::BitBoard, Square::size> kingMoves = {{\n";
+  f << "const std::array<std::uint64_t, Square::size> _kingMoves = {\n";
   for (auto square : Square::all) {
-    f << "{" << kingMove(square).as_uint() << "UL}";
+    f << kingMove(square).as_uint() << "ULL";
     if (square < Square::size - 1) f << ",\n";
   }
-  f << "}};\n\n";
+  f << "};\n\n";
 }
 
 /// @brief Computes a mask, where all locations are set, where a blocking piece
@@ -371,7 +371,8 @@ MoveTables::BlockerHash findPerfectHash(SliderInfo &info) {
   int bitCount = info.blockerMask.popcount();
 
   for (unsigned k = 0; k < maxTries; k++) {
-    MoveTables::BlockerHash candidate{info.blockerMask, randomFewBitsSet(),
+    MoveTables::BlockerHash candidate{info.blockerMask.as_uint(),
+                                      randomFewBitsSet(),
                                       static_cast<unsigned>(64 - bitCount), 0};
     vector<bool> hits(info.blockers.size(), false);
     bool failed = false;
@@ -397,9 +398,8 @@ MoveTables::BlockerHash findPerfectHash(SliderInfo &info) {
 /// specified in the hash function.
 void writeHash(std::ostream &f, MoveTables::BlockerHash &hash,
                unsigned offset) {
-  f << "{{" << hash.blockerMask.as_uint() << "UL}, "
-    << "{" << hash.magic.as_uint() << "UL}, " << hash.downShift << "U, "
-    << offset << "U}";
+  f << "{" << hash.blockerMask << "ULL, " << hash.magic << "ULL, "
+    << hash.downShift << "U, " << offset << "U}";
 }
 
 void initHashFunctions(vector<SliderInfo> &squareInfo,
@@ -459,7 +459,7 @@ void writeSlidingPieces(std::ostream &f) {
   }
   f << "\n}};\n\n";
 
-  f << "const BitBoards::BitBoard slidingMoves[] = {\n";
+  f << "const std::uint64_t slidingMoves[] = {\n";
   for (unsigned i = 0; i < moves.size(); i++) {
     f << "{" << moves[i].as_uint() << "UL}";
     if (i < moves.size() - 1) f << ",\n";

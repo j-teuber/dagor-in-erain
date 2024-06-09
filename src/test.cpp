@@ -84,20 +84,20 @@ void pseudoLegalMoves() {
 void pieceMovement() {
   header("Movement of Single Pieces");
   using namespace MoveTables;
-  assertEquals(pawnAttacks[Color::white][Square::c8], {},
+  assertEquals(pawnAttacks(Color::white, Square::c8), {},
                "Pawn in last row cannot move further");
-  assertEquals(pawnAttacks[Color::white][Square::c3], {0xa000000},
+  assertEquals(pawnAttacks(Color::white, Square::c3), {0xa000000},
                "Pawn in the center can attack left and right");
-  assertEquals(pawnAttacks[Color::white][Square::a3], {0x2000000},
+  assertEquals(pawnAttacks(Color::white, Square::a3), {0x2000000},
                "Pawn in the left side has only one attack");
 
-  assertEquals(knightMoves[Square::d5], {0x14220022140000},
+  assertEquals(knightMoves(Square::d5), {0x14220022140000},
                "Knight in the center has the correct moves");
-  assertEquals(knightMoves[Square::a1], {0x20400},
+  assertEquals(knightMoves(Square::a1), {0x20400},
                "Knight in a corner has only two options");
 
-  assertEquals(kingMoves[Square::b2], {0x70507}, "King has eight moves");
-  assertEquals(kingMoves[Square::a1], {0x302},
+  assertEquals(kingMoves(Square::b2), {0x70507}, "King has eight moves");
+  assertEquals(kingMoves(Square::a1), {0x302},
                "King in a corner has only three options");
 
   assertEquals(bishopHashes[Square::c4].lookUp({}), {0x4020110a000a1120},
