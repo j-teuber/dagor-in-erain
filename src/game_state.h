@@ -3,6 +3,7 @@
 
 #include <array>
 #include <iostream>
+#include <stack>
 #include <string>
 #include <vector>
 
@@ -30,6 +31,22 @@ inline bool operator==(Move const &a, Move const &b) {
          a.flags == b.flags;
 }
 
+struct UndoInfo {
+  Piece::t piece;
+  Piece::t capture;
+  Square::t start;
+  Square::t end;
+  Square::t enPassant;
+  CastlingRights::t castlingRights;
+  std::uint8_t uneventfulHalfMoves;
+  /// @brief Flags marking special Moves:
+  ///
+  /// - `0`: a normal move
+  /// - `1, 2, 3, 4`: a castle move
+  /// - `5` an en passant capture
+  std::uint8_t flags;
+};
+
 class GameState {
  public:
   static inline const std::string startingPosition =
@@ -37,6 +54,7 @@ class GameState {
 
   std::array<BitBoards::BitBoard, Piece::all.size()> pieces;
   std::array<BitBoards::BitBoard, Color::all.size()> colors;
+  std::stack<UndoInfo> undoStack;
   unsigned moveCounter;
   std::uint8_t uneventfulHalfMoves;
   CastlingRights::t castlingRights;
@@ -93,9 +111,13 @@ class GameState {
   BitBoards::BitBoard getMoves(Piece::t piece, Color::t color, Square::t square,
                                BitBoards::BitBoard occupancy) const;
   BitBoards::BitBoard getAttacks(Square::t square, Color::t color) const;
+  BitBoards::BitBoard getAttacks(Square::t square, Color::t color,
+                                 BitBoards::BitBoard occupancy) const;
+
   std::vector<Move> generateLegalMoves() const;
 
   void executeMove(Move move);
+  void undoMove();
   void parseFenString(const std::string &fenString);
 };
 

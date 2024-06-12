@@ -2,6 +2,7 @@
 
 #include <sstream>
 #include <stdexcept>
+#include <unordered_map>
 #include <vector>
 
 namespace Dagor {
@@ -52,13 +53,18 @@ BitBoards::BitBoard GameState::getMoves(Piece::t piece, Color::t color,
   return getMoves(piece, color, square, occupancy);
 }
 
-BitBoards::BitBoard GameState::getAttacks(Square::t square,
-                                          Color::t color) const {
+BitBoards::BitBoard GameState::getAttacks(Square::t square, Color::t color,
+                                          BitBoards::BitBoard occupancy) const {
   auto attackers = BitBoards::BitBoard();
   for (auto piece : Piece::all) {
-    attackers |= getMoves(piece, color, square) & pieces[piece];
+    attackers |= getMoves(piece, color, square, occupancy) & pieces[piece];
   }
   return attackers;
+}
+
+BitBoards::BitBoard GameState::getAttacks(Square::t square,
+                                          Color::t color) const {
+  return getAttacks(square, color, occupancy());
 }
 
 struct MoveGenerator {
@@ -70,7 +76,7 @@ struct MoveGenerator {
   const GameState &state;
   BitBoards::BitBoard targets;
   BitBoards::BitBoard pins;
-  std::vector<BitBoards::BitBoard> pinRays;
+  std::unordered_map<Square::t, BitBoards::BitBoard> pinRays;
 
   std::vector<Move> moves;
 
@@ -103,18 +109,43 @@ struct MoveGenerator {
 
  private:
   void enPassantCaptures() {
-#if 0
     auto electablePawns =
         state.getMoves(Piece::pawn, opponentColor, state.enPassantSquare);
-    BitBoards::BitBoard occupancy{state.occupancy()};
+
     Square::t pawnPush =
         (myColor == Color::white) ? Square::north : Square::south;
     Square::t capturePawn = state.enPassantSquare + pawnPush;
-    occupancy.unsetSquare(capturePawn);
     if (targets.isSet(capturePawn)) {
+      // The opponents pawn is already there, so we never need to
+      // intercept a check by moving there. Therefore, if we have set
+      // the pawn as a target, it's because we want to capture him.
       targets.setSquare(state.enPassantSquare);
     }
-#endif
+    if (Square::rank(kingSquare) == Square::rank(capturePawn) &&
+        electablePawns.populationCount() == 1) {
+      // In this case we need to reevaluate the pins, because we
+      // can remove two pieces from a rank at once
+      Square::t attackerSquare = electablePawns.findFirstSet();
+      BitBoards::BitBoard occupancy{state.occupancy()};
+      occupancy.unsetSquare(capturePawn);
+      auto rays = state.getMoves(Piece::rook, myColor, kingSquare, occupancy);
+      auto ray =
+          rays & (kingSquare < attackerSquare ? BitBoards::rightOf(kingSquare)
+                                              : BitBoards::leftOf(kingSquare));
+      enterMoves(attackerSquare, Piece::pawn,
+                 BitBoards::single(state.enPassantSquare) & ray);
+
+    } else {
+      for (Square::t start : electablePawns) {
+        if (pins.isSet(start)) {
+          enterMoves(start, Piece::pawn,
+                     BitBoards::single(state.enPassantSquare) & pinRays[start]);
+        } else {
+          enterMoves(start, Piece::pawn,
+                     BitBoards::single(state.enPassantSquare));
+        }
+      }
+    }
   }
 
   void generateCastling() {
@@ -167,20 +198,19 @@ struct MoveGenerator {
       }
       auto pinned = positions & pins;
       for (auto start : pinned) {
-        for (auto ray : pinRays) {
-          if (!(ray & BitBoards::single(start)).isEmpty()) {
-            enterMoves(start, piece,
-                       state.getMoves(piece, myColor, start) & ray);
-          }
+        auto ray = pinRays[start];
+        if (!(ray & BitBoards::single(start)).isEmpty()) {
+          enterMoves(start, piece, state.getMoves(piece, myColor, start) & ray);
         }
       }
     }
   }
 
   void generatePlainKingMoves() {
+    BitBoards::BitBoard withoutKing{state.occupancy()};
+    withoutKing.unsetSquare(kingSquare);
     for (auto end : state.getMoves(Piece::king, myColor, kingSquare)) {
-      // TODO: remove king from occupancy
-      if (state.getAttacks(end, myColor).isEmpty()) {
+      if (state.getAttacks(end, myColor, withoutKing).isEmpty()) {
         moves.push_back(Move{kingSquare, end});
       }
     }
@@ -234,7 +264,8 @@ struct MoveGenerator {
         targets |= ray;
       } else if (ourBlockers.populationCount() == 1 && attacksOnKing <= 1) {
         pins |= ourBlockers;
-        pinRays.push_back(ray);
+        Square::t pinSquare = ourBlockers.findFirstSet();
+        pinRays[pinSquare] = ray;
       }
     }
   }
