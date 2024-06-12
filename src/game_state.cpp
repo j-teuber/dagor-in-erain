@@ -57,7 +57,8 @@ BitBoards::BitBoard GameState::getAttacks(Square::t square, Color::t color,
                                           BitBoards::BitBoard occupancy) const {
   auto attackers = BitBoards::BitBoard();
   for (auto piece : Piece::all) {
-    attackers |= getMoves(piece, color, square, occupancy) & pieces[piece];
+    attackers |= getMoves(piece, color, square, occupancy) &
+                 bitboardFor(piece, Color::opponent(color));
   }
   return attackers;
 }
@@ -260,8 +261,8 @@ struct MoveGenerator {
     auto ourBlockers = ray & state.colors[myColor];
     if (!attackers.isEmpty()) {
       if (ourBlockers.isEmpty()) {
-        attacksOnKing++;
-        targets |= ray;
+        attacksOnKing += attackers.populationCount();
+        targets &= ray;
       } else if (ourBlockers.populationCount() == 1 && attacksOnKing <= 1) {
         pins |= ourBlockers;
         Square::t pinSquare = ourBlockers.findFirstSet();
@@ -271,9 +272,12 @@ struct MoveGenerator {
   }
 
   void handleLeaperAttacks(Piece::t piece) {
-    auto attacks = state.getMoves(piece, myColor, kingSquare);
-    if (!attacks.isEmpty()) attacksOnKing++;
-    targets |= attacks;
+    auto attacks = state.getMoves(piece, myColor, kingSquare) &
+                   state.bitboardFor(piece, opponentColor);
+    if (!attacks.isEmpty()) {
+      attacksOnKing += attacks.populationCount();
+      targets &= attacks;
+    }
   }
 
   void enterMoves(Square::t start, Piece::t piece, BitBoards::BitBoard ends) {

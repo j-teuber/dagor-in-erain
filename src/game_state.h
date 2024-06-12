@@ -111,7 +111,7 @@ class GameState {
   }
 
   BitBoards::BitBoard occupancy() const {
-    return colors[Color::white] & colors[Color::black];
+    return colors[Color::white] | colors[Color::black];
   }
 
   inline Color::t us() { return next; }

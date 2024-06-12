@@ -1,5 +1,6 @@
 #include "test.h"
 
+#include <algorithm>
 #include <iostream>
 
 #include "bitboard.h"
@@ -120,11 +121,77 @@ void moveClass() {
       "Moves can be constructed from algebraic notation with promotion");
 }
 
+void assertMoveGen(std::string_view fen, std::vector<Move> expected,
+                   std::string_view msg) {
+  GameState s{std::string(fen)};
+  auto moves = s.generateLegalMoves();
+  std::sort(moves.begin(), moves.end(), [](Move& a, Move& b) {
+    if (a.start > b.start) return false;
+    if (a.end > b.end) return false;
+    if (a.promotion > b.promotion) return false;
+    return true;
+  });
+  std::sort(expected.begin(), expected.end(), [](Move& a, Move& b) {
+    if (a.start > b.start) return false;
+    if (a.end > b.end) return false;
+    if (a.promotion > b.promotion) return false;
+    return true;
+  });
+  assertEquals(moves, expected, msg);
+}
+
 void legalMoves() {
   header("Legal Moves");
   assertEquals(GameState{}.generateLegalMoves().size(),
                static_cast<std::size_t>(20),
                "20 legal moves are available in starting position");
+
+  assertMoveGen("8/8/8/8/8/8/8/K2N2r1 w - - 0 1",
+                std::vector{Move{"a1a2"}, Move{"a1b2"}, Move{"a1b1"}},
+                "Pinned Knight cannot move");
+  assertMoveGen("8/8/8/K1pP3q/8/8/8/8 w c6 - 0 1",
+                std::vector{Move{"d5d6"}, Move{"a5a6"}, Move{"a5b6"},
+                            Move{"a5b5"}, Move{"a5a4"}},
+                "En passant discovered check");
+  assertMoveGen("8/8/8/8/8/k7/8/K1Rr4 w - - 0 1",
+                std::vector{Move{"a1b1"}, Move{"c1b1"}, Move{"c1d1"}},
+                "Pinned rook can capture opponents rook");
+  assertMoveGen("8/8/8/8/8/1qk5/8/K7 w - - 0 1", std::vector<Move>(),
+                "no moves for patt");
+  assertMoveGen("8/8/8/8/8/2k5/1q6/K7 w - - 0 1", std::vector<Move>(),
+                "no moves for check mate");
+  assertMoveGen("8/7k/8/8/8/1n2Q3/8/K3r3 w - - 0 1",
+                std::vector{Move{"a1a2"}, Move{"a1b2"}},
+                "Double check means only the king can move");
+  assertMoveGen("8/7k/8/8/8/1nQ5/2n5/K7 w - - 0 1",
+                std::vector{Move{"a1a2"}, Move{"a1b2"}, Move{"a1b1"}},
+                "Double check is recognized if both checkers are of the same "
+                "type (knight)");
+  assertMoveGen("8/7k/8/8/8/r1Q5/8/K1r5 w - - 0 1", std::vector{Move{"a1b2"}},
+                "Double check is recognized if both checkers are of the same "
+                "type (rooks)");
+  assertMoveGen("8/8/8/8/4Q3/k7/8/K3r3 w - - 0 1",
+                std::vector{Move{"e4b1"}, Move{"e4e1"}},
+                "Single check can be solved by capture or interception");
+  assertMoveGen(
+      "8/8/8/8/8/4k3/8/R3K2R w - KQ 0 1",
+      std::vector{Move{"e1f1"}, Move{"e1d1"}, Move{"e1c1"}, Move{"e1g1"}},
+      "castling is generated");
+  assertMoveGen("8/8/8/8/8/4k3/8/R3K2R w - - 0 1",
+                std::vector{Move{"e1f1"}, Move{"e1d1"}},
+                "no castling if we don't have the rights");
+  assertMoveGen("8/8/8/8/8/4k3/3r4/R3K2R w - KQ 0 1",
+                std::vector{Move{"e1f1"}, Move{"e1d1"}, Move{"e1g1"}},
+                "no castling if we pass through check");
+  assertMoveGen("8/8/8/8/8/4k3/4r3/R3K2R w - KQ 0 1",
+                std::vector{Move{"e1f1"}, Move{"e1d1"}},
+                "no castling if we are in check");
+  assertMoveGen("8/8/8/6r1/8/4k3/8/R3K2R w - KQ 0 1",
+                std::vector{Move{"e1f1"}, Move{"e1d1"}, Move{"e1c1"}},
+                "no castling if we would move into check");
+  assertMoveGen("4k3/8/8/3pP3/8/8/2q5/4K3 w d6 - 0 1",
+                std::vector{Move{"e1f1"}, Move{"e5e6"}, Move{"e5d6"}},
+                "Simple en passant capture");
 }
 
 void makeMove() {
