@@ -65,7 +65,7 @@ class BitBoard {
   void setSquare(Square::t square) { board |= (1ULL << square); }
 
   /// Adds the given square to the bitboard, if the coordinates are
-  /// valid on a chess board, that is, if `file, rank are from {0,...,7}`. If
+  /// valid on a chess board, that is, if `file, rank` are from `{0,...,7}`. If
   /// this is not the case, nothing happens. This function exists to protect
   /// against warping around the edges of the board when calculating moves etc.
   /// @param file the file (i. e. column) of the square to add.
