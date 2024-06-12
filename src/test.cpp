@@ -127,6 +127,34 @@ void legalMoves() {
                "20 legal moves are available in starting position");
 }
 
+void makeMove() {
+  header("Make Moves");
+  GameState a{};
+  a.executeMove(Move{"b1c3"});
+  GameState b{"rnbqkbnr/pppppppp/8/8/8/2N5/PPPPPPPP/R1BQKBNR b KQkq - 1 0"};
+  assertEquals(a, b, "Simple Moves");
+
+  GameState c{"rnbqkbnr/ppp1pppp/8/3p4/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1"};
+  c.executeMove(Move{"e4d5"});
+  GameState d{"rnbqkbnr/ppp1pppp/8/3P4/8/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1"};
+  assertEquals(c, d, "Simple Captures");
+
+  GameState e{"rnb1kbnr/ppp1pppp/8/3q4/8/8/PPPP1P2/RNBQKBNR b KQkq - 0 1"};
+  e.executeMove(Move{"d5h1"});
+  GameState f{"rnb1kbnr/ppp1pppp/8/8/8/8/PPPP1P2/RNBQKBNq w Qkq - 0 1"};
+  assertEquals(e, f, "Capturing a rook removes castling rights");
+
+  GameState g{"rnb1kbnr/8/8/3q4/8/8/8/RNBQKBN1 b Qkq - 0 1"};
+  g.executeMove(Move{"a8a1"});
+  GameState h{"1nb1kbnr/8/8/3q4/8/8/8/rNBQKBN1 w k - 0 1"};
+  assertEquals(g, h, "Moving a rook removes castling rights");
+
+  GameState i{"1nb1kbnr/8/8/3q4/8/8/8/rNBQKBN1 b k - 0 1"};
+  i.executeMove(Move{"e8d7"});
+  GameState j{"1nb2bnr/3k4/8/3q4/8/8/8/rNBQKBN1 w - - 1 1"};
+  assertEquals(i, j, "Moving a king removes castling rights");
+}
+
 void test() {
   header("\nRun Test suits...\n");
   pieceMovement();
@@ -134,6 +162,7 @@ void test() {
   moveClass();
   bitBoards();
   legalMoves();
+  makeMove();
 
   if (failures == 0) {
     std::cout << "\033[1;32m";

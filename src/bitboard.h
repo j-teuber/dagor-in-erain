@@ -90,6 +90,11 @@ class BitBoard {
   /// @param square the square to remove.
   void unsetSquare(Square::t square) { board &= ~(1ULL << square); }
 
+  void move(Square::t start, Square::t end) {
+    board |= (1ULL << end) * isSet(start);
+    unsetSquare(start);
+  }
+
   /// @brief Counts the number of set squares in the bitboard.
   /// @return the number of set squares in the bitboard.
   constexpr int populationCount() const { return __builtin_popcountll(board); }

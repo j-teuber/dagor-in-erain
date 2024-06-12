@@ -25,6 +25,7 @@ constexpr t pieceColorFromChar(char name) {
 namespace Piece {
 using t = std::uint8_t;
 enum { king, pawn, knight, bishop, rook, queen, empty };
+constexpr t noPiece = 7;
 constexpr std::array<t, 6> all = {pawn, knight, king, bishop, rook, queen};
 constexpr std::array<t, 3> leapers = {king, pawn, knight};
 constexpr std::array<t, 3> sliders = {bishop, rook, queen};
@@ -71,8 +72,8 @@ constexpr t fileByName(char c) { return static_cast<t>(c - 'a'); }
 
 /// @param file the numeric value of a file (i. e. column) form {0,...,7}.
 /// @return the name of that file in algebraic chess notation from {a,...,h}.
-constexpr char fileName(t file) { return static_cast<char>('1' + file); }
-constexpr char rankName(t rank) { return static_cast<char>('a' + rank); }
+constexpr char fileName(t file) { return static_cast<char>('a' + file); }
+constexpr char rankName(t rank) { return static_cast<char>('1' + rank); }
 }  // namespace Coord
 
 namespace CastlingRights {
@@ -89,6 +90,18 @@ constexpr t fullRights =
     whiteKingSide | whiteQueenSide | blackKingSide | blackQueenSide;
 constexpr t none = 0;
 }  // namespace CastlingRights
+
+namespace MoveFlags {
+using t = std::uint8_t;
+enum {
+  normal = 0,
+  whiteKingSide,
+  whiteQueenSide,
+  blackKingSide,
+  blackQueenSide,
+  enPassant
+};
+}  // namespace MoveFlags
 
 namespace Square {
 using t = std::int8_t;

@@ -26,10 +26,17 @@ class Move {
   explicit Move(std::string const &algebraic);
 };
 
+const Move wkCastle{Square::e1, Square::g1};
+const Move wqCastle{Square::e1, Square::c1};
+const Move bkCastle{Square::e8, Square::g8};
+const Move bqCastle{Square::e8, Square::c8};
+
 inline bool operator==(Move const &a, Move const &b) {
   return a.start == b.start && a.end == b.end && a.promotion == b.promotion &&
          a.flags == b.flags;
 }
+
+class GameState;
 
 struct UndoInfo {
   Piece::t piece;
@@ -44,7 +51,9 @@ struct UndoInfo {
   /// - `0`: a normal move
   /// - `1, 2, 3, 4`: a castle move
   /// - `5` an en passant capture
-  std::uint8_t flags;
+  MoveFlags::t flags;
+
+  UndoInfo(const GameState &state, const Move &move);
 };
 
 class GameState {
@@ -55,7 +64,6 @@ class GameState {
   std::array<BitBoards::BitBoard, Piece::all.size()> pieces;
   std::array<BitBoards::BitBoard, Color::all.size()> colors;
   std::stack<UndoInfo> undoStack;
-  unsigned moveCounter;
   std::uint8_t uneventfulHalfMoves;
   CastlingRights::t castlingRights;
   Square::t enPassantSquare;
@@ -64,7 +72,7 @@ class GameState {
   GameState()
       : pieces(),
         colors(),
-        moveCounter{0},
+        undoStack(),
         uneventfulHalfMoves{0},
         castlingRights{CastlingRights::none},
         enPassantSquare{Square::noSquare},
@@ -75,7 +83,7 @@ class GameState {
   explicit GameState(std::string const &fen)
       : pieces(),
         colors(),
-        moveCounter{0},
+        undoStack(),
         uneventfulHalfMoves{0},
         castlingRights{CastlingRights::none},
         enPassantSquare{Square::noSquare},
@@ -106,6 +114,9 @@ class GameState {
     return colors[Color::white] & colors[Color::black];
   }
 
+  inline Color::t us() { return next; }
+  inline Color::t them() { return Color::opponent(us()); }
+
   BitBoards::BitBoard getMoves(Piece::t piece, Color::t color,
                                Square::t square) const;
   BitBoards::BitBoard getMoves(Piece::t piece, Color::t color, Square::t square,
@@ -120,6 +131,13 @@ class GameState {
   void undoMove();
   void parseFenString(const std::string &fenString);
 };
+
+inline bool operator==(const GameState &a, const GameState &b) {
+  return a.pieces == b.pieces && a.colors == b.colors &&
+         a.uneventfulHalfMoves == b.uneventfulHalfMoves &&
+         a.castlingRights == b.castlingRights &&
+         a.enPassantSquare == b.enPassantSquare && a.next == b.next;
+}
 
 std::ostream &operator<<(std::ostream &out, const GameState &board);
 std::ostream &operator<<(std::ostream &out, const Move &move);
