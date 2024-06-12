@@ -24,7 +24,7 @@ debug: $(app_dir)/debug
 release: $(app_dir)/release
 
 run: $(app_dir)/debug
-	@^
+	$^ 
 
 test: $(app_dir)/release
 	$^ test
