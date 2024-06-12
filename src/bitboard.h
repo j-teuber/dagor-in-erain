@@ -13,6 +13,16 @@ namespace Dagor::BitBoards {
 static_assert(sizeof(std::uint64_t) == 8,
               "For its BitBoards, this program assumes 64 bit integers.");
 
+/// @brief In C++ you cannot shift by more than the word length. This function
+/// ensures that a shift by 64 clears a uint64.
+/// @param n the number to be shifted
+/// @param shift the amount to shift by
+/// @return `n << shift` if shift is < 64, zero otherwise.
+inline constexpr std::uint64_t shiftRight(std::uint64_t n, std::uint8_t shift) {
+  if (shift >= 64) return 0;
+  return n << shift;
+}
+
 /// @brief BitBoards represent some subset of the chess boards pieces,
 /// such as the set of all fields occupied by whit pawns or the
 /// set of all pieces to which a given piece can move on it’s next
@@ -107,15 +117,7 @@ class BitBoard {
 
     Iterator &operator++() {
       value_type index = operator*();
-      // In C++, you cannot shift by the word size or greater, so we need to do
-      // this explicitly. Hopefully this gets optimized away to a normal
-      // x68 shift instruction.
-      if (index >= 63) {
-        board = 0;
-      } else {
-        std::uint64_t upper = 0xffffffffffffffff << (index + 1);
-        board &= upper;
-      }
+      board &= shiftRight(0xffffffffffffffff, index + 1);
       return *this;
     }
 
@@ -168,7 +170,7 @@ inline BitBoard wholeRank(Coord::t rank) {
 inline BitBoard rightOf(Coord::t file) {
   switch (file) {
     case 0:
-      return {0xfefefefefefefefe};
+      return {};
     case 1:
       return {0xfcfcfcfcfcfcfcfc};
     case 2:
@@ -192,12 +194,11 @@ inline BitBoard leftOf(Coord::t file) { return ~rightOf(file - 1); }
 
 inline BitBoard above(Coord::t rank) {
   std::uint64_t all{0xffffffffffffffff};
-  return {all << ((rank + 1) * Coord::width)};
+  return {shiftRight(all, (rank + 1) * Coord::width)};
 }
 
 inline BitBoard below(Coord::t rank) {
-  std::uint64_t all{0xffffffffffffffff};
-  return {all >> ((rank - 1) * Coord::width)};
+  return {shiftRight(1, rank * Coord::width) - 1};
 }
 
 /// @brief A bitboard containing all squares adjacent to one of the edges of
