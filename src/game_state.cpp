@@ -18,10 +18,10 @@ BitBoards::BitBoard GameState::getMoves(Piece::t piece, Color::t color,
           (color == Color::white) ? Square::north : Square::south;
       bool canDoubleStep = (color == Color::white) ? Square::rank(square) == 1
                                                    : Square::rank(square) == 6;
-      if (canDoubleStep) {
-        moves |= BitBoards::BitBoard(1UL << (square + offset * 2)) & ~occupancy;
-      }
       moves |= BitBoards::BitBoard(1UL << (square + offset)) & ~occupancy;
+      if (canDoubleStep && !moves.isEmpty()) {
+        moves |= BitBoards::BitBoard(1UL << (square + 2 * offset)) & ~occupancy;
+      }
       moves |= MoveTables::pawnAttacks(color, square) & occupancy;
     } break;
     case Piece::knight:
@@ -100,7 +100,7 @@ struct MoveGenerator {
       if (attacksOnKing == 0) {
         generateCastling();
       }
-      if (state.enPassantSquare != Square::noSquare) {
+      if (Square::inRange(state.enPassantSquare)) {
         enPassantCaptures();
       }
     }
@@ -111,10 +111,11 @@ struct MoveGenerator {
  private:
   void enPassantCaptures() {
     auto electablePawns =
-        state.getMoves(Piece::pawn, opponentColor, state.enPassantSquare);
+        state.getMoves(Piece::pawn, opponentColor, state.enPassantSquare) &
+        state.bitboardFor(Piece::pawn, myColor);
 
     Square::t pawnPush =
-        (myColor == Color::white) ? Square::north : Square::south;
+        (opponentColor == Color::white) ? Square::north : Square::south;
     Square::t capturePawn = state.enPassantSquare + pawnPush;
     if (targets.isSet(capturePawn)) {
       // The opponents pawn is already there, so we never need to
@@ -135,7 +136,6 @@ struct MoveGenerator {
                                               : BitBoards::leftOf(kingSquare));
       enterMoves(attackerSquare, Piece::pawn,
                  BitBoards::single(state.enPassantSquare) & ray);
-
     } else {
       for (Square::t start : electablePawns) {
         if (pins.isSet(start)) {

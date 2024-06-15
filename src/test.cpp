@@ -125,18 +125,13 @@ void assertMoveGen(std::string_view fen, std::vector<Move> expected,
                    std::string_view msg) {
   GameState s{std::string(fen)};
   auto moves = s.generateLegalMoves();
-  std::sort(moves.begin(), moves.end(), [](Move& a, Move& b) {
-    if (a.start > b.start) return false;
-    if (a.end > b.end) return false;
-    if (a.promotion > b.promotion) return false;
-    return true;
-  });
-  std::sort(expected.begin(), expected.end(), [](Move& a, Move& b) {
-    if (a.start > b.start) return false;
-    if (a.end > b.end) return false;
-    if (a.promotion > b.promotion) return false;
-    return true;
-  });
+  auto key = [](Move& a, Move& b) {
+    int a_key = (a.start << 4) + a.end;
+    int b_key = (b.start << 4) + b.end;
+    return a_key < b_key;
+  };
+  std::sort(moves.begin(), moves.end(), key);
+  std::sort(expected.begin(), expected.end(), key);
   assertEquals(moves, expected, msg);
 }
 
@@ -149,10 +144,6 @@ void legalMoves() {
   assertMoveGen("8/8/8/8/8/8/8/K2N2r1 w - - 0 1",
                 std::vector{Move{"a1a2"}, Move{"a1b2"}, Move{"a1b1"}},
                 "Pinned Knight cannot move");
-  assertMoveGen("8/8/8/K1pP3q/8/8/8/8 w c6 - 0 1",
-                std::vector{Move{"d5d6"}, Move{"a5a6"}, Move{"a5b6"},
-                            Move{"a5b5"}, Move{"a5a4"}},
-                "En passant discovered check");
   assertMoveGen("8/8/8/8/8/k7/8/K1Rr4 w - - 0 1",
                 std::vector{Move{"a1b1"}, Move{"c1b1"}, Move{"c1d1"}},
                 "Pinned rook can capture opponents rook");
@@ -173,25 +164,36 @@ void legalMoves() {
   assertMoveGen("8/8/8/8/4Q3/k7/8/K3r3 w - - 0 1",
                 std::vector{Move{"e4b1"}, Move{"e4e1"}},
                 "Single check can be solved by capture or interception");
+  assertMoveGen("8/8/8/8/8/p3k2p/P6P/R3K2R w KQ - 0 1",
+                std::vector{Move{"e1f1"}, Move{"e1d1"}, Move{"e1c1"},
+                            Move{"e1g1"}, Move{"a1b1"}, Move{"a1c1"},
+                            Move{"a1d1"}, Move{"h1g1"}, Move{"h1f1"}},
+                "castling is generated");
   assertMoveGen(
-      "8/8/8/8/8/4k3/8/R3K2R w - KQ 0 1",
-      std::vector{Move{"e1f1"}, Move{"e1d1"}, Move{"e1c1"}, Move{"e1g1"}},
-      "castling is generated");
-  assertMoveGen("8/8/8/8/8/4k3/8/R3K2R w - - 0 1",
-                std::vector{Move{"e1f1"}, Move{"e1d1"}},
-                "no castling if we don't have the rights");
-  assertMoveGen("8/8/8/8/8/4k3/3r4/R3K2R w - KQ 0 1",
-                std::vector{Move{"e1f1"}, Move{"e1d1"}, Move{"e1g1"}},
-                "no castling if we pass through check");
-  assertMoveGen("8/8/8/8/8/4k3/4r3/R3K2R w - KQ 0 1",
+      "8/8/8/8/8/p3k2p/P6P/R3K2R w - - 0 1",
+      std::vector{Move{"e1f1"}, Move{"e1d1"}, Move{"a1b1"}, Move{"a1c1"},
+                  Move{"a1d1"}, Move{"h1g1"}, Move{"h1f1"}},
+      "no castling if we don't have the rights");
+  assertMoveGen(
+      "8/8/8/8/8/p3k2p/P2r3P/R3K2R w KQ - 0 1",
+      std::vector{Move{"e1f1"}, Move{"e1g1"}, Move{"a1b1"}, Move{"a1c1"},
+                  Move{"a1d1"}, Move{"h1g1"}, Move{"h1f1"}},
+      "no castling if we pass through check");
+  assertMoveGen("8/8/8/8/8/p3k2p/P3r2P/R3K2R w KQ - 0 1",
                 std::vector{Move{"e1f1"}, Move{"e1d1"}},
                 "no castling if we are in check");
-  assertMoveGen("8/8/8/6r1/8/4k3/8/R3K2R w - KQ 0 1",
-                std::vector{Move{"e1f1"}, Move{"e1d1"}, Move{"e1c1"}},
-                "no castling if we would move into check");
-  assertMoveGen("4k3/8/8/3pP3/8/8/2q5/4K3 w d6 - 0 1",
+  assertMoveGen(
+      "8/8/8/6r1/8/p3k2p/P6P/R3K2R w KQ - 0 1",
+      std::vector{Move{"e1f1"}, Move{"e1d1"}, Move{"e1c1"}, Move{"a1b1"},
+                  Move{"a1c1"}, Move{"a1d1"}, Move{"h1g1"}, Move{"h1f1"}},
+      "no castling if we would move into check");
+  assertMoveGen("4k3/8/8/3pP3/8/8/2q5/4K3 w - d6 0 1",
                 std::vector{Move{"e1f1"}, Move{"e5e6"}, Move{"e5d6"}},
                 "Simple en passant capture");
+  assertMoveGen("8/8/8/K1pP3q/8/8/8/8 w - c6 0 1",
+                std::vector{Move{"d5d6"}, Move{"a5a6"}, Move{"a5b6"},
+                            Move{"a5b5"}, Move{"a5a4"}},
+                "En passant discovered check");
 }
 
 void makeMove() {
