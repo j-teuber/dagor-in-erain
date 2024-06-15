@@ -7,6 +7,14 @@
 
 namespace Dagor {
 
+constexpr Square::t enPassantCapture(Square::t enPassantSquare) {
+  if (Square::rank(enPassantSquare) == 2) {
+    return enPassantSquare + Square::north;
+  } else {
+    return enPassantSquare + Square::south;
+  }
+}
+
 // no special moves: en passant and castling
 BitBoards::BitBoard GameState::getMoves(Piece::t piece, Color::t color,
                                         Square::t square,
@@ -114,9 +122,7 @@ struct MoveGenerator {
         state.getMoves(Piece::pawn, opponentColor, state.enPassantSquare) &
         state.bitboardFor(Piece::pawn, myColor);
 
-    Square::t pawnPush =
-        (opponentColor == Color::white) ? Square::north : Square::south;
-    Square::t capturePawn = state.enPassantSquare + pawnPush;
+    Square::t capturePawn = enPassantCapture(state.enPassantSquare);
     if (targets.isSet(capturePawn)) {
       // The opponents pawn is already there, so we never need to
       // intercept a check by moving there. Therefore, if we have set
@@ -366,6 +372,22 @@ void GameState::executeMove(Move move) {
   if (info.flags == MoveFlags::normal && info.capture != Piece::empty) {
     pieces[info.capture].unsetSquare(info.end);
     colors[them()].unsetSquare(info.end);
+  } else if (info.flags == MoveFlags::enPassant) {
+    Square::t captured = enPassantCapture(info.enPassant);
+    pieces[Piece::pawn].unsetSquare(captured);
+    colors[them()].unsetSquare(captured);
+  } else if (info.flags == MoveFlags::whiteQueenSide) {
+    pieces[Piece::rook].move(Square::a1, Square::d1);
+    colors[us()].move(Square::a1, Square::d1);
+  } else if (info.flags == MoveFlags::whiteKingSide) {
+    pieces[Piece::rook].move(Square::h1, Square::f1);
+    colors[us()].move(Square::h1, Square::f1);
+  } else if (info.flags == MoveFlags::blackQueenSide) {
+    pieces[Piece::rook].move(Square::a8, Square::d8);
+    colors[us()].move(Square::a8, Square::d8);
+  } else if (info.flags == MoveFlags::blackKingSide) {
+    pieces[Piece::rook].move(Square::h8, Square::f8);
+    colors[us()].move(Square::h8, Square::f8);
   }
 
   pieces[info.piece].move(info.start, info.end);
@@ -382,6 +404,34 @@ void GameState::undoMove() {
   enPassantSquare = undo.enPassant;
   uneventfulHalfMoves = undo.uneventfulHalfMoves;
   castlingRights = undo.castlingRights;
+  next = them();
+
+  pieces[undo.piece].unsetSquare(undo.end);
+  colors[us()].unsetSquare(undo.end);
+
+  if (undo.flags == MoveFlags::normal && undo.capture != Piece::empty) {
+    pieces[undo.capture].setSquare(undo.end);
+    colors[them()].setSquare(undo.end);
+  } else if (undo.flags == MoveFlags::enPassant) {
+    Square::t captured = enPassantCapture(undo.enPassant);
+    pieces[Piece::pawn].setSquare(captured);
+    colors[them()].setSquare(captured);
+  } else if (undo.flags == MoveFlags::whiteQueenSide) {
+    pieces[Piece::rook].move(Square::d1, Square::a1);
+    colors[us()].move(Square::d1, Square::a1);
+  } else if (undo.flags == MoveFlags::whiteKingSide) {
+    pieces[Piece::rook].move(Square::f1, Square::h1);
+    colors[us()].move(Square::f1, Square::h1);
+  } else if (undo.flags == MoveFlags::blackQueenSide) {
+    pieces[Piece::rook].move(Square::d8, Square::a8);
+    colors[us()].move(Square::d8, Square::a8);
+  } else if (undo.flags == MoveFlags::blackKingSide) {
+    pieces[Piece::rook].move(Square::f8, Square::h8);
+    colors[us()].move(Square::f8, Square::h8);
+  }
+
+  pieces[undo.piece].setSquare(undo.start);
+  colors[us()].setSquare(undo.start);
 }
 
 Move::Move(std::string const &algebraic)

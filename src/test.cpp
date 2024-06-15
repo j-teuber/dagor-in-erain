@@ -196,32 +196,42 @@ void legalMoves() {
                 "En passant discovered check");
 }
 
+void assertMoveMaker(std::string_view start, std::string_view move,
+                     std::string_view end, std::string_view msg) {
+  GameState s{std::string{start}};
+  GameState e{std::string{end}};
+  Move m{std::string{move}};
+  s.executeMove(m);
+  assertEquals(s, e, std::string{msg} + " (make move)");
+  s.undoMove();
+  assertEquals(s, GameState{std::string{start}},
+               std::string{msg} + " (unmake move)");
+}
+
 void makeMove() {
   header("Make Moves");
-  GameState a{};
-  a.executeMove(Move{"b1c3"});
-  GameState b{"rnbqkbnr/pppppppp/8/8/8/2N5/PPPPPPPP/R1BQKBNR b KQkq - 1 0"};
-  assertEquals(a, b, "Simple Moves");
-
-  GameState c{"rnbqkbnr/ppp1pppp/8/3p4/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1"};
-  c.executeMove(Move{"e4d5"});
-  GameState d{"rnbqkbnr/ppp1pppp/8/3P4/8/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1"};
-  assertEquals(c, d, "Simple Captures");
-
-  GameState e{"rnb1kbnr/ppp1pppp/8/3q4/8/8/PPPP1P2/RNBQKBNR b KQkq - 0 1"};
-  e.executeMove(Move{"d5h1"});
-  GameState f{"rnb1kbnr/ppp1pppp/8/8/8/8/PPPP1P2/RNBQKBNq w Qkq - 0 1"};
-  assertEquals(e, f, "Capturing a rook removes castling rights");
-
-  GameState g{"rnb1kbnr/8/8/3q4/8/8/8/RNBQKBN1 b Qkq - 0 1"};
-  g.executeMove(Move{"a8a1"});
-  GameState h{"1nb1kbnr/8/8/3q4/8/8/8/rNBQKBN1 w k - 0 1"};
-  assertEquals(g, h, "Moving a rook removes castling rights");
-
-  GameState i{"1nb1kbnr/8/8/3q4/8/8/8/rNBQKBN1 b k - 0 1"};
-  i.executeMove(Move{"e8d7"});
-  GameState j{"1nb2bnr/3k4/8/3q4/8/8/8/rNBQKBN1 w - - 1 1"};
-  assertEquals(i, j, "Moving a king removes castling rights");
+  assertMoveMaker("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+                  "b1c3",
+                  "rnbqkbnr/pppppppp/8/8/8/2N5/PPPPPPPP/R1BQKBNR b KQkq - 1 0",
+                  "Simple Moves");
+  assertMoveMaker(
+      "rnbqkbnr/ppp1pppp/8/3p4/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1", "e4d5",
+      "rnbqkbnr/ppp1pppp/8/3P4/8/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+      "Simple Captures");
+  assertMoveMaker("rnb1kbnr/ppp1pppp/8/3q4/8/8/PPPP1P2/RNBQKBNR b KQkq - 0 1",
+                  "d5h1",
+                  "rnb1kbnr/ppp1pppp/8/8/8/8/PPPP1P2/RNBQKBNq w Qkq - 0 1",
+                  "Capturing a rook removes castling rights");
+  assertMoveMaker("rnb1kbnr/8/8/3q4/8/8/8/RNBQKBN1 b Qkq - 0 1", "a8a1",
+                  "1nb1kbnr/8/8/3q4/8/8/8/rNBQKBN1 w k - 0 1",
+                  "Moving a rook removes castling rights");
+  assertMoveMaker("1nb1kbnr/8/8/3q4/8/8/8/rNBQKBN1 b k - 0 1", "e8d7",
+                  "1nb2bnr/3k4/8/3q4/8/8/8/rNBQKBN1 w - - 1 1",
+                  "Moving a king removes castling rights");
+  assertMoveMaker("8/8/8/8/2Pp4/8/8/8 b - c3 0 1", "d4c3",
+                  "8/8/8/8/8/2p5/8/8 w - - 0 1", "en passant capture");
+  assertMoveMaker("8/8/8/8/8/8/8/R3K3 w Q - 0 1", "e1c1",
+                  "8/8/8/8/8/8/8/2KR4 b - - 1 1", "white queen-side castle");
 }
 
 void test() {
