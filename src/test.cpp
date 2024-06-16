@@ -214,6 +214,10 @@ void makeMove() {
                   "b1c3",
                   "rnbqkbnr/pppppppp/8/8/8/2N5/PPPPPPPP/R1BQKBNR b KQkq - 1 0",
                   "Simple Moves");
+  assertMoveMaker("rnbqkbnr/pppppppp/8/8/8/1P6/P1PPPPPP/RNBQKBNR w KQkq - 0 1",
+                  "b1a3",
+                  "rnbqkbnr/pppppppp/8/8/8/NP6/P1PPPPPP/R1BQKBNR b KQkq - 1 1",
+                  "Simple Moves");
   assertMoveMaker(
       "rnbqkbnr/ppp1pppp/8/3p4/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1", "e4d5",
       "rnbqkbnr/ppp1pppp/8/3P4/8/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
@@ -234,6 +238,81 @@ void makeMove() {
                   "8/8/8/8/8/8/8/2KR4 b - - 1 1", "white queen-side castle");
 }
 
+void perft(GameState& start, std::vector<std::uint64_t>& results, int depth) {
+  auto moves = start.generateLegalMoves();
+
+  results[results.size() - depth] += moves.size();
+  if (depth <= 1) {
+    return;
+  }
+
+  for (Move m : moves) {
+    start.executeMove(m);
+    perft(start, results, depth - 1);
+    start.undoMove();
+  }
+}
+
+std::uint64_t simplePerft(GameState& start, int depth) {
+  if (depth <= 0) {
+    return 1;
+  }
+  auto moves = start.generateLegalMoves();
+  std::uint64_t counter = 0;
+  for (Move m : moves) {
+    start.executeMove(m);
+    counter += simplePerft(start, depth - 1);
+    start.undoMove();
+  }
+  return counter;
+}
+
+void divide(GameState& start, int depth) {
+  auto moves = start.generateLegalMoves();
+  std::uint64_t counter = 0;
+  for (Move m : moves) {
+    std::cerr << m << ": ";
+    start.executeMove(m);
+    std::uint64_t p = simplePerft(start, depth - 1);
+    start.undoMove();
+    counter += p;
+    std::cerr << p << '\n';
+  }
+  std::cerr << "Total: " << counter;
+}
+
+void assertPerft(std::string_view start, std::vector<std::uint64_t> expected,
+                 std::string_view msg) {
+  GameState s{std::string{start}};
+  std::vector<std::uint64_t> results(expected.size());
+  perft(s, results, results.size());
+  assertEquals(results, expected, msg);
+}
+
+void perftTest() {
+  header("Perft");
+  assertPerft("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+              {
+                  20, 400, 8'902, 197'281, 4'865'609, 119'060'324,
+                  // 3'195'901'860, 84'998'978'956, 2'439'530'234'167
+              },
+              "from start");
+  assertPerft(
+      "r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1",
+      {48, 2039, 97862, /*4085603, 193690690, 8031647685*/},
+      "Kiwipete by Peter McKenzie");
+  assertPerft(
+      "r3k2r/Pppp1ppp/1b3nbN/nP6/BBP1P3/q4N2/Pp1P2PP/R2Q1RK1 w kq - 0 1",
+      {6, 264, 9467, 422333, /*15833292, 706045033*/}, "pos 4");
+  assertPerft("rnbq1k1r/pp1Pbppp/2p5/8/2B5/8/PPP1NnPP/RNBQK2R w KQ - 1 8",
+              {44, 1486, 62379, 2103487, 89941194}, "pos 5");
+  assertPerft(
+      "r4rk1/1pp1qppp/p1np1n2/2b1p1B1/2B1P1b1/P1NP1N2/1PP1QPPP/R4RK1 w - - 0 "
+      "10",
+      {46, 2079, 89890, 3894594, 164075551, 6923051137},
+      "pos 6  Steven Edwards");
+}
+
 void test() {
   header("\nRun Test suits...\n");
   pieceMovement();
@@ -242,6 +321,7 @@ void test() {
   bitBoards();
   legalMoves();
   makeMove();
+  perftTest();
 
   if (failures == 0) {
     std::cout << "\033[1;32m";

@@ -156,10 +156,10 @@ struct MoveGenerator {
   }
 
   void generateCastling() {
-    BitBoards::BitBoard wkEmpty{0xe};
-    BitBoards::BitBoard wqEmpty{0x60};
-    BitBoards::BitBoard bkEmpty{0xe00000000000000};
-    BitBoards::BitBoard bqEmpty{0x6000000000000000};
+    BitBoards::BitBoard wqEmpty{0xe};
+    BitBoards::BitBoard wkEmpty{0x60};
+    BitBoards::BitBoard bqEmpty{0xe00000000000000};
+    BitBoards::BitBoard bkEmpty{0x6000000000000000};
     BitBoards::BitBoard occupancy{state.occupancy()};
     if (myColor == Color::white) {
       bool right = state.castlingRights & CastlingRights::whiteQueenSide;
@@ -230,8 +230,10 @@ struct MoveGenerator {
     BitBoards::BitBoard rookQueen =
         state.bitboardFor(Piece::rook, opponentColor) |
         state.bitboardFor(Piece::queen, opponentColor);
-    auto rookAttacks = state.getMoves(Piece::rook, myColor, kingSquare,
-                                      state.colors[opponentColor]);
+
+    auto rookAttacks =
+        MoveTables::rookHashes[kingSquare].lookUp(state.colors[opponentColor]);
+
     auto upper = rookAttacks & BitBoards::above(Square::rank(kingSquare));
     auto left = rookAttacks & BitBoards::leftOf(Square::file(kingSquare));
     auto lower = rookAttacks & BitBoards::below(Square::rank(kingSquare));
@@ -241,8 +243,9 @@ struct MoveGenerator {
     handleSliderRay(rookQueen, lower);
     handleSliderRay(rookQueen, right);
 
-    auto bishopAttacks = state.getMoves(Piece::bishop, myColor, kingSquare,
-                                        state.colors[opponentColor]);
+    auto bishopAttacks = MoveTables::bishopHashes[kingSquare].lookUp(
+        state.colors[opponentColor]);
+
     auto upperLeft = bishopAttacks &
                      BitBoards::above(Square::rank(kingSquare)) &
                      BitBoards::leftOf(Square::file(kingSquare));
@@ -264,6 +267,10 @@ struct MoveGenerator {
   void handleSliderRay(BitBoards::BitBoard opponentSliders,
                        BitBoards::BitBoard ray) {
     auto attackers = opponentSliders & ray;
+    if (attackers.isEmpty()) {
+      return;
+    }
+
     auto ourBlockers = ray & state.colors[myColor];
     if (!attackers.isEmpty()) {
       if (ourBlockers.isEmpty()) {
@@ -290,14 +297,14 @@ struct MoveGenerator {
     for (auto end : (ends & targets)) {
       if (piece == Piece::pawn &&
           ((myColor == Color::white && Square::rank(end) == 7) ||
-           (myColor == Color::black && Square::rank(end) == 7))) {
+           (myColor == Color::black && Square::rank(end) == 0))) {
         moves.push_back(Move{start, end, Piece::knight});
         moves.push_back(Move{start, end, Piece::bishop});
         moves.push_back(Move{start, end, Piece::rook});
         moves.push_back(Move{start, end, Piece::queen});
+      } else {
+        moves.push_back(Move{start, end});
       }
-
-      moves.push_back(Move{start, end});
     }
   }
 };
@@ -318,14 +325,16 @@ inline UndoInfo::UndoInfo(const GameState &state, const Move &move)
   if (enPassant == end && piece == Piece::pawn) {
     flags = MoveFlags::enPassant;
     capture = Piece::pawn;
-  } else if (move == wkCastle) {
+  } else if (move == wkCastle && piece == Piece::king) {
     flags = MoveFlags::whiteKingSide;
-  } else if (move == wqCastle) {
+  } else if (move == wqCastle && piece == Piece::king) {
     flags = MoveFlags::whiteQueenSide;
-  } else if (move == bkCastle) {
+  } else if (move == bkCastle && piece == Piece::king) {
     flags = MoveFlags::blackKingSide;
-  } else if (move == bqCastle) {
+  } else if (move == bqCastle && piece == Piece::king) {
     flags = MoveFlags::blackQueenSide;
+  } else if (move.promotion != Piece::empty) {
+    flags = MoveFlags::promotion;
   }
 }
 
@@ -358,21 +367,23 @@ void GameState::executeMove(Move move) {
 
   if (info.piece == Piece::pawn && Square::rank(info.start) == 1 &&
       Square::rank(info.end) == 3 &&
-      !getMoves(Piece::pawn, us(), info.start + Square::south).isEmpty()) {
-    enPassantSquare = info.start + Square::south;
+      !getMoves(Piece::pawn, us(), info.start + Square::north).isEmpty()) {
+    enPassantSquare = info.start + Square::north;
   } else if (info.piece == Piece::pawn && Square::rank(info.start) == 6 &&
              Square::rank(info.end) == 4 &&
-             !getMoves(Piece::pawn, us(), info.start + Square::north)
+             !getMoves(Piece::pawn, us(), info.start + Square::south)
                   .isEmpty()) {
-    enPassantSquare = info.start + Square::north;
+    enPassantSquare = info.start + Square::south;
   } else {
     enPassantSquare = Square::noSquare;
   }
 
-  if (info.flags == MoveFlags::normal && info.capture != Piece::empty) {
+  if (info.capture != Piece::empty) {
     pieces[info.capture].unsetSquare(info.end);
     colors[them()].unsetSquare(info.end);
-  } else if (info.flags == MoveFlags::enPassant) {
+  }
+
+  if (info.flags == MoveFlags::enPassant) {
     Square::t captured = enPassantCapture(info.enPassant);
     pieces[Piece::pawn].unsetSquare(captured);
     colors[them()].unsetSquare(captured);
@@ -390,9 +401,14 @@ void GameState::executeMove(Move move) {
     colors[us()].move(Square::h8, Square::f8);
   }
 
-  pieces[info.piece].move(info.start, info.end);
-  colors[us()].setSquare(info.end);
+  pieces[info.piece].unsetSquare(info.start);
   colors[us()].unsetSquare(info.start);
+  if (move.promotion != Piece::empty) {
+    pieces[move.promotion].setSquare(info.end);
+  } else {
+    pieces[info.piece].setSquare(info.end);
+  }
+  colors[us()].setSquare(info.end);
 
   next = them();
 }
@@ -406,13 +422,21 @@ void GameState::undoMove() {
   castlingRights = undo.castlingRights;
   next = them();
 
-  pieces[undo.piece].unsetSquare(undo.end);
+  if (undo.flags == MoveFlags::promotion) {
+    for (Piece::t p : Piece::nonKing) {
+      pieces[p].unsetSquare(undo.end);
+    }
+  } else {
+    pieces[undo.piece].unsetSquare(undo.end);
+  }
   colors[us()].unsetSquare(undo.end);
 
-  if (undo.flags == MoveFlags::normal && undo.capture != Piece::empty) {
+  if (undo.flags != MoveFlags::enPassant && undo.capture != Piece::empty) {
     pieces[undo.capture].setSquare(undo.end);
     colors[them()].setSquare(undo.end);
-  } else if (undo.flags == MoveFlags::enPassant) {
+  }
+
+  if (undo.flags == MoveFlags::enPassant) {
     Square::t captured = enPassantCapture(undo.enPassant);
     pieces[Piece::pawn].setSquare(captured);
     colors[them()].setSquare(captured);
@@ -430,12 +454,16 @@ void GameState::undoMove() {
     colors[us()].move(Square::f8, Square::h8);
   }
 
-  pieces[undo.piece].setSquare(undo.start);
+  if (undo.flags == MoveFlags::promotion) {
+    pieces[Piece::pawn].setSquare(undo.start);
+  } else {
+    pieces[undo.piece].setSquare(undo.start);
+  }
   colors[us()].setSquare(undo.start);
 }
 
 Move::Move(std::string const &algebraic)
-    : start{0}, end{0}, promotion{0}, flags{0} {
+    : start{0}, end{0}, promotion{Piece::empty}, flags{0} {
   start = Square::byName(algebraic[0], algebraic[1]);
   end = Square::byName(algebraic[2], algebraic[3]);
   if (algebraic.size() > 4) {
@@ -531,8 +559,8 @@ std::ostream &operator<<(std::ostream &out, const GameState &board) {
 
 std::ostream &operator<<(std::ostream &out, const Move &move) {
   out << Square::name(move.start) << Square::name(move.end);
-  if (move.promotion != 0) {
-    out << Piece::name(move.promotion, Color::white);
+  if (move.promotion != Piece::empty) {
+    out << Piece::name(move.promotion, Color::black);
   }
   return out;
 }

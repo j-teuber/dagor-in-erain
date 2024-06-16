@@ -99,7 +99,8 @@ enum {
   whiteQueenSide,
   blackKingSide,
   blackQueenSide,
-  enPassant
+  enPassant,
+  promotion
 };
 }  // namespace MoveFlags
 

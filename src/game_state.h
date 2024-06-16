@@ -20,7 +20,7 @@ class Move {
   Piece::t promotion;
   std::uint8_t flags;
 
-  Move(Square::t start, Square::t end, Piece::t promotion = 0)
+  Move(Square::t start, Square::t end, Piece::t promotion = Piece::empty)
       : start{start}, end{end}, promotion{promotion}, flags{0} {}
 
   explicit Move(std::string const &algebraic);
