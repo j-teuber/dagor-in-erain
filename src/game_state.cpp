@@ -501,7 +501,8 @@ void GameState::parseFenString(const std::string &fenString) {
         colors[color].setSquare(Square::index(file, rank));
         file++;
       } else {
-        throw std::invalid_argument{"unknown character"};
+        throw std::invalid_argument{std::string("unknown character: `") + c +
+                                    '`'};
       }
     }
   }
