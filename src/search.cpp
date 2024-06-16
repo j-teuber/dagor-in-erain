@@ -53,9 +53,8 @@ Move negatedMaxSearch(GameState& state) {
   int bestScore = std::numeric_limits<int>::min();
   for (Move m : moves) {
     state.executeMove(m);
-    int score = -negatedMax(state, 10, -INF, +INF);
+    int score = -negatedMax(state, 5, -INF, +INF);
     if (score > bestScore) {
-      std::cerr << m << " " << score << " vs. " << bestScore << "\n" << state;
       bestScore = score;
       bestMove = m;
     }

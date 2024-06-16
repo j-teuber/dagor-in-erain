@@ -60,5 +60,12 @@
         "sstream": "cpp",
         "cstring": "cpp",
         "cinttypes": "cpp"
-    }
+    },
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/home/jakobteuber/Projekte/dagor-in-erain/build/app_dir",
+            "binaryPath": "/home/jakobteuber/Projekte/dagor-in-erain/build/app_dir/debug",
+            "binaryArgs": []
+        }
+    ]
 }
