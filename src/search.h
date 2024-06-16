@@ -2,10 +2,10 @@
 #define SEARCH_H
 #include "game_state.h"
 
-namespace Dagor {
+namespace Dagor::Search {
 
-Move search(const GameState& state);
+Move search(GameState& state);
 
-}  // namespace Dagor
+}  // namespace Dagor::Search
 
 #endif

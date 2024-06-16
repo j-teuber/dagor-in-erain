@@ -20,6 +20,7 @@ constexpr t pieceColorFromChar(char name) {
   else
     return Color::black;
 }
+constexpr int negator(t color) { return color == white ? 1 : -1; }
 }  // namespace Color
 
 namespace Piece {

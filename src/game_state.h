@@ -114,8 +114,8 @@ class GameState {
     return colors[Color::white] | colors[Color::black];
   }
 
-  inline Color::t us() { return next; }
-  inline Color::t them() { return Color::opponent(us()); }
+  inline Color::t us() const { return next; }
+  inline Color::t them() const { return Color::opponent(us()); }
 
   BitBoards::BitBoard getMoves(Piece::t piece, Color::t color,
                                Square::t square) const;
@@ -124,6 +124,7 @@ class GameState {
   BitBoards::BitBoard getAttacks(Square::t square, Color::t color) const;
   BitBoards::BitBoard getAttacks(Square::t square, Color::t color,
                                  BitBoards::BitBoard occupancy) const;
+  bool isCheck();
 
   std::vector<Move> generateLegalMoves() const;
 

@@ -76,6 +76,12 @@ BitBoards::BitBoard GameState::getAttacks(Square::t square,
   return getAttacks(square, color, occupancy());
 }
 
+bool GameState::isCheck() {
+  Square::t kingSquare = bitboardFor(Piece::king, us()).findFirstSet();
+  auto attacks = getAttacks(kingSquare, us());
+  return !attacks.isEmpty();
+}
+
 struct MoveGenerator {
   std::uint8_t attacksOnKing;
   const Color::t myColor;

@@ -10,7 +10,7 @@ release_obj_dir := $(obj_dir)/release
 debug_obj_dir := $(obj_dir)/debug
 app_dir := $(build_dir)/app_dir
 
-units := main bitboard movetables game_state search uci test
+units := main bitboard movetables game_state search eval uci test
 src_files := $(foreach u, $(units), $(src)/$(u).cpp)
 debug_objects := $(foreach u, $(units), $(debug_obj_dir)/$(u).o)
 release_objects := $(foreach u, $(units), $(release_obj_dir)/$(u).o)

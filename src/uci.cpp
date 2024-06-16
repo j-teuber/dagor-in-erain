@@ -58,7 +58,7 @@ void universalChessInterface(std::istream &in, std::ostream &out) {
         }
       }
     } else if (parts[0] == "go") {
-      auto move = search(state);
+      auto move = Search::search(state);
       out << "bestmove " << move << "\n";
     } else {
       std::cerr << "discarding unknown command: `" << line << "`\n";
