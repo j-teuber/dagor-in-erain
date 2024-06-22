@@ -169,13 +169,16 @@ inline BitBoard wholeFile(Coord::t file) {
 
 inline BitBoard wholeRank(Coord::t rank) {
   std::uint64_t base_rank{0xff};
-  return {base_rank << (rank * Coord::width)};
+  return {shiftRight(base_rank, rank * Coord::width)};
 }
 
 inline BitBoard rightOf(Coord::t file) {
+  if (file < 0) {
+    return {0xffffffffffffffff};
+  }
   switch (file) {
     case 0:
-      return {};
+      return {0xfefefefefefefefe};
     case 1:
       return {0xfcfcfcfcfcfcfcfc};
     case 2:
@@ -189,7 +192,6 @@ inline BitBoard rightOf(Coord::t file) {
     case 6:
       return {0x8080808080808080};
     case 7:
-      return {0};
     default:
       return {0};
   }

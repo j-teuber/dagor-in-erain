@@ -14,12 +14,14 @@ int main(int argc, char *argv[]) {
   } else if (strcmp(argv[1], "test") == 0) {
     Test::test();
   } else if (strcmp(argv[1], "run") == 0) {
-    GameState s{"rnbq1k1r/pp1Pbppp/2p5/8/2B5/8/PPP1NnPP/RNBQK2R w KQ - 1 8  "};
-    // s.executeMove(Move{"e1d2"});
-    // s.executeMove(Move{"d8e8"});
-    // s.executeMove(Move{"d7c8r"});
-    // s.executeMove(Move{"e8c8"});
-    Test::divide(s, 5);
+    GameState s{
+        "r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 0"};
+    s.executeMove(Move{"e1c1"});
+    s.executeMove(Move{"a6c4"});
+    s.executeMove(Move{"c1b1"});
+    s.executeMove(Move{"c4a2"});
+    std::cerr << s;
+    Test::divide(s, 1);
   }
 
   return 0;
