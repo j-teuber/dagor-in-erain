@@ -323,16 +323,6 @@ void test() {
   makeMove();
   perftTest();
 
-  /*
-  Test this position
-Dagor-in-Erain(2): position startpos moves a2a3 a7a5 b2b3 a5a4 c2c3 a4b3 d2d3
-b3b2 c1b2 b7b5 e2e3 c7c5 f2f3 d8b6 g2g3 c8b7 h2h3 e7e5 e3e4 b6g6 g3g4 d7d6 a3a4
-b5a4 a1a4 f8e7 c3c4 a8a4 d1a4 b8d7 b1d2 d6d5 c4d5 e7h4 e1d1 g6a6 a4a1 f7f6 d2c4
-d7f8 a1a6 b7a6 c4d6 e8d7 d6f7 f8g6 f3f4 g8h6 f7h8 g6h8 f4e5 f6e5 g1f3 h8g6 f3h4
-g6h4 b2e5 g7g5 e5g7 h6f7 d3d4 c5c4 h1h2 f7d6 e4e5 d6e4 d1c1 e4g3 e5e6 d7e7 h2a2
-g3f1 a2a6 c4c3 a6a7 e7d8 d5d6 d8c8 e6e7 c3c2 d4d5 h7h5 g4h5 g5g4 h3g4 f1d2
-  */
-
   if (failures == 0) {
     std::cout << "\033[1;32m";
   } else {
