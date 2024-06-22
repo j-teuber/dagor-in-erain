@@ -20,12 +20,11 @@ constexpr t pieceColorFromChar(char name) {
   else
     return Color::black;
 }
-constexpr int negator(t color) { return color == white ? 1 : -1; }
 }  // namespace Color
 
 namespace Piece {
 using t = std::uint8_t;
-enum { king, pawn, knight, bishop, rook, queen, empty };
+enum { pawn, knight, bishop, rook, queen, king, empty };
 constexpr t noPiece = 7;
 constexpr std::array<t, 6> all = {pawn, knight, king, bishop, rook, queen};
 constexpr std::array<t, 3> leapers = {king, pawn, knight};
@@ -128,6 +127,20 @@ constexpr Coord::t rank(t square) { return square / Coord::width; }
 /// @return the index of the specified square.
 constexpr Square::t index(Coord::t file, Coord::t rank) {
   return file + Coord::width * rank;
+}
+
+/// @brief Flip the index of a square so that it appears as if the current
+/// player plays white.
+/// @param forWhite the square that would be correct for the white side
+/// @param color the actual color of the current player
+/// @return forWhite, if `color` is white, otherwise a flipped index, so that
+/// squares in rank 8 become squares in rank 1, rank 7 becoming rank 2, etc.
+constexpr Square::t reverseForColor(Square::t forWhite, Color::t color) {
+  if (color == Color::white) {
+    return forWhite;
+  } else {
+    return forWhite ^ 56;
+  }
 }
 
 constexpr t byName(char file, char rank) {
