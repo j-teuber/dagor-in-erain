@@ -6,24 +6,6 @@
 
 namespace Dagor::Eval {
 
-constexpr int centiPawns(Piece::t piece) {
-  switch (piece) {
-    case Piece::pawn:
-      return 100;
-    case Piece::knight:
-      return 325;
-    case Piece::bishop:
-      return 350;
-    case Piece::rook:
-      return 500;
-    case Piece::queen:
-      return 900;
-
-    default:
-      return 0;
-  }
-}
-
 constexpr std::array<std::int8_t, Square::size * Piece::all.size()>
     opening_table = {
         /* Pawns */
@@ -92,17 +74,21 @@ int eval(const GameState& state) {
 
   for (Piece::t piece : Piece::nonKing) {
     BitBoards::BitBoard ourPieces = state.bitboardFor(piece, state.us());
+    BitBoards::BitBoard opponentPieces = state.bitboardFor(piece, state.them());
 
     /* Material */
-    int diff = ourPieces.populationCount() -
-               state.bitboardFor(piece, state.them()).populationCount();
-    result += diff * centiPawns(piece);
+    int diff = ourPieces.populationCount() - opponentPieces.populationCount();
+    result += diff * Piece::worth[piece];
 
     /* Positions */
     for (Square::t square : ourPieces) {
       Square::t forWhite = Square::reverseForColor(square, state.us());
       result += opening_table[forWhite + piece * Square::size];
     }
+  }
+
+  if (state.uneventfulHalfMoves >= 50) {
+    return 0;
   }
 
   return result;

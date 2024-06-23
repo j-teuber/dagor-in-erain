@@ -27,6 +27,8 @@ using t = std::uint8_t;
 enum { pawn, knight, bishop, rook, queen, king, empty };
 constexpr t noPiece = 7;
 constexpr std::array<t, 6> all = {pawn, knight, king, bishop, rook, queen};
+constexpr std::array<std::int16_t, Piece::nonKing.size()> worth = {
+    100, 325, 350, 500, 900};
 constexpr std::array<t, 3> leapers = {king, pawn, knight};
 constexpr std::array<t, 3> sliders = {bishop, rook, queen};
 constexpr std::array<t, 5> nonKing = {pawn, knight, bishop, rook, queen};

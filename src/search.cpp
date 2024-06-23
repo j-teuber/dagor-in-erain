@@ -8,6 +8,15 @@
 
 namespace Dagor::Search {
 
+std::vector<Move> orderedMoves(const GameState& state) {
+  auto moves = state.generateLegalMoves();
+  auto sorter = [&state](Move a, Move b) {
+    return state.getPiece(a.end) < state.getPiece(b.end);
+  };
+  std::sort(moves.begin(), moves.end(), sorter);
+  return moves;
+}
+
 Move random(const GameState& state) {
   auto moves = state.generateLegalMoves();
   std::random_device rd;
@@ -25,7 +34,7 @@ int negatedMax(GameState& state, int depth, int alpha, int beta) {
     return Eval::eval(state);
   }
 
-  auto moves = state.generateLegalMoves();
+  auto moves = orderedMoves(state);
   if (moves.empty()) {
     if (state.isCheck()) {
       return -INF;
