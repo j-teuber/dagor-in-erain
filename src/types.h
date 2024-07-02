@@ -26,13 +26,13 @@ namespace Piece {
 using t = std::uint8_t;
 enum { pawn, knight, bishop, rook, queen, king, empty };
 constexpr t noPiece = 7;
-constexpr std::array<t, 6> all = {pawn, knight, king, bishop, rook, queen};
-constexpr std::array<std::int16_t, Piece::nonKing.size()> worth = {
-    100, 325, 350, 500, 900};
+constexpr std::array<t, 6> all = {pawn, knight, bishop, rook, queen, king};
 constexpr std::array<t, 3> leapers = {king, pawn, knight};
 constexpr std::array<t, 3> sliders = {bishop, rook, queen};
 constexpr std::array<t, 5> nonKing = {pawn, knight, bishop, rook, queen};
-constexpr std::array<char, 7> names = {'k', 'p', 'n', 'b', 'r', 'q', '.'};
+constexpr std::array<std::int16_t, Piece::all.size()> worth = {100, 325, 350,
+                                                               500, 900};
+constexpr std::array<char, 7> names = {'p', 'n', 'b', 'r', 'q', 'k', '.'};
 constexpr bool inRange(t piece) { return piece < empty; }
 
 constexpr char name(Piece::t type, Color::t color) {

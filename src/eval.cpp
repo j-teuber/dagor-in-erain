@@ -73,8 +73,8 @@ int eval(const GameState& state) {
   int result = 0;
 
   for (Piece::t piece : Piece::nonKing) {
-    BitBoards::BitBoard ourPieces = state.bitboardFor(piece, state.us());
-    BitBoards::BitBoard opponentPieces = state.bitboardFor(piece, state.them());
+    BitBoards::BitBoard ourPieces = state.forPiece(piece, state.us());
+    BitBoards::BitBoard opponentPieces = state.forPiece(piece, state.them());
 
     /* Material */
     int diff = ourPieces.populationCount() - opponentPieces.populationCount();

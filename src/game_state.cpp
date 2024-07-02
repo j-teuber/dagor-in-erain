@@ -52,13 +52,12 @@ BitBoards::BitBoard GameState::getMoves(Piece::t piece, Color::t color,
     default:
       return {};
   }
-  return moves & ~colors[color];
+  return moves & ~forColor(color);
 }
 
 BitBoards::BitBoard GameState::getMoves(Piece::t piece, Color::t color,
                                         Square::t square) const {
-  auto occupancy = colors[Color::black] | colors[Color::white];
-  return getMoves(piece, color, square, occupancy);
+  return getMoves(piece, color, square, occupancy());
 }
 
 BitBoards::BitBoard GameState::getAttacks(Square::t square, Color::t color,
@@ -66,7 +65,7 @@ BitBoards::BitBoard GameState::getAttacks(Square::t square, Color::t color,
   auto attackers = BitBoards::BitBoard();
   for (auto piece : Piece::all) {
     attackers |= getMoves(piece, color, square, occupancy) &
-                 bitboardFor(piece, Color::opponent(color));
+                 forPiece(piece, Color::opponent(color));
   }
   return attackers;
 }
@@ -77,7 +76,7 @@ BitBoards::BitBoard GameState::getAttacks(Square::t square,
 }
 
 bool GameState::isCheck() {
-  Square::t kingSquare = bitboardFor(Piece::king, us()).findFirstSet();
+  Square::t kingSquare = forPiece(Piece::king, us()).findFirstSet();
   auto attacks = getAttacks(kingSquare, us());
   return !attacks.isEmpty();
 }
@@ -99,7 +98,7 @@ struct MoveGenerator {
       : attacksOnKing{0},
         myColor{state.next},
         opponentColor{Color::opponent(state.next)},
-        kingSquare{state.bitboardFor(Piece::king, myColor).findFirstSet()},
+        kingSquare{state.forPiece(Piece::king, myColor).findFirstSet()},
         state{state},
         targets{BitBoards::all},
         pins{0},
@@ -126,7 +125,7 @@ struct MoveGenerator {
   void enPassantCaptures() {
     auto electablePawns =
         state.getMoves(Piece::pawn, opponentColor, state.enPassantSquare) &
-        state.bitboardFor(Piece::pawn, myColor);
+        state.forPiece(Piece::pawn, myColor);
 
     Square::t capturePawn = enPassantCapture(state.enPassantSquare);
     if (targets.isSet(capturePawn)) {
@@ -204,7 +203,7 @@ struct MoveGenerator {
 
   void standardNonPins() {
     for (auto piece : Piece::nonKing) {
-      auto positions = state.bitboardFor(piece, myColor);
+      auto positions = state.forPiece(piece, myColor);
       auto notPinned = positions & ~pins;
       for (auto start : notPinned) {
         enterMoves(start, piece, state.getMoves(piece, myColor, start));
@@ -231,14 +230,13 @@ struct MoveGenerator {
 
   void handleSliderAttacks() {
     BitBoards::BitBoard bishopQueen =
-        state.bitboardFor(Piece::bishop, opponentColor) |
-        state.bitboardFor(Piece::queen, opponentColor);
-    BitBoards::BitBoard rookQueen =
-        state.bitboardFor(Piece::rook, opponentColor) |
-        state.bitboardFor(Piece::queen, opponentColor);
+        state.forPiece(Piece::bishop, opponentColor) |
+        state.forPiece(Piece::queen, opponentColor);
+    BitBoards::BitBoard rookQueen = state.forPiece(Piece::rook, opponentColor) |
+                                    state.forPiece(Piece::queen, opponentColor);
 
-    auto rookAttacks =
-        MoveTables::rookHashes[kingSquare].lookUp(state.colors[opponentColor]);
+    auto rookAttacks = MoveTables::rookHashes[kingSquare].lookUp(
+        state.forColor(opponentColor));
 
     auto upper = rookAttacks & BitBoards::above(Square::rank(kingSquare));
     auto left = rookAttacks & BitBoards::leftOf(Square::file(kingSquare));
@@ -250,7 +248,7 @@ struct MoveGenerator {
     handleSliderRay(rookQueen, right);
 
     auto bishopAttacks = MoveTables::bishopHashes[kingSquare].lookUp(
-        state.colors[opponentColor]);
+        state.forColor(opponentColor));
 
     auto upperLeft = bishopAttacks &
                      BitBoards::above(Square::rank(kingSquare)) &
@@ -277,7 +275,7 @@ struct MoveGenerator {
       return;
     }
 
-    auto ourBlockers = ray & state.colors[myColor];
+    auto ourBlockers = ray & state.forColor(myColor);
     if (!attackers.isEmpty()) {
       if (ourBlockers.isEmpty()) {
         attacksOnKing += attackers.populationCount();
@@ -292,7 +290,7 @@ struct MoveGenerator {
 
   void handleLeaperAttacks(Piece::t piece) {
     auto attacks = state.getMoves(piece, myColor, kingSquare) &
-                   state.bitboardFor(piece, opponentColor);
+                   state.forPiece(piece, opponentColor);
     if (!attacks.isEmpty()) {
       attacksOnKing += attacks.populationCount();
       targets &= attacks;
@@ -385,36 +383,32 @@ void GameState::executeMove(Move move) {
   }
 
   if (info.capture != Piece::empty) {
-    pieces[info.capture].unsetSquare(info.end);
-    colors[them()].unsetSquare(info.end);
+    unset(info.end);
   }
 
   if (info.flags == MoveFlags::enPassant) {
     Square::t captured = enPassantCapture(info.enPassant);
-    pieces[Piece::pawn].unsetSquare(captured);
-    colors[them()].unsetSquare(captured);
+    unset(captured);
   } else if (info.flags == MoveFlags::whiteQueenSide) {
-    pieces[Piece::rook].move(Square::a1, Square::d1);
-    colors[us()].move(Square::a1, Square::d1);
+    unset(Square::a1);
+    set(Square::d1, Piece::rook, us());
   } else if (info.flags == MoveFlags::whiteKingSide) {
-    pieces[Piece::rook].move(Square::h1, Square::f1);
-    colors[us()].move(Square::h1, Square::f1);
+    unset(Square::h1);
+    set(Square::f1, Piece::rook, us());
   } else if (info.flags == MoveFlags::blackQueenSide) {
-    pieces[Piece::rook].move(Square::a8, Square::d8);
-    colors[us()].move(Square::a8, Square::d8);
+    unset(Square::a8);
+    set(Square::d8, Piece::rook, us());
   } else if (info.flags == MoveFlags::blackKingSide) {
-    pieces[Piece::rook].move(Square::h8, Square::f8);
-    colors[us()].move(Square::h8, Square::f8);
+    unset(Square::h8);
+    set(Square::f8, Piece::rook, us());
   }
 
-  pieces[info.piece].unsetSquare(info.start);
-  colors[us()].unsetSquare(info.start);
+  unset(info.start);
   if (move.promotion != Piece::empty) {
-    pieces[move.promotion].setSquare(info.end);
+    set(info.end, move.promotion, us());
   } else {
-    pieces[info.piece].setSquare(info.end);
+    set(info.end, info.piece, us());
   }
-  colors[us()].setSquare(info.end);
 
   next = them();
 }
@@ -428,44 +422,34 @@ void GameState::undoMove() {
   castlingRights = undo.castlingRights;
   next = them();
 
-  if (undo.flags == MoveFlags::promotion) {
-    for (Piece::t p : Piece::nonKing) {
-      pieces[p].unsetSquare(undo.end);
-    }
-  } else {
-    pieces[undo.piece].unsetSquare(undo.end);
-  }
-  colors[us()].unsetSquare(undo.end);
+  unset(undo.end);
 
   if (undo.flags != MoveFlags::enPassant && undo.capture != Piece::empty) {
-    pieces[undo.capture].setSquare(undo.end);
-    colors[them()].setSquare(undo.end);
+    set(undo.end, undo.capture, them());
   }
 
   if (undo.flags == MoveFlags::enPassant) {
     Square::t captured = enPassantCapture(undo.enPassant);
-    pieces[Piece::pawn].setSquare(captured);
-    colors[them()].setSquare(captured);
+    set(captured, Piece::pawn, them());
   } else if (undo.flags == MoveFlags::whiteQueenSide) {
-    pieces[Piece::rook].move(Square::d1, Square::a1);
-    colors[us()].move(Square::d1, Square::a1);
+    unset(Square::d1);
+    set(Square::a1, Piece::rook, us());
   } else if (undo.flags == MoveFlags::whiteKingSide) {
-    pieces[Piece::rook].move(Square::f1, Square::h1);
-    colors[us()].move(Square::f1, Square::h1);
+    unset(Square::f1);
+    set(Square::h1, Piece::rook, us());
   } else if (undo.flags == MoveFlags::blackQueenSide) {
-    pieces[Piece::rook].move(Square::d8, Square::a8);
-    colors[us()].move(Square::d8, Square::a8);
+    unset(Square::d8);
+    set(Square::a8, Piece::rook, us());
   } else if (undo.flags == MoveFlags::blackKingSide) {
-    pieces[Piece::rook].move(Square::f8, Square::h8);
-    colors[us()].move(Square::f8, Square::h8);
+    unset(Square::f8);
+    set(Square::h8, Piece::rook, us());
   }
 
   if (undo.flags == MoveFlags::promotion) {
-    pieces[Piece::pawn].setSquare(undo.start);
+    set(undo.start, Piece::pawn, us());
   } else {
-    pieces[undo.piece].setSquare(undo.start);
+    set(undo.start, undo.piece, us());
   }
-  colors[us()].setSquare(undo.start);
 }
 
 Move::Move(std::string const &algebraic)
@@ -503,8 +487,7 @@ void GameState::parseFenString(const std::string &fenString) {
       Color::t color = Color::pieceColorFromChar(c);
       Piece::t type = Piece::byName(c);
       if (Piece::inRange(type)) {
-        pieces[type].setSquare(Square::index(file, rank));
-        colors[color].setSquare(Square::index(file, rank));
+        set(Square::index(file, rank), type, color);
         file++;
       } else {
         throw std::invalid_argument{std::string("unknown character: `") + c +
@@ -537,13 +520,13 @@ void GameState::parseFenString(const std::string &fenString) {
   uneventfulHalfMoves = std::stoi(fields[4]);
 }
 
-std::ostream &operator<<(std::ostream &out, const GameState &board) {
+std::ostream &operator<<(std::ostream &out, const GameState &state) {
   for (auto rank : Coord::reverseRanks) {
     out << (rank + 1) << " | ";
     for (auto file : Coord::files) {
       int index = Square::index(file, rank);
-      unsigned piece = board.getPiece(index);
-      unsigned color = board.getColor(index);
+      unsigned piece = state.getPiece(index);
+      unsigned color = state.getColor(index);
       out << Piece::name(piece, color);
       out << ' ';
     }
@@ -551,15 +534,15 @@ std::ostream &operator<<(std::ostream &out, const GameState &board) {
   }
   out << "    ";
   for (auto _ : Coord::files) out << "--";
-  out << "\t uneventful: " << static_cast<int>(board.uneventfulHalfMoves)
-      << ", next: " << (board.next == Color::white ? "white" : "black");
+  out << "\t uneventful: " << static_cast<int>(state.uneventfulHalfMoves)
+      << ", next: " << (state.next == Color::white ? "white" : "black");
   out << "\n    ";
   for (auto file : Coord::files) out << Coord::fileName(file) << ' ';
   out << "\t en passant: "
-      << (board.enPassantSquare == Square::noSquare
+      << (state.enPassantSquare == Square::noSquare
               ? "-"
-              : Square::name(board.enPassantSquare))
-      << ", castling rights: " << static_cast<int>(board.castlingRights);
+              : Square::name(state.enPassantSquare))
+      << ", castling rights: " << static_cast<int>(state.castlingRights);
   out << std::endl;
   return out;
 }

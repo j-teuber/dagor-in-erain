@@ -61,8 +61,9 @@ class GameState {
   static inline const std::string startingPosition =
       "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
+  std::array<Piece::t, Square::size> mailbox;
   std::array<BitBoards::BitBoard, Piece::all.size()> pieces;
-  std::array<BitBoards::BitBoard, Color::all.size()> colors;
+  std::array<BitBoards::BitBoard, Color::size> colors;
   std::stack<UndoInfo> undoStack;
   std::uint8_t uneventfulHalfMoves;
   CastlingRights::t castlingRights;
@@ -70,48 +71,60 @@ class GameState {
   Color::t next;
 
   GameState()
-      : pieces(),
+      : mailbox(),
+        pieces(),
         colors(),
         undoStack(),
         uneventfulHalfMoves{0},
         castlingRights{CastlingRights::none},
         enPassantSquare{Square::noSquare},
         next{Color::white} {
+    mailbox.fill(Piece::empty);
     parseFenString(startingPosition);
   }
 
   explicit GameState(std::string const &fen)
-      : pieces(),
+      : mailbox(),
+        pieces(),
         colors(),
         undoStack(),
         uneventfulHalfMoves{0},
         castlingRights{CastlingRights::none},
         enPassantSquare{Square::noSquare},
         next{Color::white} {
+    mailbox.fill(Piece::empty);
     parseFenString(fen);
   }
 
-  BitBoards::BitBoard bitboardFor(Piece::t piece, Color::t color) const {
-    return pieces[piece] & colors[color];
-  }
-
-  Piece::t getPiece(Square::t square) const {
-    for (Piece::t type : Piece::all) {
-      if (pieces[type].isSet(square)) {
-        return type;
-      }
-    }
-    return Piece::empty;
-  }
-
+  Piece::t getPiece(Square::t square) const { return mailbox[square]; }
   Color::t getColor(Square::t square) const {
     if (colors[Color::black].isSet(square)) return Color::black;
     if (colors[Color::white].isSet(square)) return Color::white;
     return Color::empty;
   }
 
+  BitBoards::BitBoard forColor(Color::t color) const { return colors[color]; }
+  BitBoards::BitBoard forPiece(Piece::t piece) const { return pieces[piece]; }
+  BitBoards::BitBoard forPiece(Piece::t piece, Color::t color) const {
+    return forPiece(piece) & forColor(color);
+  }
+
   BitBoards::BitBoard occupancy() const {
     return colors[Color::white] | colors[Color::black];
+  }
+
+  void unset(Square::t square) {
+    Piece::t piece = getPiece(square);
+    mailbox[square] = Piece::empty;
+    pieces[piece].unsetSquare(square);
+    colors[Color::white].unsetSquare(square);
+    colors[Color::black].unsetSquare(square);
+  }
+
+  void set(Square::t square, Piece::t piece, Color::t color) {
+    mailbox[square] = piece;
+    pieces[piece].setSquare(square);
+    colors[color].setSquare(square);
   }
 
   inline Color::t us() const { return next; }
